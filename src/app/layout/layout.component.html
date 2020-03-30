@@ -8,13 +8,14 @@
                 <span class="hamburger-label">Menu</span>
             </button>
             <div class="wrapper">
-                <a class="logo" href="/">Angular Calendar App</a>
+                <a class="logo" routerLink="/">Angular Calendar App</a>
                 <ul>
-                    <li><a href="#" routerLink="/">Home</a></li>
-                    <li><a href="#" routerLink="/signup">Signup</a></li>
-                    <li><a href="#" routerLink="/login">Login</a></li>
-                    <li><a href="#" routerLink="/calendar">Calendar</a></li>
-                    <li><a href="#" routerLink="/settings">Settings</a></li>
+                    <li><a href="#" routerLink="/" (click)="clickLink()">Home</a></li>
+                    <li><a href="#" routerLink="/signup" (click)="clickLink()">Signup</a></li>
+                    <li><a href="#" routerLink="/login" (click)="clickLink()">Login</a></li>
+                    <li><a href="#" routerLink="/calendar" (click)="clickLink()">Calendar</a></li>
+                    <li><a href="#" routerLink="/settings" (click)="clickLink()">Settings</a></li>
+                    <li><a href="#" routerLink="/" (click)="clickLink()">Logout</a></li>
                 </ul>
             </div>
         </nav>

@@ -18,4 +18,11 @@ export class LayoutComponent implements OnInit {
     $('.wrapper ul').slideToggle();
   }
 
+  clickLink() {
+    if ($(window).width() < 800) {
+      $('.hamburger').toggleClass('is-active');
+      $('.wrapper ul').slideToggle();
+    }
+  }
+
 }
