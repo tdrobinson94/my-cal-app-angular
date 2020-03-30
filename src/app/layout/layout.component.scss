@@ -1,0 +1,117 @@
+@import '..//..//variables';
+
+header {
+    background: $primary;
+    padding: 1em 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 9999;
+
+    .nav-banner {
+        
+        .menu-btn {
+            position: absolute;
+            left: 3%;
+            background: transparent;
+            border: 0;
+            z-index: 99999;
+
+            &.hamburger{
+                outline: 0;
+                z-index: 2;
+                display: flex;
+                align-items: center;
+                padding: 0;
+                .hamburger-label{
+                    display: inline;
+                    margin-left: 15px;
+                    color: white;
+                    z-index: 2;
+                    font-size: 13px;
+                    @media screen and (max-width: 450px) {
+                        display: none;
+                    }
+                }
+            }
+
+            @media screen and (min-width: $end-small) {
+                display: none !important;
+            }
+        }
+        
+        .wrapper {
+            position: relative;
+            text-align: center;
+            
+            @media screen and (min-width: $end-small) {
+                text-align: left;
+            }
+        }
+        
+        a.logo {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            @media screen and (min-width: $end-small) {
+
+            }
+        }
+        
+        ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 0;
+            margin: 40px;
+            display: none;
+            
+            @media screen and (min-width: $end-small) {
+                flex-direction: row;
+                display: flex !important;
+                float: right;
+                margin: 0px;
+            }
+        }
+        
+        li {
+            margin: 2em;
+            @media screen and (min-width: $end-small) {
+                margin: 0;
+            }
+            
+            a {
+                padding: 1em;
+                color: #fff;
+                text-decoration: none;
+                font-weight: bold;
+                
+                &:hover, &:focus {
+                    background: darken($primary, 10%);
+                }
+            }
+        }
+    }
+}
+
+.layout-container {
+    width: 90%;
+    margin: auto;
+}
+
+
+footer {
+    background: $primary;
+    padding: 1em 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    z-index: 9999;
+
+    p {
+        color: $textwht;
+        margin: 0;
+    }
+}

@@ -1,0 +1,32 @@
+<header>
+    <div class="layout-container">
+        <nav class="nav-banner">
+            <button class="menu-btn hamburger hamburger--squeeze" (click)="clickNavButton()">
+                <span class="hamburger-box">
+                    <span class="hamburger-inner"></span>
+                </span>
+                <span class="hamburger-label">Menu</span>
+            </button>
+            <div class="wrapper">
+                <a class="logo" href="/">Angular Calendar App</a>
+                <ul>
+                    <li><a href="#" routerLink="/">Home</a></li>
+                    <li><a href="#" routerLink="/signup">Signup</a></li>
+                    <li><a href="#" routerLink="/login">Login</a></li>
+                    <li><a href="#" routerLink="/calendar">Calendar</a></li>
+                    <li><a href="#" routerLink="/settings">Settings</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<div class="container">
+    <router-outlet></router-outlet>
+</div>
+
+<footer>
+    <div class="layout-container">
+        <p>Angular Calendar App &copy; 2020</p>
+    </div>
+</footer>
