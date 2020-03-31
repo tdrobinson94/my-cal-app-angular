@@ -430,13 +430,13 @@
     overflow: auto;
     transform: translate(50%, 50%);
     color: $textdrk;
-    border-radius: 10px 0 0 10px;
+    border-radius: 10px;
 
     &::-webkit-scrollbar {
       width: 4px;
     }
     &::-webkit-scrollbar-track {
-      background: white;
+      background: transparent;
     }
     &::-webkit-scrollbar-thumb {
       background: rgba(0, 0, 0, .2);
@@ -487,15 +487,11 @@ form {
         justify-content: space-between;
         flex-wrap: wrap;
 
-        .group {
-            width: 47%;
-        }
-
         .input-wrapper {
             width: 100%;
 
-            div:first-of-type {
-                height: 105px;
+            @media screen and (min-width: $end-small) {
+                width: 49%;
             }
         }
     }
@@ -535,7 +531,7 @@ form {
         }
     }
 
-    select, .date-input, .item-title, .event-description, .amount-input, .location-input, .time-input {
+    select, .date-input input, .item-title input , .event-description input, .amount-input input, .location-input input, .time-input input {
         width: 100%;
         padding: 10px;
         border: 1px solid #c4c7cc;
@@ -551,6 +547,10 @@ form {
         input {
             padding: 7.5px;
         }
+    }
+
+    .input-wrapper:last-child {
+        width: 100%;
     }
 
     textarea {

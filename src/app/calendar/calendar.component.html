@@ -346,65 +346,85 @@
             <div class="close-form entypo-down-open" (click)="closeForm()"></div>
         </div>
         <form>
-            <label>Title</label>
-            <input type="text" class="item-title" placeholder="Title or name">
-            <label>Select Type</label>
-            <div class="select-item">
-                <input class="checkbox" type="checkbox" id="checkbox1" checked />
-                <label for="checkbox1" class="item_1">Event</label>
-    
-                <input class="checkbox" type="checkbox" id="checkbox2" />
-                <label for="checkbox2" class="item_2">Reminder</label>
-    
-                <input class="checkbox" type="checkbox" id="checkbox3" />
-                <label for="checkbox3" class="item_3">Task</label>
-    
-                <input class="checkbox" type="checkbox" id="checkbox4" />
-                <label for="checkbox4" class="item_4">Budget</label>
-    
-                <input class="checkbox" type="checkbox" id="checkbox5" />
-                <label for="checkbox5" class="item_5">Food</label>
+            <div class="input-wrapper">
+                <label>Select Type</label>
+                <div class="select-item">
+                    <input class="checkbox" type="checkbox" id="checkbox1" checked />
+                    <label (click)="selectItemEvent($event)" for="checkbox1" class="item_1">Event</label>
+        
+                    <input class="checkbox" type="checkbox" id="checkbox2" />
+                    <label (click)="selectItemEvent($event)" for="checkbox2" class="item_2">Reminder</label>
+        
+                    <input class="checkbox" type="checkbox" id="checkbox3" />
+                    <label (click)="selectItemEvent($event)" for="checkbox3" class="item_3">Task</label>
+        
+                    <input class="checkbox" type="checkbox" id="checkbox4" />
+                    <label (click)="selectItemEvent($event)" for="checkbox4" class="item_4">Budget</label>
+        
+                    <input class="checkbox" type="checkbox" id="checkbox5" />
+                    <label (click)="selectItemEvent($event)" for="checkbox5" class="item_5">Food</label>
+                </div>
+            </div>
+
+            <div class="input-wrapper">
+                <label>Select Frequency</label>
+                <div class="checkbox">
+                    <input class="frequency first-checkbox" type="checkbox" id="frequency1" value="Once" checked />
+                    <label (click)="selectItemFreq($event)" for="frequency1" class="frequency_1">Once</label>
+            
+                    <input class="frequency" type="checkbox" value="Daily" id="frequency2" />
+                    <label (click)="selectItemFreq($event)" for="frequency2" class="frequency_2">Daily</label>
+            
+                    <input class="frequency" type="checkbox" value="Weekly" id="frequency3" />
+                    <label (click)="selectItemFreq($event)" for="frequency3" class="frequency_3">Weekly</label>
+            
+                    <input class="frequency" type="checkbox" value="Bi-weekly" id="frequency4" />
+                    <label (click)="selectItemFreq($event)" for="frequency4" class="frequency_4">Bi-Weekly</label>
+            
+                    <input class="frequency" type="checkbox" value="Monthly" id="frequency5" />
+                    <label (click)="selectItemFreq($event)" for="frequency5" class="frequency_5">Monthly</label>
+            
+                    <input class="frequency" type="checkbox" value="Semi-annual" id="frequency6" />
+                    <label (click)="selectItemFreq($event)" for="frequency6" class="frequency_6">Semi-annual</label>
+            
+                    <input class="frequency" type="checkbox" value="Annual" id="frequency7" />
+                    <label (click)="selectItemFreq($event)" for="frequency7" class="frequency_7">Annual</label>
+                </div>
+            </div>
+
+            <div class="input-wrapper item-title">
+                <label>Title</label>
+                <input type="text" placeholder="Title or name">
+            </div>
+            
+            <div class="input-wrapper date-input">
+                <label>Select Date</label>
+                <input type="date" />
+            </div>
+
+            <div class="input-wrapper event-description">
+                <label class="description-label">Description</label>
+                <input type="text" placeholder="Add description">
+            </div>
+            
+            <div class="input-wrapper time-input">
+                <label class="time-label">Select Time</label>
+                <input type="time" />
+            </div>
+
+            <div class="input-wrapper location-input">
+                <label class="location-label">Location</label>
+                <input type="text" placeholder="Location">
             </div>
     
-            <label>Select Date</label>
-            <input class="date-input" type="date" />
-    
-            <label class="time-label">Select Time</label>
-            <input class="time-input" type="time" />
-    
-            <label>Select Frequency</label>
-            <div class="checkbox">
-                <input class="frequency first-checkbox" type="checkbox" id="frequency1" value="Once" checked />
-                <label for="frequency1" class="frequency_1">Once</label>
-    
-                <input class="frequency" type="checkbox" value="Daily" id="frequency2" />
-                <label for="frequency2" class="frequency_2">Daily</label>
-    
-                <input class="frequency" type="checkbox" value="Weekly" id="frequency3" />
-                <label for="frequency3" class="frequency_3">Weekly</label>
-    
-                <input class="frequency" type="checkbox" value="Bi-weekly" id="frequency4" />
-                <label for="frequency4" class="frequency_4">Bi-Weekly</label>
-    
-                <input class="frequency" type="checkbox" value="Monthly" id="frequency5" />
-                <label for="frequency5" class="frequency_5">Monthly</label>
-    
-                <input class="frequency" type="checkbox" value="Semi-annual" id="frequency6" />
-                <label for="frequency6" class="frequency_6">Semi-annual</label>
-    
-                <input class="frequency" type="checkbox" value="Annual" id="frequency7" />
-                <label for="frequency7" class="frequency_7">Annual</label>
+            <div class="input-wrapper amount-input">
+                <label class="amount-label">Amount</label>
+                <input type="text" placeholder="Amount">
             </div>
-    
-            <label class="description-label">Description</label>
-            <input type="text" class="event-description" placeholder="Add description">
-    
-            <label class="location-label">Location</label>
-            <input type="text" class="location-input" placeholder="Location">
-    
-            <label class="amount-label">Amount</label>
-            <input type="text" class="amount-input" placeholder="Amount">
-            <button class="submit-form" type="submit">Enter</button>
+
+            <div class="input-wrapper">
+                <button class="submit-form" type="submit">Enter</button>
+            </div>
         </form>
     </div>
 </section>

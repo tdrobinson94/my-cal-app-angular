@@ -395,4 +395,65 @@ export class CalendarComponent implements OnInit {
     $('body, html').animate({ scrollTop: $('.clicked-day').position().top - 75}, 500);
   }
 
+  selectItemEvent(e) {
+    $('.checkbox').not(e.currentTarget).prop('checked', false);
+    $('.select-item label').removeClass('selected');
+
+    if ($(e.currentTarget).hasClass('item_1')) {
+      console.log("Event")
+      $(e.currentTarget).addClass('selected');
+      $('.event-description, .description-label, .location-input, .location-label, .time-input, .time-label').addClass('show-input');
+      $('.amount-input, .amount-label').removeClass('show-input');
+    } else if ($(e.currentTarget).hasClass('item_2')) {
+      console.log("Reminder")
+      $(e.currentTarget).addClass('selected');
+      $('.time-input, .time-label, .location-input, .location-label').addClass('show-input');
+      $('.event-description, .description-label').removeClass('show-input');
+      $('.amount-input, .amount-label').removeClass('show-input');
+    } else if ($(e.currentTarget).hasClass('item_3')) {
+      console.log("Task")
+      $(e.currentTarget).addClass('selected');
+      $('.event-description, .description-label, .time-input, .time-label').addClass('show-input');
+      $('.amount-input, .amount-label, .location-input, .location-label').removeClass('show-input');
+    } else if ($(e.currentTarget).hasClass('item_4')) {
+      console.log("Budget")
+      $(e.currentTarget).addClass('selected');
+      $('.event-description, .description-label, .location-input, .location-label, .time-input, .time-label').removeClass('show-input');
+      $('.amount-input, .amount-label').addClass('show-input');
+    } else if ($(e.currentTarget).hasClass('item_5')) {
+      console.log("Food")
+      $(e.currentTarget).addClass('selected');
+      $('.event-description, .description-label, .location-input, .location-label, .time-input, .time-label').removeClass('show-input');
+      $('.amount-input, .amount-label').addClass('show-input');
+    }
+  }
+
+  selectItemFreq(e) {
+    $('.frequency').not(e.currentTarget).prop('checked', false);
+    $('.checkbox label').removeClass('selected');
+
+    if ($(e.currentTarget).hasClass('frequency_1')) {
+      console.log("Item 1")
+      $(e.currentTarget).addClass('selected')
+    } else if ($(e.currentTarget).hasClass('frequency_2')) {
+      console.log("Item 2")
+      $(e.currentTarget).addClass('selected')
+    } else if ($(e.currentTarget).hasClass('frequency_3')) {
+      console.log("Item 3")
+      $(e.currentTarget).addClass('selected')
+    } else if ($(e.currentTarget).hasClass('frequency_4')) {
+      console.log("Item 4")
+      $(e.currentTarget).addClass('selected')
+    } else if ($(e.currentTarget).hasClass('frequency_5')) {
+      console.log("Item 5")
+      $(e.currentTarget).addClass('selected')
+    } else if ($(e.currentTarget).hasClass('frequency_6')) {
+      console.log("Item 6")
+      $(e.currentTarget).addClass('selected')
+    } else if ($(e.currentTarget).hasClass('frequency_7')) {
+      console.log("Item 7")
+      $(e.currentTarget).addClass('selected')
+    }
+  }
+
 }
