@@ -170,17 +170,17 @@
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    height: 50%;
+    height: 100%;
 
     .days {
         width: 100%;
         display: flex;
         justify-content: center;
-        height: 36.7%;
+        height: 16%;
         margin-top: 10px;
 
         @media screen and (min-width: $end-small) {
-        height: 41.7%;
+        height: 20%;
         }
         
         h1{
