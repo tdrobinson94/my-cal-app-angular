@@ -25,4 +25,16 @@ export class LayoutComponent implements OnInit {
     }
   }
 
+  openFullscreen(){
+    document.documentElement.requestFullscreen();
+    $('.fullscreen-btn').hide();
+    $('.exit-fullscreen-btn').show();
+  }
+
+  exitFullscreen() {
+    document.exitFullscreen();
+    $('.fullscreen-btn').show();
+    $('.exit-fullscreen-btn').hide();
+  }
+
 }

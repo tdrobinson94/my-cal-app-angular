@@ -49,6 +49,24 @@ header {
                 text-align: left;
             }
         }
+
+        .exit-fullscreen-btn, .fullscreen-btn {
+            background: white;
+            color: red;
+            border-radius: 5px;
+            position: absolute;
+            right: 3%;
+            top: 18px;
+            border: 0;
+
+            @media screen and (min-width: $end-small) {
+                display: none !important;
+            }
+        }
+
+        .exit-fullscreen-btn {
+            display: none;
+        }
         
         a.logo {
             color: #fff;
