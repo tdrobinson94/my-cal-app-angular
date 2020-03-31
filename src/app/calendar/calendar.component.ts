@@ -319,4 +319,44 @@ export class CalendarComponent implements OnInit {
     $('.extra').hide();
   }
 
+  openForm() {
+    let clock = new Date();
+    let day = $('.clicked-day').attr('value');
+    let minutes = String(clock.getMinutes()).padStart(2, '0');
+    let currentTime = clock.getHours() + ':' + minutes;
+
+    $('.select-item label').removeClass('selected');
+    $('.checkbox label').removeClass('selected');
+    let month = (parseInt($('.month-selector').val(), 10) + 1);
+    let year = (parseInt($('.year-selector').val(), 10));
+    if (month < 10)
+      month = "0" + month;
+    if (day < 10)
+      day = "0" + day;
+    var today = year + '-' + month + '-' + day;
+    $('.date-input input').val(today);
+    console.log(currentTime)
+    $('.time').val(currentTime);
+    $('.add-item-form').addClass('show-form');
+    $('.event-description, .description-label, .location-input, .location-label, .time-input, .time-label').addClass('show-input');
+
+    if ($(window).width() <= 800) {
+
+    } else {
+      $('.clicked-day').removeClass('double-click');
+    }
+
+    $('.select-item label.item_1').addClass('selected');
+    $('.checkbox label.frequency_1').addClass('selected');
+  }
+
+  closeForm() {
+    $('.add-item-form').removeClass('show-form');
+    function scrollDay() {
+      $('body, html').animate({ scrollTop: $('.clicked-day').offset().top - 250 }, 500);
+    }
+
+    window.setTimeout(scrollDay, .3);
+  }
+
 }

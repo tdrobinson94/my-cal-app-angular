@@ -381,3 +381,235 @@
         display: none;
     }
 }
+
+.add-item-form {
+    position: fixed;
+    bottom: -5px;
+    right: 0px;
+    font-size: 20px;
+    width: 100%;
+    height: 0px;
+    overflow: hidden;
+    max-width: $end-small;
+    transition:  width .4s, height .4s;
+    transition-timing-function: ease-in-out;
+    background: $textwht;
+    border: 1px solid $textdrk;
+    z-index: 99999;
+
+    @media screen and (min-width: $end-small) {
+      right: 50%;
+      transform: translateX(50%);
+    }
+
+&.show-form {
+    position: fixed;
+    margin: auto;
+    bottom: 50%;
+    height: 400px;
+    width: 100%;
+    max-width: $end-small;
+    overflow: initial;
+    transition: width .4s, height .4s, border-radius .5s;
+    transition-timing-function: ease-in-out;
+    background-color: $textwht;
+    box-shadow: 1px 1px 10px $textdrk;
+    float: none;
+    overflow: auto;
+    transform: translate(50%, 50%);
+    color: $textdrk;
+    border-radius: 10px 0 0 10px;
+
+    @media screen and (max-width: $end-small) {
+        width: 100%;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 100vh;
+        top: 106px;
+        transform: translateX(0);
+        border-radius: 0;
+        border: 0;
+    }
+
+}
+
+.form-nav {
+    position: sticky;
+    top: 0;
+    padding: 15px 0 15px 20px;
+    background: $alert;
+    color: $textwht;
+    h2 {
+        margin: 0;
+        margin-right: 54px;
+    }
+}
+
+form {
+    padding: 20px;
+    margin: auto;
+
+    @media screen and (min-width: $end-small) {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+
+        .group {
+            width: 47%;
+        }
+
+        .input-wrapper {
+            width: 100%;
+
+            div:first-of-type {
+                height: 105px;
+            }
+        }
+    }
+
+    label {
+        display: block;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        font-weight: bold;
+    }
+
+    .select-item, .checkbox {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        margin: 20px 0;
+        input {
+            display: none;
+        }
+
+        label {
+            font-weight: normal;
+            display: inline;
+            width: auto;
+            padding: 10px;
+            transition: all .3s ease-in-out;
+            font-size: 15px;
+        }
+
+        .selected {
+            background-color: rgba(255,0,0,.2);
+            color: $alert;
+            border-radius: 10px;
+            transition: color .5s ease-in-out;
+        }
+    }
+
+    select, .date-input, .item-title, .event-description, .amount-input, .location-input, .time-input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #c4c7cc;
+        border-radius: 5px;
+        margin: 10px 0;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        font-size: 15px;
+    }
+
+    .date-input, .time-input {
+        input {
+            padding: 7.5px;
+        }
+    }
+
+    textarea {
+        height: 75px;
+    }
+
+    .event-description, .description-label, .amount-input, .amount-label, .location-label, .location-input, .time-input, .time-label {
+        display: none;
+    }
+
+    .show-input {
+        display: block;
+    }
+
+    ul {
+        list-style: none;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        flex-wrap: wrap;
+        padding: 0;
+
+        @media screen and (max-width: $end-small) {
+            justify-content: space-evenly;
+
+            li {
+            width: 150px;
+            }
+        }
+        li {
+            margin: 5px;
+        }
+    }
+
+    button.submit-form {
+        background-color: $alert;
+        color: $textwht;
+        border-radius: 10px;
+        padding: 10px;
+        border: 0;
+        font-size: 15px;
+        float: right;
+        margin: 20px 0;
+    }
+
+}
+
+.close-form {
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 17px;
+    font-size: 27px;
+    padding: 0px 20px;
+    cursor: pointer;
+    color: $textwht;
+
+    &:hover {
+        @media screen and (min-width: $mid-small) {
+            color: #333333;
+            opacity: .4;
+            transition: all .2s ease-in-out;
+        }
+    }
+}
+}
+
+.add-item-button {
+    padding: 15px;
+    position: fixed;
+    bottom: 60.9px;
+    font-size: 20px;
+    border-radius: 100%;
+    border: none;
+    background-color: $alert;
+    color: #fff;
+    right: 20px;
+    z-index: 999;
+
+    &:hover {
+        &:before {
+            @media screen and (min-width: $mid-small) {
+                color: #333333;
+                opacity: .4;
+                transition: all .2s ease-in-out;
+            }
+        }
+    }
+
+    @media screen and (min-width: $end-small) {
+        right: 50%;
+        transform: translateX(50%);
+    }
+}
