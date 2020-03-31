@@ -17,6 +17,7 @@ export class CalendarComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+
     $(document).find('#month').html(`
     <option value="0">${MONTHS[0].name}</option>
     <option value="1">${MONTHS[1].name}</option>
@@ -191,11 +192,7 @@ export class CalendarComponent implements OnInit {
     this.renderPrevMonthDays();
     this.selectedDay();
 
-    function scrollDay() {
-      console.log("scrolling");
-      $('.container').animate({ scrollTop: $('.selected-day').offset().top - 200 }, 500);
-    }
-    window.setTimeout(scrollDay, .1);
+    $('.container').delay(200).animate({ scrollTop: $('.selected-day').position().top - 200 }, 500);
   }
 
   prevClick() {
@@ -216,11 +213,6 @@ export class CalendarComponent implements OnInit {
       }
     }
     this.changeCal();
-    function scrollDay() {
-      console.log("scrolling");
-      $('.container').animate({ scrollTop: $('.selected-day').offset().top - 200 }, 500);
-    }
-    window.setTimeout(scrollDay, .1);
   }
 
   currentClick() {
@@ -232,11 +224,6 @@ export class CalendarComponent implements OnInit {
     $(document).find('#month').val(month).change();
     $(document).find('#year').val(year).change();
     this.changeCal();
-    function scrollDay() {
-      console.log("scrolling");
-      $('.container').animate({ scrollTop: $('.selected-day').offset().top - 200 }, 500);
-    }
-    window.setTimeout(scrollDay, .1);
   }
 
   nextClick() {
@@ -257,12 +244,6 @@ export class CalendarComponent implements OnInit {
       }
     }
     this.changeCal();
-
-    function scrollDay() {
-      console.log("scrolling");
-      $('.conatiner').animate({ scrollTop: $('.selected-day').offset().top - 200 }, 500);
-    }
-    window.setTimeout(scrollDay, .1);
   }
 
   clickonDay(e) {
@@ -273,11 +254,9 @@ export class CalendarComponent implements OnInit {
       $(e.currentTarget).addClass('clicked-day');
     }
 
-    function scrollDay() {
-      $('.container').animate({ scrollTop: $('.clicked-day').offset().top - 200 }, 500);
-    }
+    console.log($('.clicked-day').position().top)
 
-    window.setTimeout(scrollDay, .3);
+    $('.container').animate({ scrollTop: $('.clicked-day').position().top - 200 }, 500);
   }
 
   openDay(e) {
@@ -326,11 +305,7 @@ export class CalendarComponent implements OnInit {
 
   closeForm() {
     $('.add-item-form').removeClass('show-form');
-    function scrollDay() {
-      $('body, html').animate({ scrollTop: $('.clicked-day').offset().top - 250 }, 500);
-    }
-
-    window.setTimeout(scrollDay, .3);
+    $('body, html').animate({ scrollTop: $('.clicked-day').position().top - 250 }, 500);
   }
 
 }
