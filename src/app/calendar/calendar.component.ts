@@ -192,7 +192,7 @@ export class CalendarComponent implements OnInit {
     this.renderPrevMonthDays();
     this.selectedDay();
 
-    $('.container').delay(200).animate({ scrollTop: $('.selected-day').position().top - 200 }, 500);
+    $('.container').animate({ scrollTop: $('.selected-day').position().top - 100 }, 500);
   }
 
   prevClick() {
@@ -256,7 +256,7 @@ export class CalendarComponent implements OnInit {
 
     console.log($('.clicked-day').position().top)
 
-    $('.container').animate({ scrollTop: $('.clicked-day').position().top - 200 }, 500);
+    $('.container').animate({ scrollTop: $('.clicked-day').position().top - 100 }, 500);
   }
 
   openDay(e) {
@@ -305,7 +305,7 @@ export class CalendarComponent implements OnInit {
 
   closeForm() {
     $('.add-item-form').removeClass('show-form');
-    $('body, html').animate({ scrollTop: $('.clicked-day').position().top - 250 }, 500);
+    $('body, html').animate({ scrollTop: $('.clicked-day').position().top - 100 }, 500);
   }
 
 }
