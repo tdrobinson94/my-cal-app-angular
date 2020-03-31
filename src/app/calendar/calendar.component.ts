@@ -51,6 +51,29 @@ export class CalendarComponent implements OnInit {
 
     $('#year').val(year);
     this.changeCal();
+
+    $('.container').scroll(function(){
+      console.log($('.second-row').position().top);
+      console.log($('.container').scrollTop())
+      if ($('.container').scrollTop() > $('.first-row').position().top) {
+        $('.first-row').addClass('not-showing');
+      } else {
+        $('.first-row').removeClass('not-showing');
+      }
+
+      if ($('.container').scrollTop() > $('.second-row').position().top) {
+        $('.second-row').addClass('not-showing');
+      } else {
+        $('.second-row').removeClass('not-showing');
+      }
+
+      if ($('.container').scrollTop() > $('.third-row').position().top) {
+        $('.third-row').addClass('not-showing');
+      } else {
+        $('.third-row').removeClass('not-showing');
+      }
+      
+    });
   }
 
   renderMonth() {
@@ -192,7 +215,39 @@ export class CalendarComponent implements OnInit {
     this.renderPrevMonthDays();
     this.selectedDay();
 
-    $('.container').animate({ scrollTop: $('.selected-day').position().top - 100 }, 500);
+    if ($(window).width() <= 800) {
+      if ($('.clicked-day').position().top > 153) {
+        $('.first-row').addClass('not-showing');
+      } else {
+        $('.first-row').removeClass('not-showing');
+      }
+
+      if ($('.clicked-day').position().top > 372) {
+        $('.second-row').addClass('not-showing');
+      } else {
+        $('.second-row').removeClass('not-showing');
+      }
+
+      if ($('.clicked-day').position().top > 590) {
+        $('.third-row').addClass('not-showing');
+      } else {
+        $('.third-row').removeClass('not-showing');
+      }
+    } else {
+      if ($('.clicked-day').position().top > 111) {
+        $('.first-row').addClass('not-showing');
+      } else {
+        $('.first-row').removeClass('not-showing');
+      }
+      if ($('.clicked-day').position().top > 288) {
+        $('.second-row').addClass('not-showing');
+      } else {
+        $('.second-row').removeClass('not-showing');
+      }
+      $('.third-row').removeClass('not-showing');
+    }
+
+    $('.container').animate({ scrollTop: $('.selected-day').position().top - 75}, 500);
   }
 
   prevClick() {
@@ -254,9 +309,41 @@ export class CalendarComponent implements OnInit {
       $(e.currentTarget).addClass('clicked-day');
     }
 
-    console.log($('.clicked-day').position().top)
+    console.log($('.clicked-day').position().top - 75)
 
-    $('.container').animate({ scrollTop: $('.clicked-day').position().top - 100 }, 500);
+    if ($(window).width() <= 800) {
+      if ($('.clicked-day').position().top > 153) {
+        $('.first-row').addClass('not-showing');
+      } else {
+        $('.first-row').removeClass('not-showing');
+      }
+
+      if ($('.clicked-day').position().top > 372) {
+        $('.second-row').addClass('not-showing');
+      } else {
+        $('.second-row').removeClass('not-showing');
+      }
+
+      if ($('.clicked-day').position().top > 590) {
+        $('.third-row').addClass('not-showing');
+      } else {
+        $('.third-row').removeClass('not-showing');
+      }
+    } else {
+      if ($('.clicked-day').position().top > 111) {
+        $('.first-row').addClass('not-showing');
+      } else {
+        $('.first-row').removeClass('not-showing');
+      }
+      if ($('.clicked-day').position().top > 288) {
+        $('.second-row').addClass('not-showing');
+      } else {
+        $('.second-row').removeClass('not-showing');
+      }
+      $('.third-row').removeClass('not-showing');
+    }
+
+    $('.container').animate({ scrollTop: $('.clicked-day').position().top - 75}, 500);
   }
 
   openDay(e) {
@@ -305,7 +392,7 @@ export class CalendarComponent implements OnInit {
 
   closeForm() {
     $('.add-item-form').removeClass('show-form');
-    $('body, html').animate({ scrollTop: $('.clicked-day').position().top - 100 }, 500);
+    $('body, html').animate({ scrollTop: $('.clicked-day').position().top - 75}, 500);
   }
 
 }

@@ -341,7 +341,7 @@
                         font-size: 20px;
                         }
                     }
-                }
+                } 
 
                 .open-day {
                     display: none;
@@ -375,6 +375,18 @@
                 25%  {transform: scale(.5, .5);}
             }
         }
+        }
+    }
+    .not-showing {
+        .weekday {
+            bottom: 0;
+            top: initial !important;
+        }
+        .double-click {
+            .weekday {
+                top: 0 !important;
+                bottom: initial !important;
+            }
         }
     }
     .cur_trans_box{
