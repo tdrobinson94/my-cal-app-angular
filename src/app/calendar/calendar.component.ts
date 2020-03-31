@@ -14,32 +14,6 @@ let day = clock.getDate();
   styleUrls: ['./calendar.component.scss']
 })
 export class CalendarComponent implements OnInit {
-  currentMonth = month;
-  currentYear = year;
-  january = MONTHS[0].name;
-  february = MONTHS[1].name;
-  march = MONTHS[2].name;
-  april = MONTHS[3].name;
-  may = MONTHS[4].name;
-  june = MONTHS[5].name;
-  july = MONTHS[6].name;
-  august = MONTHS[7].name;
-  september = MONTHS[8].name;
-  october = MONTHS[9].name;
-  november = MONTHS[10].name;
-  december = MONTHS[11].name;
-
-  minusFive = (year - 5);
-  minusFour = (year - 4);
-  minusThree = (year - 3);
-  minusTwo = (year - 2);
-  minusOne = (year - 1);
-  addOne = (year - 1);
-  addTwo = (year - 2);
-  addThree = (year - 3);
-  addFour = (year - 4);
-  addFive = (year - 5);
-
   constructor() { }
 
   ngOnInit(): void {
@@ -329,10 +303,10 @@ export class CalendarComponent implements OnInit {
     $('.checkbox label').removeClass('selected');
     let month = (parseInt($('.month-selector').val(), 10) + 1);
     let year = (parseInt($('.year-selector').val(), 10));
-    if (month < 10)
-      month = "0" + month;
-    if (day < 10)
-      day = "0" + day;
+    // if (month < 10)
+    //   month = "0" + month;
+    // if (day < 10)
+    //   day = "0" + day;
     var today = year + '-' + month + '-' + day;
     $('.date-input input').val(today);
     console.log(currentTime)
