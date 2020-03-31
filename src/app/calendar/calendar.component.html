@@ -3,40 +3,17 @@
         <div class="controls">
             <form class="select-form">
                 <div class="date-selectors">
-                    <select name="select" class="month-selector selector" id="month" value="{{currentMonth}}">
-                        <option value="0">{{ january }}</option>
-                        <option value="1">{{ february }}</option>
-                        <option value="2">{{ march }}</option>
-                        <option value="3">{{ april }}</option>
-                        <option value="4">{{ may }}</option>
-                        <option value="5">{{ june }}</option>
-                        <option value="6">{{ july }}</option>
-                        <option value="7">{{ august }}</option>
-                        <option value="8">{{ september }}</option>
-                        <option value="9">{{ october }}</option>
-                        <option value="10">{{ november }}</option>
-                        <option value="11">{{ december }}</option>
+                    <select name="select" class="month-selector selector" id="month" (change)="changeCal()">
                     </select>
-                    <select name="select" class="year-selector selector" id="year">
-                        <option value="{{ minusFive }}">{{ minusFive }}</option>
-                        <option value="{{ minusFour }}">{{ minusFour }}</option>
-                        <option value="{{ minusThree }}">{{ minusThree }}</option>
-                        <option value="{{ minusTwo }}">{{ minusTwo }}</option>
-                        <option value="{{ minusOne }}">{{ minusOne }}</option>
-                        <option value="{{ currentYear }}" selected>{{ currentYear }}</option>
-                        <option value="{{ addOne }}">{{ addOne }}</option>
-                        <option value="{{ addTwo }}">{{ addTwo }}</option>
-                        <option value="{{ addThree }}">{{ addThree }}</option>
-                        <option value="{{ addFour }}">{{ addFour }}</option>
-                        <option value="{{ addFive }}">{{ addFive }}</option>
+                    <select name="select" class="year-selector selector" id="year" (change)="changeCal()">
                     </select>
                 </div>
             </form>
     
             <div class="calendar-controls">
-                <button class="prev button entypo-left-open"></button>
-                <button id="todays-day" class="current button entypo-calendar"></button>
-                <button class="next button entypo-right-open"></button>
+                <button class="prev button entypo-left-open" (click)="prevClick()"></button>
+                <button id="todays-day" class="current button entypo-calendar" (click)="currentClick()"></button>
+                <button class="next button entypo-right-open" (click)="nextClick()"></button>
             </div>
         </div>
     
@@ -50,6 +27,367 @@
             <div>Sat</div>
         </div>
     
+    </div>
+
+    <div class="calendar-container">
+        <div class="days">
+            <div id="num-box" class="num-box dead_month_color" (click)="clickonDay($event)">
+                <div class="weekday"><span class="num-date"></span></div>
+                <div class="main-info"></div>
+                <div class="date-value"></div>
+                <div class="open-day entypo-up-open" (click)="openDay($event)"></div>
+                <div class="close-day entypo-down-open" (click)="closeDay($event)"></div>
+            </div>
+            <div id="num-box" class="num-box dead_month_color" (click)="clickonDay($event)">
+                <div class="weekday"><span class="num-date"></span></div>
+                <div class="main-info"></div>
+                <div class="date-value"></div>
+                <div class="open-day entypo-up-open" (click)="openDay($event)"></div>
+                <div class="close-day entypo-down-open" (click)="closeDay($event)"></div>
+            </div>
+            <div id="num-box" class="num-box dead_month_color" (click)="clickonDay($event)">
+                <div class="weekday"><span class="num-date"></span></div>
+                <div class="main-info"></div>
+                <div class="date-value"></div>
+                <div class="open-day entypo-up-open" (click)="openDay($event)"></div>
+                <div class="close-day entypo-down-open" (click)="closeDay($event)"></div>
+            </div>
+            <div id="num-box" class="num-box dead_month_color" (click)="clickonDay($event)">
+                <div class="weekday"><span class="num-date"></span></div>
+                <div class="main-info"></div>
+                <div class="date-value"></div>
+                <div class="open-day entypo-up-open" (click)="openDay($event)"></div>
+                <div class="close-day entypo-down-open" (click)="closeDay($event)"></div>
+            </div>
+            <div id="num-box" class="num-box dead_month_color" (click)="clickonDay($event)">
+                <div class="weekday"><span class="num-date"></span></div>
+                <div class="main-info"></div>
+                <div class="date-value"></div>
+                <div class="open-day entypo-up-open" (click)="openDay($event)"></div>
+                <div class="close-day entypo-down-open" (click)="closeDay($event)"></div>
+            </div>
+            <div id="num-box" class="num-box dead_month_color" (click)="clickonDay($event)">
+                <div class="weekday"><span class="num-date"></span></div>
+                <div class="main-info"></div>
+                <div class="date-value"></div>
+                <div class="open-day entypo-up-open" (click)="openDay($event)"></div>
+                <div class="close-day entypo-down-open" (click)="closeDay($event)"></div>
+            </div>
+            <div id="num-box" class="num-box dead_month_color" (click)="clickonDay($event)">
+                <div class="weekday"><span class="num-date"></span></div>
+                <div class="main-info"></div>
+                <div class="date-value"></div>
+                <div class="open-day entypo-up-open" (click)="openDay($event)"></div>
+                <div class="close-day entypo-down-open" (click)="closeDay($event)"></div>
+            </div>
+        </div>
+        <div class="days">
+            <div id="num-box" class="num-box dead_month_color" (click)="clickonDay($event)">
+                <div class="weekday"><span class="num-date"></span></div>
+                <div class="main-info"></div>
+                <div class="date-value"></div>
+                <div class="open-day entypo-up-open" (click)="openDay($event)"></div>
+                <div class="close-day entypo-down-open" (click)="closeDay($event)"></div>
+            </div>
+            <div id="num-box" class="num-box dead_month_color" (click)="clickonDay($event)">
+                <div class="weekday"><span class="num-date"></span></div>
+                <div class="main-info"></div>
+                <div class="date-value"></div>
+                <div class="open-day entypo-up-open" (click)="openDay($event)"></div>
+                <div class="close-day entypo-down-open" (click)="closeDay($event)"></div>
+            </div>
+            <div id="num-box" class="num-box dead_month_color" (click)="clickonDay($event)">
+                <div class="weekday"><span class="num-date"></span></div>
+                <div class="main-info"></div>
+                <div class="date-value"></div>
+                <div class="open-day entypo-up-open" (click)="openDay($event)"></div>
+                <div class="close-day entypo-down-open" (click)="closeDay($event)"></div>
+            </div>
+            <div id="num-box" class="num-box dead_month_color" (click)="clickonDay($event)">
+                <div class="weekday"><span class="num-date"></span></div>
+                <div class="main-info"></div>
+                <div class="date-value"></div>
+                <div class="open-day entypo-up-open" (click)="openDay($event)"></div>
+                <div class="close-day entypo-down-open" (click)="closeDay($event)"></div>
+            </div>
+            <div id="num-box" class="num-box dead_month_color" (click)="clickonDay($event)">
+                <div class="weekday"><span class="num-date"></span></div>
+                <div class="main-info"></div>
+                <div class="date-value"></div>
+                <div class="open-day entypo-up-open" (click)="openDay($event)"></div>
+                <div class="close-day entypo-down-open" (click)="closeDay($event)"></div>
+            </div>
+            <div id="num-box" class="num-box dead_month_color" (click)="clickonDay($event)">
+                <div class="weekday"><span class="num-date"></span></div>
+                <div class="main-info"></div>
+                <div class="date-value"></div>
+                <div class="open-day entypo-up-open" (click)="openDay($event)"></div>
+                <div class="close-day entypo-down-open" (click)="closeDay($event)"></div>
+            </div>
+            <div id="num-box" class="num-box dead_month_color" (click)="clickonDay($event)">
+                <div class="weekday"><span class="num-date"></span></div>
+                <div class="main-info"></div>
+                <div class="date-value"></div>
+                <div class="open-day entypo-up-open" (click)="openDay($event)"></div>
+                <div class="close-day entypo-down-open" (click)="closeDay($event)"></div>
+            </div>
+        </div>
+        <div class="days">
+            <div id="num-box" class="num-box dead_month_color" (click)="clickonDay($event)">
+                <div class="weekday"><span class="num-date"></span></div>
+                <div class="main-info"></div>
+                <div class="date-value"></div>
+                <div class="open-day entypo-up-open" (click)="openDay($event)"></div>
+                <div class="close-day entypo-down-open" (click)="closeDay($event)"></div>
+            </div>
+            <div id="num-box" class="num-box dead_month_color" (click)="clickonDay($event)">
+                <div class="weekday"><span class="num-date"></span></div>
+                <div class="main-info"></div>
+                <div class="date-value"></div>
+                <div class="open-day entypo-up-open" (click)="openDay($event)"></div>
+                <div class="close-day entypo-down-open" (click)="closeDay($event)"></div>
+            </div>
+            <div id="num-box" class="num-box dead_month_color" (click)="clickonDay($event)">
+                <div class="weekday"><span class="num-date"></span></div>
+                <div class="main-info"></div>
+                <div class="date-value"></div>
+                <div class="open-day entypo-up-open" (click)="openDay($event)"></div>
+                <div class="close-day entypo-down-open" (click)="closeDay($event)"></div>
+            </div>
+            <div id="num-box" class="num-box dead_month_color" (click)="clickonDay($event)">
+                <div class="weekday"><span class="num-date"></span></div>
+                <div class="main-info"></div>
+                <div class="date-value"></div>
+                <div class="open-day entypo-up-open" (click)="openDay($event)"></div>
+                <div class="close-day entypo-down-open" (click)="closeDay($event)"></div>
+            </div>
+            <div id="num-box" class="num-box dead_month_color" (click)="clickonDay($event)">
+                <div class="weekday"><span class="num-date"></span></div>
+                <div class="main-info"></div>
+                <div class="date-value"></div>
+                <div class="open-day entypo-up-open" (click)="openDay($event)"></div>
+                <div class="close-day entypo-down-open" (click)="closeDay($event)"></div>
+            </div>
+            <div id="num-box" class="num-box dead_month_color" (click)="clickonDay($event)">
+                <div class="weekday"><span class="num-date"></span></div>
+                <div class="main-info"></div>
+                <div class="date-value"></div>
+                <div class="open-day entypo-up-open" (click)="openDay($event)"></div>
+                <div class="close-day entypo-down-open" (click)="closeDay($event)"></div>
+            </div>
+            <div id="num-box" class="num-box dead_month_color" (click)="clickonDay($event)">
+                <div class="weekday"><span class="num-date"></span></div>
+                <div class="main-info"></div>
+                <div class="date-value"></div>
+                <div class="open-day entypo-up-open" (click)="openDay($event)"></div>
+                <div class="close-day entypo-down-open" (click)="closeDay($event)"></div>
+            </div>
+        </div>
+        <div class="days">
+            <div id="num-box" class="num-box dead_month_color" (click)="clickonDay($event)">
+                <div class="weekday"><span class="num-date"></span></div>
+                <div class="main-info"></div>
+                <div class="date-value"></div>
+                <div class="open-day entypo-up-open" (click)="openDay($event)"></div>
+                <div class="close-day entypo-down-open" (click)="closeDay($event)"></div>
+            </div>
+            <div id="num-box" class="num-box dead_month_color" (click)="clickonDay($event)">
+                <div class="weekday"><span class="num-date"></span></div>
+                <div class="main-info"></div>
+                <div class="date-value"></div>
+                <div class="open-day entypo-up-open" (click)="openDay($event)"></div>
+                <div class="close-day entypo-down-open" (click)="closeDay($event)"></div>
+            </div>
+            <div id="num-box" class="num-box dead_month_color" (click)="clickonDay($event)">
+                <div class="weekday"><span class="num-date"></span></div>
+                <div class="main-info"></div>
+                <div class="date-value"></div>
+                <div class="open-day entypo-up-open" (click)="openDay($event)"></div>
+                <div class="close-day entypo-down-open" (click)="closeDay($event)"></div>
+            </div>
+            <div id="num-box" class="num-box dead_month_color" (click)="clickonDay($event)">
+                <div class="weekday"><span class="num-date"></span></div>
+                <div class="main-info"></div>
+                <div class="date-value"></div>
+                <div class="open-day entypo-up-open" (click)="openDay($event)"></div>
+                <div class="close-day entypo-down-open" (click)="closeDay($event)"></div>
+            </div>
+            <div id="num-box" class="num-box dead_month_color" (click)="clickonDay($event)">
+                <div class="weekday"><span class="num-date"></span></div>
+                <div class="main-info"></div>
+                <div class="date-value"></div>
+                <div class="open-day entypo-up-open" (click)="openDay($event)"></div>
+                <div class="close-day entypo-down-open" (click)="closeDay($event)"></div>
+            </div>
+            <div id="num-box" class="num-box dead_month_color" (click)="clickonDay($event)">
+                <div class="weekday"><span class="num-date"></span></div>
+                <div class="main-info"></div>
+                <div class="date-value"></div>
+                <div class="open-day entypo-up-open" (click)="openDay($event)"></div>
+                <div class="close-day entypo-down-open" (click)="closeDay($event)"></div>
+            </div>
+            <div id="num-box" class="num-box dead_month_color" (click)="clickonDay($event)">
+                <div class="weekday"><span class="num-date"></span></div>
+                <div class="main-info"></div>
+                <div class="date-value"></div>
+                <div class="open-day entypo-up-open" (click)="openDay($event)"></div>
+                <div class="close-day entypo-down-open" (click)="closeDay($event)"></div>
+            </div>
+        </div>
+        <div class="days">
+            <div id="num-box" class="num-box dead_month_color" (click)="clickonDay($event)">
+                <div class="weekday"><span class="num-date"></span></div>
+                <div class="main-info"></div>
+                <div class="date-value"></div>
+                <div class="open-day entypo-up-open" (click)="openDay($event)"></div>
+                <div class="close-day entypo-down-open" (click)="closeDay($event)"></div>
+            </div>
+            <div id="num-box" class="num-box dead_month_color" (click)="clickonDay($event)">
+                <div class="weekday"><span class="num-date"></span></div>
+                <div class="main-info"></div>
+                <div class="date-value"></div>
+                <div class="open-day entypo-up-open" (click)="openDay($event)"></div>
+                <div class="close-day entypo-down-open" (click)="closeDay($event)"></div>
+            </div>
+            <div id="num-box" class="num-box dead_month_color" (click)="clickonDay($event)">
+                <div class="weekday"><span class="num-date"></span></div>
+                <div class="main-info"></div>
+                <div class="date-value"></div>
+                <div class="open-day entypo-up-open" (click)="openDay($event)"></div>
+                <div class="close-day entypo-down-open" (click)="closeDay($event)"></div>
+            </div>
+            <div id="num-box" class="num-box dead_month_color" (click)="clickonDay($event)">
+                <div class="weekday"><span class="num-date"></span></div>
+                <div class="main-info"></div>
+                <div class="date-value"></div>
+                <div class="open-day entypo-up-open" (click)="openDay($event)"></div>
+                <div class="close-day entypo-down-open" (click)="closeDay($event)"></div>
+            </div>
+            <div id="num-box" class="num-box dead_month_color" (click)="clickonDay($event)">
+                <div class="weekday"><span class="num-date"></span></div>
+                <div class="main-info"></div>
+                <div class="date-value"></div>
+                <div class="open-day entypo-up-open" (click)="openDay($event)"></div>
+                <div class="close-day entypo-down-open" (click)="closeDay($event)"></div>
+            </div>
+            <div id="num-box" class="num-box dead_month_color" (click)="clickonDay($event)">
+                <div class="weekday"><span class="num-date"></span></div>
+                <div class="main-info"></div>
+                <div class="date-value"></div>
+                <div class="open-day entypo-up-open" (click)="openDay($event)"></div>
+                <div class="close-day entypo-down-open" (click)="closeDay($event)"></div>
+            </div>
+            <div id="num-box" class="num-box dead_month_color" (click)="clickonDay($event)">
+                <div class="weekday"><span class="num-date"></span></div>
+                <div class="main-info"></div>
+                <div class="date-value"></div>
+                <div class="open-day entypo-up-open" (click)="openDay($event)"></div>
+                <div class="close-day entypo-down-open" (click)="closeDay($event)"></div>
+            </div>
+        </div>
+        <div class="days">
+            <div id="num-box" class="num-box dead_month_color" (click)="clickonDay($event)">
+                <div class="weekday"><span class="num-date"></span></div>
+                <div class="main-info"></div>
+                <div class="date-value"></div>
+                <div class="open-day entypo-up-open" (click)="openDay($event)"></div>
+                <div class="close-day entypo-down-open" (click)="closeDay($event)"></div>
+            </div>
+            <div id="num-box" class="num-box dead_month_color" (click)="clickonDay($event)">
+                <div class="weekday"><span class="num-date"></span></div>
+                <div class="main-info"></div>
+                <div class="date-value"></div>
+                <div class="open-day entypo-up-open" (click)="openDay($event)"></div>
+                <div class="close-day entypo-down-open" (click)="closeDay($event)"></div>
+            </div>
+            <div id="num-box" class="num-box dead_month_color" (click)="clickonDay($event)">
+                <div class="weekday"><span class="num-date"></span></div>
+                <div class="main-info"></div>
+                <div class="date-value"></div>
+                <div class="open-day entypo-up-open" (click)="openDay($event)"></div>
+                <div class="close-day entypo-down-open" (click)="closeDay($event)"></div>
+            </div>
+            <div id="num-box" class="num-box dead_month_color" (click)="clickonDay($event)">
+                <div class="weekday"><span class="num-date"></span></div>
+                <div class="main-info"></div>
+                <div class="date-value"></div>
+                <div class="open-day entypo-up-open" (click)="openDay($event)"></div>
+                <div class="close-day entypo-down-open" (click)="closeDay($event)"></div>
+            </div>
+            <div id="num-box" class="num-box dead_month_color" (click)="clickonDay($event)">
+                <div class="weekday"><span class="num-date"></span></div>
+                <div class="main-info"></div>
+                <div class="date-value"></div>
+                <div class="open-day entypo-up-open" (click)="openDay($event)"></div>
+                <div class="close-day entypo-down-open" (click)="closeDay($event)"></div>
+            </div>
+            <div id="num-box" class="num-box dead_month_color" (click)="clickonDay($event)">
+                <div class="weekday"><span class="num-date"></span></div>
+                <div class="main-info"></div>
+                <div class="date-value"></div>
+                <div class="open-day entypo-up-open" (click)="openDay($event)"></div>
+                <div class="close-day entypo-down-open" (click)="closeDay($event)"></div>
+            </div>
+            <div id="num-box" class="num-box dead_month_color" (click)="clickonDay($event)">
+                <div class="weekday"><span class="num-date"></span></div>
+                <div class="main-info"></div>
+                <div class="date-value"></div>
+                <div class="open-day entypo-up-open" (click)="openDay($event)"></div>
+                <div class="close-day entypo-down-open" (click)="closeDay($event)"></div>
+            </div>
+        </div>
+        <div class="days">
+            <div id="num-box" class="num-box dead_month_color" (click)="clickonDay($event)">
+                <div class="weekday"><span class="num-date"></span></div>
+                <div class="main-info"></div>
+                <div class="date-value"></div>
+                <div class="open-day entypo-up-open" (click)="openDay($event)"></div>
+                <div class="close-day entypo-down-open" (click)="closeDay($event)"></div>
+            </div>
+            <div id="num-box" class="num-box dead_month_color" (click)="clickonDay($event)">
+                <div class="weekday"><span class="num-date"></span></div>
+                <div class="main-info"></div>
+                <div class="date-value"></div>
+                <div class="open-day entypo-up-open" (click)="openDay($event)"></div>
+                <div class="close-day entypo-down-open" (click)="closeDay($event)"></div>
+            </div>
+            <div id="num-box" class="num-box dead_month_color" (click)="clickonDay($event)">
+                <div class="weekday"><span class="num-date"></span></div>
+                <div class="main-info"></div>
+                <div class="date-value"></div>
+                <div class="open-day entypo-up-open" (click)="openDay($event)"></div>
+                <div class="close-day entypo-down-open" (click)="closeDay($event)"></div>
+            </div>
+            <div id="num-box" class="num-box dead_month_color" (click)="clickonDay($event)">
+                <div class="weekday"><span class="num-date"></span></div>
+                <div class="main-info"></div>
+                <div class="date-value"></div>
+                <div class="open-day entypo-up-open" (click)="openDay($event)"></div>
+                <div class="close-day entypo-down-open" (click)="closeDay($event)"></div>
+            </div>
+            <div id="num-box" class="num-box dead_month_color" (click)="clickonDay($event)">
+                <div class="weekday"><span class="num-date"></span></div>
+                <div class="main-info"></div>
+                <div class="date-value"></div>
+                <div class="open-day entypo-up-open" (click)="openDay($event)"></div>
+                <div class="close-day entypo-down-open" (click)="closeDay($event)"></div>
+            </div>
+            <div id="num-box" class="num-box dead_month_color" (click)="clickonDay($event)">
+                <div class="weekday"><span class="num-date"></span></div>
+                <div class="main-info"></div>
+                <div class="date-value"></div>
+                <div class="open-day entypo-up-open" (click)="openDay($event)"></div>
+                <div class="close-day entypo-down-open" (click)="closeDay($event)"></div>
+            </div>
+            <div id="num-box" class="num-box dead_month_color" (click)="clickonDay($event)">
+                <div class="weekday"><span class="num-date"></span></div>
+                <div class="main-info"></div>
+                <div class="date-value"></div>
+                <div class="open-day entypo-up-open" (click)="openDay($event)"></div>
+                <div class="close-day entypo-down-open" (click)="closeDay($event)"></div>
+            </div>
+        </div>
+        
     </div>
 
 </section>
