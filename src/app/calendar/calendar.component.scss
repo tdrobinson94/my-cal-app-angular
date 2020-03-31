@@ -432,6 +432,20 @@
     color: $textdrk;
     border-radius: 10px 0 0 10px;
 
+    &::-webkit-scrollbar {
+      width: 4px;
+    }
+    &::-webkit-scrollbar-track {
+      background: white;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: rgba(0, 0, 0, .2);
+      border-radius: 50px;
+    }
+    &::-webkit-scrollbar-thumb:hover {
+      background: rgba(126, 93, 93, 0.7); 
+    }
+
     @media screen and (max-width: $end-small) {
         width: 100%;
         left: 0;
@@ -442,6 +456,12 @@
         transform: translateX(0);
         border-radius: 0;
         border: 0;
+    }
+
+    @media screen and (max-width: $mid-small) {
+        height: 89%;
+        top: 0px;
+        box-shadow: none;
     }
 
 }
