@@ -172,11 +172,6 @@
     align-items: center;
     flex-wrap: wrap;
     height: 100%;
-    margin-bottom: 53px;
-
-    @media screen and (min-width: $end-small) {
-        margin-bottom: 305px;
-    }
 
     .days {
         width: 100%;
@@ -184,6 +179,10 @@
         justify-content: center;
         height: 15%;
         margin-top: 10px;
+
+        &.bottom {
+            height: 53px !important;
+        }
 
         @media screen and (min-width: $end-small) {
         height: 20%;
