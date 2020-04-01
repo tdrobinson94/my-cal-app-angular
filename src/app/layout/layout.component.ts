@@ -25,6 +25,13 @@ export class LayoutComponent implements OnInit {
     }
   }
 
+  clickLogo() {
+    if ($(window).width() < 800) {
+      $('.hamburger').removeClass('is-active');
+      $('.wrapper ul').slideToggle().hide();
+    }
+  }
+
   openFullscreen(){
     document.documentElement.requestFullscreen();
     $('.fullscreen-btn').hide();
