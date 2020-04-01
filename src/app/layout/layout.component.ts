@@ -22,6 +22,7 @@ export class LayoutComponent implements OnInit {
     if ($(window).width() < 800) {
       $('.hamburger').toggleClass('is-active');
       $('.wrapper ul').slideToggle();
+      $('html, body').animate({ scrollTop: $('.container').position().top }, 500);
     }
   }
 
@@ -29,6 +30,7 @@ export class LayoutComponent implements OnInit {
     if ($(window).width() < 800) {
       $('.hamburger').removeClass('is-active');
       $('.wrapper ul').slideToggle().hide();
+      $('html, body').animate({ scrollTop: $('.container').position().top }, 500);
     }
   }
 
