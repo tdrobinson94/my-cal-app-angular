@@ -53,8 +53,6 @@ export class CalendarComponent implements OnInit {
     this.changeCal();
 
     $('.container').scroll(function(){
-      console.log($('.second-row').position().top);
-      console.log($('.container').scrollTop())
       if ($('.container').scrollTop() > $('.first-row').position().top) {
         $('.first-row').addClass('not-showing');
       } else {
@@ -215,38 +213,6 @@ export class CalendarComponent implements OnInit {
     this.renderPrevMonthDays();
     this.selectedDay();
 
-    if ($(window).width() <= 800) {
-      if ($('.clicked-day').position().top > 153) {
-        $('.first-row').addClass('not-showing');
-      } else {
-        $('.first-row').removeClass('not-showing');
-      }
-
-      if ($('.clicked-day').position().top > 372) {
-        $('.second-row').addClass('not-showing');
-      } else {
-        $('.second-row').removeClass('not-showing');
-      }
-
-      if ($('.clicked-day').position().top > 590) {
-        $('.third-row').addClass('not-showing');
-      } else {
-        $('.third-row').removeClass('not-showing');
-      }
-    } else {
-      if ($('.clicked-day').position().top > 111) {
-        $('.first-row').addClass('not-showing');
-      } else {
-        $('.first-row').removeClass('not-showing');
-      }
-      if ($('.clicked-day').position().top > 288) {
-        $('.second-row').addClass('not-showing');
-      } else {
-        $('.second-row').removeClass('not-showing');
-      }
-      $('.third-row').removeClass('not-showing');
-    }
-
     $('.container').animate({ scrollTop: $('.selected-day').position().top - 75}, 500);
   }
 
@@ -309,40 +275,6 @@ export class CalendarComponent implements OnInit {
       $(e.currentTarget).addClass('clicked-day');
     }
 
-    console.log($('.clicked-day').position().top - 75)
-
-    if ($(window).width() <= 800) {
-      if ($('.clicked-day').position().top > 153) {
-        $('.first-row').addClass('not-showing');
-      } else {
-        $('.first-row').removeClass('not-showing');
-      }
-
-      if ($('.clicked-day').position().top > 372) {
-        $('.second-row').addClass('not-showing');
-      } else {
-        $('.second-row').removeClass('not-showing');
-      }
-
-      if ($('.clicked-day').position().top > 590) {
-        $('.third-row').addClass('not-showing');
-      } else {
-        $('.third-row').removeClass('not-showing');
-      }
-    } else {
-      if ($('.clicked-day').position().top > 111) {
-        $('.first-row').addClass('not-showing');
-      } else {
-        $('.first-row').removeClass('not-showing');
-      }
-      if ($('.clicked-day').position().top > 288) {
-        $('.second-row').addClass('not-showing');
-      } else {
-        $('.second-row').removeClass('not-showing');
-      }
-      $('.third-row').removeClass('not-showing');
-    }
-
     $('.container').animate({ scrollTop: $('.clicked-day').position().top - 75}, 500);
   }
 
@@ -361,22 +293,15 @@ export class CalendarComponent implements OnInit {
 
   openForm() {
     let clock = new Date();
-    let day = $('.clicked-day').attr('value');
+    let day = $('.clicked-day .date-value').text();
     let minutes = String(clock.getMinutes()).padStart(2, '0');
     let currentTime = clock.getHours() + ':' + minutes;
-
+    console.log(day);
     $('.select-item label').removeClass('selected');
     $('.checkbox label').removeClass('selected');
-    let month = (parseInt($('.month-selector').val(), 10) + 1);
-    let year = (parseInt($('.year-selector').val(), 10));
-    // if (month < 10)
-    //   month = "0" + month;
-    // if (day < 10)
-    //   day = "0" + day;
-    var today = year + '-' + month + '-' + day;
-    $('.date-input input').val(today);
-    console.log(currentTime)
-    $('.time').val(currentTime);
+    $('.date-input input').val(day);
+    console.log(currentTime);
+    $('.time-input input').val(currentTime);
     $('.add-item-form').addClass('show-form');
     $('.event-description, .description-label, .location-input, .location-label, .time-input, .time-label').addClass('show-input');
 
