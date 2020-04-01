@@ -52,20 +52,20 @@ export class CalendarComponent implements OnInit {
     $('#year').val(year);
     this.changeCal();
 
-    $('.container').scroll(function(){
-      if ($('.container').scrollTop() > $('.first-row').position().top) {
+    $(window).scroll(function(){
+      if ($(window).scrollTop() > $('.first-row').position().top) {
         $('.first-row').addClass('not-showing');
       } else {
         $('.first-row').removeClass('not-showing');
       }
 
-      if ($('.container').scrollTop() > $('.second-row').position().top) {
+      if ($(window).scrollTop() > $('.second-row').position().top) {
         $('.second-row').addClass('not-showing');
       } else {
         $('.second-row').removeClass('not-showing');
       }
 
-      if ($('.container').scrollTop() > $('.third-row').position().top) {
+      if ($(window).scrollTop() > $('.third-row').position().top) {
         $('.third-row').addClass('not-showing');
       } else {
         $('.third-row').removeClass('not-showing');
@@ -213,11 +213,10 @@ export class CalendarComponent implements OnInit {
     this.renderPrevMonthDays();
     this.selectedDay();
 
-    $('.container').animate({ scrollTop: $('.selected-day').position().top - 75}, 500);
+    $('html, body').animate({ scrollTop: $('.selected-day').position().top - 75}, 500);
   }
 
   prevClick() {
-    $('.extra').hide();
     $('.add-item-form').removeClass('show-form');
     $('.num-box').removeClass('selected-day double-click');
     $('.num-date').removeClass('first-day');
@@ -237,7 +236,6 @@ export class CalendarComponent implements OnInit {
   }
 
   currentClick() {
-    $('.extra').hide();
     $('.add-item-form').removeClass('show-form');
     $('.num-box').removeClass('selected-day double-click');
     $('.num-date').removeClass('first-day');
@@ -248,7 +246,6 @@ export class CalendarComponent implements OnInit {
   }
 
   nextClick() {
-    $('.extra').hide();
     $('.add-item-form').removeClass('show-form');
     $('.num-box').removeClass('selected-day double-click');
     $('.num-date').removeClass('first-day');
@@ -275,32 +272,27 @@ export class CalendarComponent implements OnInit {
       $(e.currentTarget).addClass('clicked-day');
     }
 
-    $('.container').animate({ scrollTop: $('.clicked-day').position().top - 75}, 500);
+    $('html, body').animate({ scrollTop: $('.clicked-day').position().top - 75}, 500);
   }
 
   openDay(e) {
     $('.num-box').removeClass('double-click');
-    console.log('opening day');
     $('.clicked-day').addClass('double-click');
-    $('.extra').show();
   }
 
   closeDay(e) {
-    console.log('closing day');
     $('.num-box').removeClass('double-click');
-    $('.extra').hide();
   }
 
   openForm() {
     let clock = new Date();
     let day = $('.clicked-day .date-value').text();
     let minutes = String(clock.getMinutes()).padStart(2, '0');
-    let currentTime = clock.getHours() + ':' + minutes;
-    console.log(day);
+    let hours = String(clock.getHours()).padStart(2, '0');
+    let currentTime = hours + ':' + minutes;
     $('.select-item label').removeClass('selected');
     $('.checkbox label').removeClass('selected');
     $('.date-input input').val(day);
-    console.log(currentTime);
     $('.time-input input').val(currentTime);
     $('.add-item-form').addClass('show-form');
     $('.event-description, .description-label, .location-input, .location-label, .time-input, .time-label').addClass('show-input');

@@ -10,6 +10,7 @@
     width: 100%;
     z-index: 1;
     position: fixed;
+    top: 53px;
     padding: 9px 0;
     // border-radius: 0 0 15px 15px;
     background-color: $primary;
@@ -164,13 +165,18 @@
 .calendar-container{
     width: 100%;
     bottom: 0;
-    top: 103px;
+    top: 104px;
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
     height: 100%;
+    margin-bottom: 53px;
+
+    @media screen and (min-width: $end-small) {
+        margin-bottom: 305px;
+    }
 
     .days {
         width: 100%;
@@ -386,6 +392,11 @@
             bottom: 0;
             top: initial !important;
         }
+        .clicked-day {
+            .open-day {
+                display: none !important;
+            }
+        }
         .double-click {
             .weekday {
                 top: 0 !important;
@@ -460,12 +471,12 @@
         transform: translateX(0);
         border-radius: 0;
         border: 0;
+        box-shadow: none;
     }
 
     @media screen and (max-width: $mid-small) {
         height: 87%;
         top: 0px;
-        box-shadow: none;
     }
 
 }
@@ -513,7 +524,7 @@ form {
         justify-content: space-evenly;
         align-items: flex-start;
         flex-wrap: wrap;
-        margin: 20px 0;
+        margin: 10px 0;
         input {
             display: none;
         }
