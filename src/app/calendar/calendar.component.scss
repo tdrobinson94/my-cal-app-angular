@@ -165,13 +165,17 @@
 .calendar-container{
     width: 100%;
     bottom: 0;
-    top: 104px;
+    top: 89px;
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
     height: 100%;
+
+    @media screen and (min-width: $end-small) {
+        top: 104px;
+    }
 
     .days {
         width: 100%;
@@ -206,7 +210,7 @@
         outline: none;
         // border: 1px solid $accent;
         transition: all .1s ease-in-out;
-        border-radius: 10px;
+        border-radius: 5px;
 
         .close-day, .open-day{
             display: none;
@@ -260,7 +264,7 @@
             top: 36%;
             left: 0;
             width: 100%;
-            height: 64%;
+            height: 50%;
         }
         .date-value{
             display: none;
@@ -342,6 +346,7 @@
 
                 .weekday {
                     margin-top: 25px;
+                    height: 10%;
 
                     .num-date{
                         @media screen and (max-width: $end-small) {
@@ -349,6 +354,9 @@
                         }
                     }
                 } 
+                .main-info {
+                    height: 84%;
+                }
 
                 .open-day {
                     display: none;
@@ -444,7 +452,7 @@
     overflow: auto;
     transform: translate(50%, 50%);
     color: $textdrk;
-    border-radius: 10px;
+    border-radius: 5px;
 
     &::-webkit-scrollbar {
       width: 4px;
@@ -466,16 +474,11 @@
         right: 0;
         bottom: 0;
         height: 100vh;
-        top: 106px;
+        top: 0px;
         transform: translateX(0);
         border-radius: 0;
         border: 0;
         box-shadow: none;
-    }
-
-    @media screen and (max-width: $mid-small) {
-        height: 87%;
-        top: 0px;
     }
 
 }

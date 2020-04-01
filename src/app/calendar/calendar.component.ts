@@ -189,7 +189,7 @@ export class CalendarComponent implements OnInit {
         }
 
         day.find('.num-date').parent().parent().addClass("dead_month_color");
-        day.find('.num-container').parent().removeClass("day_background_color");
+        day.find('.weekday').parent().removeClass("day_background_color");
       }
     })
   }
