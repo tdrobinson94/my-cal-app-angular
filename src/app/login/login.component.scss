@@ -1,0 +1,118 @@
+@import '..//..//variables';
+
+.login-form {
+    display: block;
+    margin: auto;
+    top: 50%;
+    width: 100%;
+    left: 50%;
+    background-color: #fff;
+    float: none;
+    overflow: auto;
+    color: #333333;
+    z-index: 9999;
+
+    &::-webkit-scrollbar {
+      width: 4px;
+    }
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: rgba(0, 0, 0, .2);
+      border-radius: 50px;
+    }
+    &::-webkit-scrollbar-thumb:hover {
+      background: rgba(126, 93, 93, 0.7); 
+    }
+
+    @media screen and (min-width: $end-small) {
+        height: 400px;
+    }
+
+    @media screen and (min-width: $end-small) {
+        position: fixed;
+        max-width: 800px;
+        width: 66%;
+        transform: translate(-50%, -50%);
+        box-shadow: 1px 1px 10px #333333;
+        border-radius: 5px;
+    }
+
+    .form-nav {
+        padding: 15px 0 15px 0px;
+        background: red;
+        color: #fff;
+        text-align: center;
+        position: sticky;
+        top: 0;
+
+        h2 {
+            margin: 0;
+        }
+    }
+
+    form {
+        padding: 20px;
+        .input-wrapper {
+          width: 100%;
+        }
+
+        label {
+        display: block;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        font-weight: bold;
+      }
+
+      input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #c4c7cc;
+        border-radius: 5px;
+        margin: 10px 0;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        font-size: 15px;
+      }
+
+      .signup, .login {
+        background-color: red;
+        color: #fff;
+        border-radius: 10px;
+        padding: 10px;
+        border: 0;
+        font-size: 15px;
+        float: right;
+        margin: 20px 0;
+      }
+    }
+
+    .success-message, .fail-message {
+      display: none;
+    }
+    .show-success, .show-fail {
+      display: block;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      padding: 40px;
+      background: red;
+      color: #fff;
+
+      @media screen and (max-width: $end-small) {
+        width: 80%;
+      }
+
+      .close-popup {
+        position: absolute;
+        top: 15px;
+        right: 20px;
+        font-size: 27px;
+        cursor: pointer;
+      }
+    }
+}
