@@ -94,7 +94,7 @@
       }
     }
 
-    .success-message, .fail-message {
+    .success-message, .fail-message, .fail-message-2 {
       display: none;
     }
     .show-success, .show-fail {
@@ -117,6 +117,20 @@
         right: 20px;
         font-size: 27px;
         cursor: pointer;
+      }
+
+      a {
+        color: $textdrk;
+        text-decoration: none;
+
+        span {
+            animation-name: bounce;
+                animation-duration: .5s;
+                animation-timing-function: ease-out;
+          }
+          @keyframes bounce{
+            50% {transform: translateY(-10px);}
+          }
       }
     }
 }

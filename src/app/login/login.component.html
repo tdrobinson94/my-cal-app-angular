@@ -17,10 +17,14 @@
         </div>
     </form>
     <div class="fail-message">
-        Hi, you haven't been logged in. Username or Password is incorrect. 
+        Username or Password is incorrect.
+        <div class="close-popup entypo-cancel" (click)="closePopup()"></div>
+    </div>
+    <div class="fail-message-2">
+        This username hasn't been registed. Please go to sign up page. <a href="#" routerLink="/signup" (click)="clickLink()">Signup <span class="entypo-right-open-mini"></span></a>
         <div class="close-popup entypo-cancel" (click)="closePopup()"></div>
     </div>
     <div class="success-message">
-        You have successfully logged into your account.
+        Hi {{firstName}}, you have successfully logged into your account.
     </div>
 </div>

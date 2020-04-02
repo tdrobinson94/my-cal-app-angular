@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { CookieService } from 'ngx-cookie-service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -41,7 +42,7 @@ import { UserDataService } from './services/userdata.service';
     CalendarComponent,
     SettingsComponent
   ],
-  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }, UserDataService],
+  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }, UserDataService, CookieService /*, GuestGuard, LoggedInGuard, AppService*/],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -139,6 +139,9 @@ licenses; we recommend you read them, as their terms may differ from the
 terms above.
 
 
+ngx-cookie-service
+MIT
+
 regenerator-runtime
 MIT
 MIT License
