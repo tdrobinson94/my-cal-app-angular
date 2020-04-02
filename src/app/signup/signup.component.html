@@ -28,4 +28,12 @@
             <button [disabled]="!signupForm.valid" class="signup" type="submit">Signup</button>
         </div>
     </form>
+    <div class="fail-message">
+        Email or Username has been taken by someone else. 
+        <div class="close-popup entypo-cancel" (click)="closePopup()"></div>
+    </div>
+    <div class="success-message">
+        You have successfully created a new user.
+        <div class="close-popup entypo-cancel" (click)="closePopup()"></div>
+    </div>
 </div>

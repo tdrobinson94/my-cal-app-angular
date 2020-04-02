@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { UserDataService } from '../services/userdata.service';
+import $ from 'jquery';
 
 @Component({
   selector: 'app-signup',
@@ -22,11 +23,26 @@ export class SignupComponent implements OnInit {
 
   onSubmit() {
     this.dataService.signupuser(this.signupForm.value)
-    .subscribe(
-      response => console.log('Success'),
-      error => console.error('Error!', error)
-    );
-    this.signupForm.reset();
+      .subscribe((response) => {
+        if (response.status === 204) {
+          console.log('user is not logged in');
+          $('.fail-message').addClass('show-fail');
+          console.log(response);
+        } else if (response.status === 201) {
+          console.log(response);
+          $('.success-message').addClass('show-success');
+          this.signupForm.reset();
+        } else {
+          console.log('user is not logged in');
+          $('.fail-message').addClass('show-fail');
+          console.log(response);
+        }
+      });
+  }
+
+  closePopup() {
+    $('.success-message').removeClass('show-success');
+    $('.fail-message').removeClass('show-fail');
   }
 
 }

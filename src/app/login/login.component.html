@@ -16,4 +16,12 @@
             <button [disabled]="!loginForm.valid" class="login" type="submit">Login</button>
         </div>
     </form>
+    <div class="fail-message">
+        Hi, you haven't been logged in. Username or Password is incorrect. 
+        <div class="close-popup entypo-cancel" (click)="closePopup()"></div>
+    </div>
+    <div class="success-message">
+        You have successfully logged into your account.
+        <div class="close-popup entypo-cancel" (click)="closePopup()"></div>
+    </div>
 </div>
