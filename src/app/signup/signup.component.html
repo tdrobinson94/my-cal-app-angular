@@ -3,29 +3,29 @@
         <h2>Signup</h2>
     </div>
 
-    <form class="signupForm">
+    <form class="signupForm" [formGroup]="signupForm" (ngSubmit)="onSubmit()">
         <div class="input-wrapper item-name">
             <label>First Name</label>
-            <input name="firstname" type="text" placeholder="First name" required/>
+            <input formControlName="firstname" name="firstname" type="text" placeholder="First name" required/>
         </div>
         <div class="input-wrapper item-name">
             <label>Last Name</label>
-            <input name="lastname" type="text" placeholder="Last name" required/>
+            <input formControlName="lastname" name="lastname" type="text" placeholder="Last name" required/>
         </div>
         <div class="input-wrapper username">
             <label>Username</label>
-            <input name="username" type="text" placeholder="Username" required />
+            <input formControlName="username" name="username" type="text" placeholder="Username" required />
         </div>
         <div class="input-wrapper email">
             <label>Email</label>
-            <input name="email" type="email" placeholder="Email" required/>
+            <input formControlName="email" name="email" type="email" placeholder="Email" required/>
         </div>
         <div class="input-wrapper password">
             <label>Password</label>
-            <input name="password" placeholder="Password" type="password" required />
+            <input formControlName="password" name="password" placeholder="Password" type="password" required />
         </div>
         <div class="input-wrapper">
-            <button class="signup" type="submit">Signup</button>
+            <button [disabled]="!signupForm.valid" class="signup" type="submit">Signup</button>
         </div>
     </form>
 </div>

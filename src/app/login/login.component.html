@@ -3,17 +3,17 @@
         <h2>Login</h2>
     </div>
 
-    <form class="signupForm">
+    <form class="signupForm" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <div class="input-wrapper username">
             <label>Username</label>
-            <input name="username" type="text" placeholder="Username" required/>
+            <input formControlName="username" name="username" type="text" placeholder="Username" required/>
         </div>
         <div class="input-wrapper password">
             <label>Password</label>
-            <input name="password" placeholder="Password" type="password" required/>
+            <input formControlName="password" name="password" placeholder="Password" type="password" required/>
         </div>
         <div class="input-wrapper">
-            <button class="login" type="submit">Login</button>
+            <button [disabled]="!loginForm.valid" class="login" type="submit">Login</button>
         </div>
     </form>
 </div>
