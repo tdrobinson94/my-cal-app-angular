@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { UserDataService } from '../services/userdata.service';
+import { Router } from '@angular/router';
 import $ from 'jquery';
 
 @Component({
@@ -16,7 +17,7 @@ export class SignupComponent implements OnInit {
     email: new FormControl(''),
     password: new FormControl('')
   });
-  constructor(private dataService: UserDataService) { }
+  constructor(private dataService: UserDataService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -31,7 +32,9 @@ export class SignupComponent implements OnInit {
         } else if (response.status === 201) {
           console.log(response);
           $('.success-message').addClass('show-success');
-          this.signupForm.reset();
+          setTimeout(() => {
+            this.router.navigate(['/login']);
+          }, 2000);
         } else {
           console.log('user is not logged in');
           $('.fail-message').addClass('show-fail');

@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { ServiceWorkerModule } from '@angular/service-worker';
@@ -15,6 +15,13 @@ import { LoginComponent } from './login/login.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { SettingsComponent } from './settings/settings.component';
 import { UserDataService } from './services/userdata.service';
+// import { GuestGuard } from './services/guest.guard';
+// import { LoggedInGuard } from './services/logged-in.guard';
+// import { AppService } from './app.service';
+
+// export function app_init(appService: AppService) {
+//   return () => appService.initializeApp();
+// }
 
 @NgModule({
   imports: [
@@ -23,7 +30,7 @@ import { UserDataService } from './services/userdata.service';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
   declarations: [
     AppComponent,
