@@ -52,26 +52,26 @@ export class CalendarComponent implements OnInit {
     $('#year').val(year);
     this.changeCal();
 
-    $(window).scroll(function(){
-      if ($(window).scrollTop() > $('.first-row').position().top) {
-        $('.first-row').addClass('not-showing');
-      } else {
-        $('.first-row').removeClass('not-showing');
-      }
+    // $(window).scroll(function(){
+    //   if ($(window).scrollTop() > $('.first-row').position().top) {
+    //     $('.first-row').addClass('not-showing');
+    //   } else {
+    //     $('.first-row').removeClass('not-showing');
+    //   }
 
-      if ($(window).scrollTop() > $('.second-row').position().top) {
-        $('.second-row').addClass('not-showing');
-      } else {
-        $('.second-row').removeClass('not-showing');
-      }
+    //   if ($(window).scrollTop() > $('.second-row').position().top) {
+    //     $('.second-row').addClass('not-showing');
+    //   } else {
+    //     $('.second-row').removeClass('not-showing');
+    //   }
 
-      if ($(window).scrollTop() > $('.third-row').position().top) {
-        $('.third-row').addClass('not-showing');
-      } else {
-        $('.third-row').removeClass('not-showing');
-      }
+    //   if ($(window).scrollTop() > $('.third-row').position().top) {
+    //     $('.third-row').addClass('not-showing');
+    //   } else {
+    //     $('.third-row').removeClass('not-showing');
+    //   }
       
-    });
+    // });
   }
 
   renderMonth() {
