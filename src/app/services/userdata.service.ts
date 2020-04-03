@@ -10,9 +10,9 @@ import { CookieService } from 'ngx-cookie-service';
 
 export class UserDataService {
     apiUrl = 'https://react-calendar-backend-api.herokuapp.com';
-    isLogged: BehaviorSubject<boolean>;
+    private islogged;
 
-    constructor(private http: HttpClient, private cookieService: CookieService) { }
+    constructor(private http: HttpClient, private cookieService: CookieService) { this.islogged = false; }
 
     signupuser(userData): Observable<any> {
         return this.http.post(this.apiUrl + '/signup', userData, { observe: 'response' });
@@ -29,11 +29,6 @@ export class UserDataService {
         let cookieValue = this.cookieService.get('userId');
         return this.http.get(this.apiUrl + '/user/' + cookieValue);
 
-        // if (cookieValue) {
-        //     return true;
-        // }
-
-        // return false;
     }
 
     deleteUser() {

@@ -35,6 +35,7 @@ export class LoginComponent implements OnInit {
           this.cookieService.set('userId', response.body.id);
           this.cookieService.set('token', response.body.token);
           $('.success-message').addClass('show-success');
+          this.loginForm.reset();
           setTimeout(() => {
             this.router.navigate(['/calendar']);
           }, 3000);
