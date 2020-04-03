@@ -41,10 +41,10 @@ export class LoginComponent implements OnInit {
           let cookieValue = this.cookieService.get('userId');
           this.dataService.isLoggedIn()
             .subscribe((response) => {
-              console.log(response[0]);
+              // console.log(response[0]);
               if (response[0].id == cookieValue) {
                 console.log('User has logged in');
-                console.log(response);
+                // console.log(response);
                 this.userName = (response[0].username);
               }
             });
