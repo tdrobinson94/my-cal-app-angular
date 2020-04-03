@@ -10,14 +10,13 @@ export class LoggedInGuard implements CanActivate {
 
     constructor(private dataService: UserDataService, private router: Router) { }
 
-    canActivate(): Observable<boolean> | Promise<boolean> | boolean {
-        return this.dataService.isLogged.pipe(map(logged => {
-            if(!logged) {
-                this.router.navigate(['login']);
-                return false;
-            }
-            return true;
-        })
-        );
+    canActivate() {
+        if (!this.dataService.isLoggedIn()) {
+            this.router.navigate(['/login']);
+            return false;
+
+        }
+
+        return true;
     }
 }

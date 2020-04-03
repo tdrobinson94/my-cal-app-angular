@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { UserDataService } from '../services/userdata.service';
 import $ from 'jquery';
+import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-layout',
@@ -8,7 +11,7 @@ import $ from 'jquery';
 })
 export class LayoutComponent implements OnInit {
 
-  constructor() { }
+  constructor(private dataService: UserDataService, private router: Router, private cookieService: CookieService) { }
 
   ngOnInit(): void {
   }
@@ -32,6 +35,16 @@ export class LayoutComponent implements OnInit {
       $('.wrapper ul').slideToggle().hide();
       $('html, body').animate({ scrollTop: 0 }, 500);
     }
+  }
+
+  clickLogout(){
+    console.log('User has logged out');
+    this.clickLink();
+    this.cookieService.delete('userId');
+    this.cookieService.delete('token');
+    setTimeout(() => {
+      this.router.navigate(['/login']);
+    }, 3000);
   }
 
   openFullscreen(){

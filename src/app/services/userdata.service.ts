@@ -25,14 +25,20 @@ export class UserDataService {
         }));*/
     }
 
-    isLoggedIn(): Observable<any> {
+    isLoggedIn() {
         let cookieValue = this.cookieService.get('userId');
-        return this.http.get(this.apiUrl + '/user/' + cookieValue); /*.pipe(map(
-            (response: any) => {
-                this.isLogged.next(response);
-                return response;
-            }
-        ));*/
+        return this.http.get(this.apiUrl + '/user/' + cookieValue);
+
+        // if (cookieValue) {
+        //     return true;
+        // }
+
+        // return false;
+    }
+
+    deleteUser() {
+        let cookieValue = this.cookieService.get('userId');
+        return this.http.delete(this.apiUrl + '/deleteuser/' + cookieValue);
     }
 
 }
