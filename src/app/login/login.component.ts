@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
         } else if (response.status === 201) {
           console.log('user: ' + response.body.id, 'username: ' + response.body.username);
           this.cookieService.set('userId', response.body.id);
-          this.cookieService.set('token', response.body.token);
+          this.cookieService.set('username', response.body.username);
           $('.success-message').addClass('show-success');
           this.loginForm.reset();
           setTimeout(() => {
@@ -41,11 +41,9 @@ export class LoginComponent implements OnInit {
           }, 3000);
           let cookieValue = this.cookieService.get('userId');
           this.dataService.isLoggedIn()
-            .subscribe((response) => {
-              // console.log(response[0]);
+            .subscribe((response) => {;
               if (response[0].id == cookieValue) {
                 console.log('User has logged in');
-                // console.log(response);
                 this.userName = (response[0].username);
               }
             });

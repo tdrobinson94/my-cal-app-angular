@@ -10,11 +10,12 @@ export class GuestGuard implements CanActivate {
 
     constructor(private dataService: UserDataService, private router: Router) { }
 
-    canActivate() {
-        if (this.dataService.isLoggedIn()) {
-            this.router.navigate(['/calendar']);
+    canActivate(): Observable<boolean> | Promise<boolean> | boolean {
+        if (!this.dataService.isLoggedIn()) {
             return false;
         }
+
+        this.router.navigate(['/login']);
 
         return true;
     }

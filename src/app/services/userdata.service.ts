@@ -3,6 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { CookieService } from 'ngx-cookie-service';
+import { CanActivate } from '@angular/router';
 
 @Injectable({
     providedIn: 'root'
@@ -10,9 +11,9 @@ import { CookieService } from 'ngx-cookie-service';
 
 export class UserDataService {
     apiUrl = 'https://react-calendar-backend-api.herokuapp.com';
-    private islogged;
+    isLogged: boolean;
 
-    constructor(private http: HttpClient, private cookieService: CookieService) { this.islogged = false; }
+    constructor(private http: HttpClient, private cookieService: CookieService) { }
 
     signupuser(userData): Observable<any> {
         return this.http.post(this.apiUrl + '/signup', userData, { observe: 'response' });
@@ -28,7 +29,6 @@ export class UserDataService {
     isLoggedIn() {
         let cookieValue = this.cookieService.get('userId');
         return this.http.get(this.apiUrl + '/user/' + cookieValue);
-
     }
 
     deleteUser() {

@@ -33,16 +33,18 @@ export class SettingsComponent implements OnInit {
 
   deleteMyUser() {
     // let cookieValue = this.cookieService.get('userId');
-    this.dataService.deleteUser()
+    this.dataService.isLoggedIn()
       .subscribe((response) => {
-        console.log(response);
-        // this.userName = '';
-        // this.firstName = '';
-        // this.lastName = '';
-        // this.Email = '';
-      }
-
-      );
+        console.log(response[0]);
+        let cookieValue = this.cookieService.get('userId');
+        if (response[0].id == cookieValue) {
+          console.log('User has logged in');
+          this.userName = (response[0].username);
+          this.firstName = (response[0].firstname);
+          this.lastName = (response[0].lastname);
+          this.Email = (response[0].email);
+        }
+      });
     setTimeout(() => {
       this.router.navigate(['/login']);
     }, 3000);
