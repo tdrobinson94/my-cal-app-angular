@@ -18,10 +18,15 @@ export class UserDataService {
     }
 
     loginuser(userData): Observable<any> {
+        this.loggedInStatus = true;
         return this.http.post(this.apiUrl + '/login', userData, {observe: 'response'}); /*.pipe(map((response: any) => {
             this.isLogged.next(response);
             return response;
         }));*/
+    }
+
+    logout() {
+        this.loggedInStatus = false;
     }
 
 

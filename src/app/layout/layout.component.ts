@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { UserDataService } from '../services/userdata.service';
 import $ from 'jquery';
 import { CookieService } from 'ngx-cookie-service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-layout',
@@ -11,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class LayoutComponent implements OnInit {
 
-  constructor(private dataService: UserDataService, private router: Router, private cookieService: CookieService) { }
+  constructor(public dataService: UserDataService, private cookieService: CookieService) { }
 
   ngOnInit(): void {
   }
@@ -46,7 +45,7 @@ export class LayoutComponent implements OnInit {
     this.clickLink();
     this.cookieService.delete('userId');
     this.cookieService.delete('username');
-    this.dataService.setLoggedIn(false);
+    this.dataService.logout();
     $('html, body').animate({ scrollTop: 0 }, 500);
   }
 

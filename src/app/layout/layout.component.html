@@ -13,9 +13,9 @@
                     <li><a href="#" routerLink="/" (click)="clickLink()">Home</a></li>
                     <li><a href="#" routerLink="/signup" (click)="clickLink()">Signup</a></li>
                     <li><a href="#" routerLink="/login" (click)="clickLink()">Login</a></li>
-                    <li><a href="#" routerLink="/calendar" (click)="clickLink()">Calendar</a></li>
-                    <li><a href="#" routerLink="/settings" (click)="clickLink()">Settings</a></li>
-                    <li><a href="#" routerLink="/login" (click)="clickLogout()">Logout</a></li>
+                    <li *ngIf="dataService.hasLoggedIn"><a href="#" routerLink="/calendar" (click)="clickLink()">Calendar</a></li>
+                    <li *ngIf="dataService.hasLoggedIn"><a href="#" routerLink="/settings" (click)="clickLink()">Settings</a></li>
+                    <li *ngIf="dataService.hasLoggedIn"><a href="#" routerLink="/login" (click)="clickLogout()">Logout</a></li>
                 </ul>
             </div>
             <button class="fullscreen-btn fontawesome-resize-full" (click)="openFullscreen()"></button>
