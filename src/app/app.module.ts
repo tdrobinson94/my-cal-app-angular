@@ -17,6 +17,7 @@ import { CalendarComponent } from './calendar/calendar.component';
 import { SettingsComponent } from './settings/settings.component';
 import { UserDataService } from './services/userdata.service';
 import { AuthGuard } from './auth.guard';
+import { GuestGuard } from './guest.guard';
 import { ProfileComponent } from './profile/profile.component';
 
 
@@ -39,7 +40,7 @@ import { ProfileComponent } from './profile/profile.component';
     SettingsComponent,
     ProfileComponent
   ],
-  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }, UserDataService, CookieService, AuthGuard],
+  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }, UserDataService, CookieService, AuthGuard, GuestGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
