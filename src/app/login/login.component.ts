@@ -36,6 +36,8 @@ export class LoginComponent implements OnInit {
           console.log('User has logged in');
           this.cookieService.set('userId', response.body.id);
           this.cookieService.set('username', response.body.username);
+          this.cookieService.set('firstname', response.body.firstname);
+          this.cookieService.set('lastname', response.body.lastname);
           this.userName = (response.body.username);
           $('.success-message').addClass('show-success');
           this.loginForm.reset();

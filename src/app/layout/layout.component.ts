@@ -9,8 +9,8 @@ import { CookieService } from 'ngx-cookie-service';
   styleUrls: ['./layout.component.scss']
 })
 export class LayoutComponent implements OnInit {
-  firstName: string = '';
-  lastName: string = '';
+  firstInitial: string = this.cookieService.get('firstname').substring(0, 1);
+  lastInitial: string = this.cookieService.get('lastname').substring(0, 1);
 
   constructor(public dataService: UserDataService, private cookieService: CookieService) { }
 

@@ -35,6 +35,8 @@ export class UserDataService {
     logout() {
         this.cookieService.delete('userId');
         this.cookieService.delete('username');
+        this.cookieService.delete('firstname');
+        this.cookieService.delete('lastname');
     }
 
     getUser() {
