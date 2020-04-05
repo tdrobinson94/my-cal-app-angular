@@ -16,7 +16,7 @@ export class SettingsComponent implements OnInit {
   constructor(private dataService: UserDataService, private cookieService: CookieService, private router: Router) { }
 
   ngOnInit(): void {
-    this.dataService.isLoggedIn()
+    this.dataService.getUser()
       .subscribe((response) => {
         console.log(response[0]);
         let cookieValue = this.cookieService.get('userId');
@@ -33,7 +33,7 @@ export class SettingsComponent implements OnInit {
 
   deleteMyUser() {
     // let cookieValue = this.cookieService.get('userId');
-    this.dataService.isLoggedIn()
+    this.dataService.getUser()
       .subscribe((response) => {
         console.log(response[0]);
         let cookieValue = this.cookieService.get('userId');
@@ -46,7 +46,7 @@ export class SettingsComponent implements OnInit {
         }
       });
     setTimeout(() => {
-      this.router.navigate(['/login']);
+      this.router.navigate(['/signup']);
     }, 3000);
   }
 

@@ -32,7 +32,6 @@ export class LoginComponent implements OnInit {
           console.log(response);
         } else if (response.status === 201) {
           console.log('User has logged in');
-          console.log('user: ' + response.body.id, 'username: ' + response.body.username);
           this.cookieService.set('userId', response.body.id);
           this.cookieService.set('username', response.body.username);
           this.userName = (response.body.username);

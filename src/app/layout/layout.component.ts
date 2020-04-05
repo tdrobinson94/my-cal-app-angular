@@ -43,8 +43,6 @@ export class LayoutComponent implements OnInit {
   clickLogout(){
     console.log('User has logged out');
     this.clickLink();
-    this.cookieService.delete('userId');
-    this.cookieService.delete('username');
     this.dataService.logout();
     $('html, body').animate({ scrollTop: 0 }, 500);
   }

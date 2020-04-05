@@ -13,34 +13,32 @@ export class UserDataService {
 
     constructor(private http: HttpClient, private cookieService: CookieService) { }
 
+    getToken() {
+        let cookieValue = this.cookieService.get('userId');
+
+        return cookieValue;
+    }
+
     signupuser(userData): Observable<any> {
         return this.http.post(this.apiUrl + '/signup', userData, { observe: 'response' });
     }
 
     loginuser(userData): Observable<any> {
         this.loggedInStatus = true;
-        return this.http.post(this.apiUrl + '/login', userData, {observe: 'response'}); /*.pipe(map((response: any) => {
-            this.isLogged.next(response);
-            return response;
-        }));*/
+        return this.http.post(this.apiUrl + '/login', userData, {observe: 'response'});
+    }
+
+    loggedIn() {
+        return this.cookieService.get('userId') ? true : false;
     }
 
     logout() {
-        this.loggedInStatus = false;
+        this.cookieService.delete('userId');
+        this.cookieService.delete('username');
     }
 
-
-    setLoggedIn(value: boolean) {
-        this.loggedInStatus = value;
-    }
-
-    get hasLoggedIn() {
-        return this.loggedInStatus;
-    }
-
-    isLoggedIn() {
-        let cookieValue = this.cookieService.get('userId');
-        return this.http.get(this.apiUrl + '/user/' + cookieValue);
+    getUser() {
+        return this.http.get(this.apiUrl + '/user/' + this.getToken());
     }
 
     deleteUser() {
