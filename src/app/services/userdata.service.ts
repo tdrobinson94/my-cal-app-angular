@@ -48,6 +48,7 @@ export class UserDataService {
     }
 
     deleteUser() {
+        this.logout();
         return this.http.delete(this.apiUrl + '/deleteuser/' + this.getToken());
     }
 

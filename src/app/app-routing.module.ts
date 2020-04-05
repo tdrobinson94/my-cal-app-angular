@@ -6,6 +6,7 @@ import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { SettingsComponent } from './settings/settings.component';
+import { ProfileComponent } from './profile/profile.component';
 import { AuthGuard } from './auth.guard';
 
 const domainName = 'my-cal-app-angular/';
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'calendar', component: CalendarComponent, canActivate: [AuthGuard] },
   { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard] },
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
   { path: '', component: HomeComponent }
 ];
 

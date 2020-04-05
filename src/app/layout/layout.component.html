@@ -9,13 +9,13 @@
             </button>
             <div class="wrapper">
                 <a class="logo" *ngIf="!dataService.loggedIn()" routerLink="/" (click)="clickLogo()">Angular Calendar App</a>
-                <a class="logo profile-logo" *ngIf="dataService.loggedIn()" href="#" routerLink="/calendar" (click)="clickLogo()">{{firstInitial}}{{lastInitial}}</a>
+                <a class="logo profile-logo" *ngIf="dataService.loggedIn()" href="#" routerLink="/profile" (click)="clickLogo()">{{firstInitial}}{{lastInitial}}</a>
                 <ul>
                     <li *ngIf="!dataService.loggedIn()"><a href="#" routerLink="/" (click)="clickLink()">Home</a></li>
                     <li *ngIf="!dataService.loggedIn()"><a href="#" routerLink="/signup" (click)="clickLink()">Signup</a></li>
                     <li *ngIf="!dataService.loggedIn()"><a href="#" routerLink="/login" (click)="clickLink()">Login</a></li>
                     <li *ngIf="dataService.loggedIn()"><a href="#" routerLink="/calendar" (click)="clickLink()">Calendar</a></li>
-                    <li *ngIf="dataService.loggedIn()"><a href="#" routerLink="/settings" (click)="clickLink()">Settings</a></li>
+                    <li *ngIf="dataService.loggedIn()"><a href="#" routerLink="/profile" (click)="clickLink()">Profile</a></li>
                     <li *ngIf="dataService.loggedIn()"><a href="#" routerLink="/login" (click)="clickLogout()">Logout</a></li>
                 </ul>
             </div>
