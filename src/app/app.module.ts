@@ -16,6 +16,7 @@ import { LoginComponent } from './login/login.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { SettingsComponent } from './settings/settings.component';
 import { UserDataService } from './services/userdata.service';
+import { AuthGuard } from './auth.guard';
 
 
 @NgModule({
@@ -36,7 +37,7 @@ import { UserDataService } from './services/userdata.service';
     CalendarComponent,
     SettingsComponent
   ],
-  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }, UserDataService, CookieService],
+  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }, UserDataService, CookieService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

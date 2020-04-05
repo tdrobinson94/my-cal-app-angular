@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { UserDataService } from '../services/userdata.service';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 import $ from 'jquery';
 
 @Component({
@@ -17,7 +18,7 @@ export class SignupComponent implements OnInit {
     email: new FormControl(''),
     password: new FormControl('')
   });
-  constructor(private dataService: UserDataService, private router: Router) { }
+  constructor(private dataService: UserDataService, private router: Router, private cookieService: CookieService) { }
 
   ngOnInit(): void {
   }

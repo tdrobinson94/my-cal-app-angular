@@ -26,6 +26,8 @@ export class LayoutComponent implements OnInit {
       $('.hamburger').toggleClass('is-active');
       $('.wrapper ul').slideToggle();
       $('html, body').animate({ scrollTop: 0 }, 500);
+    } else {
+      $('html, body').animate({ scrollTop: 0 }, 500);
     }
   }
 
@@ -34,6 +36,8 @@ export class LayoutComponent implements OnInit {
       $('.hamburger').removeClass('is-active');
       $('.wrapper ul').slideToggle().hide();
       $('html, body').animate({ scrollTop: 0 }, 500);
+    } else {
+      $('html, body').animate({ scrollTop: 0 }, 500);
     }
   }
 
@@ -41,10 +45,9 @@ export class LayoutComponent implements OnInit {
     console.log('User has logged out');
     this.clickLink();
     this.cookieService.delete('userId');
-    this.cookieService.delete('token');
-    setTimeout(() => {
-      this.router.navigate(['/login']);
-    }, 3000);
+    this.cookieService.delete('username');
+    this.dataService.setLoggedIn(false);
+    $('html, body').animate({ scrollTop: 0 }, 500);
   }
 
   openFullscreen(){

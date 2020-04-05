@@ -34,19 +34,13 @@ export class LoginComponent implements OnInit {
           console.log('user: ' + response.body.id, 'username: ' + response.body.username);
           this.cookieService.set('userId', response.body.id);
           this.cookieService.set('username', response.body.username);
+          this.userName = (response.body.username);
           $('.success-message').addClass('show-success');
           this.loginForm.reset();
+          this.dataService.setLoggedIn(true);
           setTimeout(() => {
             this.router.navigate(['/calendar']);
           }, 3000);
-          let cookieValue = this.cookieService.get('userId');
-          this.dataService.isLoggedIn()
-            .subscribe((response) => {;
-              if (response[0].id == cookieValue) {
-                console.log('User has logged in');
-                this.userName = (response[0].username);
-              }
-            });
         } else {
           console.log('user is not logged in');
           $('.fail-message').addClass('show-fail');
