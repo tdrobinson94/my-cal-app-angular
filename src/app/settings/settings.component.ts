@@ -18,32 +18,17 @@ export class SettingsComponent implements OnInit {
   ngOnInit(): void {
     this.dataService.getUser()
       .subscribe((response) => {
-        console.log(response[0]);
-        let cookieValue = this.cookieService.get('userId');
-        if (response[0].id == cookieValue) {
-          console.log('User has logged in');
-          console.log(response);
-          this.userName = (response[0].username);
-          this.firstName = (response[0].firstname);
-          this.lastName = (response[0].lastname);
-          this.Email = (response[0].email);
-        }
+        this.userName = (response[0].username);
+        this.firstName = (response[0].firstname);
+        this.lastName = (response[0].lastname);
+        this.Email = (response[0].email);
       });
   }
 
   deleteMyUser() {
-    // let cookieValue = this.cookieService.get('userId');
-    this.dataService.getUser()
+    this.dataService.deleteUser()
       .subscribe((response) => {
         console.log(response[0]);
-        let cookieValue = this.cookieService.get('userId');
-        if (response[0].id == cookieValue) {
-          console.log('User has logged in');
-          this.userName = (response[0].username);
-          this.firstName = (response[0].firstname);
-          this.lastName = (response[0].lastname);
-          this.Email = (response[0].email);
-        }
       });
     setTimeout(() => {
       this.router.navigate(['/signup']);

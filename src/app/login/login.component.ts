@@ -18,18 +18,20 @@ export class LoginComponent implements OnInit {
   firstName: string = '';
   lastName: string = '';
   userName: string = '';
+  loading: boolean = false;
   constructor(private dataService: UserDataService, private router: Router, private cookieService: CookieService) { }
 
   ngOnInit(): void {
   }
 
   onSubmit() {
+    this.loading = true;
     this.dataService.loginuser(this.loginForm.value)
       .subscribe((response) => {
         if (response.status === 204) {
           console.log('user is not logged in');
           $('.fail-message-2').addClass('show-fail');
-          console.log(response);
+          this.loading = false;
         } else if (response.status === 201) {
           console.log('User has logged in');
           this.cookieService.set('userId', response.body.id);
@@ -43,7 +45,7 @@ export class LoginComponent implements OnInit {
         } else {
           console.log('user is not logged in');
           $('.fail-message').addClass('show-fail');
-          console.log(response);
+          this.loading = false;
         }
       });
   }

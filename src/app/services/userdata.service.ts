@@ -41,9 +41,12 @@ export class UserDataService {
         return this.http.get(this.apiUrl + '/user/' + this.getToken());
     }
 
+    updatedUser(userData) {
+        return this.http.patch(this.apiUrl + '/user/' + this.getToken(), userData);
+    }
+
     deleteUser() {
-        let cookieValue = this.cookieService.get('userId');
-        return this.http.delete(this.apiUrl + '/deleteuser/' + cookieValue);
+        return this.http.delete(this.apiUrl + '/deleteuser/' + this.getToken());
     }
 
 }

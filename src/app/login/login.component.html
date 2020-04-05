@@ -28,3 +28,16 @@
         Hi {{userName}}, you have successfully logged into your account.
     </div>
 </div>
+
+<div *ngIf="this.loading" class="loading-container">
+    <div class="lds-roller">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</div>
