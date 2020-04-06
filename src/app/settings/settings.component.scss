@@ -1,6 +1,50 @@
 @import '..//..//variables';
 
 .settings-container {
+    // position: fixed;
+    // margin: auto;
+    // bottom: 50%;
+    // height: 400px;
+    // width: 100%;
+    // max-width: $end-small;
+    // overflow: initial;
+    // transition: width .4s, height .4s, border-radius .5s;
+    // transition-timing-function: ease-in-out;
+    // background-color: $textwht;
+    // box-shadow: 1px 1px 10px $textdrk;
+    // float: none;
+    // overflow: auto;
+    // transform: translate(50%, 50%);
+    // color: $textdrk;
+    // border-radius: 5px;
+
+    // &::-webkit-scrollbar {
+    //   width: 4px;
+    // }
+    // &::-webkit-scrollbar-track {
+    //   background: transparent;
+    // }
+    // &::-webkit-scrollbar-thumb {
+    //   background: rgba(0, 0, 0, .2);
+    //   border-radius: 50px;
+    // }
+    // &::-webkit-scrollbar-thumb:hover {
+    //   background: rgba(126, 93, 93, 0.7); 
+    // }
+
+    // @media screen and (max-width: $end-small) {
+    //     width: 100%;
+    //     left: 0;
+    //     right: 0;
+    //     bottom: 0;
+    //     height: 100vh;
+    //     top: 0px;
+    //     transform: translateX(0);
+    //     border-radius: 0;
+    //     border: 0;
+    //     box-shadow: none;
+    // }
+
     .settings-nav {
         padding: 15px 0 15px 0px;
         background: red;

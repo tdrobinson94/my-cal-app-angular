@@ -1,2 +1,39 @@
 @import '..//..//variables';
 
+.profile-container {
+    .profile-nav {
+        padding: 15px 0 15px 0px;
+        background: red;
+        color: #fff;
+        text-align: center;
+        position: sticky;
+        top: 0;
+
+        h2 {
+            margin: 0;
+        }
+
+        a {
+            text-decoration: none;
+            position: absolute;
+            right: 7%;
+            top: 25%;
+            font-size: 25px;
+            color: #fff;
+            animation: spin 10s linear infinite;
+
+            @media screen and (min-width: $end-small) {
+                right: 6%;
+            }
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotateZ(0);
+            }
+            100% {
+                transform: rotateZ(360deg);
+            }
+        }
+    }
+}
