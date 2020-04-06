@@ -80,8 +80,9 @@ export class LayoutComponent implements OnInit {
   changeOfRoutes() {
     this.dataService.getUser()
       .subscribe((response) => {
-        this.firstName = (response[0].firstname);
-        this.lastName = (response[0].lastname);
+        let res = Object.values(response);
+        this.firstName = (res[1]);
+        this.lastName = (res[2]);
         this.firstInitial = this.firstName.substring(0, 1);
         this.lastInitial = this.lastName.substring(0, 1);
       });

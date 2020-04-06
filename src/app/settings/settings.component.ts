@@ -28,8 +28,9 @@ export class SettingsComponent implements OnInit {
   deleteMyUser() {
     this.dataService.deleteUser()
       .subscribe((response) => {
-        console.log(response[0]);
+        console.log(response);
       });
+    this.dataService.logout();
     setTimeout(() => {
       this.router.navigate(['/signup']);
     }, 3000);

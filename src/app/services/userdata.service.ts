@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
 
@@ -15,8 +15,12 @@ export class UserDataService {
 
     getToken() {
         let cookieValue = this.cookieService.get('userId');
+        let token = this.cookieService.get('token');
+        const config = {
+            headers: new HttpHeaders({ 'Authorization': 'Bearer ' + token })
+        };
 
-        return cookieValue;
+        return config;
     }
 
     signupuser(userData): Observable<any> {
@@ -29,18 +33,16 @@ export class UserDataService {
     }
 
     loggedIn() {
-        return this.cookieService.get('userId') ? true : false;
+        return this.cookieService.get('token') ? true : false;
     }
 
     logout() {
         this.cookieService.delete('userId');
-        this.cookieService.delete('username');
-        this.cookieService.delete('firstname');
-        this.cookieService.delete('lastname');
+        this.cookieService.delete('token');
     }
 
     getUser() {
-        return this.http.get(this.apiUrl + '/user/' + this.getToken());
+        return this.http.get(this.apiUrl + '/user', this.getToken());
     }
 
     updatedUser(userData) {
@@ -48,8 +50,7 @@ export class UserDataService {
     }
 
     deleteUser() {
-        this.logout();
-        return this.http.delete(this.apiUrl + '/deleteuser/' + this.getToken());
+        return this.http.delete(this.apiUrl + '/deleteuser', this.getToken());
     }
 
 }
