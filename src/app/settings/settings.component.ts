@@ -47,13 +47,6 @@ export class SettingsComponent implements OnInit {
         let data = Object.values(res[1]); 
         console.log(data);
         $('.update-form').slideToggle();
-
-        this.updateForm = new FormGroup({
-          firstname: new FormControl(data[1]),
-          lastname: new FormControl(data[2]),
-          username: new FormControl(data[3]),
-          password: new FormControl('')
-        });
       });
   }
 

@@ -3,7 +3,6 @@ import { UserDataService } from '../services/userdata.service';
 import { Router, NavigationEnd } from '@angular/router';
 import $ from 'jquery';
 import { CookieService } from 'ngx-cookie-service';
-import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-layout',

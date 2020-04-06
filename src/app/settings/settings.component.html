@@ -4,34 +4,40 @@
     </div>
 
     <div class="settings-info">
-        <div class="input-wrapper email">
+        <!-- <div class="input-wrapper email">
             <label>Email</label>
             <p>{{Email}}</p>
+        </div> -->
+        <div class="input-wrapper update">
+            <label>Account Info</label>
+            <!-- <button (click)="showUpdateForm()">Update Account</button> -->
+            <!--(ngSubmit)="updatedMyUser()"-->
+            <form class="update-form" [formGroup]="updateForm">
+                <div class="input-wrapper email">
+                    <label>Email</label>
+                    <input name="email" type="text" placeholder="{{Email}}" readonly required />
+                </div>
+                <div class="input-wrapper username">
+                    <label>First Name</label>
+                    <input formControlName="firstname" name="firstname" type="text" placeholder="First Name" required />
+                </div>
+                <div class="input-wrapper username">
+                    <label>Last Name</label>
+                    <input formControlName="lastname" name="lastname" type="text" placeholder="Last Name" required />
+                </div>
+                <div class="input-wrapper username">
+                    <label>Username</label>
+                    <input formControlName="username" name="username" type="text" placeholder="Username" required />
+                </div>
+                <div class="input-wrapper password">
+                    <label>Password</label>
+                    <input formControlName="password" name="password" placeholder="Password" type="password" required />
+                </div>
+                <div class="input-wrapper">
+                    <button [disabled]="!updateForm.valid" class="update" type="submit">Update</button>
+                </div>
+            </form>
         </div>
-
-        <!-- <button (click)="showUpdateForm()">Update Account</button> -->
-
-        <form class="update-form" [formGroup]="updateForm" (ngSubmit)="updatedMyUser()">
-            <div class="input-wrapper username">
-                <label>First Name</label>
-                <input formControlName="firstname" name="firstname" type="text" placeholder="First Name" required />
-            </div>
-            <div class="input-wrapper username">
-                <label>Last Name</label>
-                <input formControlName="lastname" name="lastname" type="text" placeholder="Last Name" required />
-            </div>
-            <div class="input-wrapper username">
-                <label>Username</label>
-                <input formControlName="username" name="username" type="text" placeholder="Username" required />
-            </div>
-            <div class="input-wrapper password">
-                <label>Password</label>
-                <input formControlName="password" name="password" placeholder="Password" type="password" required />
-            </div>
-            <div class="input-wrapper">
-                <button [disabled]="!updateForm.valid" class="update" type="submit">Update</button>
-            </div>
-        </form>
     </div>
     <div class="settings-wrapper">
         <button (click)="deleteMyUser()">Delete User</button>
