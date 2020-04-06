@@ -15,8 +15,6 @@ export class LoginComponent implements OnInit {
     username: new FormControl(''),
     password: new FormControl('')
   });
-  firstName: string = '';
-  lastName: string = '';
   userName: string = '';
   loading: boolean = false;
   constructor(private dataService: UserDataService, private router: Router, private cookieService: CookieService) { }

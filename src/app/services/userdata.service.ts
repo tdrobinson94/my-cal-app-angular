@@ -46,7 +46,7 @@ export class UserDataService {
     }
 
     updatedUser(userData) {
-        return this.http.patch(this.apiUrl + '/user/' + this.getToken(), userData);
+        return this.http.patch(this.apiUrl + '/updateuser', userData, this.getToken());
     }
 
     deleteUser() {

@@ -25,6 +25,8 @@ export class LayoutComponent implements OnInit {
           this.changeOfRoutes();
         } else if (event.url === '/profile') {
           this.changeOfRoutes();
+        } else if (event.url === '/settings') {
+          this.changeOfRoutes();
         }
       }
     });
