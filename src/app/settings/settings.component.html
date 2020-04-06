@@ -4,15 +4,11 @@
     </div>
 
     <div class="settings-info">
-        <!-- <div class="input-wrapper email">
-            <label>Email</label>
-            <p>{{Email}}</p>
-        </div> -->
         <div class="input-wrapper update">
             <label>Account Info</label>
             <!-- <button (click)="showUpdateForm()">Update Account</button> -->
             <!--(ngSubmit)="updatedMyUser()"-->
-            <form class="update-form" [formGroup]="updateForm">
+            <form class="update-form" [formGroup]="updateForm" autocomplete="off">
                 <div class="input-wrapper email">
                     <label>Email</label>
                     <input name="email" type="text" placeholder="{{Email}}" readonly required />
@@ -38,6 +34,9 @@
                 </div>
             </form>
         </div>
+        <!-- <div class="input-wrapper theme">
+            <label>Theme</label>
+        </div> -->
     </div>
     <div class="settings-wrapper">
         <button (click)="deleteMyUser()">Delete User</button>

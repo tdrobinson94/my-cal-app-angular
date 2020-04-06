@@ -38,18 +38,22 @@
             font-family: $globalFont !important;
 
             @media screen and (max-width: $mid-small) {
-            font-size: 30px;
+                font-size: 30px;
             }
 
             option {
-            color: $textdrk;
+                color: $textdrk;
             }
 
             &:hover {
-            @media screen and (min-width: $mid-small) {
-                color: $textdrk;
-                opacity: .4;
+                @media screen and (min-width: $mid-small) {
+                    color: $textdrk;
+                    opacity: .4;
+                }
             }
+
+            &:active, &:focus {
+                color: $textdrk;
             }
         }
         .todays-day {
@@ -102,7 +106,7 @@
             transition: all .2s ease-in-out;
             font-size: 12px;
             position: relative;
-            color: $textwht;
+            color: #fff;
 
             &:before {
                 position: absolute;
@@ -311,7 +315,7 @@
 
                 &:hover {
                     @media screen and (min-width: $mid-small) {
-                        color: #333333;
+                        color: $textdrk;
                         opacity: 1;
                         transition: all .2s ease-in-out;
                     }
@@ -381,7 +385,7 @@
 
                     &:hover {
                         @media screen and (min-width: $mid-small) {
-                            color: #333333;
+                            color: $textdrk;
                             opacity: 1;
                             transition: all .2s ease-in-out;
                         }
@@ -457,6 +461,7 @@
     transform: translate(50%, 50%);
     color: $textdrk;
     border-radius: 5px;
+    background: $textwht;
 
     &::-webkit-scrollbar {
       width: 4px;
@@ -502,6 +507,7 @@
 form {
     padding: 20px;
     margin: auto;
+    color: $textdrk;
 
     @media screen and (min-width: $end-small) {
         display: flex;
@@ -564,6 +570,8 @@ form {
         box-sizing: border-box;
         font-size: 15px;
         transition: all .3s ease-in-out;
+        background: transparent;
+        color: $textdrk;
 
         &:focus, &:active {
             border: 0;
@@ -573,7 +581,7 @@ form {
             font-size: 16px;
         }
         &:-internal-autofill-selected {
-            box-shadow: inset 0 0 0 100px rgba(255, 255, 255, 1);
+            box-shadow: inset 0 0 0 100px transparent;
         }
     }
 
@@ -660,7 +668,7 @@ form {
     border-radius: 100%;
     border: none;
     background-color: $alert;
-    color: #fff;
+    color: $textwht;
     right: 20px;
     z-index: 999;
     // box-shadow: 1px 1px 10px #333333;

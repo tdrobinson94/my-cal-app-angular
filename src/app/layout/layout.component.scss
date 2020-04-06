@@ -24,10 +24,15 @@ header {
                 display: flex;
                 align-items: center;
                 padding: 0;
+                .hamburger-inner {
+                    // &:before, &:after, & {
+                    //     background-color: black !important;
+                    // }
+                }
                 .hamburger-label{
                     display: inline;
                     margin-left: 15px;
-                    color: white;
+                    color: $textwht;
                     z-index: 2;
                     font-size: 13px;
                     @media screen and (max-width: 450px) {
