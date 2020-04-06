@@ -16,6 +16,7 @@
                     <li *ngIf="!dataService.loggedIn()"><a href="#" routerLink="/login" (click)="clickLink()">Login</a></li>
                     <li *ngIf="dataService.loggedIn()"><a href="#" routerLink="/calendar" (click)="clickLink()">Calendar</a></li>
                     <li *ngIf="dataService.loggedIn()"><a href="#" routerLink="/profile" (click)="clickLink()">Profile</a></li>
+                    <li *ngIf="dataService.loggedIn()"><a href="#" routerLink="/settings" (click)="clickLink()">Settings</a></li>
                     <li *ngIf="dataService.loggedIn()"><a href="#" routerLink="/login" (click)="clickLogout()">Logout</a></li>
                 </ul>
             </div>

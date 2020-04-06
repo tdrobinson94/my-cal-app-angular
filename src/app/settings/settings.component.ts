@@ -18,10 +18,11 @@ export class SettingsComponent implements OnInit {
   ngOnInit(): void {
     this.dataService.getUser()
       .subscribe((response) => {
-        this.userName = (response[0].username);
-        this.firstName = (response[0].firstname);
-        this.lastName = (response[0].lastname);
-        this.Email = (response[0].email);
+        let res = Object.values(response);
+        this.userName = (res[3]);
+        this.firstName = (res[1]);
+        this.lastName = (res[2]);
+        this.Email = (res[4]);
       });
   }
 
