@@ -46,7 +46,6 @@ export class SettingsComponent implements OnInit {
         let res = Object.values(response);
         let data = Object.values(res[1]); 
         console.log(data);
-        $('.update-form').slideToggle();
       });
   }
 
