@@ -8,7 +8,7 @@
                 <span class="hamburger-label">Menu</span>
             </button>
             <div class="wrapper">
-                <a class="logo" *ngIf="!dataService.loggedIn()" routerLink="/" (click)="clickLogo()">Angular Calendar App</a>
+                <a class="logo" routerLink="/" (click)="clickLogo()">Angular Calendar App</a>
                 <a class="logo profile-logo" *ngIf="dataService.loggedIn()" href="#" routerLink="/profile" (click)="clickLogo()">{{firstInitial}}{{lastInitial}}</a>
                 <ul>
                     <li *ngIf="!dataService.loggedIn()"><a href="#" routerLink="/" (click)="clickLink()">Home</a></li>
@@ -19,8 +19,6 @@
                     <li *ngIf="dataService.loggedIn()"><a href="#" routerLink="/login" (click)="clickLogout()">Logout</a></li>
                 </ul>
             </div>
-            <button class="fullscreen-btn fontawesome-resize-full" (click)="openFullscreen()"></button>
-            <button class="exit-fullscreen-btn fontawesome-resize-small" (click)="exitFullscreen()"></button>
         </nav>
     </div>
 </header>
@@ -32,5 +30,8 @@
 <footer>
     <div class="layout-container">
         <p>Angular Calendar App &copy; 2020</p>
+
+        <button class="fullscreen-btn fontawesome-resize-full" (click)="openFullscreen()"></button>
+        <button class="exit-fullscreen-btn fontawesome-resize-small" (click)="exitFullscreen()"></button>
     </div>
 </footer>

@@ -18,7 +18,7 @@ const routes: Routes = [
   { path: 'calendar', component: CalendarComponent, canActivate: [AuthGuard] },
   { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard] },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
-  { path: '', component: HomeComponent }
+  { path: '', component: HomeComponent, canActivate: [GuestGuard] }
 ];
 
 @NgModule({

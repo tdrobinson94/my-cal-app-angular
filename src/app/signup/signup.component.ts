@@ -50,4 +50,8 @@ export class SignupComponent implements OnInit {
     $('.fail-message').removeClass('show-fail');
   }
 
+  hide() {
+    this.loading = false;
+  }
+
 }

@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { UserDataService } from '../services/userdata.service';
+import { Router, NavigationEnd } from '@angular/router';
 import $ from 'jquery';
 import { CookieService } from 'ngx-cookie-service';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-layout',
@@ -9,10 +11,24 @@ import { CookieService } from 'ngx-cookie-service';
   styleUrls: ['./layout.component.scss']
 })
 export class LayoutComponent implements OnInit {
-  firstInitial: string = this.cookieService.get('firstname').substring(0, 1);
-  lastInitial: string = this.cookieService.get('lastname').substring(0, 1);
+  firstName: string = '';
+  lastName: string = '';
+  firstInitial: string = '';
+  lastInitial: string = '';
+  showAfterLogin: any;
 
-  constructor(public dataService: UserDataService, private cookieService: CookieService) { }
+  constructor(public dataService: UserDataService, private cookieService: CookieService, private router: Router) {
+
+    this.router.events.forEach((event) => {
+      if (event instanceof NavigationEnd) {
+        if (event.url === '/calendar') {
+          this.changeOfRoutes();
+        } else if (event.url === '/profile') {
+          this.changeOfRoutes();
+        }
+      }
+    });
+   }
 
   ngOnInit(): void {
   }
@@ -59,6 +75,16 @@ export class LayoutComponent implements OnInit {
     document.exitFullscreen();
     $('.fullscreen-btn').show();
     $('.exit-fullscreen-btn').hide();
+  }
+
+  changeOfRoutes() {
+    this.dataService.getUser()
+      .subscribe((response) => {
+        this.firstName = (response[0].firstname);
+        this.lastName = (response[0].lastname);
+        this.firstInitial = this.firstName.substring(0, 1);
+        this.lastInitial = this.lastName.substring(0, 1);
+      });
   }
 
 }
