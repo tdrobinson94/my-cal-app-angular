@@ -283,7 +283,7 @@
             animation-name: shrink;
             animation-duration: .5s;
             animation-timing-function: ease-in-out;
-            box-shadow: 1px 1px 10px #333333;
+            // box-shadow: 1px 1px 10px #333333;
             z-index: 99;
             .weekday{
                 .num-date {
@@ -650,7 +650,7 @@ form {
     color: #fff;
     right: 20px;
     z-index: 999;
-    box-shadow: 1px 1px 10px #333333;
+    // box-shadow: 1px 1px 10px #333333;
 
     &:hover {
         &:before {
