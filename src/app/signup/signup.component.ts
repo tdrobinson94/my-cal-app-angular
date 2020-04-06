@@ -33,6 +33,7 @@ export class SignupComponent implements OnInit {
           $('.fail-message').addClass('show-fail');
           this.loading = false;
         } else if (response.status === 201) {
+          $('.signup-form').animate({ scrollTop: 0 }, 500);
           $('.success-message').addClass('show-success');
           setTimeout(() => {
             this.router.navigate(['/login']);
