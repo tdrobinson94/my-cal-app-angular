@@ -3,7 +3,7 @@
         <h2>Signup</h2>
     </div>
 
-    <form class="signupForm" [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+    <form class="signupForm" [formGroup]="signupForm" (ngSubmit)="onSubmit()" autocomplete="off">
         <div class="input-wrapper item-name">
             <label>First Name</label>
             <input formControlName="firstname" name="firstname" type="text" placeholder="First name" autocomplete="off" required/>

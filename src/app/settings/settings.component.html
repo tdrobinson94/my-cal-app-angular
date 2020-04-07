@@ -8,7 +8,7 @@
             <label>Account Info</label>
             <!-- <button (click)="showUpdateForm()">Update Account</button> -->
             <!--(ngSubmit)="updatedMyUser()"-->
-            <form class="update-form" [formGroup]="updateForm">
+            <form class="update-form" [formGroup]="updateForm" autocomplete="off">
                 <div class="input-wrapper email">
                     <label>Email</label>
                     <input name="email" type="text" placeholder="{{Email}}" autocomplete="off" readonly required />
