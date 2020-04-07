@@ -35,7 +35,6 @@ export class LayoutComponent implements OnInit {
   ngOnInit(): void {
 
     window.addEventListener('beforeinstallprompt', (e) => {
-      e.preventDefault();
       console.log(e);
       this.deferredPrompt = e;
     });
