@@ -33,7 +33,7 @@ export class LayoutComponent implements OnInit {
    }
 
   ngOnInit(): void {
-
+    console.log('just checking');
     window.addEventListener('beforeinstallprompt', (e) => {
       console.log(e);
       this.deferredPrompt = e;
