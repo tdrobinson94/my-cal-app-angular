@@ -44,8 +44,14 @@ export class SettingsComponent implements OnInit {
     this.dataService.updatedUser(this.updateForm.value)
       .subscribe((response) => {
         let res = Object.values(response);
-        let data = Object.values(res[1]); 
+        let data = Object.values(res[1]);
         console.log(data);
+        this.updateForm = new FormGroup({
+          firstname: new FormControl(data[1]),
+          lastname: new FormControl(data[2]),
+          username: new FormControl(data[3]),
+          password: new FormControl('')
+        });
       });
   }
 
