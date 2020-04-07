@@ -18,7 +18,6 @@
                     <li *ngIf="dataService.loggedIn()"><a href="#" routerLink="/profile" (click)="clickLink()">Profile</a></li>
                     <!-- <li *ngIf="dataService.loggedIn()"><a href="#" routerLink="/settings" (click)="clickLink()">Settings</a></li> -->
                     <li *ngIf="dataService.loggedIn()"><a href="#" routerLink="/login" (click)="clickLogout()">Logout</a></li>
-                    <!-- <li><button (click)="downloadClick()">Download</button></li> -->
                 </ul>
             </div>
         </nav>
@@ -32,8 +31,5 @@
 <footer>
     <div class="layout-container">
         <p>Angular Calendar App &copy; 2020</p>
-
-        <!-- <button class="fullscreen-btn fontawesome-resize-full" (click)="openFullscreen()"></button>
-        <button class="exit-fullscreen-btn fontawesome-resize-small" (click)="exitFullscreen()"></button> -->
     </div>
 </footer>

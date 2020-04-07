@@ -126,28 +126,16 @@ footer {
     width: 100%;
     bottom: 0;
     z-index: 9999;
+    transition: all .3s ease-in-out;
     // box-shadow: 1px -2px 10px #333333;
 
     p {
         color: $textwht;
         margin: 0;
     }
+}
 
-    .exit-fullscreen-btn, .fullscreen-btn {
-        background: white;
-        color: red;
-        border-radius: 5px;
-        position: absolute;
-        right: 6%;
-        top: 18px;
-        border: 0;
-
-        @media screen and (min-width: $end-small) {
-            display: none !important;
-        }
-    }
-
-    .exit-fullscreen-btn {
-        display: none;
-    }
+.scroll-down {
+    bottom: -56px;
+    transition: all .3s ease-in-out;
 }

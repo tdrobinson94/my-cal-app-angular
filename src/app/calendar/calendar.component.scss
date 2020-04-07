@@ -559,7 +559,7 @@ form {
         }
     }
 
-    select, .date-input input, .item-title input , .event-description textarea, .amount-input input, .location-input input, .time-input input {
+    select, .date-input input, .date-input-end input, .item-title input , .event-description textarea, .amount-input input, .location-input input, .time-input input {
         width: 100%;
         padding: 10px 0;
         border: 0;
@@ -585,7 +585,7 @@ form {
         }
     }
 
-    .date-input, .time-input {
+    .date-input, .date-input-end, .time-input {
         input {
             padding: 7.5px;
         }
@@ -671,6 +671,7 @@ form {
     color: $textwht;
     right: 20px;
     z-index: 999;
+    transition: all .3s ease-in-out;
     // box-shadow: 1px 1px 10px #333333;
 
     &:hover {
@@ -687,4 +688,9 @@ form {
         right: 50%;
         transform: translateX(50%);
     }
+}
+
+.scroll-down {
+    bottom: 20px;
+    transition: all .3s ease-in-out;
 }

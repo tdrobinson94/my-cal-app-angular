@@ -32,12 +32,20 @@ export class LayoutComponent implements OnInit {
     });
    }
 
-  ngOnInit(): void {
-    console.log('just checking');
-    window.addEventListener('beforeinstallprompt', (e) => {
-      console.log(e);
-      this.deferredPrompt = e;
-    });
+  ngOnInit() {
+    window.addEventListener('scroll', this.scroll, true);
+  }
+
+  ngOnDestroy() {
+    window.removeEventListener('scroll', this.scroll, true);
+  }
+
+  scroll(e): void {
+    if ($(window).scrollTop() >= 25) {
+      $('footer').addClass('scroll-down');
+    } else {
+      $('footer').removeClass('scroll-down');
+    }
   }
 
   clickNavButton() {
@@ -72,18 +80,6 @@ export class LayoutComponent implements OnInit {
     $('html, body').animate({ scrollTop: 0 }, 500);
   }
 
-  openFullscreen(){
-    document.documentElement.requestFullscreen();
-    $('.fullscreen-btn').hide();
-    $('.exit-fullscreen-btn').show();
-  }
-
-  exitFullscreen() {
-    document.exitFullscreen();
-    $('.fullscreen-btn').show();
-    $('.exit-fullscreen-btn').hide();
-  }
-
   changeOfRoutes() {
     this.dataService.getUser()
       .subscribe((response) => {
@@ -93,12 +89,6 @@ export class LayoutComponent implements OnInit {
         this.firstInitial = this.firstName.substring(0, 1);
         this.lastInitial = this.lastName.substring(0, 1);
       });
-  }
-
-  downloadClick(){
-    console.log('downloading')
-    // this.deferredPrompt.prompt();
-
   }
 
 }
