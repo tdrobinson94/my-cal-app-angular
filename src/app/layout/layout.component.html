@@ -18,7 +18,7 @@
                     <li *ngIf="dataService.loggedIn()"><a href="#" routerLink="/profile" (click)="clickLink()">Profile</a></li>
                     <!-- <li *ngIf="dataService.loggedIn()"><a href="#" routerLink="/settings" (click)="clickLink()">Settings</a></li> -->
                     <li *ngIf="dataService.loggedIn()"><a href="#" routerLink="/login" (click)="clickLogout()">Logout</a></li>
-                    <li><button>Download</button></li>
+                    <li><button (click)="downloadClick()">Download</button></li>
                 </ul>
             </div>
         </nav>

@@ -97,7 +97,8 @@ export class LayoutComponent implements OnInit {
   }
 
   downloadClick(){
-    this.deferredPrompt.prompt();
+    console.log('downloading')
+    // this.deferredPrompt.prompt();
 
   }
 
