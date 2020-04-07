@@ -15,6 +15,7 @@ export class LayoutComponent implements OnInit {
   firstInitial: string = '';
   lastInitial: string = '';
   showAfterLogin: any;
+  deferredPrompt;
 
   constructor(public dataService: UserDataService, private cookieService: CookieService, private router: Router) {
 
@@ -32,13 +33,11 @@ export class LayoutComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    let deferredPrompt;
 
     window.addEventListener('beforeinstallprompt', (e) => {
       e.preventDefault();
       console.log('Yes', 'beforeinstallprompt', e);
-      deferredPrompt = e;
-      deferredPrompt.prompt();
+      this.deferredPrompt = e;
     });
   }
 
@@ -97,9 +96,9 @@ export class LayoutComponent implements OnInit {
       });
   }
 
-  // downloadClick(){
-  //   this.deferredPrompt.prompt();
+  downloadClick(){
+    this.deferredPrompt.prompt();
 
-  // }
+  }
 
 }
