@@ -32,6 +32,14 @@ export class LayoutComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    let deferredPrompt;
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      console.log('Yes', 'beforeinstallprompt', e);
+      deferredPrompt = e;
+      deferredPrompt.prompt();
+    });
   }
 
   clickNavButton() {
@@ -88,5 +96,10 @@ export class LayoutComponent implements OnInit {
         this.lastInitial = this.lastName.substring(0, 1);
       });
   }
+
+  // downloadClick(){
+  //   this.deferredPrompt.prompt();
+
+  // }
 
 }
