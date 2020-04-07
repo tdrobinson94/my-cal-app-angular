@@ -36,7 +36,7 @@ export class LayoutComponent implements OnInit {
 
     window.addEventListener('beforeinstallprompt', (e) => {
       e.preventDefault();
-      console.log('Yes', 'beforeinstallprompt', e);
+      console.log(e);
       this.deferredPrompt = e;
     });
   }
