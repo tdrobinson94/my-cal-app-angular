@@ -16,7 +16,7 @@ let day = clock.getDate();
 export class CalendarComponent implements OnInit {
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit(): void {
 
     $(document).find('#month').html(`
     <option value="0">${MONTHS[0].name}</option>
@@ -51,38 +51,6 @@ export class CalendarComponent implements OnInit {
 
     $('#year').val(year);
     this.changeCal();
-
-    window.addEventListener('scroll', this.scroll, true);
-  }
-
-  ngOnDestroy() {
-    window.removeEventListener('scroll', this.scroll, true);
-  }
-
-  scroll(e): void {
-    if ($(window).scrollTop() >= 25) {
-      $('.add-item-button').addClass('scroll-down');
-    } else {
-      $('.add-item-button').removeClass('scroll-down');
-    }
-
-    // if ($(window).scrollTop() > $('.first-row').position().top) {
-    //   $('.first-row').addClass('not-showing');
-    // } else {
-    //   $('.first-row').removeClass('not-showing');
-    // }
-
-    // if ($(window).scrollTop() > $('.second-row').position().top) {
-    //   $('.second-row').addClass('not-showing');
-    // } else {
-    //   $('.second-row').removeClass('not-showing');
-    // }
-
-    // if ($(window).scrollTop() > $('.third-row').position().top) {
-    //   $('.third-row').addClass('not-showing');
-    // } else {
-    //   $('.third-row').removeClass('not-showing');
-    // }
   }
 
   renderMonth() {

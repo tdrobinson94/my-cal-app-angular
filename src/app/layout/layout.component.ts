@@ -32,20 +32,7 @@ export class LayoutComponent implements OnInit {
     });
    }
 
-  ngOnInit() {
-    window.addEventListener('scroll', this.scroll, true);
-  }
-
-  ngOnDestroy() {
-    window.removeEventListener('scroll', this.scroll, true);
-  }
-
-  scroll(e): void {
-    if ($(window).scrollTop() >= 25) {
-      $('footer').addClass('scroll-down');
-    } else {
-      $('footer').removeClass('scroll-down');
-    }
+  ngOnInit(): void {
   }
 
   clickNavButton() {
