@@ -268,13 +268,18 @@ export class CalendarComponent implements OnInit {
     let day = $('.clicked-day .date-value').text();
     let minutes = String(clock.getMinutes()).padStart(2, '0');
     let hours = String(clock.getHours()).padStart(2, '0');
+    let extraHour = String(clock.getHours() + 1).padStart(2, '0');
     let currentTime = hours + ':' + minutes;
+    let endTime = (extraHour) + ':' + minutes;
     $('.select-item label').removeClass('selected');
     $('.checkbox label').removeClass('selected');
     $('.date-input input').val(day);
+    $('.date-input-end input').val(day);
     $('.time-input input').val(currentTime);
+    $('.time-input-end input').val(endTime);
     $('.add-item-form').addClass('show-form');
-    $('.event-description, .description-label, .location-input, .location-label, .time-input, .time-label').addClass('show-input');
+    $('.event-description, .description-label, .location-input, .location-label, .time-input, .time-label, .date-input-end').addClass('show-input');
+    $('.time-input-end').addClass('show-input');
 
     if ($(window).width() <= 800) {
 
@@ -298,56 +303,71 @@ export class CalendarComponent implements OnInit {
     if ($(e.currentTarget).hasClass('item_1')) {
       console.log("Event")
       $(e.currentTarget).addClass('selected');
-      $('.event-description, .description-label, .location-input, .location-label, .time-input, .time-label').addClass('show-input');
+      $('.event-description, .description-label, .location-input, .location-label, .time-input, .time-label, .date-input-end').addClass('show-input');
+      $('.time-input-end').addClass('show-input');
       $('.amount-input, .amount-label').removeClass('show-input');
     } else if ($(e.currentTarget).hasClass('item_2')) {
       console.log("Reminder")
       $(e.currentTarget).addClass('selected');
-      $('.time-input, .time-label, .location-input, .location-label').addClass('show-input');
+      $('.time-input, .time-label, .location-input, .location-label, .date-input-end').addClass('show-input');
       $('.event-description, .description-label').removeClass('show-input');
-      $('.amount-input, .amount-label').removeClass('show-input');
+      $('.amount-input, .amount-label, .time-input-end').removeClass('show-input');
     } else if ($(e.currentTarget).hasClass('item_3')) {
       console.log("Task")
       $(e.currentTarget).addClass('selected');
       $('.event-description, .description-label, .time-input, .time-label').addClass('show-input');
-      $('.amount-input, .amount-label, .location-input, .location-label').removeClass('show-input');
+      $('.time-input-end').addClass('show-input');
+      $('.amount-input, .amount-label, .location-input, .location-label, .date-input-end').removeClass('show-input');
     } else if ($(e.currentTarget).hasClass('item_4')) {
       console.log("Budget")
       $(e.currentTarget).addClass('selected');
       $('.event-description, .description-label, .location-input, .location-label, .time-input, .time-label').removeClass('show-input');
-      $('.amount-input, .amount-label').addClass('show-input');
+      $('.time-input-end').removeClass('show-input');
+      $('.amount-input, .amount-label, .date-input-end').addClass('show-input');
     } else if ($(e.currentTarget).hasClass('item_5')) {
       console.log("Food")
       $(e.currentTarget).addClass('selected');
-      $('.event-description, .description-label, .location-input, .location-label, .time-input, .time-label').removeClass('show-input');
+      $('.event-description, .description-label, .location-input, .location-label, .time-input, .time-label, .date-input-end').removeClass('show-input');
+      $('.time-input-end').removeClass('show-input');
       $('.amount-input, .amount-label').addClass('show-input');
     }
   }
 
   selectItemFreq(e) {
+    let day = $('.clicked-day .date-value').text();
+    let infinite = '';
+
     $('.frequency').not(e.currentTarget).prop('checked', false);
     $('.checkbox label').removeClass('selected');
+    
 
     if ($(e.currentTarget).hasClass('frequency_1')) {
-      console.log("Item 1")
+      console.log("Item 1");
+      $('.date-input-end input').val(day);
       $(e.currentTarget).addClass('selected')
     } else if ($(e.currentTarget).hasClass('frequency_2')) {
-      console.log("Item 2")
+      console.log("Item 2");
+      $('.date-input-end input').val(infinite);
       $(e.currentTarget).addClass('selected')
     } else if ($(e.currentTarget).hasClass('frequency_3')) {
-      console.log("Item 3")
+      console.log("Item 3");
+      $('.date-input-end input').val(infinite);
       $(e.currentTarget).addClass('selected')
     } else if ($(e.currentTarget).hasClass('frequency_4')) {
-      console.log("Item 4")
+      console.log("Item 4");
+      $('.date-input-end input').val(infinite);
       $(e.currentTarget).addClass('selected')
     } else if ($(e.currentTarget).hasClass('frequency_5')) {
-      console.log("Item 5")
+      console.log("Item 5");
+      $('.date-input-end input').val(infinite);
       $(e.currentTarget).addClass('selected')
     } else if ($(e.currentTarget).hasClass('frequency_6')) {
-      console.log("Item 6")
+      console.log("Item 6");
+      $('.date-input-end input').val(infinite);
       $(e.currentTarget).addClass('selected')
     } else if ($(e.currentTarget).hasClass('frequency_7')) {
-      console.log("Item 7")
+      console.log("Item 7");
+      $('.date-input-end input').val(infinite);
       $(e.currentTarget).addClass('selected')
     }
   }

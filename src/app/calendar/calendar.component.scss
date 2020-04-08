@@ -566,7 +566,7 @@ form {
         }
     }
 
-    select, .date-input input, .date-input-end input, .item-title input , .event-description textarea, .amount-input input, .location-input input, .time-input input {
+    select, .date-input input, .date-input-end input, .time-input-end input, .item-title input , .event-description textarea, .amount-input input, .location-input input, .time-input input {
         width: 100%;
         padding: 10px 0;
         border: 0;
@@ -592,7 +592,7 @@ form {
         }
     }
 
-    .date-input, .date-input-end, .time-input {
+    .date-input, .date-input-end, .time-input, .time-input-end {
         input {
             padding: 7.5px;
         }
@@ -606,7 +606,7 @@ form {
         height: 75px;
     }
 
-    .event-description, .description-label, .amount-input, .amount-label, .location-label, .location-input, .time-input, .time-label {
+    .event-description, .description-label, .amount-input, .amount-label, .location-label, .location-input, .time-input, .time-label, .date-input-end, .time-input-end {
         display: none;
     }
 
