@@ -189,6 +189,7 @@
         justify-content: center;
         height: 15%;
         margin-top: 10px;
+        transition: all .3s ease-in-out;
 
         &.bottom {
             height: 53px !important;
@@ -247,6 +248,7 @@
             display: inline-block;
             color: #455A64;
             height: 29%;
+            transition: all .3s ease-in-out;
             br{
                 display: none;
             }
@@ -290,6 +292,7 @@
             // box-shadow: 1px 1px 10px #333333;
             z-index: 99;
             .weekday{
+                transition: all .3s ease-in-out;
                 .num-date {
                     font-weight: bolder;
                     font-size: 20px;
@@ -355,6 +358,7 @@
                 .weekday {
                     margin-top: 25px;
                     height: 10%;
+                    transition: all .3s ease-in-out;
 
                     .num-date{
                         @media screen and (max-width: $end-small) {
@@ -403,9 +407,11 @@
         }
     }
     .not-showing {
+        transition: all .3s ease-in-out;
         .weekday {
             bottom: 0;
             top: initial !important;
+            transition: all .3s ease-in-out;
         }
         .clicked-day {
             .open-day {
@@ -416,6 +422,7 @@
             .weekday {
                 top: 0 !important;
                 bottom: initial !important;
+                transition: all .3s ease-in-out;
             }
         }
     }
