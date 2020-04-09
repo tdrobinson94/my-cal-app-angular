@@ -215,7 +215,7 @@
         background-color: $textwht;
         position: relative;
         outline: none;
-        // border: 1px solid $accent;
+        border: 1px solid transparent;
         transition: all .1s ease-in-out;
         border-radius: 5px;
 
@@ -269,10 +269,36 @@
         }
         .main-info {
             position: absolute;
-            top: 36%;
+            top: 20%;
             left: 0;
             width: 100%;
-            height: 50%;
+            height: 64%;
+            overflow: auto;
+
+            p {
+                font-size: 10px;
+                background: rgba(255, 0, 0, .8);
+                color: #fff;
+                padding: 5px 5px;
+                overflow: hidden;
+                position: relative;
+                padding-right: 15px;
+
+                &:hover {
+                    opacity: .5;
+                }
+
+                button {
+                    border-radius: 100%;
+                    padding: 0;
+                    margin: 0;
+                    border: 0;
+                    background: transparent;
+                    position: absolute;
+                    top: 3px;
+                    right: 3px
+                }
+            }
         }
         .date-value{
             display: none;
@@ -367,6 +393,7 @@
                     }
                 } 
                 .main-info {
+                    top: 14%;
                     height: 84%;
                 }
 

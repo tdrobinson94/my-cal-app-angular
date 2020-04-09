@@ -27,6 +27,8 @@ export class LayoutComponent implements OnInit {
           this.changeOfRoutes();
         } else if (event.url === '/settings') {
           this.changeOfRoutes();
+        } else if (event.url === '/test-cal') {
+          this.changeOfRoutes();
         }
       }
     });

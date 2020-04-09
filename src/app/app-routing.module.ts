@@ -7,6 +7,7 @@ import { LoginComponent } from './login/login.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { SettingsComponent } from './settings/settings.component';
 import { ProfileComponent } from './profile/profile.component';
+import { TestCalendarComponent } from './test-calendar/test-calendar.component';
 import { AuthGuard } from './auth.guard';
 import { GuestGuard } from './guest.guard';
 
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'calendar', component: CalendarComponent, canActivate: [AuthGuard] },
   { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard] },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
+  { path: 'test-cal', component: TestCalendarComponent, canActivate: [AuthGuard] },
   { path: '', component: HomeComponent, canActivate: [GuestGuard] }
 ];
 

@@ -19,6 +19,8 @@ import { UserDataService } from './services/userdata.service';
 import { AuthGuard } from './auth.guard';
 import { GuestGuard } from './guest.guard';
 import { ProfileComponent } from './profile/profile.component';
+import { EventDataService } from './services/eventdata.service';
+import { TestCalendarComponent } from './test-calendar/test-calendar.component';
 
 
 @NgModule({
@@ -38,9 +40,11 @@ import { ProfileComponent } from './profile/profile.component';
     LoginComponent,
     CalendarComponent,
     SettingsComponent,
-    ProfileComponent
+    ProfileComponent,
+    TestCalendarComponent
   ],
-  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }, UserDataService, CookieService, AuthGuard, GuestGuard],
+  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }, UserDataService, CookieService, AuthGuard, GuestGuard,
+  EventDataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

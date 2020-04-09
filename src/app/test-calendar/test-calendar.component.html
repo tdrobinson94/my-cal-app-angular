@@ -1,0 +1,11 @@
+<div *ngFor="let event of events">
+    <div>
+        <p>{{event.id}}</p>
+        <p>{{event.title}}</p>
+        <p>{{event.description}}</p>
+        <p>{{event.start_time}}</p>
+        <p>{{event.end_time}}</p>
+        <p>{{event.location}}</p>
+        <button class="entypo-minus" value={{event.id}} (click)="deleteEvent()"></button>
+    </div>
+</div>

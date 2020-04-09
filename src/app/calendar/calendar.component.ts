@@ -1,7 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Renderer2, ElementRef, ViewChild } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
+import { EventDataService } from '../services/eventdata.service';
+import { CookieService } from 'ngx-cookie-service';
 import { MONTHS } from './months.constant';
 import $ from 'jquery';
 import _ from 'lodash';
+import * as moment from 'moment';
 
 let clock = new Date();
 let month = clock.getMonth();
@@ -11,10 +15,28 @@ let day = clock.getDate();
 @Component({
   selector: 'app-calendar',
   templateUrl: './calendar.component.html',
-  styleUrls: ['./calendar.component.scss']
+  styleUrls: ['./calendar.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class CalendarComponent implements OnInit {
-  constructor() { }
+  addItemForm = new FormGroup({
+    item_type: new FormControl(),
+    frequency: new FormControl(''),
+    title: new FormControl(''),
+    description: new FormControl(''),
+    start_date: new FormControl(),
+    end_date: new FormControl(),
+    start_time: new FormControl(),
+    end_time: new FormControl(),
+    location: new FormControl(''),
+  });
+  eventID: string = '';
+  events: any = [];
+
+  button: any;
+
+  constructor(private dataService: EventDataService, private cookieService: CookieService, private renderer: Renderer2,
+  private el: ElementRef) { }
 
   ngOnInit(): void {
 
@@ -51,6 +73,15 @@ export class CalendarComponent implements OnInit {
 
     $('#year').val(year);
     this.changeCal();
+
+    this.button = this.renderer.createElement('button');
+    this.renderer.setAttribute(this.button, 'class', 'delete-event');
+    this.renderer.addClass(this.button, 'entypo-minus');
+    this.renderer.setProperty(this.button, 'id', 'delete');
+    this.renderer.listen(this.button, 'click', (event) => {
+      this.deleteEvent();
+    });
+
   }
 
   renderMonth() {
@@ -62,6 +93,7 @@ export class CalendarComponent implements OnInit {
     let monthDays = MONTHS[$(document).find('#month').val()].days;
     let days = $(document).find('.days').children();
     $(document).find('.num').empty();
+    $(document).find('.main-info').empty();
 
     _.range(1, 43).forEach(function (dayIndex, i) {
       let day = $(days[startOfMonth + dayIndex - 1]);
@@ -87,9 +119,11 @@ export class CalendarComponent implements OnInit {
             let newDayIndex = (dayIndex - monthDays);
             let standardDayIndex = '0' + (dayIndex - monthDays);
             day.find('.date-value').html(currentYear + '-' + standardMonth + '-' + standardDayIndex);
+            day.find('.num-box').attr('value', '"' + currentYear + '-' + standardMonth + '-' + standardDayIndex + '"')
             day.find('.num-date').html(newDayIndex).parent().parent().addClass("dead_month_color");
           } else {
             day.find('.date-value').html(currentYear + '-' + standardMonth + '-' + (dayIndex - monthDays));
+            day.find('.num-box').attr('value', '"' + currentYear + '-' + standardMonth + '-' + (dayIndex - monthDays) + '"');
             day.find('.num-date').html((dayIndex - monthDays)).parent().parent().addClass("dead_month_color");
           }
         } else {
@@ -97,10 +131,12 @@ export class CalendarComponent implements OnInit {
           if ((dayIndex - monthDays) < 10) {
             let newDayIndex = (dayIndex - monthDays);
             let standardDayIndex = '0' + (dayIndex - monthDays);
-            day.find('.date-value').html(currentYear + '-' + standardMonth + '-' + standardDayIndex);;
+            day.find('.date-value').html(currentYear + '-' + standardMonth + '-' + standardDayIndex);
+            day.find('.num-box').attr('value', '"' + currentYear + '-' + standardMonth + '-' + standardDayIndex + '"');
             day.find('.num-date').html(newDayIndex).parent().parent().addClass("dead_month_color");
           } else {
             day.find('.date-value').html(currentYear + '-' + standardMonth + '-' + (dayIndex - monthDays));
+            day.find('.num-box').attr('value', '"' + currentYear + '-' + standardMonth + '-' + (dayIndex - monthDays) + '"');
             day.find('.num-date').html((dayIndex - monthDays)).parent().parent().addClass("dead_month_color");
           }
         }
@@ -114,9 +150,11 @@ export class CalendarComponent implements OnInit {
             let newDays = dayIndex;
             let standardNewDays = '0' + dayIndex;
             day.find('.date-value').html(currentYear + '-' + standardNewMonth + '-' + standardNewDays);
+            day.find('.num-box').attr('value', '"' + currentYear + '-' + standardNewMonth + '-' + standardNewDays + '"');
             day.find('.num-date').html("&nbsp" + newDays + "&nbsp");
           } else {
             day.find('.date-value').html(currentYear + '-' + standardNewMonth + '-' + (dayIndex));
+            day.find('.num-box').attr('value', '"' + currentYear + '-' + standardNewMonth + '-' + (dayIndex) + '"');
             day.find('.num-date').html((dayIndex));
           }
         } else {
@@ -124,9 +162,11 @@ export class CalendarComponent implements OnInit {
             let newDays = dayIndex;
             let standardNewDays = '0' + dayIndex;
             day.find('.date-value').html(currentYear + '-' + thisMonth + '-' + standardNewDays);
+            day.find('.num-box').attr('value', '"' + currentYear + '-' + thisMonth + '-' + standardNewDays + '"');
             day.find('.num-date').html("&nbsp" + newDays + "&nbsp");
           } else {
             day.find('.date-value').html(currentYear + '-' + thisMonth + '-' + (dayIndex));
+            day.find('.num-box').attr('value', '"' + currentYear + '-' + thisMonth + '-' + (dayIndex) + '"');
             day.find('.num-date').html((dayIndex));
           }
         }
@@ -136,7 +176,7 @@ export class CalendarComponent implements OnInit {
       } else {
         day.find('.num-date').removeClass('first-day');
       }
-    })
+    });
 
   }
 
@@ -161,9 +201,11 @@ export class CalendarComponent implements OnInit {
           let newMonth = prevMonth;
           let standardNewMonth = '0' + prevMonth;
           day.find('.date-value').html(currentYear + '-' + standardNewMonth + '-' + (prevDays[dayIndex]));
+          day.find('.num-box').attr('value', '"' + currentYear + '-' + standardNewMonth + '-' + (prevDays[dayIndex]) + '"');
           day.find('.num-date').html((prevDays[dayIndex]));
         } else {
           day.find('.date-value').html(currentYear + '-' + prevMonth + '-' + (prevDays[dayIndex]));
+          day.find('.num-box').attr('value', '"' + currentYear + '-' + prevMonth + '-' + (prevDays[dayIndex]) + '"');
           day.find('.num-date').html((prevDays[dayIndex]));
         }
 
@@ -183,6 +225,7 @@ export class CalendarComponent implements OnInit {
   }
 
   changeCal() {
+    console.log('changing cal');
     $('.add-item-form').removeClass('show-form');
     $('.num-box').removeClass('clicked-day');
     $('.num-date').removeClass('first-day current-day');
@@ -191,6 +234,7 @@ export class CalendarComponent implements OnInit {
     this.renderMonth();
     this.renderPrevMonthDays();
     this.selectedDay();
+    this.getEvents();
 
     $('html, body').animate({ scrollTop: $('.selected-day').position().top - 75}, 500);
   }
@@ -274,6 +318,9 @@ export class CalendarComponent implements OnInit {
     $('.select-item label').removeClass('selected');
     $('.checkbox label').removeClass('selected');
     $('.date-input input').val(day);
+    $('.item-type select').val(1);
+    $('.frequency select').val(0);
+    console.log($('.date-input input').val());
     $('.date-input-end input').val(day);
     $('.time-input input').val(currentTime);
     $('.time-input-end input').val(endTime);
@@ -370,6 +417,69 @@ export class CalendarComponent implements OnInit {
       $('.date-input-end input').val(infinite);
       $(e.currentTarget).addClass('selected')
     }
+  }
+
+
+  submitEvent() {
+    this.dataService.createEvent(this.addItemForm.value)
+      .subscribe((response) => {
+        console.log(this.addItemForm.value);
+        // console.log(response);
+        this.addItemForm.reset();
+        $('.add-item-form').removeClass('show-form');
+        $('body, html').animate({ scrollTop: $('.clicked-day').position().top - 75 }, 200);
+      });
+
+    setTimeout(() => {
+      this.getEvents();
+    }, 3000);
+  }
+
+  getEvents() {
+    this.dataService.getEvents()
+      .subscribe((response) => {
+        // console.log(response);
+        this.events = response;
+        // console.log(this.events);
+        let i;
+        MONTHS[1].days = Number($('#year').val()) % 4 == 0 ? 29 : 28;
+        let currentMonth = $(document).find('#month').val();
+        let nextMonth = Number($(document).find('#month').val()) + 2;
+        let currentYear = $(document).find('#year').val();
+        let startOfMonth = new Date(currentYear, currentMonth, 1).getDay();
+        let monthDays = MONTHS[$(document).find('#month').val()].days;
+        let days = $(document).find('.days').children();
+        $(document).find('.main-info').empty();
+
+        _.range(1, 43).forEach(function (dayIndex, x) {
+          let day = $(days[startOfMonth + dayIndex - 1]);
+
+          for (i = 0; i < response.length; i++) {
+            let id = response[i].id.toString();
+            let title = response[i].title.toString();
+            let desc = response[i].description.toString();
+            let start_time = moment(response[i].start_time, 'HH:mm:ss').format('h:mm A');
+            let end_time = moment(response[i].end_time, 'HH:mm:ss').format('h:mm A');
+            let button = "<button _ngcontent-gbu-c50='' class='delete-event entypo-minus' id='delete'></button>";
+            let item = "<p class='item'>" + title + " - " + desc + ' @ ' + start_time + ' from ' + end_time + button + "</p>";
+
+            if (day.find('.main-info').next().html() === response[i].start_date.substring(0, 10)) {
+              day.find('.main-info').append(item);
+              day.find('.entypo-minus').val(id);
+            }
+          }
+        });
+      });
+  }
+
+  deleteEvent() {
+    let event_id = $('.entypo-minus').val();
+    this.dataService.deleteEvent(event_id)
+      .subscribe((response) => {
+        console.log(response);
+        this.getEvents();
+        // return response.id !== event_id;
+      });
   }
 
 }

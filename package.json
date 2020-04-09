@@ -26,6 +26,7 @@
     "jquery": "^3.4.1",
     "jquery.fullscreen": "^0.6.0",
     "lodash": "^4.17.15",
+    "moment": "^2.24.0",
     "ngx-cookie-service": "^3.0.3",
     "ngx-page-scroll-core": "^7.0.1",
     "rxjs": "~6.5.4",
