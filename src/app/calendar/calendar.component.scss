@@ -247,14 +247,14 @@
             text-align: center;
             display: inline-block;
             color: #455A64;
-            height: 29%;
+            height: 19%;
             transition: all .3s ease-in-out;
             br{
                 display: none;
             }
             .num-date{
                 color: $primary;
-                padding: 3px;
+                padding: 1px;
                 border-radius: 100%;
 
                 @media screen and (max-width: $end-small) {
@@ -282,13 +282,22 @@
                 padding: 5px 5px;
                 overflow: hidden;
                 position: relative;
-                padding-right: 15px;
+                // padding-right: 15px;
+                margin: 3px 0;
+                transition: all .3s ease-in-out;
+
+                @media screen and (max-width: $end-small) {
+                    font-size: 9px;
+                    height: 16px;
+                    padding-top: 2px;
+                }
 
                 &:hover {
                     opacity: .5;
                 }
 
                 button {
+                    display: none;
                     border-radius: 100%;
                     padding: 0;
                     margin: 0;
@@ -395,6 +404,19 @@
                 .main-info {
                     top: 14%;
                     height: 84%;
+
+                    p {
+                        height: auto;
+                        font-size: 18px;
+                        padding: 2px 30px 0 10px;
+                        transition: all .3s ease-in-out;
+
+                        button {
+                            font-size: 18px;
+                            right: 10px;
+                            display: block;
+                        }
+                    }
                 }
 
                 .open-day {

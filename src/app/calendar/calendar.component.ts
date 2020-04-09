@@ -461,7 +461,7 @@ export class CalendarComponent implements OnInit {
             let start_time = moment(response[i].start_time, 'HH:mm:ss').format('h:mm A');
             let end_time = moment(response[i].end_time, 'HH:mm:ss').format('h:mm A');
             let button = "<button _ngcontent-gbu-c50='' class='delete-event entypo-minus' id='delete'></button>";
-            let item = "<p class='item'>" + title + " - " + desc + ' @ ' + start_time + ' from ' + end_time + button + "</p>";
+            let item = "<p class='item'>" + title + " - " + desc + ' from ' + start_time + ' until ' + end_time + button + "</p>";
 
             if (day.find('.main-info').next().html() === response[i].start_date.substring(0, 10)) {
               day.find('.main-info').append(item);
