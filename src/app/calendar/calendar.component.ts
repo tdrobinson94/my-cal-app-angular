@@ -95,11 +95,11 @@ export class CalendarComponent implements OnInit, AfterViewInit, AfterContentIni
       console.log('hey');
     }, 5000);
 
-    const p: HTMLParagraphElement = this.renderer.createElement('p');
-    p.innerHTML = 'what\'s up?';
+    // const p: HTMLParagraphElement = this.renderer.createElement('p');
+    // p.innerHTML = 'what\'s up?';
 
-    this.renderer.appendChild(this.tref.nativeElement, p);
-    console.log(this.tref.nativeElement);
+    // this.renderer.appendChild(this.tref.nativeElement, p);
+    // console.log(this.tref.nativeElement);
   }
 
   ngAfterContentInit(): void {
