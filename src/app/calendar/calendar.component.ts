@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, Renderer2, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Renderer2, ElementRef, ViewChild, AfterViewInit, AfterContentInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { EventDataService } from '../services/eventdata.service';
 import { CookieService } from 'ngx-cookie-service';
@@ -16,9 +16,12 @@ let day = clock.getDate();
   selector: 'app-calendar',
   templateUrl: './calendar.component.html',
   styleUrls: ['./calendar.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  // encapsulation: ViewEncapsulation.None
 })
-export class CalendarComponent implements OnInit {
+export class CalendarComponent implements OnInit, AfterViewInit, AfterContentInit {
+
+  @ViewChild('tref', {read: ElementRef}) tref: ElementRef;
+
   addItemForm = new FormGroup({
     item_type: new FormControl(),
     frequency: new FormControl(''),
@@ -34,6 +37,16 @@ export class CalendarComponent implements OnInit {
   events: any = [];
 
   button: any;
+
+  eventid = '';
+  eventtitle = '';
+  eventdesc = '';
+  eventstart_date = '';
+  eventstart_time = '';
+  eventend_time = '';
+  eventlocation = '';
+  dayDay: any;
+  eachEvent: any;
 
   constructor(private dataService: EventDataService, private cookieService: CookieService, private renderer: Renderer2,
   private el: ElementRef) { }
@@ -73,14 +86,23 @@ export class CalendarComponent implements OnInit {
 
     $('#year').val(year);
     this.changeCal();
+  }
 
-    this.button = this.renderer.createElement('button');
-    this.renderer.setAttribute(this.button, 'class', 'delete-event');
-    this.renderer.addClass(this.button, 'entypo-minus');
-    this.renderer.setProperty(this.button, 'id', 'delete');
-    this.renderer.listen(this.button, 'click', (event) => {
-      this.deleteEvent();
-    });
+  ngAfterViewInit(): void {
+    
+    setTimeout(() => {
+      console.log(this.tref.nativeElement.textContent);
+      console.log('hey');
+    }, 5000);
+
+    const p: HTMLParagraphElement = this.renderer.createElement('p');
+    p.innerHTML = 'what\'s up?';
+
+    this.renderer.appendChild(this.tref.nativeElement, p);
+    console.log(this.tref.nativeElement);
+  }
+
+  ngAfterContentInit(): void {
 
   }
 
@@ -435,13 +457,23 @@ export class CalendarComponent implements OnInit {
     }, 3000);
   }
 
+  deleteEvent() {
+    let event_id = $('.entypo-minus').val();
+    this.dataService.deleteEvent(event_id)
+      .subscribe((response) => {
+        console.log(response);
+        this.getEvents();
+        // return response.id !== event_id;
+      });
+  }
+
   getEvents() {
     this.dataService.getEvents()
       .subscribe((response) => {
-        // console.log(response);
         this.events = response;
-        // console.log(this.events);
+        console.log(this.events);
         let i;
+        let dayIndex;
         MONTHS[1].days = Number($('#year').val()) % 4 == 0 ? 29 : 28;
         let currentMonth = $(document).find('#month').val();
         let nextMonth = Number($(document).find('#month').val()) + 2;
@@ -451,34 +483,36 @@ export class CalendarComponent implements OnInit {
         let days = $(document).find('.days').children();
         $(document).find('.main-info').empty();
 
-        _.range(1, 43).forEach(function (dayIndex, x) {
+        for (dayIndex = 0; dayIndex <= 43; dayIndex++) {
           let day = $(days[startOfMonth + dayIndex - 1]);
 
+          this.dayDay = day.find('.main-info').next().html();
+          console.log(this.dayDay);
+
           for (i = 0; i < response.length; i++) {
-            let id = response[i].id.toString();
-            let title = response[i].title.toString();
-            let desc = response[i].description.toString();
-            let start_time = moment(response[i].start_time, 'HH:mm:ss').format('h:mm A');
-            let end_time = moment(response[i].end_time, 'HH:mm:ss').format('h:mm A');
-            let button = "<button _ngcontent-gbu-c50='' class='delete-event entypo-minus' id='delete'></button>";
-            let item = "<p class='item'>" + title + " - " + desc + ' from ' + start_time + ' until ' + end_time + button + "</p>";
+            this.eventid = response[i].id.toString();
+            this.eventtitle = response[i].title.toString();
+            this.eventstart_date = response[i].start_date.substring(0, 10).toString();
+            this.eventdesc = response[i].description.toString();
+            this.eventstart_time = moment(response[i].start_time, 'HH:mm:ss').format('h:mm A');
+            this.eventend_time = moment(response[i].end_time, 'HH:mm:ss').format('h:mm A');
 
             if (day.find('.main-info').next().html() === response[i].start_date.substring(0, 10)) {
-              day.find('.main-info').append(item);
-              day.find('.entypo-minus').val(id);
+              this.eachEvent = (this.eventid + ': ' + this.eventstart_date +
+                ' ' + this.eventtitle + ' - ' + this.eventdesc + ' from ' + this.eventstart_time + ' until ' + this.eventend_time);
+
+              console.log(this.eachEvent);
+              // day.find('.main-info').append('<p class="event item">' + this.eachEvent + '<button class="entypo-minus"></button>' + '</p>');
+
+              // const p: HTMLParagraphElement = this.renderer.createElement('p');
+              // p.innerHTML = this.eachEvent;
+
+              // this.renderer.appendChild(this.tref.nativeElement, p);
+              // console.log(this.tref.nativeElement);
+
             }
           }
-        });
-      });
-  }
-
-  deleteEvent() {
-    let event_id = $('.entypo-minus').val();
-    this.dataService.deleteEvent(event_id)
-      .subscribe((response) => {
-        console.log(response);
-        this.getEvents();
-        // return response.id !== event_id;
+        }
       });
   }
 

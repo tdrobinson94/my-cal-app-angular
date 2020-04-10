@@ -1,4 +1,4 @@
-<div *ngFor="let event of events">
+<!-- <div *ngFor="let event of events">
     <div>
         <p>{{event.id}}</p>
         <p>{{event.title}}</p>
@@ -8,4 +8,48 @@
         <p>{{event.location}}</p>
         <button class="entypo-minus" value={{event.id}} (click)="deleteEvent()"></button>
     </div>
+</div> -->
+
+<div class="test-container">
+    <div class="month">
+        <div class="controls">
+            <form class="select-form">
+                <div class="date-selectors">
+                    <select name="select" class="month-selector selector" id="month">
+                    </select>
+                    <select name="select" class="year-selector selector" id="year">
+                    </select>
+                </div>
+            </form>
+    
+            <div class="calendar-controls">
+                <button class="prev button entypo-left-open"></button>
+                <button id="todays-day" class="current button entypo-calendar" ></button>
+                <button class="next button entypo-right-open"></button>
+            </div>
+        </div>
+    
+        <div class="weekday-initials">
+            <div>Sun</div>
+            <div>Mon</div>
+            <div>Tue</div>
+            <div>Wed</div>
+            <div>Thu</div>
+            <div>Fri</div>
+            <div>Sat</div>
+        </div>
+    
+    </div>
+
+    <div class="calendar-container">
+        <div class="test-box" *ngFor="let box of boxes">
+            <span class="box-ref">{{box}}</span>
+            <div class="weekday"><span class="num-date"></span></div>
+            <div class="main-info"></div>
+            <div class="date-value"></div>
+            <div class="open-day entypo-up-open"></div>
+            <div class="close-day entypo-down-open"></div>
+        </div>
+    </div>
+
 </div>

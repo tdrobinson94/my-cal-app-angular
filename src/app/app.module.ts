@@ -21,6 +21,7 @@ import { GuestGuard } from './guest.guard';
 import { ProfileComponent } from './profile/profile.component';
 import { EventDataService } from './services/eventdata.service';
 import { TestCalendarComponent } from './test-calendar/test-calendar.component';
+import { TestDirectiveDirective } from './test-directive.directive';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { TestCalendarComponent } from './test-calendar/test-calendar.component';
     CalendarComponent,
     SettingsComponent,
     ProfileComponent,
-    TestCalendarComponent
+    TestCalendarComponent,
+    TestDirectiveDirective
   ],
   providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }, UserDataService, CookieService, AuthGuard, GuestGuard,
   EventDataService],
