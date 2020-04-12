@@ -20,7 +20,7 @@ let day = clock.getDate();
 })
 export class CalendarComponent implements OnInit, AfterViewInit, AfterContentInit {
 
-  @ViewChild('tref', {read: ElementRef}) tref: ElementRef;
+  @ViewChild('calendar', {read: ElementRef}) calendar: ElementRef;
 
   addItemForm = new FormGroup({
     item_type: new FormControl(),
@@ -89,10 +89,12 @@ export class CalendarComponent implements OnInit, AfterViewInit, AfterContentIni
   }
 
   ngAfterViewInit(): void {
-    
+    let i;
     setTimeout(() => {
-      console.log(this.tref.nativeElement.textContent);
-      console.log('hey');
+      for (i = 0; i < 43; i++) {
+        console.log(this.calendar.nativeElement.querySelectorAll('.num-box .date-value')[i]);
+        console.log(this.calendar.nativeElement.querySelector('.num-box.selected-day')[i]);
+      }
     }, 5000);
 
     // const p: HTMLParagraphElement = this.renderer.createElement('p');

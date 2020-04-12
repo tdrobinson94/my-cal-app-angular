@@ -22,6 +22,8 @@ import { ProfileComponent } from './profile/profile.component';
 import { EventDataService } from './services/eventdata.service';
 import { TestCalendarComponent } from './test-calendar/test-calendar.component';
 import { TestDirectiveDirective } from './test-directive.directive';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 
 
 @NgModule({
@@ -32,6 +34,7 @@ import { TestDirectiveDirective } from './test-directive.directive';
     ReactiveFormsModule,
     FormsModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory }),
   ],
   declarations: [
     AppComponent,
