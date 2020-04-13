@@ -293,11 +293,11 @@
 
             p {
                 font-size: 10px;
-                background: rgba(255, 0, 0, .8);
-                color: #fff;
+                color: $textdrk;
                 padding: 5px 5px;
                 overflow: hidden;
                 position: relative;
+                border-bottom: 1px solid $textdrk;
                 // padding-right: 15px;
                 margin: 3px 0;
                 transition: all .3s ease-in-out;
@@ -309,8 +309,11 @@
                     padding-top: 2px;
                 }
 
-                &:hover {
-                    opacity: .8;
+                &:hover, &:focus {
+                    background: rgba(255, 0, 0, 0.4);
+                    border-bottom: 1px solid $primary;
+                    cursor: default;
+                    transition: all .3s ease-in-out;
                 }
 
                 button {
@@ -322,7 +325,8 @@
                     background: transparent;
                     position: absolute;
                     top: 3px;
-                    right: 3px
+                    right: 3px;
+                    cursor: pointer;
                 }
             }
         }
@@ -376,7 +380,6 @@
                     height: auto;
                     transform: translate(0, 0);
                     border: 0;
-                    transition: all .2s ease-in-out;
                 }
 
                 @media screen and (max-width: $mid-small) {
@@ -414,7 +417,7 @@
                             outline: none;
 
                             &:hover {
-                                color: #fff;
+                                color: rgba(255, 0, 0, 0.8);
                             }
                         }
                     }
