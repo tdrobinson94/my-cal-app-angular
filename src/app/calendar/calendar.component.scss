@@ -302,10 +302,10 @@
                 margin: 3px 0;
                 transition: all .3s ease-in-out;
                 width: auto;
+                height: 6px;
 
                 @media screen and (max-width: $end-small) {
                     font-size: 9px;
-                    height: 6px;
                     padding-top: 2px;
                 }
 
@@ -409,15 +409,17 @@
                         transition: all .3s ease-in-out;
                         margin: 3px 20px;
 
-                        button {
-                            font-size: 25px;
-                            right: 12px;
-                            display: block;
-                            top: -3px;
-                            outline: none;
+                        &:hover {
+                            button {
+                                font-size: 25px;
+                                right: 12px;
+                                display: block;
+                                top: -3px;
+                                outline: none;
 
-                            &:hover {
-                                color: rgba(255, 0, 0, 0.8);
+                                &:hover {
+                                    color: rgba(255, 0, 0, 0.8);
+                                }
                             }
                         }
                     }
