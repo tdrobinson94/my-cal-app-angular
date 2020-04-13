@@ -20,6 +20,7 @@ export class LoginComponent implements OnInit {
   constructor(private dataService: UserDataService, private router: Router, private cookieService: CookieService) { }
 
   ngOnInit(): void {
+    $('html, body').animate({ scrollTop: 0 }, 500);
   }
 
   onSubmit() {

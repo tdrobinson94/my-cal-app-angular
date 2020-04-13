@@ -24,6 +24,7 @@ export class SettingsComponent implements OnInit {
   constructor(private dataService: UserDataService, private cookieService: CookieService, private router: Router) { }
 
   ngOnInit(): void {
+    $('html, body').animate({ scrollTop: 0 }, 500);
     this.dataService.getUser()
       .subscribe((response) => {
         let res = Object.values(response);

@@ -66,7 +66,6 @@ export class LayoutComponent implements OnInit {
     console.log('User has logged out');
     this.clickLink();
     this.dataService.logout();
-    $('html, body').animate({ scrollTop: 0 }, 500);
   }
 
   changeOfRoutes() {

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserDataService } from '../services/userdata.service';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
+import $ from 'jquery';
 
 @Component({
   selector: 'app-profile',
@@ -19,6 +20,7 @@ export class ProfileComponent implements OnInit {
   constructor(private dataService: UserDataService, private cookieService: CookieService, private router: Router) { }
 
   ngOnInit(): void {
+    $('html, body').animate({ scrollTop: 0 }, 500);
     this.dataService.getUser()
       .subscribe((response) => {
         let res = Object.values(response);
