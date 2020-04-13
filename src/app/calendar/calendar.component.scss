@@ -243,7 +243,7 @@
             position: absolute;
             top: 0;
             width: 100%;
-            margin-top: 2px;
+            margin-top: 4px;
             text-align: center;
             display: inline-block;
             color: #455A64;
@@ -254,7 +254,7 @@
             }
             .num-date{
                 color: $primary;
-                // padding: 1px;
+                padding: 1px;
                 border-radius: 100%;
                 font-size: 14px;
             }
@@ -286,6 +286,10 @@
                 background: rgba(126, 93, 93, 0.7); 
             }
 
+            span {
+                display: none;
+            }
+
             p {
                 font-size: 10px;
                 background: rgba(255, 0, 0, .8);
@@ -299,12 +303,12 @@
 
                 @media screen and (max-width: $end-small) {
                     font-size: 9px;
-                    height: 16px;
+                    height: 6px;
                     padding-top: 2px;
                 }
 
                 &:hover {
-                    opacity: .5;
+                    opacity: .8;
                 }
 
                 button {
@@ -382,9 +386,7 @@
 
                     .num-date{
                         padding: 2px;
-                        @media screen and (max-width: $end-small) {
-                            font-size: 20px;
-                        }
+                        font-size: 20px;
                     }
                 } 
                 .main-info {
@@ -394,13 +396,15 @@
                     p {
                         height: auto;
                         font-size: 18px;
-                        padding: 2px 30px 0 10px;
+                        padding: 2px 40px 0 10px;
                         transition: all .3s ease-in-out;
+                        margin: 3px 20px;
 
                         button {
-                            font-size: 18px;
-                            right: 10px;
+                            font-size: 25px;
+                            right: 12px;
                             display: block;
+                            top: -3px;
                         }
                     }
                 }

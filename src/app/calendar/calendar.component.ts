@@ -89,19 +89,6 @@ export class CalendarComponent implements OnInit, AfterViewInit, AfterContentIni
   }
 
   ngAfterViewInit(): void {
-    let i;
-    setTimeout(() => {
-      for (i = 0; i < 43; i++) {
-        console.log(this.calendar.nativeElement.querySelectorAll('.num-box .date-value')[i]);
-        console.log(this.calendar.nativeElement.querySelector('.num-box.selected-day')[i]);
-      }
-    }, 5000);
-
-    // const p: HTMLParagraphElement = this.renderer.createElement('p');
-    // p.innerHTML = 'what\'s up?';
-
-    // this.renderer.appendChild(this.tref.nativeElement, p);
-    // console.log(this.tref.nativeElement);
   }
 
   ngAfterContentInit(): void {
@@ -320,19 +307,18 @@ export class CalendarComponent implements OnInit, AfterViewInit, AfterContentIni
       this.dataService.deleteEvent(event_id)
         .subscribe((response) => {
           console.log(response);
-          this.getEvents();
+          // this.getEvents();
           // return response.id !== event_id;
         });
     } else if ($(e.target).hasClass('close-day')) {
       $('.num-box').removeClass('double-click');
-      $('html, body').animate({ scrollTop: $('.clicked-day').position().top - 75 }, 500);
     } else if (!$(e.currentTarget).hasClass('clicked-day') && !$(e.currentTarget).hasClass('double-click')) {
       $('.num-box').removeClass('clicked-day double-click');
       $(e.currentTarget).addClass('clicked-day');
-      $('html, body').animate({ scrollTop: $(e.currentTarget).position().top - 75 }, 500);
     } else if ($(e.currentTarget).hasClass('clicked-day')) {
       $(e.currentTarget).addClass('double-click');
     }
+    $('html, body').animate({ scrollTop: $('.clicked-day').position().top - 75 }, 500);
   }
 
   openForm() {
@@ -477,7 +463,6 @@ export class CalendarComponent implements OnInit, AfterViewInit, AfterContentIni
     this.dataService.getEvents()
       .subscribe((response) => {
         this.events = response;
-        console.log(this.events);
         let i;
         let dayIndex;
         MONTHS[1].days = Number($('#year').val()) % 4 == 0 ? 29 : 28;
@@ -493,7 +478,6 @@ export class CalendarComponent implements OnInit, AfterViewInit, AfterContentIni
           let day = $(days[startOfMonth + dayIndex - 1]);
 
           this.dayDay = day.find('.main-info').next().html();
-          console.log(this.dayDay);
 
           for (i = 0; i < response.length; i++) {
             this.eventid = response[i].id.toString();
@@ -504,12 +488,11 @@ export class CalendarComponent implements OnInit, AfterViewInit, AfterContentIni
             this.eventend_time = moment(response[i].end_time, 'HH:mm:ss').format('h:mm A');
 
             if (day.find('.main-info').next().html() === response[i].start_date.substring(0, 10)) {
-              this.eachEvent = (this.eventid + ': ' + this.eventstart_date +
-                ' ' + this.eventtitle + ' - ' + this.eventdesc + ' from ' + this.eventstart_time + ' until ' + this.eventend_time);
+              this.eachEvent = (this.eventtitle + ' - ' + this.eventdesc + ' from ' + this.eventstart_time +
+              ' until ' + this.eventend_time);
 
-              // console.log(this.eachEvent);
-              // day.find('.entypo-minus').attr('value', this.eventid);
-              day.find('.main-info').append('<p class="event item">' + this.eachEvent + '<button class="entypo-minus"></button>' + '</p>');
+              day.find('.main-info').append('<p class="event item">' + '<span class="eventid">' + this.eventid + '</span>' +
+                this.eachEvent + '<button value="' + this.eventid + '" class="entypo-minus">' + '</button>' + '</p>');
             }
           }
         }
