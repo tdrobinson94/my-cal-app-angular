@@ -16,7 +16,7 @@ let day = clock.getDate();
   selector: 'app-calendar',
   templateUrl: './calendar.component.html',
   styleUrls: ['./calendar.component.scss'],
-  // encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None
 })
 export class CalendarComponent implements OnInit, AfterViewInit, AfterContentInit {
 
@@ -314,7 +314,16 @@ export class CalendarComponent implements OnInit, AfterViewInit, AfterContentIni
   clickonDay(e) {
     $('.add-item-form').removeClass('show-form');
     $('.extra').hide();
-    if ($(e.target).hasClass('close-day')) {
+    if ($(e.target).hasClass('entypo-minus')) {
+      console.log('deleting')
+      let event_id = $(e.target).val();
+      this.dataService.deleteEvent(event_id)
+        .subscribe((response) => {
+          console.log(response);
+          this.getEvents();
+          // return response.id !== event_id;
+        });
+    } else if ($(e.target).hasClass('close-day')) {
       $('.num-box').removeClass('double-click');
       $('html, body').animate({ scrollTop: $('.clicked-day').position().top - 75 }, 500);
     } else if (!$(e.currentTarget).hasClass('clicked-day') && !$(e.currentTarget).hasClass('double-click')) {
@@ -498,15 +507,9 @@ export class CalendarComponent implements OnInit, AfterViewInit, AfterContentIni
               this.eachEvent = (this.eventid + ': ' + this.eventstart_date +
                 ' ' + this.eventtitle + ' - ' + this.eventdesc + ' from ' + this.eventstart_time + ' until ' + this.eventend_time);
 
-              console.log(this.eachEvent);
-              // day.find('.main-info').append('<p class="event item">' + this.eachEvent + '<button class="entypo-minus"></button>' + '</p>');
-
-              // const p: HTMLParagraphElement = this.renderer.createElement('p');
-              // p.innerHTML = this.eachEvent;
-
-              // this.renderer.appendChild(this.tref.nativeElement, p);
-              // console.log(this.tref.nativeElement);
-
+              // console.log(this.eachEvent);
+              // day.find('.entypo-minus').attr('value', this.eventid);
+              day.find('.main-info').append('<p class="event item">' + this.eachEvent + '<button class="entypo-minus"></button>' + '</p>');
             }
           }
         }
