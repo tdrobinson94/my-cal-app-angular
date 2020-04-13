@@ -312,23 +312,17 @@ export class CalendarComponent implements OnInit, AfterViewInit, AfterContentIni
   }
 
   clickonDay(e) {
-    $('.num-box').removeClass('clicked-day');
     $('.add-item-form').removeClass('show-form');
     $('.extra').hide();
-    if (!$(e.currentTarget).hasClass('clicked-day')) {
+    if ($(e.target).hasClass('close-day')) {
+      $('.num-box').removeClass('double-click');
+    } else if (!$(e.currentTarget).hasClass('clicked-day') && !$(e.currentTarget).hasClass('double-click')) {
+      $('.num-box').removeClass('clicked-day double-click');
       $(e.currentTarget).addClass('clicked-day');
+      $('html, body').animate({ scrollTop: $(e.currentTarget).position().top - 75 }, 500);
+    } else if ($(e.currentTarget).hasClass('clicked-day')) {
+      $(e.currentTarget).addClass('double-click');
     }
-
-    $('html, body').animate({ scrollTop: $('.clicked-day').position().top - 75}, 500);
-  }
-
-  openDay(e) {
-    $('.num-box').removeClass('double-click');
-    $('.clicked-day').addClass('double-click');
-  }
-
-  closeDay(e) {
-    $('.num-box').removeClass('double-click');
   }
 
   openForm() {

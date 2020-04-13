@@ -181,8 +181,13 @@
         display: inline-block;
         height: 15%;
         flex-grow: 1;
+        transition: all .3s ease-in-out;
 
         span {
+            display: none;
+        }
+
+        .close-big-day {
             display: none;
         }
 
@@ -192,14 +197,24 @@
     }
     .clicked-day {
         border: 1px solid red;
+        transition: all .3s ease-in-out;
     }
     .big-day {
         position: fixed;
-        width: 99.8%;
-        margin: 0 .1%;
+        width: 80%;
+        margin: 0 10%;
         z-index: 9999;
         background: #fff;
         height: 65.5%;
         top: 25%;
+        transition: all .3s ease-in-out;
+
+        .close-big-day {
+            display: block;
+            position: absolute;
+            right: 5%;
+            top: 5%;
+            font-size: 25px;
+        }
     }
 }

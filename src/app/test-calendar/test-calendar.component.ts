@@ -87,7 +87,7 @@ export class TestCalendarComponent implements OnInit, AfterViewInit {
     }
     console.log(this.boxes);
 
-    this.initialCalStartDay = new Date(this.currentYear, $('#month').val(), 1).getDay();
+    this.initialCalStartDay = new Date(this.currentYear, $('#month').val()).getDay();
     console.log(this.initialCalStartDay);
   }
 
@@ -184,10 +184,7 @@ export class TestCalendarComponent implements OnInit, AfterViewInit {
       $('.test-box').removeClass('big-day');
     } else if (!$(e.currentTarget).hasClass('clicked-day') && !$(e.currentTarget).hasClass('big-day')) {
       $('.test-box').removeClass('clicked-day big-day');
-      console.log(e.currentTarget);
-
       $(e.currentTarget).addClass('clicked-day');
-
       $('html, body').animate({ scrollTop: $(e.currentTarget).position().top - 75 }, 500);
     } else if ($(e.currentTarget).hasClass('clicked-day')) {
       $(e.currentTarget).addClass('big-day');
