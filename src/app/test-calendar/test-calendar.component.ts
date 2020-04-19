@@ -244,7 +244,7 @@ export class TestCalendarComponent implements OnInit, AfterViewInit {
       this.getEvents();
     }, 600);
 
-    $('html, body').animate({ scrollTop: $('.selected-day').position().top - 75 }, 500);
+    $('html, body').animate({ scrollTop: $('.selected-day').position().top - 75 }, 700);
   }
 
   getMonthDays() {
@@ -319,7 +319,7 @@ export class TestCalendarComponent implements OnInit, AfterViewInit {
     } else if (!$(e.currentTarget).hasClass('clicked-day') && !$(e.currentTarget).hasClass('double-click')) {
       $('.day-box').removeClass('clicked-day double-click');
       $(e.currentTarget).addClass('clicked-day');
-      $('html, body').animate({ scrollTop: $('.clicked-day').position().top - 75 }, 500);
+      $('html, body').animate({ scrollTop: $('.clicked-day').position().top - 75 }, 700);
     } else if ($(e.currentTarget).hasClass('clicked-day')) {
       $(e.currentTarget).addClass('double-click');
     }
