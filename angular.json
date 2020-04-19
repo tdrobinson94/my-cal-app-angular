@@ -30,7 +30,8 @@
             ],
             "styles": [
               "node_modules/angular-calendar/css/angular-calendar.css",
-              "src/styles.scss"
+              "src/styles.scss",
+              "./node_modules/@mobiscroll/angular/dist/css/mobiscroll.min.css"
             ],
             "scripts": []
           },

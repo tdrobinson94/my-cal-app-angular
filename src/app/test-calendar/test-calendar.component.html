@@ -1,41 +1,88 @@
-
-
-<div class="test-container">
-    <div class="month">
+<div id="calendar-wrapper" class="calendar-wrapper">
+    <div class="calendar-navbar">
         <div class="controls">
-            <form class="select-form">
-                <div class="date-selectors">
-                    <select name="select" class="month-selector selector" id="month" (change)="onSelectMonthChange(months.value)">
-                        <option *ngFor="let month of months" [value]="month.num" [selected]="month.num === currentMonth">{{month.name}}</option>
-                    </select>
-                    <select name="select" class="year-selector selector" id="year" (change)="onSelectYearChange(years.value)">
-                        <option *ngFor="let year of years" [value]="year" [selected]="year === currentYear">{{year}}</option>
-                    </select>
-                </div>
-            </form>
-    
+            <select name="select" class="month-selector selector" id="month" (change)="changeCal()">
+                <option *ngFor="let month of monthSelectorOptions" value="{{month.num}}" [selected]="month.num === currentMonth">{{month.name}}</option>
+            </select>
+            <select name="select" class="year-selector selector" id="year" (change)="changeCal()">
+                <option *ngFor="let year of yearSelectorOptions" value="{{year}}" [selected]="year === currentYear">{{year}}</option>
+            </select>
+
             <div class="calendar-controls">
-                <button class="prev button entypo-left-open" (click)="prevButtonClick()"></button>
-                <button id="todays-day" class="current button entypo-calendar" (click)="curButtonClick()" >{{day}}</button>
-                <button class="next button entypo-right-open" (click)="nextButtonClick()"></button>
+                <button class="prev btn entypo-left-open" (click)="prevClick()"></button>
+                <button id="todays-day" class="current btn entypo-calendar" (click)="currentClick()">{{currentDay}}</button>
+                <button class="next btn entypo-right-open" (click)="nextClick()"></button>
             </div>
         </div>
-    
         <div class="weekday-initials">
-            <div *ngFor="let day of daysofWeek">{{day.name}}</div>
-        </div>
-    
-    </div>
-
-    <div class="calendar-container">
-        <div class="test-box" *ngFor="let box of boxes" (click)="dayClick($event)">
-            <span class="box-ref">{{box}}</span>
-            <div class="weekday"><span class="num-date"></span></div>
-            <div class="main-info"></div>
-            <div class="date-value"></div>
-            <!-- <div class="open-day entypo-up-open"></div> -->
-            <div class="close-big-day entypo-down-open"></div>
+            <div class="day-of-week-label" *ngFor="let weekday of weekDayAbbrv" [ngClass]="{'show-current-weekday': currentDayofWeek === weekday.num}">{{weekday.name}}</div>
         </div>
     </div>
 
-</div>
+    <div class="calendar-container" #calendar>
+
+        <div class="weeks row" *ngFor="let row of rows">
+            <div id="day-box" class="day-box" *ngFor="let week of weekDays" #daybox (click)="clickonDay($event)">
+                <button class="close-day entypo-down-open"></button>
+                <div class="num-box"><span class="num-date"></span></div>
+                <div class="date-value"></div>
+                <div class="main-info-section">
+                    <ng-container *ngFor="let event of events;">
+                        <form>
+                            <p class="event">{{event.eventid}}: {{event.eventtitle}} - {{event.eventdesc}}
+                            <button class="entypo-minus" type="submit" value="{{event.eventid}}"></button>
+                            </p>
+                        </form>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+
+        <div class="bottom-of-cal-fix"> 
+
+        </div>
+    </div>
+
+    <!-- <button class="add-item-button entypo-list-add"></button>
+
+    <div class="add-item-container">
+        <div class="form-nav-bar">
+            <h2>Place Items on Calendar</h2>
+            <div class="close-form entypo-down-open"></div>
+        </div>
+        <form class="add-item-form">
+            <label>Select Type</label>
+            <select>
+
+            </select>
+
+            <div class="form-type-group event-group">
+                <label>Select Frequency</label>
+                <select>
+                
+                </select>
+                <label>Title</label>
+                <input type="text" placeholder="Title or name">
+                <label class="description-label">Description</label>
+                <textarea placeholder="Add description"></textarea>
+                <label>Start Date</label>
+                <input type="date" />
+                <label>End Date</label>
+                <input type="date"/>
+                <label class="time-label">Start Time</label>
+                <input type="time" />
+                <label class="time-label">End Time</label>
+                <input type="time"/>
+                <label class="location-label">Location</label>
+                <input type="text" placeholder="Location">
+            </div>
+
+
+            <div class="input-wrapper">
+                <button class="submit-form" type="submit">Enter</button>
+            </div>
+        </form>
+
+    </div> -->
+
+</div> 

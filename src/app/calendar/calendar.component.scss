@@ -638,6 +638,12 @@ form {
         }
     }
 
+    select {
+        &:hover {
+            font-size: 15px;
+        }
+    }
+
     .date-input, .date-input-end, .time-input, .time-input-end {
         input {
             padding: 7.5px;

@@ -1,7 +1,8 @@
+// import { MbscModule } from '@mobiscroll/angular';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
@@ -22,19 +23,17 @@ import { ProfileComponent } from './profile/profile.component';
 import { EventDataService } from './services/eventdata.service';
 import { TestCalendarComponent } from './test-calendar/test-calendar.component';
 import { TestDirectiveDirective } from './test-directive.directive';
-import { CalendarModule, DateAdapter } from 'angular-calendar';
-import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 
 
 @NgModule({
-  imports: [
+  imports: [  
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    // MbscModule,
     ReactiveFormsModule,
     FormsModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
-    CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory }),
   ],
   declarations: [
     AppComponent,

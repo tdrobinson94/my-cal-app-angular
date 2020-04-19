@@ -16,7 +16,7 @@ let day = clock.getDate();
   selector: 'app-calendar',
   templateUrl: './calendar.component.html',
   styleUrls: ['./calendar.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  // encapsulation: ViewEncapsulation.None
 })
 export class CalendarComponent implements OnInit, AfterViewInit, AfterContentInit {
 
@@ -47,6 +47,10 @@ export class CalendarComponent implements OnInit, AfterViewInit, AfterContentIni
   eventlocation = '';
   dayDay: any;
   eachEvent: any;
+  checkEachDayDate: any;
+  boxDay: any;
+  getEachMonthDays: any;
+
 
   constructor(private dataService: EventDataService, private cookieService: CookieService, private renderer: Renderer2,
   private el: ElementRef) { }
@@ -86,6 +90,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, AfterContentIni
 
     $('#year').val(year);
     this.changeCal();
+    this.getMonthDays();
   }
 
   ngAfterViewInit(): void {
@@ -104,7 +109,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, AfterContentIni
     let monthDays = MONTHS[$(document).find('#month').val()].days;
     let days = $(document).find('.days').children();
     $(document).find('.num').empty();
-    $(document).find('.main-info').empty();
+    // $(document).find('.main-info').empty();
 
     _.range(1, 43).forEach(function (dayIndex, i) {
       let day = $(days[startOfMonth + dayIndex - 1]);
@@ -250,6 +255,20 @@ export class CalendarComponent implements OnInit, AfterViewInit, AfterContentIni
     $('html, body').animate({ scrollTop: $('.selected-day').position().top - 75}, 500);
   }
 
+  getMonthDays() {
+    let getmonthDays = [];
+    let startofmonth = new Date($('#year').val(), $('#month').val()).getDay();
+    let days = $(document).find('.days').children();
+    _.range(1, 43).forEach((dayIndex, i) => {
+      let day = $(days[dayIndex - 1]);
+      day.find('.date-value').html();
+      getmonthDays.push(day.find('.date-value').html())
+    });
+    this.getEachMonthDays = getmonthDays;
+    console.log(getmonthDays);
+  }
+
+
   prevClick() {
     $('.add-item-form').removeClass('show-form');
     $('.num-box').removeClass('selected-day double-click');
@@ -267,6 +286,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, AfterContentIni
       }
     }
     this.changeCal();
+    this.getMonthDays();
   }
 
   currentClick() {
@@ -277,6 +297,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, AfterContentIni
     $(document).find('#month').val(month).change();
     $(document).find('#year').val(year).change();
     this.changeCal();
+    this.getMonthDays();
   }
 
   nextClick() {
@@ -296,6 +317,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, AfterContentIni
       }
     }
     this.changeCal();
+    this.getMonthDays();
   }
 
   clickonDay(e) {
@@ -335,6 +357,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, AfterContentIni
     $('.item-type select').val(1);
     $('.frequency select').val(0);
     console.log($('.date-input input').val());
+    // this.renderer.removeClass(this.calendar.nativeElement, 'show-form');
     $('.date-input-end input').val(day);
     $('.time-input input').val(currentTime);
     $('.time-input-end input').val(endTime);
@@ -462,9 +485,10 @@ export class CalendarComponent implements OnInit, AfterViewInit, AfterContentIni
   getEvents() {
     this.dataService.getEvents()
       .subscribe((response) => {
-        this.events = response;
+        // this.events = response;
         let i;
         let dayIndex;
+        let eventlist = [];
         MONTHS[1].days = Number($('#year').val()) % 4 == 0 ? 29 : 28;
         let currentMonth = $(document).find('#month').val();
         let nextMonth = Number($(document).find('#month').val()) + 2;
@@ -472,29 +496,42 @@ export class CalendarComponent implements OnInit, AfterViewInit, AfterContentIni
         let startOfMonth = new Date(currentYear, currentMonth, 1).getDay();
         let monthDays = MONTHS[$(document).find('#month').val()].days;
         let days = $(document).find('.days').children();
-        $(document).find('.main-info').empty();
+        // $(document).find('.main-info').empty();
 
         for (dayIndex = 0; dayIndex <= 43; dayIndex++) {
+          // console.log(dayIndex);
           let day = $(days[startOfMonth + dayIndex - 1]);
 
-          this.dayDay = day.find('.main-info').next().html();
+          this.checkEachDayDate = day.find('.main-info').next().html();
+          // console.log(this.checkEachDayDate);
 
           for (i = 0; i < response.length; i++) {
-            this.eventid = response[i].id.toString();
-            this.eventtitle = response[i].title.toString();
-            this.eventstart_date = response[i].start_date.substring(0, 10).toString();
-            this.eventdesc = response[i].description.toString();
-            this.eventstart_time = moment(response[i].start_time, 'HH:mm:ss').format('h:mm A');
-            this.eventend_time = moment(response[i].end_time, 'HH:mm:ss').format('h:mm A');
+            eventlist[i] = {
+              eventid: response[i].id.toString(),
+              eventtitle: response[i].title.toString(),
+              eventstart_date: response[i].start_date.substring(0, 10).toString(),
+              eventdesc: response[i].description.toString(),
+              eventstart_time: moment(response[i].start_time, 'HH:mm:ss').format('h:mm A'),
+              eventend_time: moment(response[i].end_time, 'HH:mm:ss').format('h:mm A')
+            };
 
-            if (day.find('.main-info').next().html() === response[i].start_date.substring(0, 10)) {
-              this.eachEvent = (this.eventtitle + ' - ' + this.eventdesc + ' from ' + this.eventstart_time +
-              ' until ' + this.eventend_time);
+            if (day.find('.main-info').next().html() === eventlist[i].eventstart_date) {
+              const p: HTMLParagraphElement = this.renderer.createElement('p');
+              this.eachEvent = (eventlist[i].eventtitle + ' - ' + eventlist[i].eventdesc + ' from ' + eventlist[i].eventstart_time +
+                ' until ' + eventlist[i].eventend_time);
+              // console.log(this.eachEvent);
 
-              day.find('.main-info').append('<p class="event item">' + '<span class="eventid">' + this.eventid + '</span>' +
-                this.eachEvent + '<button value="' + this.eventid + '" class="entypo-minus">' + '</button>' + '</p>');
+              p.innerHTML = this.eachEvent;
+
+              // this.renderer.appendChild(this.calendar.nativeElement.querySelector('.main-info'), p);
+
+              // this.renderer.appendChild(this.calendar.nativeElement.querySelector('.main-info'), p);
+
+              // day.find('.main-info').append('<p class="event item">' + '<span class="eventid">' + eventlist[i].eventid + '</span>' +
+              //   this.eachEvent + '<button value="' + eventlist[i].eventid + '" class="entypo-minus">' + '</button>' + '</p>');
             }
           }
+          this.events = eventlist;
         }
       });
   }

@@ -5,6 +5,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { MONTHS } from '../calendar/months.constant';
 import $ from 'jquery';
 import _ from 'lodash';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-test-calendar',
@@ -13,200 +14,366 @@ import _ from 'lodash';
 })
 export class TestCalendarComponent implements OnInit, AfterViewInit {
 
-  boxes = [];
+  constructor(private dataService: EventDataService, private cookieService: CookieService) { }
+
+  // Date variables
   clock = new Date();
   currentMonth = this.clock.getMonth();
   currentYear = this.clock.getFullYear();
-  day = this.clock.getDate();
-  months: any = [];
-  monthDays = [];
-  years: any = [];
-  daysofWeek = [
-    { num: 0, name: 'Sun'},
-    { num: 1, name: 'Mon'},
-    { num: 2, name: 'Tue'},
-    { num: 3, name: 'Wed'},
-    { num: 4, name: 'Thu'},
-    { num: 5, name: 'Friday'},
-    { num: 6, name: 'Sat'}
-  ];
-  currentSelectorDays: any;
-  initialCalStartDay: any;
-  clickedDay: any;
-  currentMonthDays: any;
-  january: any = [];
-  february: any = [];
-  march: any = [];
-  april: any = [];
-  june: any = [];
-  july: any = [];
-  august: any = [];
-  september: any = [];
-  october: any = [];
-  november: any = [];
-  december: any = [];
+  currentDay = this.clock.getDate();
+  currentDayofWeek = this.clock.getDay();
+  isCurrentWeekday = false;
 
-  constructor(private dataService: EventDataService, private cookieService: CookieService) { }
+  rows: any = [];
+  weekDays: any = [];
+  weekDayAbbrv: any = [
+    { name: 'Sun', num: 0 }, { name: 'Mon', num: 1 }, { name: 'Tue', num: 2 },
+    { name: 'Wed', num: 3 }, { name: 'Thu', num: 4 }, { name: 'Fri', num: 5},
+    { name: 'Sat', num: 6}
+  ];
+
+  monthSelectorOptions: any = [];
+  yearSelectorOptions: any = [];
+
+  getEachMonthDays: any;
+
+  events: any;
+  eachEvent: any;
 
   ngOnInit(): void {
-    // // this.getEvents();
-    let i;
-    let x;
-    let num = [];
-    let allMonths = [];
-    let allMonthDays = [];
-    let allYears = [];
+    console.log('Current date: ' + this.clock);
+    console.log('Current day of week: ' + this.currentDayofWeek);
+    console.log('Current month: ' + this.currentMonth);
+    console.log('Current Day: ' + this.currentDay);
+    console.log('Current Year: ' + this.currentYear);
 
-    // Build out options for Month selector and select current Month
-    for (i = 0; i < MONTHS.length; i++) {
-      let imonth = MONTHS[i];
-      let monthDays = MONTHS[i].days;
+    this.createCalendarGrid();
 
-      // Number of days in each month
-      allMonthDays.push(monthDays);
-      this.monthDays = allMonthDays[i];
-
-      // Number of months in year
-      allMonths.push(imonth);
-      this.months = allMonths;
-      console.log(this.months[i].num)
-      console.log(this.months[i].days)
-    }
-
-    // Build out options for Year selector and select current Year
-    for (i = 0; i < 11; i++) {
-      let iyear = (this.currentYear - 5) + i;
-      allYears.push(iyear);
-      this.years = allYears;
-    }
-    
-    // Build out each calendar box
-    for (i = 0; i < 42; i++) {
-      num.push(i);
-      this.boxes = num;
-    }
-    console.log(this.boxes);
-
-    this.initialCalStartDay = new Date(this.currentYear, $('#month').val()).getDay();
-    console.log(this.initialCalStartDay);
   }
+
+  createCalendarGrid() {
+    let i;
+
+    // Create rows
+    const rowsInCalendar = 6;
+    for (i = 0; i < rowsInCalendar; i++) {
+      this.rows.push(i);
+    }
+
+    // Create each weekday box
+    const daysInWeek = 7;
+    for (i = 0; i < daysInWeek; i++) {
+      this.weekDays.push(i);
+    }
+
+    // Create each weekday title
+    for (i = 0; i < this.weekDayAbbrv.length; i++) {
+      if (this.weekDayAbbrv[i].num === this.currentDayofWeek) {
+        console.log('This is the weekday: ' + this.weekDayAbbrv[i].num);
+      }
+    }
+
+    // Create the options for the month selector
+    for (i = 0; i < MONTHS.length; i++) {
+      const months = MONTHS[i];
+
+      this.monthSelectorOptions.push(months);
+    }
+
+    // Create the options for the year selector
+    for (i = 0; i <= 10; i++) {
+      const yearStart = this.currentYear - 5;
+
+      this.yearSelectorOptions.push(yearStart + i);
+    }
+  }
+
 
   ngAfterViewInit(): void {
-    
+    this.changeCal();
+    this.getMonthDays();
   }
 
-  // On month select change
-  onSelectMonthChange(value) {
-    let selectedYear = $('#year').val();
-    // Sets leap year based on month selector change
-    if (value == 1) {
-      if (Number($('#year').val()) % 4 != 0) {
-        this.months[1].days = 28;
+  renderMonth() {
+    MONTHS[1].days = Number($('#year').val()) % 4 == 0 ? 29 : 28;
+    const currentMonth = $(document).find('#month').val();
+    let nextMonth = Number($(document).find('#month').val()) + 2;
+    let currentYear = $(document).find('#year').val();
+    const startOfMonth = new Date(currentYear, currentMonth, 1).getDay();
+    const monthDays = MONTHS[$(document).find('#month').val()].days;
+    const weeks = $(document).find('.weeks').children();
+    // $(document).find('.main-info').empty();
+
+    _.range(1, 43).forEach((dayIndex, i) => {
+      const day = $(weeks[startOfMonth + dayIndex - 1]);
+
+      if (this.clock.getDate() === dayIndex && this.clock.getMonth() == $('#month').val() && this.clock.getFullYear() == $('#year').val()) {
+        day.find('.num-box').addClass('current-day');
+        day.find('.num-box').parent().addClass('clicked-day day-background-color selected-day').removeClass('dead-month-color');
       } else {
-        this.months[1].days = 29;
+        day.find('.day-box').children().removeClass('current-day');
+        day.find('.num-date').parent().parent().removeClass('dead-month-color day-background-color');
       }
-    }
-    this.currentSelectorDays = this.months[value].days;
-    console.log(this.currentSelectorDays + ' days');
-    console.log(this.months[value].fullName);
-    // console.log(new Date($(document).find('#year').val(), this.months[value].num, 1).getDay());
-  }
-
-  // On year select change
-  onSelectYearChange(value) {
-    let selectedMonth = $('#month').val();
-    // Sets leap year based on year selector change
-    if (selectedMonth == 1) {
-      if (Number($('#year').val()) % 4 != 0) {
-        this.months[selectedMonth].days = 28;
+      if (dayIndex > monthDays) {
+        if (nextMonth == 13) {
+          nextMonth = 1;
+          currentYear = Number(currentYear) + 1;
+        }
+        if (nextMonth < 10) {
+          const newMonth = nextMonth;
+          const standardMonth = '0' + nextMonth;
+          if ((dayIndex - monthDays) < 10) {
+            const newDayIndex = (dayIndex - monthDays);
+            const standardDayIndex = '0' + (dayIndex - monthDays);
+            day.find('.day-box').html(currentYear + '-' + standardMonth + '-' + standardDayIndex);
+            day.find('.date-value').html(currentYear + '-' + standardMonth + '-' + standardDayIndex);
+            day.find('.num-date').html(newDayIndex).parent().parent().addClass('dead-month-color');
+          } else {
+            day.find('.day-box').html(currentYear + '-' + standardMonth + '-' + (dayIndex - monthDays));
+            day.find('.date-value').html(currentYear + '-' + standardMonth + '-' + (dayIndex - monthDays));
+            day.find('.num-date').html((dayIndex - monthDays)).parent().parent().addClass('dead-month-color');
+          }
+        } else {
+          const standardMonth = '0' + nextMonth;
+          if ((dayIndex - monthDays) < 10) {
+            const newDayIndex = (dayIndex - monthDays);
+            const standardDayIndex = '0' + (dayIndex - monthDays);
+            day.find('.day-box').html(currentYear + '-' + standardMonth + '-' + standardDayIndex);
+            day.find('.date-value').html(currentYear + '-' + standardMonth + '-' + standardDayIndex);
+            day.find('.num-date').html(newDayIndex).parent().parent().addClass('dead-month-color');
+          } else {
+            day.find('.day-box').html(currentYear + '-' + standardMonth + '-' + (dayIndex - monthDays));
+            day.find('.date-value').html(currentYear + '-' + standardMonth + '-' + (dayIndex - monthDays));
+            day.find('.num-date').html((dayIndex - monthDays)).parent().parent().addClass('dead-month-color');
+          }
+        }
       } else {
-        this.months[selectedMonth].days = 29;
+        const thisMonth = (Number(currentMonth) + 1);
+        if (thisMonth < 10) {
+          const newMonth = thisMonth;
+          const standardNewMonth = '0' + thisMonth;
+          if (dayIndex < 10) {
+            const newDays = dayIndex;
+            const standardNewDays = '0' + dayIndex;
+            day.find('.day-box').html(currentYear + '-' + standardNewMonth + '-' + standardNewDays);
+            day.find('.date-value').html(currentYear + '-' + standardNewMonth + '-' + standardNewDays);
+            day.find('.num-date').html('&nbsp' + newDays + '&nbsp');
+          } else {
+            day.find('.day-box').html(currentYear + '-' + standardNewMonth + '-' + (dayIndex));
+            day.find('.date-value').html(currentYear + '-' + standardNewMonth + '-' + (dayIndex));
+            day.find('.num-date').html((dayIndex));
+          }
+        } else {
+          if (dayIndex < 10) {
+            const newDays = dayIndex;
+            const standardNewDays = '0' + dayIndex;
+            day.find('.day-box').html(currentYear + '-' + thisMonth + '-' + standardNewDays);
+            day.find('.date-value').html(currentYear + '-' + thisMonth + '-' + standardNewDays);
+            day.find('.num-date').html('&nbsp' + newDays + '&nbsp');
+          } else {
+            day.find('.day-box').html(currentYear + '-' + thisMonth + '-' + (dayIndex));
+            day.find('.date-value').html(currentYear + '-' + thisMonth + '-' + (dayIndex));
+            day.find('.num-date').html((dayIndex));
+          }
+        }
       }
-    }
-    this.currentSelectorDays = this.months[selectedMonth].days;
-    console.log(this.currentSelectorDays + ' days');
-    console.log(this.months[selectedMonth].fullName);
+      if (day.find('.num-date').html() === '&nbsp;' + '1' + '&nbsp;') {
+        day.find('.num-date').parent().addClass('first-day');
+      } else {
+        day.find('.num-date').parent().removeClass('first-day');
+      }
+    });
+
   }
 
-  // Click the previous month calendar button
-  prevButtonClick() {
-    let selectedMonth = parseInt($('#month').val(), 10);
+  renderPrevMonthDays() {
+    MONTHS[1].days = Number($(document).find('#year').val()) % 4 == 0 ? 29 : 28
+    let currentYear = $(document).find('#year').val();
+    let prevMonth = Number($(document).find('#month').val());
+    const startOfMonth = new Date($(document).find('#year').val(), $(document).find('#month').val(), 1).getDay();
+    const monthDays = MONTHS[$(document).find('#month').val()].days;
+    const prevMonthDays = $(document).find('#month').val() == 0 ? 31 : MONTHS[$(document).find('#month').val() - 1].days;
+    const weeks = $(document).find('.weeks').children();
+    const prevDays = _.range(1, prevMonthDays + 1).slice(-startOfMonth);
+    _.range(0, startOfMonth).forEach((dayIndex) => {
+      const day = $(weeks[dayIndex]);
+      if (startOfMonth > dayIndex) {
+        if (prevMonth == 0) {
+          prevMonth = 12;
+          currentYear = Number(currentYear) - 1;
+        }
+        if (prevMonth < 10) {
+          const newMonth = prevMonth;
+          const standardNewMonth = '0' + prevMonth;
+          day.find('.day-box').html(currentYear + '-' + standardNewMonth + '-' + (prevDays[dayIndex]));
+          day.find('.date-value').html(currentYear + '-' + standardNewMonth + '-' + (prevDays[dayIndex]));
+          day.find('.num-date').html((prevDays[dayIndex]));
+        } else {
+          day.find('.day-box').html(currentYear + '-' + prevMonth + '-' + (prevDays[dayIndex]));
+          day.find('.date-value').html(currentYear + '-' + prevMonth + '-' + (prevDays[dayIndex]));
+          day.find('.num-date').html((prevDays[dayIndex]));
+        }
 
-    // Check to see if calendar is at the beginning, can't go backward anymore
-    if (parseInt($('#year').val(), 10) === (this.currentYear - 5) && selectedMonth == 0) {
-      this.onSelectMonthChange(selectedMonth);
+        day.find('.num-date').parent().parent().addClass('dead-month-color');
+        day.find('.num-box').parent().removeClass('day-background-color');
+      }
+    });
+  }
+
+  selectedDay() {
+    if ($('.day-box').hasClass('day-background-color') === true) {
+      $(document).find('#todays-day').html($('.current-day').html());
+    } else if ($('.num-box').hasClass('first-day') === true) {
+      $('.first-day').parent().addClass('selected-day clicked-day');
+      $('.dead-month-color').removeClass('clicked-day');
+    }
+  }
+
+  changeCal() {
+    console.log('changing cal');
+    $('.add-item-form').removeClass('show-form');
+    $('.day-box').removeClass('clicked-day');
+    $('.num-box').removeClass('first-day current-day');
+    $('.day-box').removeClass('selected-day');
+
+    this.renderMonth();
+    this.renderPrevMonthDays();
+    this.selectedDay();
+    this.getEvents();
+
+    $('html, body').animate({ scrollTop: $('.selected-day').position().top - 75 }, 500);
+  }
+
+  getMonthDays() {
+    const getmonthDays = [];
+    const startofmonth = new Date($('#year').val(), $('#month').val()).getDay();
+    const weeks = $(document).find('.weeks').children();
+    _.range(1, 43).forEach((dayIndex, i) => {
+      const day = $(weeks[dayIndex - 1]);
+      day.find('.date-value').html();
+      getmonthDays.push(day.find('.date-value').html())
+    });
+    this.getEachMonthDays = getmonthDays;
+    // console.log(getmonthDays);
+  }
+
+  prevClick() {
+    $('.add-item-form').removeClass('show-form');
+    $('.day-box').removeClass('selected-day double-click');
+    $('.num-box').removeClass('first-day');
+    $('.transaction-button').removeClass('show');
+    if ($(document).find('#year').val() <= (this.currentYear - 5)) {
+      $(document).find('#year').val(this.currentYear - 5).change();
+      $(document).find('#month').val(0).change();
     } else {
-      // If calendar can go backward reset year everytime the cycle completes
-      if (parseInt($('#year').val(), 10) != (this.currentYear - 5)  && selectedMonth == 0) {
-        $('#year').val(parseInt($('#year').val(), 10) - 1);
-        this.onSelectMonthChange(11);
-        $('#month').val(parseInt($('#month').val(), 10) + 11);
+      if ($('#month').val() == null || $('#month').val() == 0) {
+        $(document).find('#month').val(11).change();
+        $(document).find('#year').val(Number($(document).find('#year').val()) - 1).change();
+      } else {
+        $(document).find('#month').val(Number($(document).find('#month').val()) - 1).change();
       }
-      // If cycle isn't complete
-      else {
-        this.onSelectMonthChange(selectedMonth - 1);
-        $('#month').val(selectedMonth - 1);
-      }
-      
     }
+    this.changeCal();
+    this.getMonthDays();
   }
 
-  // Click the current day calendar button
-  curButtonClick() {
-    this.onSelectMonthChange(this.currentMonth);
-    $('#month').val(this.currentMonth);
+  currentClick() {
+    $('.add-item-form').removeClass('show-form');
+    $('.day-box').removeClass('selected-day double-click');
+    $('.num-box').removeClass('first-day');
+    $('.transaction-button').removeClass('show');
+    $(document).find('#month').val(this.currentMonth).change();
+    $(document).find('#year').val(this.currentYear).change();
+    this.changeCal();
+    this.getMonthDays();
   }
 
-  // Click the next month calendar button
-  nextButtonClick() {
-    let selectedMonth = parseInt($('#month').val(), 10);
-
-    // Check to see if calendar is at the end, can't go forward anymore
-    if (parseInt($('#year').val(), 10) === (this.currentYear + 5) && selectedMonth == 11) {
-      this.onSelectMonthChange(selectedMonth);
+  nextClick() {
+    $('.add-item-form').removeClass('show-form');
+    $('.day-box').removeClass('selected-day double-click');
+    $('.num-box').removeClass('first-day');
+    $('.transaction-button').removeClass('show');
+    if ($(document).find('#year').val() >= (this.currentYear + 5) && $(document).find('#month').val() == 11) {
+      $(document).find('#year').val(this.currentYear + 5).change();
+      $(document).find('#month').val(11).change();
     } else {
-      // If calendar can go forward reset year everytime the cycle completes
-      if (parseInt($('#year').val(), 10) != (this.currentYear + 5) && selectedMonth == 11) {
-        $('#year').val(parseInt($('#year').val(), 10) + 1);
-        this.onSelectMonthChange(0);
-        $('#month').val(0);
-      }
-      // If cycle isn't complete
-      else {
-        this.onSelectMonthChange(selectedMonth + 1);
-        $('#month').val(selectedMonth + 1);
+      if ($(document).find('#month').val() == null || $(document).find('#month').val() == 11) {
+        $(document).find('#month').val(0).change();
+        $(document).find('#year').val(Number($(document).find('#year').val()) + 1).change();
+      } else {
+        $(document).find('#month').val(Number($(document).find('#month').val()) + 1).change();
       }
     }
+    this.changeCal();
+    this.getMonthDays();
   }
 
-  dayClick(e) {
-    if($(e.target).hasClass('close-big-day')) {
-      $('.test-box').removeClass('big-day');
-    } else if (!$(e.currentTarget).hasClass('clicked-day') && !$(e.currentTarget).hasClass('big-day')) {
-      $('.test-box').removeClass('clicked-day big-day');
+  clickonDay(e) {
+    $('.add-item-form').removeClass('show-form');
+    $('.extra').hide();
+    if ($(e.target).hasClass('entypo-minus')) {
+      console.log('deleting');
+      // const event_id = $(e.target).val();
+      // this.dataService.deleteEvent(event_id)
+      //   .subscribe((response) => {
+      //     console.log(response);
+      //     // this.getEvents();
+      //     // return response.id !== event_id;
+      //   });
+    } else if ($(e.target).hasClass('close-day')) {
+      $('.day-box').removeClass('double-click');
+      $('html, body').animate({ scrollTop: $('.clicked-day').position().top - 75 }, 500);
+    } else if (!$(e.currentTarget).hasClass('clicked-day') && !$(e.currentTarget).hasClass('double-click')) {
+      $('.day-box').removeClass('clicked-day double-click');
       $(e.currentTarget).addClass('clicked-day');
-      $('html, body').animate({ scrollTop: $(e.currentTarget).position().top - 75 }, 500);
+      $('html, body').animate({ scrollTop: $('.clicked-day').position().top - 75 }, 500);
     } else if ($(e.currentTarget).hasClass('clicked-day')) {
-      $(e.currentTarget).addClass('big-day');
+      $(e.currentTarget).addClass('double-click');
     }
   }
 
-  // getEvents() {
-  //   this.dataService.getEvents()
-  //     .subscribe((response) => {
-  //       this.events = response;
-  //       console.log(this.events);
-  //     });
-  // }
+  getEvents() {
+    this.dataService.getEvents()
+      .subscribe((response) => {
+        // this.events = response;
+        let i;
+        let dayIndex;
+        const eventlist = [];
+        MONTHS[1].days = Number($('#year').val()) % 4 == 0 ? 29 : 28;
+        const currentMonth = $(document).find('#month').val();
+        const nextMonth = Number($(document).find('#month').val()) + 2;
+        const currentYear = $(document).find('#year').val();
+        const startOfMonth = new Date(currentYear, currentMonth, 1).getDay();
+        const monthDays = MONTHS[$(document).find('#month').val()].days;
+        const weeks = $(document).find('.weeks').children();
+        // $(document).find('.main-info-section').empty();
 
-  // deleteEvent() {
-  //   let event_id = $('.entypo-minus').val();
-  //   this.dataService.deleteEvent(event_id)
-  //     .subscribe((response) => {
-  //       console.log(response);
-  //       this.getEvents();
-  //       // return response.id !== event_id;
-  //     });
-  // }
+        for (dayIndex = 0; dayIndex <= 42; dayIndex++) {
+          // console.log(dayIndex);
+          const day = $(weeks[dayIndex - 1]);
+
+          for (i = 0; i < response.length; i++) {
+            eventlist[i] = {
+              eventid: response[i].id.toString(),
+              eventtitle: response[i].title.toString(),
+              eventstart_date: response[i].start_date.substring(0, 10).toString(),
+              eventdesc: response[i].description.toString(),
+              eventstart_time: moment(response[i].start_time, 'HH:mm:ss').format('h:mm A'),
+              eventend_time: moment(response[i].end_time, 'HH:mm:ss').format('h:mm A')
+            };
+            // console.log(eventlist[i].eventstart_date);
+
+            if (day.find('.date-value').html() === eventlist[i].eventstart_date) {
+              console.log('dates equal');
+              day.find('.date-value').next().children().addClass('visible');
+            } else {
+              day.find('.date-value').next().children().addClass('not-visible');
+            }
+          }
+          this.events = eventlist;
+        }
+        console.log(this.events);
+      });
+  }
 
 }

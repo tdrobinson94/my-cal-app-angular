@@ -33,43 +33,71 @@
         <div class="days first-row">
             <div id="num-box" class="num-box dead_month_color" (click)="clickonDay($event)">
                 <div class="weekday"><span class="num-date"></span></div>
-                <div class="main-info">hey</div>
+                <div class="main-info" *ngFor="let day for getEachMonthDay">
+                    <ng-container *ngFor="let event of events">
+                        <p class="event">{{event.eventid}}: {{event.eventtitle}} - {{event.eventdesc}}</p>
+                    </ng-container>
+                </div>
                 <div class="date-value"></div>
                 <div class="close-day entypo-down-open"></div>
             </div>
             <div id="num-box" class="num-box dead_month_color" (click)="clickonDay($event)">
                 <div class="weekday"><span class="num-date"></span></div>
-                <div class="main-info"></div>
+                <div class="main-info" *ngFor="let event of events">
+                    <ng-container *ngFor="let event of events">
+                        <p class="event">{{event.eventid}}: {{event.eventtitle}} - {{event.eventdesc}}</p>
+                    </ng-container>
+                </div>
                 <div class="date-value"></div>
                 <div class="close-day entypo-down-open"></div>
             </div>
             <div id="num-box" class="num-box dead_month_color" (click)="clickonDay($event)">
                 <div class="weekday"><span class="num-date"></span></div>
-                <div class="main-info"></div>
+                <div class="main-info">
+                    <ng-container *ngFor="let event of events">
+                        <p class="event">{{event.eventid}}: {{event.eventtitle}} - {{event.eventdesc}}</p>
+                    </ng-container>
+                </div>
                 <div class="date-value"></div>
                 <div class="close-day entypo-down-open"></div>
             </div>
             <div id="num-box" class="num-box dead_month_color" (click)="clickonDay($event)">
                 <div class="weekday"><span class="num-date"></span></div>
-                <div class="main-info"></div>
+                <div class="main-info">
+                    <ng-container *ngFor="let event of events">
+                        <p class="event">{{event.eventid}}: {{event.eventtitle}} - {{event.eventdesc}}</p>
+                    </ng-container>
+                </div>
                 <div class="date-value"></div>
                 <div class="close-day entypo-down-open"></div>
             </div>
             <div id="num-box" class="num-box dead_month_color" (click)="clickonDay($event)">
                 <div class="weekday"><span class="num-date"></span></div>
-                <div class="main-info"></div>
+                <div class="main-info">
+                    <ng-container *ngFor="let event of events">
+                        <p class="event">{{event.eventid}}: {{event.eventtitle}} - {{event.eventdesc}}</p>
+                    </ng-container>
+                </div>
                 <div class="date-value"></div>
                 <div class="close-day entypo-down-open"></div>
             </div>
             <div id="num-box" class="num-box dead_month_color" (click)="clickonDay($event)">
                 <div class="weekday"><span class="num-date"></span></div>
-                <div class="main-info"></div>
+                <div class="main-info">
+                    <ng-container *ngFor="let event of events">
+                        <p class="event">{{event.eventid}}: {{event.eventtitle}} - {{event.eventdesc}}</p>
+                    </ng-container>
+                </div>
                 <div class="date-value"></div>
                 <div class="close-day entypo-down-open"></div>
             </div>
             <div id="num-box" class="num-box dead_month_color" (click)="clickonDay($event)">
                 <div class="weekday"><span class="num-date"></span></div>
-                <div class="main-info"></div>
+                <div class="main-info">
+                    <ng-container *ngFor="let event of events">
+                        <p class="event">{{event.eventid}}: {{event.eventtitle}} - {{event.eventdesc}}</p>
+                    </ng-container>
+                </div>
                 <div class="date-value"></div>
                 <div class="close-day entypo-down-open"></div>
             </div>
@@ -113,7 +141,11 @@
             </div>
             <div id="num-box" class="num-box dead_month_color" (click)="clickonDay($event)">
                 <div class="weekday"><span class="num-date"></span></div>
-                <div class="main-info"></div>
+                <div class="main-info">
+                    <ng-container *ngFor="let event of events">
+                        <p class="event">{{event.eventid}}: {{event.eventtitle}} - {{event.eventdesc}}</p>
+                    </ng-container>
+                </div>
                 <div class="date-value"></div>
                 <div class="close-day entypo-down-open"></div>
             </div>
