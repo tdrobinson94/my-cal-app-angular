@@ -229,9 +229,9 @@
                     }
 
                     p {
-                        font-size: 12px;
+                        font-size: 10px;
                         cursor: pointer;
-                        height: 13px;
+                        height: 11px;
                         overflow: hidden;
                         margin: 5px 0px;
                         padding: 2px 4%;
@@ -241,6 +241,7 @@
 
                         @media screen and (min-width: $mid-small) {
                             text-align: left;
+                            font-size: 12px;
                         }
 
                         button {
