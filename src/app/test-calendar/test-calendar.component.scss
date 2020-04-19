@@ -211,6 +211,17 @@
                         width: 0px;
                     }
 
+                    &.animate-events-one {
+                        color: $textwht;
+                        height: 0;
+                    }
+
+                    &.animate-events-two {
+                        transition: all .3s ease-in-out;
+                        color: $textdrk;
+                        height: auto;
+                    }
+
                     p {
                         font-size: 12px;
                         cursor: pointer;

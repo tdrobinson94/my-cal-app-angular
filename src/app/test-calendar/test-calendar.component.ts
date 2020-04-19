@@ -48,7 +48,6 @@ export class TestCalendarComponent implements OnInit, AfterViewInit {
     console.log('Current Year: ' + this.currentYear);
 
     this.createCalendarGrid();
-
   }
 
   createCalendarGrid() {
@@ -316,12 +315,17 @@ export class TestCalendarComponent implements OnInit, AfterViewInit {
     $('.extra').hide();
     if ($(e.target).hasClass('close-day')) {
       $('.day-box').removeClass('double-click');
+      $('.main-info-section').removeClass('animate-events-one animate-events-two');
     } else if (!$(e.currentTarget).hasClass('clicked-day') && !$(e.currentTarget).hasClass('double-click')) {
       $('.day-box').removeClass('clicked-day double-click');
       $(e.currentTarget).addClass('clicked-day');
       $('html, body').animate({ scrollTop: $('.clicked-day').position().top - 75 }, 700);
     } else if ($(e.currentTarget).hasClass('clicked-day')) {
       $(e.currentTarget).addClass('double-click');
+      $(e.currentTarget).find('.main-info-section').addClass('animate-events-one');
+      setTimeout(() => {
+        $('.main-info-section').addClass('animate-events-two');
+      }, 300);
     }
   }
 
