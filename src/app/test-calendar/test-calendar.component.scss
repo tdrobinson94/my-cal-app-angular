@@ -150,15 +150,15 @@
 
             .day-box {
 
-                width: 14.2%;
+                width: 12%;
                 height: 100%;
-                // flex-grow: 1;
+                flex-grow: 1;
                 transition: all .3s ease-in-out;
 
-                @media screen and (min-width: 430px) {
-                    width: 14.285714285714286%;
-                    max-width: 14.285714285714286%;
-                }
+                // @media screen and (min-width: 430px) {
+                //     width: 14.285714285714286%;
+                //     max-width: 14.285714285714286%;
+                // }
 
                 button.close-day {
                     display: none;
@@ -280,6 +280,7 @@
                     animation-name: grow;
                     animation-duration: .5s;
                     animation-timing-function: ease-in-out;
+                    flex-grow: 0;
 
                     @media screen and (min-width: $end-small) {
                         bottom: 50%;
