@@ -277,7 +277,7 @@ export class TestCalendarComponent implements OnInit, AfterViewInit {
       }
     }
     this.changeCal();
-    this.getMonthDays();
+    // this.getMonthDays();
   }
 
   currentClick() {
@@ -288,7 +288,7 @@ export class TestCalendarComponent implements OnInit, AfterViewInit {
     $(document).find('#month').val(this.currentMonth).change();
     $(document).find('#year').val(this.currentYear).change();
     this.changeCal();
-    this.getMonthDays();
+    // this.getMonthDays();
   }
 
   nextClick() {
@@ -308,7 +308,7 @@ export class TestCalendarComponent implements OnInit, AfterViewInit {
       }
     }
     this.changeCal();
-    this.getMonthDays();
+    // this.getMonthDays();
   }
 
   clickonDay(e) {
@@ -316,7 +316,6 @@ export class TestCalendarComponent implements OnInit, AfterViewInit {
     $('.extra').hide();
     if ($(e.target).hasClass('close-day')) {
       $('.day-box').removeClass('double-click');
-      $('html, body').animate({ scrollTop: $('.clicked-day').position().top - 75 }, 500);
     } else if (!$(e.currentTarget).hasClass('clicked-day') && !$(e.currentTarget).hasClass('double-click')) {
       $('.day-box').removeClass('clicked-day double-click');
       $(e.currentTarget).addClass('clicked-day');
