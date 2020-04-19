@@ -239,7 +239,10 @@ export class TestCalendarComponent implements OnInit, AfterViewInit {
     this.renderMonth();
     this.renderPrevMonthDays();
     this.selectedDay();
-    this.getEvents();
+
+    setTimeout(() => {
+      this.getEvents();
+    }, 600);
 
     $('html, body').animate({ scrollTop: $('.selected-day').position().top - 75 }, 500);
   }
@@ -311,16 +314,7 @@ export class TestCalendarComponent implements OnInit, AfterViewInit {
   clickonDay(e) {
     $('.add-item-form').removeClass('show-form');
     $('.extra').hide();
-    if ($(e.target).hasClass('entypo-minus')) {
-      console.log('deleting');
-      // const event_id = $(e.target).val();
-      // this.dataService.deleteEvent(event_id)
-      //   .subscribe((response) => {
-      //     console.log(response);
-      //     // this.getEvents();
-      //     // return response.id !== event_id;
-      //   });
-    } else if ($(e.target).hasClass('close-day')) {
+    if ($(e.target).hasClass('close-day')) {
       $('.day-box').removeClass('double-click');
       $('html, body').animate({ scrollTop: $('.clicked-day').position().top - 75 }, 500);
     } else if (!$(e.currentTarget).hasClass('clicked-day') && !$(e.currentTarget).hasClass('double-click')) {
@@ -346,10 +340,8 @@ export class TestCalendarComponent implements OnInit, AfterViewInit {
         const startOfMonth = new Date(currentYear, currentMonth, 1).getDay();
         const monthDays = MONTHS[$(document).find('#month').val()].days;
         const weeks = $(document).find('.weeks').children();
-        // $(document).find('.main-info-section').empty();
 
         for (dayIndex = 0; dayIndex <= 42; dayIndex++) {
-          // console.log(dayIndex);
           const day = $(weeks[dayIndex - 1]);
 
           for (i = 0; i < response.length; i++) {
@@ -361,10 +353,8 @@ export class TestCalendarComponent implements OnInit, AfterViewInit {
               eventstart_time: moment(response[i].start_time, 'HH:mm:ss').format('h:mm A'),
               eventend_time: moment(response[i].end_time, 'HH:mm:ss').format('h:mm A')
             };
-            // console.log(eventlist[i].eventstart_date);
 
             if (day.find('.date-value').html() === eventlist[i].eventstart_date) {
-              console.log('dates equal');
               day.find('.date-value').next().children().addClass('visible');
             } else {
               day.find('.date-value').next().children().addClass('not-visible');
@@ -372,7 +362,6 @@ export class TestCalendarComponent implements OnInit, AfterViewInit {
           }
           this.events = eventlist;
         }
-        console.log(this.events);
       });
   }
 
