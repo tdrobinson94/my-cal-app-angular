@@ -324,7 +324,7 @@ export class TestCalendarComponent implements OnInit, AfterViewInit {
       $(e.currentTarget).addClass('double-click');
       $(e.currentTarget).find('.main-info-section').addClass('animate-events-one');
       setTimeout(() => {
-        $('.main-info-section').addClass('animate-events-two');
+        $('.double-click .main-info-section').addClass('animate-events-two');
       }, 300);
     }
   }

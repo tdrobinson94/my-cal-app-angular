@@ -150,9 +150,9 @@
 
             .day-box {
 
-                width: 12%;
+                width: 14.2%;
                 height: 100%;
-                flex-grow: 1;
+                // flex-grow: 1;
                 transition: all .3s ease-in-out;
                 position: relative;
 
@@ -217,7 +217,7 @@
                     }
 
                     &.animate-events-two {
-                        transition: all .3s ease-in-out;
+                        transition: all .4s ease-in-out;
                         color: $textdrk;
                         height: auto;
                     }
