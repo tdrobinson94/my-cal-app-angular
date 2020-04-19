@@ -150,12 +150,15 @@
 
             .day-box {
 
-                width: 12%;
-                // width: 14.285714285714286%;
-                //max-width: 14.285714285714286%;
+                width: 14.2%;
                 height: 100%;
-                flex-grow: 1;
+                // flex-grow: 1;
                 transition: all .3s ease-in-out;
+
+                @media screen and (min-width: 430px) {
+                    width: 14.285714285714286%;
+                    max-width: 14.285714285714286%;
+                }
 
                 button.close-day {
                     display: none;
@@ -197,7 +200,11 @@
                 .main-info-section {
                     overflow: hidden;
                     height: calc(100% - 40px);
-                    padding: 5px;
+                    padding: 5px 20%;
+
+                    @media screen and (min-width: $mid-small) {
+                        padding: 5px;
+                    }
 
                     &::-webkit-scrollbar {
                         width: 0px;
@@ -223,8 +230,8 @@
                         }
 
                         &:hover, &:focus {
-                            background: rgba(255,0,0,.8);
-                            color: $textwht;
+                            // background: rgba(255,0,0,.8);
+                            // color: $textwht;
                             transition: all .2s ease-in-out;
                             button {
                                 display: inline;
