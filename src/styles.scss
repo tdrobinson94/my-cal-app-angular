@@ -38,11 +38,11 @@ body {
     font-family: sans-serif;
     position: relative;
     top: 50px;
-    overflow-x: hidden;
+    // overflow-x: hidden;
 
-    @media screen and (min-width: $mid-small) {
-      overflow: initial;
-    }
+    // @media screen and (min-width: $mid-small) {
+    //   overflow: initial;
+    // }
     // bottom: 52.9px;
     // overflow: auto;
 }
