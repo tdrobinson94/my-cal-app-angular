@@ -216,13 +216,14 @@
 
                         p {
                             &:hover, &:focus {
-                                // background: rgba(255,0,0,.8);
-                                // color: $textwht;
+                                background: rgba(255,0,0,.8);
+                                color: $textwht;
                                 transition: all .2s ease-in-out;
                                 button {
                                     display: inline;
                                     background: transparent;
                                     border: 0;
+                                    float: right;
                                 }
                             }
                         }
