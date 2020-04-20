@@ -27,13 +27,11 @@
                 <div class="num-box"><span class="num-date"></span></div>
                 <div class="date-value"></div>
                 <div class="main-info-section">
-                    <!-- <ng-container *ngFor="let event of events;"> -->
-                        <form *ngFor="let event of events;">
-                            <p class="event">{{event.eventid}}: {{event.eventtitle}} - {{event.eventdesc}}
-                            <button class="entypo-minus" type="submit" value="{{event.eventid}}"></button>
-                            </p>
-                        </form>
-                    <!-- </ng-container> -->
+                    <form *ngFor="let event of events">
+                        <p class="event">{{event.eventid}}: {{event.eventtitle}} - {{event.eventdesc}}
+                        <button class="entypo-minus" type="submit" value="{{event.eventid}}"></button>
+                        </p>
+                    </form>
                 </div>
             </div>
         </div>

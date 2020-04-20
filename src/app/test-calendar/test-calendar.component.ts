@@ -255,7 +255,7 @@ export class TestCalendarComponent implements OnInit, AfterViewInit {
       day.find('.date-value').html();
       getmonthDays.push(day.find('.date-value').html())
     });
-    this.getEachMonthDays = getmonthDays;
+    // this.getEachMonthDays = getmonthDays;
     // console.log(getmonthDays);
   }
 
@@ -358,9 +358,7 @@ export class TestCalendarComponent implements OnInit, AfterViewInit {
             };
 
             if (day.find('.date-value').html() === eventlist[i].eventstart_date) {
-              day.find('.date-value').next().children().addClass('visible');
-            } else {
-              day.find('.date-value').next().children().addClass('not-visible');
+              day.find('.date-value').next().children('.event').addClass('visible');
             }
           }
           this.events = eventlist;
