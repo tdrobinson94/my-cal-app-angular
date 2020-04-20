@@ -135,7 +135,8 @@
             justify-content: center;
             align-items: center;
             margin: 1px 0;
-            overflow-x: hidden;
+            padding: 1px 0;
+            overflow: hidden;
 
             @media screen and (min-width: $end-small) {
 
