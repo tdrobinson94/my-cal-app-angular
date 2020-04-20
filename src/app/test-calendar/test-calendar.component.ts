@@ -88,7 +88,7 @@ export class TestCalendarComponent implements OnInit, AfterViewInit {
 
     if (navigator.userAgent.indexOf('Mac') !== -1) {
       console.log('Mac');
-      $('.calendar-nav-bar').addClass('mac');
+      $('.calendar-navbar').addClass('mac');
     } else if (navigator.userAgent.indexOf('Win') !== -1) {
       console.log('Windows');
     }
