@@ -243,7 +243,7 @@ export class TestCalendarComponent implements OnInit, AfterViewInit {
       this.getEvents();
     }, 600);
 
-    $('html, body').animate({ scrollTop: $('.selected-day').position().top - 75 }, 700);
+    $('html, body').animate({ scrollTop: $('.selected-day').position().top - 75 }, 400);
   }
 
   getMonthDays() {
@@ -277,7 +277,7 @@ export class TestCalendarComponent implements OnInit, AfterViewInit {
     }
     setTimeout(() => {
       this.changeCal();
-    }, 200);
+    }, 100);
     // this.getMonthDays();
   }
 
@@ -290,7 +290,7 @@ export class TestCalendarComponent implements OnInit, AfterViewInit {
     $(document).find('#year').val(this.currentYear).change();
     setTimeout(() => {
       this.changeCal();
-    }, 200);
+    }, 100);
     // this.getMonthDays();
   }
 
@@ -312,7 +312,7 @@ export class TestCalendarComponent implements OnInit, AfterViewInit {
     }
     setTimeout(() => {
       this.changeCal();
-    }, 200);
+    }, 100);
     // this.getMonthDays();
   }
 
