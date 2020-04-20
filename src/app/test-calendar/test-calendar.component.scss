@@ -139,6 +139,14 @@
             padding: 1px 0;
             overflow: hidden;
 
+            &:nth-child(1) {
+                margin-top: 5px;
+            }
+
+            &:nth-child(6) {
+                margin-bottom: 5px;
+            }
+
             @media screen and (min-width: $end-small) {
 
                 height: 14.285714285714286%;
@@ -343,9 +351,6 @@
                             text-align: left;
                         }
                     }
-                }
-                @keyframes grow{
-                    // 50%  {transform: scale(.1, .1);}
                 }
 
             }
