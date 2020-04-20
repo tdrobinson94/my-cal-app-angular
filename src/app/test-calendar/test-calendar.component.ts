@@ -377,8 +377,11 @@ export class TestCalendarComponent implements OnInit, AfterViewInit {
             console.log(eventlist[i].eventstart_date);
 
             if (eventlist[i].eventstart_date === day.find('.date-value').html()) {
+
               setTimeout(() => {
-                day.find('.event').addClass('visible');
+                if (day.find('.event').hasClass(day.find('.date-value').html())) {
+                  day.find('.' + day.find('.date-value').html()).addClass('visible');
+                }
               }, 100);
             }
           }
