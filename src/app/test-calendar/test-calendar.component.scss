@@ -312,9 +312,6 @@
                     z-index: 99;
                     transition: height, width 0.3s ease-in-out;
                     border: none;
-                    animation-name: grow;
-                    animation-duration: .3s;
-                    animation-timing-function: ease-in-out;
 
                     @media screen and (min-width: $end-small) {
                         bottom: 50%;
@@ -360,10 +357,6 @@
                             text-align: left;
                         }
                     }
-                }
-
-                @keyframes grow{
-                    // 25%  {transform: scale(1, 1);}
                 }
 
             }
