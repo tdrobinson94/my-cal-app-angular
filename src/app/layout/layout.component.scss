@@ -107,6 +107,7 @@ header {
                 
                 &:hover {
                     background: darken($primary, 10%);
+                    border-radius: 5px;
                 }
             }
         }
