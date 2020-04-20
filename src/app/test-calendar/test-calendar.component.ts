@@ -275,7 +275,9 @@ export class TestCalendarComponent implements OnInit, AfterViewInit {
         $(document).find('#month').val(Number($(document).find('#month').val()) - 1).change();
       }
     }
-    this.changeCal();
+    setTimeout(() => {
+      this.changeCal();
+    }, 200);
     // this.getMonthDays();
   }
 
@@ -286,7 +288,9 @@ export class TestCalendarComponent implements OnInit, AfterViewInit {
     $('.transaction-button').removeClass('show');
     $(document).find('#month').val(this.currentMonth).change();
     $(document).find('#year').val(this.currentYear).change();
-    this.changeCal();
+    setTimeout(() => {
+      this.changeCal();
+    }, 200);
     // this.getMonthDays();
   }
 
@@ -306,7 +310,9 @@ export class TestCalendarComponent implements OnInit, AfterViewInit {
         $(document).find('#month').val(Number($(document).find('#month').val()) + 1).change();
       }
     }
-    this.changeCal();
+    setTimeout(() => {
+      this.changeCal();
+    }, 200);
     // this.getMonthDays();
   }
 
