@@ -48,9 +48,6 @@ export class TestCalendarComponent implements OnInit, AfterViewInit {
     console.log('Current Year: ' + this.currentYear);
 
     this.createCalendarGrid();
-    if (navigator.userAgent.indexOf('Mac')) {
-      $('.calendar-container').addClass('mac');
-    }
   }
 
   createCalendarGrid() {
@@ -87,6 +84,12 @@ export class TestCalendarComponent implements OnInit, AfterViewInit {
       const yearStart = this.currentYear - 5;
 
       this.yearSelectorOptions.push(yearStart + i);
+    }
+
+    if (navigator.userAgent.indexOf('Mac') !== -1) {
+      $('.calendar-container').addClass('mac');
+    } else if (navigator.userAgent.indexOf('Win') !== -1) {
+      console.log('Windows');
     }
   }
 
