@@ -362,12 +362,15 @@ export class TestCalendarComponent implements OnInit, AfterViewInit {
               eventstart_time: moment(response[i].start_time, 'HH:mm:ss').format('h:mm A'),
               eventend_time: moment(response[i].end_time, 'HH:mm:ss').format('h:mm A')
             };
-
-            if (day.find('.date-value').html() === eventlist[i].eventstart_date) {
-              day.find('.date-value').next().children('.event').addClass('visible');
-            }
+            console.log('Date: ' + day.find('.date-value').html());
+            console.log('Event date: ' + eventlist[i].eventstart_date);
           }
           this.events = eventlist;
+
+          // if (day.find('.date-value').html() === eventlist[i].eventstart_date) {
+          //   day.find('.date-value').next().children().addClass('visible');
+          //   $('.event').addClass('visible');
+          // }
         }
       });
   }
