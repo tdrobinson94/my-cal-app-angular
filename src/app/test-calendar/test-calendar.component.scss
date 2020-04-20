@@ -185,14 +185,14 @@
                     display: flex;
                     width: 11.5px;
                     margin: auto;
-                    padding: 4px;
+                    padding: 5px;
                     border-radius: 100%;
                     position: relative;
-                    top: 2px;
+                    top: 3px;
                     cursor: pointer;
 
                     @media screen and (min-width: $end-small) {
-                        width: 18px;
+                        width: 17px;
                     }
 
                     .num-date {
