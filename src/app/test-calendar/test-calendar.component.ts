@@ -48,6 +48,9 @@ export class TestCalendarComponent implements OnInit, AfterViewInit {
     console.log('Current Year: ' + this.currentYear);
 
     this.createCalendarGrid();
+    if (navigator.userAgent.indexOf('Mac')) {
+      $('.calendar-container').addClass('mac');
+    }
   }
 
   createCalendarGrid() {
