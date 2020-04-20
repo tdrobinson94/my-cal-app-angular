@@ -67,7 +67,7 @@
                         margin-left: 6px;
                         top: 50%;
                         left: 50%;
-                        transform: translate(-95%, -46%);
+                        transform: translate(-95%, -42%);
                     }
 
 
@@ -213,7 +213,7 @@
                 .main-info-section {
                     overflow: hidden;
                     height: calc(100% - 40px);
-                    padding: 5px 20%;
+                    padding: 5px 10%;
 
                     @media screen and (min-width: $mid-small) {
                         padding: 5px;
@@ -236,6 +236,7 @@
                                 background: rgba(255,0,0,.8);
                                 color: $textwht;
                                 transition: all .2s ease-in-out;
+                                border-radius: 5px;
                                 button {
                                     display: inline;
                                     background: transparent;
@@ -257,7 +258,6 @@
                         overflow: hidden;
                         margin: 5px 0px;
                         padding: 2px 20% 0 4%;
-                        border-radius: 5px;
                         transition: all .2s ease-in-out;
                         text-align: center;
                         position: relative;
@@ -265,6 +265,8 @@
 
                         &.visible {
                             display: block;
+                            border-left: 2px solid rgba(255,0,0,.8);
+                            transition: all .2s ease-in-out;
                         }
 
                         @media screen and (min-width: $mid-small) {
