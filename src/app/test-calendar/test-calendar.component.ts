@@ -86,10 +86,11 @@ export class TestCalendarComponent implements OnInit, AfterViewInit {
       this.yearSelectorOptions.push(yearStart + i);
     }
 
-    if (navigator.userAgent.indexOf('Win') !== -1) {
+    if (navigator.userAgent.indexOf('Mac') !== -1) {
+      console.log('Mac');
+      $('.calendar-nav-bar').addClass('mac');
+    } else if (navigator.userAgent.indexOf('Win') !== -1) {
       console.log('Windows');
-    } else {
-      $('.calendar-container').addClass('mac');
     }
   }
 
