@@ -28,7 +28,7 @@
                 <div class="date-value"></div>
                 <div class="main-info-section">
                     <form *ngFor="let event of events">
-                        <p class="event">{{event.eventid}}: {{event.eventtitle}} - {{event.eventdesc}}
+                        <p class="event">{{event.eventstart_date}}: {{event.eventtitle}} - {{event.eventdesc}}
                         <button class="entypo-minus" type="submit" value="{{event.eventid}}"></button>
                         </p>
                     </form>

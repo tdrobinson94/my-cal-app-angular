@@ -261,6 +261,11 @@
                         transition: all .2s ease-in-out;
                         text-align: center;
                         position: relative;
+                        display: none;
+
+                        &.visible {
+                            display: block;
+                        }
 
                         @media screen and (min-width: $mid-small) {
                             text-align: left;

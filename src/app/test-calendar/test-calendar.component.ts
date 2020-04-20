@@ -251,9 +251,9 @@ export class TestCalendarComponent implements OnInit, AfterViewInit {
 
     setTimeout(() => {
       this.getEvents();
-    }, 600);
+    }, 400);
 
-    $('html, body').animate({ scrollTop: $('.selected-day').position().top - 75 }, 400);
+    $('html, body').animate({ scrollTop: $('.selected-day').position().top - 75 }, 300);
   }
 
   getMonthDays() {
@@ -374,18 +374,20 @@ export class TestCalendarComponent implements OnInit, AfterViewInit {
             };
             // console.log('Date: ' + day.find('.date-value').html());
             // console.log('Event date: ' + eventlist[i].eventstart_date);
+            console.log(eventlist[i].eventstart_date);
+
+            if (eventlist[i].eventstart_date === day.find('.date-value').html()) {
+              setTimeout(() => {
+                day.find('.event').addClass('visible');
+              }, 100);
+            }
           }
           this.events = eventlist;
-
-          if (day.find('.date-value').html() === eventlist[i].eventstart_date) {
-            console.log('equal');
-            // day.find('.date-value').next().children().addClass('visible');
-            // $('.event').addClass('visible');
-          } else {
-            console.log('not equal');
-          }
         }
       });
   }
+
+
+  
 
 }
