@@ -57,6 +57,7 @@
                     font-size: 12px;
                     display: flex;
                     align-items: center;
+                    outline: 0;
 
                     span {
                         padding: 6px 0 0 0;
@@ -301,7 +302,7 @@
                 &.double-click {
                     background: #fff;
                     position: fixed;
-                    top: 128.5px;
+                    top: 121.5px;
                     bottom: 53px;
                     left: 50%;
                     transform: translate(-50%, 0%);
@@ -361,8 +362,8 @@
                     }
                 }
 
-                @keyframes shrink{
-                    25%  {transform: scale(1, 1);}
+                @keyframes grow{
+                    // 25%  {transform: scale(1, 1);}
                 }
 
             }
