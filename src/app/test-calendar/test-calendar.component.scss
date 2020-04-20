@@ -51,7 +51,6 @@
                     border: 0;
                     position: relative;
                     font-size: 12px;
-                    padding: 11px 11px;
                     display: flex;
                     align-items: center;
 
@@ -59,24 +58,21 @@
                         padding: 6px 0 0 0;
                         font-size: 12px;
                         font-weight: bold;
+                        position: absolute;
+                        margin-left: 6px;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-95%, -47%);
                     }
 
 
                     &:before {
-                        position: absolute;
                         font-size: 30px;
-                        left: 3.5px;
-                        top: 3px;
-
-                        @-moz-document url-prefix() {
-                            left: 2.25px;
-                        }
                     }
 
                     &.entypo-calendar {
                         &:before {
                             font-weight: 100;
-                            margin-right: 3px;
                         }
                     }
                 }
@@ -103,6 +99,11 @@
                 padding: 4px 0;
                 color: $textdrk;
                 opacity: .5;
+                font-size: 14px;
+
+                @media screen and (max-width: $end-small) {
+                    font-size: 16px;
+                }
 
                 &.show-current-weekday {
                     color: $textwht;
@@ -296,7 +297,7 @@
                 &.double-click {
                     background: #fff;
                     position: fixed;
-                    top: 128px;
+                    top: 128.5px;
                     bottom: 53px;
                     left: 50%;
                     transform: translate(-50%, 0%);
@@ -306,6 +307,9 @@
                     z-index: 99;
                     transition: height, width 0.3s ease-in-out;
                     border: none;
+                    animation-name: grow;
+                    animation-duration: .3s;
+                    animation-timing-function: ease-in-out;
 
                     @media screen and (min-width: $end-small) {
                         bottom: 50%;
@@ -351,6 +355,10 @@
                             text-align: left;
                         }
                     }
+                }
+
+                @keyframes shrink{
+                    25%  {transform: scale(1, 1);}
                 }
 
             }
