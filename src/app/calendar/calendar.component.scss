@@ -372,6 +372,10 @@
                             overflow: initial !important;
                             text-align: left;
                             margin: 5px 4%;
+
+                            p {
+                                margin: 5px 0 0 0;
+                            }
                         }
 
                         button.delete-event {
