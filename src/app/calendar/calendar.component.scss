@@ -367,6 +367,13 @@
                     .main-info-section {
                         padding: 5px 0;
                         overflow: auto;
+
+                        form {
+                            @media screen and (max-width: $mid-small) {
+                                padding-bottom: 70px;
+                            }
+                        }
+
                         .event {
                             font-size: 16px !important;
                             height: auto !important;
