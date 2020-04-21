@@ -422,17 +422,16 @@ export class CalendarComponent implements OnInit, AfterViewInit {
     }
   }
 
-  startTimeChange() {
-    const minutes = String(this.clock.getMinutes()).padStart(2, '0');
-    const hours = String(this.clock.getHours()).padStart(2, '0');
-    const extraHour = Number($('.time-input input').val().substring(0, 2)) + 1;
-    const endTime = (extraHour) + ':' + minutes;
+  // startTimeChange() {
+  //   const minutes = String(this.clock.getMinutes()).padStart(2, '0');
+  //   const extraHour = Number($('.time-input input').val().substring(0, 2)) + 1;
+  //   const endTime = (extraHour) + ':' + minutes;
     
-    this.addItemForm = new FormGroup({
-      start_time: new FormControl($('.time-input input').val()),
-      end_time: new FormControl(endTime),
-    });
-  }
+  //   this.addItemForm = new FormGroup({
+  //     start_time: new FormControl($('.time-input input').val()),
+  //     end_time: new FormControl(endTime),
+  //   });
+  // }
 
   closeForm() {
     $('.add-item-container').removeClass('show-form');
