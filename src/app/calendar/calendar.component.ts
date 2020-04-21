@@ -45,14 +45,14 @@ export class CalendarComponent implements OnInit, AfterViewInit {
   });
 
   addItemForm = new FormGroup({
-    item_type: new FormControl(),
+    item_type: new FormControl(''),
     frequency: new FormControl(''),
     title: new FormControl(''),
     description: new FormControl(''),
-    start_date: new FormControl(),
-    end_date: new FormControl(),
-    start_time: new FormControl(),
-    end_time: new FormControl(),
+    start_date: new FormControl(''),
+    end_date: new FormControl(''),
+    start_time: new FormControl(''),
+    end_time: new FormControl(''),
     location: new FormControl(''),
   });
 
@@ -262,9 +262,9 @@ export class CalendarComponent implements OnInit, AfterViewInit {
 
     setTimeout(() => {
       this.getEvents();
-    }, 300);
+    }, 100);
 
-    $('html, body').animate({ scrollTop: $('.selected-day').position().top - 75 }, 300);
+    $('html, body').animate({ scrollTop: $('.selected-day').position().top - 75 }, 200);
   }
 
   prevClick() {
@@ -330,7 +330,7 @@ export class CalendarComponent implements OnInit, AfterViewInit {
     } else if (!$(e.currentTarget).hasClass('clicked-day') && !$(e.currentTarget).hasClass('double-click')) {
       $('.day-box').removeClass('clicked-day double-click');
       $(e.currentTarget).addClass('clicked-day');
-      $('html, body').animate({ scrollTop: $('.clicked-day').position().top - 75 }, 500);
+      $('html, body').animate({ scrollTop: $('.clicked-day').position().top - 75 }, 400);
     } else if ($(e.currentTarget).hasClass('clicked-day')) {
       $(e.currentTarget).addClass('double-click');
       $(e.currentTarget).find('.main-info-section').addClass('animate-events-one');
@@ -428,8 +428,6 @@ export class CalendarComponent implements OnInit, AfterViewInit {
   submitEvent() {
     this.dataService.createEvent(this.addItemForm.value)
       .subscribe((response) => {
-        console.log(this.addItemForm.value);
-        console.log(response);
         this.addItemForm.reset();
         $('.add-item-container').removeClass('show-form');
         $('body, html').animate({ scrollTop: $('.clicked-day').position().top - 75 }, 200);
@@ -437,7 +435,7 @@ export class CalendarComponent implements OnInit, AfterViewInit {
 
     setTimeout(() => {
       this.getEvents();
-    }, 500);
+    }, 300);
   }
 
 }
