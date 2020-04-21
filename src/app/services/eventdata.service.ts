@@ -13,7 +13,7 @@ export class EventDataService {
     constructor(private http: HttpClient, private cookieService: CookieService) { }
 
     getToken() {
-        let token = this.cookieService.get('token');
+        const token = this.cookieService.get('token');
         const config = {
             headers: new HttpHeaders({ 'Authorization': 'Bearer ' + token })
         };
@@ -26,12 +26,13 @@ export class EventDataService {
     }
 
     getEvents(): Observable<any> {
-        let param = { user_id: this.cookieService.get('userId') };
+        const param = { user_id: this.cookieService.get('userId') };
         return this.http.get(this.apiUrl + '/user/events', { params: param });
     }
 
-    deleteEvent(event_id) {
-        return this.http.delete(this.apiUrl + '/deleteevent/' + event_id);
+    deleteEvent(eventId) {
+        console.log(eventId.event_input);
+        return this.http.delete(this.apiUrl + '/deleteevent/' + eventId.event_input, eventId);
     }
 
 }

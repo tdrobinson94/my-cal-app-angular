@@ -27,10 +27,15 @@
                 <div class="num-box"><span class="num-date"></span></div>
                 <div class="date-value"></div>
                 <div class="main-info-section">
-                    <form *ngFor="let event of events">
-                        <p class="event" [ngClass]="event.eventstart_date">{{event.eventtitle}} - {{event.eventdesc}}
-                        <button class="entypo-minus" type="submit" value="{{event.eventid}}"></button>
-                        </p>
+                    <form [formGroup]="deleteItemForm">
+                        <div *ngFor="let event of events">
+                            <div class="event" [ngClass]="event.eventstart_date">
+                                {{event.eventtitle}} - {{event.eventdesc}}
+                                <button class="entypo-minus" (click)="deleteEventButtonClick($event)" value="{{event.eventid}}"></button>
+                            </div>
+                        </div>
+                        <input formControlName="event_input" type="text" name="event_input" class="event_input"/>
+                        <button type="submit" (click)="deleteEvent()">Delete</button>
                     </form>
                 </div>
             </div>
@@ -41,9 +46,9 @@
         </div>
     </div>
 
-    <!-- <button class="add-item-button entypo-list-add"></button>
+    <button class="add-item-button entypo-list-add"></button>
 
-    <div class="add-item-container">
+    <!--<div class="add-item-container">
         <div class="form-nav-bar">
             <h2>Place Items on Calendar</h2>
             <div class="close-form entypo-down-open"></div>

@@ -231,7 +231,7 @@
                         // transition: all 1.5s ease-in-out;
                         height: calc(100% - 45px);
 
-                        p {
+                        .event {
                             &:hover, &:focus {
                                 background: rgba(255,0,0,.8);
                                 color: $textwht;
@@ -251,7 +251,7 @@
                         }
                     }
 
-                    p {
+                    .event {
                         font-size: 10px;
                         cursor: pointer;
                         height: 11px;
@@ -275,6 +275,10 @@
                             height: 13px;
                         }
 
+                        input {
+                            display: none;
+                        }
+
                         button {
                             display: none;
 
@@ -282,6 +286,10 @@
                                 color: $textwht;
                             }
                         }
+                    }
+
+                    input, button {
+                        display: none;
                     }
                 }
 
@@ -358,12 +366,16 @@
 
                     .main-info-section {
                         padding: 5px 0;
-                        p {
+                        .event {
                             font-size: 16px !important;
                             height: auto !important;
                             overflow: initial !important;
                             text-align: left;
                             margin: 5px 4%;
+                        }
+
+                        button {
+                            display: inline-block;
                         }
                     }
                 }
@@ -378,6 +390,36 @@
         }
 
 
+    }
+
+    .add-item-button {
+        padding: 15px;
+        position: fixed;
+        bottom: 60.9px;
+        font-size: 20px;
+        border-radius: 100%;
+        border: none;
+        background-color: $alert;
+        color: $textwht;
+        right: 20px;
+        z-index: 999;
+        transition: all .3s ease-in-out;
+        // box-shadow: 1px 1px 10px #333333;
+
+        &:hover {
+            &:before {
+                @media screen and (min-width: $mid-small) {
+                    color: #333333;
+                    opacity: .4;
+                    transition: all .2s ease-in-out;
+                }
+            }
+        }
+
+        @media screen and (min-width: $end-small) {
+            right: 50%;
+            transform: translateX(50%);
+        }
     }
 
 

@@ -40,6 +40,10 @@ export class TestCalendarComponent implements OnInit, AfterViewInit {
   events: any;
   eachEvent: any;
 
+  deleteItemForm = new FormGroup({
+    event_input: new FormControl(''),
+  });
+
   ngOnInit(): void {
     console.log('Current date: ' + this.clock);
     console.log('Current day of week: ' + this.currentDayofWeek);
@@ -111,7 +115,6 @@ export class TestCalendarComponent implements OnInit, AfterViewInit {
     const startOfMonth = new Date(currentYear, currentMonth, 1).getDay();
     const monthDays = MONTHS[$(document).find('#month').val()].days;
     const weeks = $(document).find('.weeks').children();
-    // $(document).find('.main-info').empty();
 
     _.range(1, 43).forEach((dayIndex, i) => {
       const day = $(weeks[startOfMonth + dayIndex - 1]);
@@ -129,7 +132,6 @@ export class TestCalendarComponent implements OnInit, AfterViewInit {
           currentYear = Number(currentYear) + 1;
         }
         if (nextMonth < 10) {
-          const newMonth = nextMonth;
           const standardMonth = '0' + nextMonth;
           if ((dayIndex - monthDays) < 10) {
             const newDayIndex = (dayIndex - monthDays);
@@ -159,7 +161,6 @@ export class TestCalendarComponent implements OnInit, AfterViewInit {
       } else {
         const thisMonth = (Number(currentMonth) + 1);
         if (thisMonth < 10) {
-          const newMonth = thisMonth;
           const standardNewMonth = '0' + thisMonth;
           if (dayIndex < 10) {
             const newDays = dayIndex;
@@ -200,7 +201,6 @@ export class TestCalendarComponent implements OnInit, AfterViewInit {
     let currentYear = $(document).find('#year').val();
     let prevMonth = Number($(document).find('#month').val());
     const startOfMonth = new Date($(document).find('#year').val(), $(document).find('#month').val(), 1).getDay();
-    const monthDays = MONTHS[$(document).find('#month').val()].days;
     const prevMonthDays = $(document).find('#month').val() == 0 ? 31 : MONTHS[$(document).find('#month').val() - 1].days;
     const weeks = $(document).find('.weeks').children();
     const prevDays = _.range(1, prevMonthDays + 1).slice(-startOfMonth);
@@ -212,7 +212,6 @@ export class TestCalendarComponent implements OnInit, AfterViewInit {
           currentYear = Number(currentYear) - 1;
         }
         if (prevMonth < 10) {
-          const newMonth = prevMonth;
           const standardNewMonth = '0' + prevMonth;
           day.find('.day-box').html(currentYear + '-' + standardNewMonth + '-' + (prevDays[dayIndex]));
           day.find('.date-value').html(currentYear + '-' + standardNewMonth + '-' + (prevDays[dayIndex]));
@@ -251,22 +250,9 @@ export class TestCalendarComponent implements OnInit, AfterViewInit {
 
     setTimeout(() => {
       this.getEvents();
-    }, 400);
+    }, 300);
 
     $('html, body').animate({ scrollTop: $('.selected-day').position().top - 75 }, 300);
-  }
-
-  getMonthDays() {
-    const getmonthDays = [];
-    const startofmonth = new Date($('#year').val(), $('#month').val()).getDay();
-    const weeks = $(document).find('.weeks').children();
-    _.range(1, 43).forEach((dayIndex, i) => {
-      const day = $(weeks[dayIndex - 1]);
-      day.find('.date-value').html();
-      getmonthDays.push(day.find('.date-value').html())
-    });
-    // this.getEachMonthDays = getmonthDays;
-    // console.log(getmonthDays);
   }
 
   prevClick() {
@@ -288,7 +274,6 @@ export class TestCalendarComponent implements OnInit, AfterViewInit {
     setTimeout(() => {
       this.changeCal();
     }, 100);
-    // this.getMonthDays();
   }
 
   currentClick() {
@@ -301,7 +286,6 @@ export class TestCalendarComponent implements OnInit, AfterViewInit {
     setTimeout(() => {
       this.changeCal();
     }, 100);
-    // this.getMonthDays();
   }
 
   nextClick() {
@@ -323,7 +307,6 @@ export class TestCalendarComponent implements OnInit, AfterViewInit {
     setTimeout(() => {
       this.changeCal();
     }, 100);
-    // this.getMonthDays();
   }
 
   clickonDay(e) {
@@ -335,7 +318,7 @@ export class TestCalendarComponent implements OnInit, AfterViewInit {
     } else if (!$(e.currentTarget).hasClass('clicked-day') && !$(e.currentTarget).hasClass('double-click')) {
       $('.day-box').removeClass('clicked-day double-click');
       $(e.currentTarget).addClass('clicked-day');
-      $('html, body').animate({ scrollTop: $('.clicked-day').position().top - 75 }, 700);
+      $('html, body').animate({ scrollTop: $('.clicked-day').position().top - 75 }, 500);
     } else if ($(e.currentTarget).hasClass('clicked-day')) {
       $(e.currentTarget).addClass('double-click');
       $(e.currentTarget).find('.main-info-section').addClass('animate-events-one');
@@ -348,16 +331,9 @@ export class TestCalendarComponent implements OnInit, AfterViewInit {
   getEvents() {
     this.dataService.getEvents()
       .subscribe((response) => {
-        // this.events = response;
         let i;
         let dayIndex;
         const eventlist = [];
-        MONTHS[1].days = Number($('#year').val()) % 4 == 0 ? 29 : 28;
-        const currentMonth = $(document).find('#month').val();
-        const nextMonth = Number($(document).find('#month').val()) + 2;
-        const currentYear = $(document).find('#year').val();
-        const startOfMonth = new Date(currentYear, currentMonth, 1).getDay();
-        const monthDays = MONTHS[$(document).find('#month').val()].days;
         const weeks = $(document).find('.weeks').children();
 
         for (dayIndex = 0; dayIndex <= 42; dayIndex++) {
@@ -372,9 +348,6 @@ export class TestCalendarComponent implements OnInit, AfterViewInit {
               eventstart_time: moment(response[i].start_time, 'HH:mm:ss').format('h:mm A'),
               eventend_time: moment(response[i].end_time, 'HH:mm:ss').format('h:mm A')
             };
-            // console.log('Date: ' + day.find('.date-value').html());
-            // console.log('Event date: ' + eventlist[i].eventstart_date);
-            console.log(eventlist[i].eventstart_date);
 
             if (eventlist[i].eventstart_date === day.find('.date-value').html()) {
 
@@ -387,6 +360,24 @@ export class TestCalendarComponent implements OnInit, AfterViewInit {
           }
           this.events = eventlist;
         }
+      });
+  }
+
+  deleteEventButtonClick(e) {
+    this.deleteItemForm = new FormGroup({
+      event_input: new FormControl($(e.target).val()),
+    });
+
+    console.log(this.deleteItemForm.value);
+  }
+
+  deleteEvent() {
+    console.log(this.deleteItemForm.value);
+    this.dataService.deleteEvent(this.deleteItemForm.value)
+      .subscribe((response) => {
+        console.log(response);
+        this.getEvents();
+        // return response.id !== event_id;
       });
   }
 
