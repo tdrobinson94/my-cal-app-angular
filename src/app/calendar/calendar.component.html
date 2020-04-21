@@ -33,7 +33,7 @@
                 <div class="main-info-section">
                     <form [formGroup]="deleteItemForm" (ngSubmit)="deleteEvent()">
                         <div *ngFor="let event of events">
-                            <div class="event" [ngClass]="event.eventstart_date">
+                            <div class="event" [ngClass]="event.eventstart_date" (click)="clickEvent($event)">
                                 {{event.eventtitle}} - {{event.eventdesc}}
                                 <p>{{event.eventstart_time}} - {{event.eventend_time}}</p>
                                 <button class="entypo-minus" (click)="deleteEventButtonClick($event)"

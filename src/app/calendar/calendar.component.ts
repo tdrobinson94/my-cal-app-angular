@@ -57,12 +57,6 @@ export class CalendarComponent implements OnInit, AfterViewInit {
   });
 
   ngOnInit(): void {
-    console.log('Current date: ' + this.clock);
-    console.log('Current day of week: ' + this.currentDayofWeek);
-    console.log('Current month: ' + this.currentMonth);
-    console.log('Current Day: ' + this.currentDay);
-    console.log('Current Year: ' + this.currentYear);
-
     this.createCalendarGrid();
   }
 
@@ -104,13 +98,11 @@ export class CalendarComponent implements OnInit, AfterViewInit {
 
     // Detect the user device
     if (navigator.userAgent.indexOf('Mac') !== -1) {
-      console.log('Mac');
       if (navigator.userAgent.indexOf('Chrome') !== -1) {
-        console.log('Chrome');
         $('.calendar-navbar').addClass('mac');
       }
     } else if (navigator.userAgent.indexOf('Win') !== -1) {
-      console.log('Windows');
+      // console.log('Windows');
     }
   }
 
@@ -338,6 +330,10 @@ export class CalendarComponent implements OnInit, AfterViewInit {
         $('.double-click .main-info-section').addClass('animate-events-two');
       }, 400);
     }
+  }
+
+  clickEvent(e) {
+    $('.main-info-section').animate({ scrollTop: $(e.target).position().top - 25}, 200);
   }
 
   getEvents() {
