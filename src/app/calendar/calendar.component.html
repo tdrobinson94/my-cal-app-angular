@@ -107,7 +107,7 @@
 
             <div class="input-wrapper time-input">
                 <label class="time-label">Start Time</label>
-                <input type="time" formControlName="start_time" />
+                <input type="time" formControlName="start_time" (change)="startTimeChange()" />
             </div>
 
             <div class="input-wrapper time-input-end">
