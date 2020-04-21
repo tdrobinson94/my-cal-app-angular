@@ -333,7 +333,7 @@ export class CalendarComponent implements OnInit, AfterViewInit {
   }
 
   clickEvent(e) {
-    $('.main-info-section').animate({ scrollTop: $(e.target).position().top - 25}, 200);
+    $('.main-info-section').animate({ scrollTop: $(e.target).position().top - 35}, 200);
   }
 
   getEvents() {
