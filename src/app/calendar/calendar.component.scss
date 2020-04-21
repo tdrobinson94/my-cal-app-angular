@@ -461,7 +461,8 @@
         }
 
         &.show-form {
-            height: 100%;
+            height: calc(100% - 53px);
+            padding-bottom: 53px;
             width: 100%;
             z-index: 9999;
             background: $textwht;
