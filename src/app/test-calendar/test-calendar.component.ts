@@ -44,6 +44,18 @@ export class TestCalendarComponent implements OnInit, AfterViewInit {
     event_input: new FormControl(''),
   });
 
+  addItemForm = new FormGroup({
+    item_type: new FormControl(),
+    frequency: new FormControl(''),
+    title: new FormControl(''),
+    description: new FormControl(''),
+    start_date: new FormControl(),
+    end_date: new FormControl(),
+    start_time: new FormControl(),
+    end_time: new FormControl(),
+    location: new FormControl(''),
+  });
+
   ngOnInit(): void {
     console.log('Current date: ' + this.clock);
     console.log('Current day of week: ' + this.currentDayofWeek);
@@ -375,12 +387,57 @@ export class TestCalendarComponent implements OnInit, AfterViewInit {
     this.dataService.deleteEvent(this.deleteItemForm.value)
       .subscribe((response) => {
         console.log(response);
-        this.getEvents();
+        // this.getEvents();
         // return response.id !== event_id;
       });
   }
 
+  openForm() {
+    const day = $('.clicked-day .date-value').text();
+    const minutes = String(this.clock.getMinutes()).padStart(2, '0');
+    const hours = String(this.clock.getHours()).padStart(2, '0');
+    const extraHour = String(this.clock.getHours() + 1).padStart(2, '0');
+    const currentTime = hours + ':' + minutes;
+    const endTime = (extraHour) + ':' + minutes;
 
-  
+    $('.add-item-container').addClass('show-form');
+
+    this.addItemForm = new FormGroup({
+      item_type: new FormControl(1),
+      frequency: new FormControl(0),
+      title: new FormControl(''),
+      description: new FormControl(''),
+      start_date: new FormControl(day),
+      end_date: new FormControl(day),
+      start_time: new FormControl(currentTime),
+      end_time: new FormControl(endTime),
+      location: new FormControl(''),
+    });
+
+    if ($(window).width() <= 800) {
+
+    } else {
+      $('.clicked-day').removeClass('double-click');
+    }
+  }
+
+  closeForm() {
+    $('.add-item-container').removeClass('show-form');
+  }
+
+  submitEvent() {
+    this.dataService.createEvent(this.addItemForm.value)
+      .subscribe((response) => {
+        console.log(this.addItemForm.value);
+        console.log(response);
+        this.addItemForm.reset();
+        $('.add-item-container').removeClass('show-form');
+        $('body, html').animate({ scrollTop: $('.clicked-day').position().top - 75 }, 200);
+      });
+
+    setTimeout(() => {
+      this.getEvents();
+    }, 500);
+  }
 
 }

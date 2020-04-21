@@ -1,755 +1,572 @@
 @import '..//..//variables';
 
-.calendar_wrapper{
+.calendar-wrapper {
     width: 100%;
     height: 100%;
-    position: relative;   
-}
 
-.month{
-    width: 100%;
-    z-index: 999;
-    position: fixed;
-    top: 50px;
-    padding: 9px 0;
-    // border-radius: 0 0 15px 15px;
-    background-color: $primary;
-    // box-shadow: 1px 1px 10px #333333;
-    .controls {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-    .select-form{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        .date-selectors{
-        display: block;
-        background-image: none;
-        .selector, .todays-day{
-            margin-left: 10px;
-            background-color: transparent;
-            border: none;
-            outline: none;
-            font-size: 37px;
-            transition: all .2s ease-in-out;
-            color: $textwht;
-            font-family: $globalFont !important;
-
-            @media screen and (max-width: $mid-small) {
-                font-size: 30px;
-            }
-
-            option {
-                color: $textdrk;
-            }
-
-            &:hover {
-                @media screen and (min-width: $mid-small) {
-                    color: $textdrk;
-                    opacity: .4;
-                }
-            }
-
-            &:active, &:focus {
-                color: $textdrk;
-            }
-        }
-        .todays-day {
-            width: 65px;
-        }
-        }
-        .settings {
-            position: absolute;
-            right: 10px;
-            background: transparent;
-            border: none;
-            color: $textwht;
-            font-size: 20px;
-        }
-        .account_selector{
-        // height: 45px;
-        width: 200px;
-        margin-left: 5px;
-        background-color: transparent;
-        border: 1px solid $primary;
-        outline: none;
-        font-size: 20px;
-        color: $textwht;
-        transition: all .2s ease-in-out;
-        }
-    }
-    .calendar-controls{
-        display: flex;
-        justify-content: space-around;
-        margin: 15px 0 10px;
-        width: 200px;
-        @media screen and (max-width: $mid-small) {
-            width: 140px;
-        }
-
-        @media screen and (max-width: $sm-small) {
-            width: 100px;
-        }
-        .prev{
-
-        }
-        .next{
-            // right: 0px;
-        }
-        .button{
-            font-weight: bold;
-            background: transparent;
-            border: none;
-            z-index: 2;
-            transition: all .2s ease-in-out;
-            font-size: 12px;
-            position: relative;
-            color: #fff;
-
-            &:before {
-                position: absolute;
-                font-size: 30px;
-                left: -1.5px;
-                top: -13.6px;
-
-                @-moz-document url-prefix() {
-                left: 2.25px;
-                }
-            }
-
-            &.current {
-
-            }
-
-            &.entypo-calendar {
-                &:before {
-                font-weight: 100;
-                }
-            }
-
-            @media screen and (max-width: $end-small) {
-                outline: none;
-            }
-        }
-        .current::before {
-            font-weight: 100px;
-
-        }
-        .button:hover{
-            @media screen and (min-width: $mid-small) {
-            color: $textdrk;
-            opacity: .4;
-            transition: all .2s ease-in-out;
-            }
-        }
-    }
-
-    .weekday-initials {
-        display: flex;
-        justify-content: center;
-        padding: 10px 0 5px 0;
-
-        // @media screen and (max-width: $end-small) {
-        //   display: none !important;
-        // }
-
-        div {
-        width: 24%;
-        text-align: center;
-        opacity: .45;
-
-        &:nth-child(even) {
-            border-right: 1px solid $textdrk;
-            border-left: 1px solid $textdrk;
-        }
-        }
-    }
-}
-
-.calendar-container{
-    width: 100%;
-    bottom: 0;
-    top: 94px;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    height: 100%;
-
-    @media screen and (min-width: $mid-small) {
-        top: 104px;
-    }
-
-    .days {
+    .calendar-navbar {
+        position: fixed;
         width: 100%;
+        background: red;
+        z-index: 99;
         display: flex;
         justify-content: center;
-        height: 18%;
-        margin-top: 10px;
-        transition: all .3s ease-in-out;
+        align-items: center;
+        flex-wrap: wrap;
 
-        &.bottom {
-            height: 53px !important;
+        &.mac {
+            top: 57px;
         }
 
-        @media screen and (min-width: $end-small) {
-        height: 20%;
-        }
-        
-        h1{
-            margin: 0;
-            font-size: 25px;
+        .controls {
+            
             width: 100%;
-            text-align: center;
+            padding: 5px 0;
+            display: flex;
+            align-items: center;
+
+            .selector {
+                display: inline;
+                margin-left: 10px;
+                background-color: transparent;
+                border: none;
+                outline: none;
+                font-size: 25px;
+                transition: all .2s ease-in-out;
+                color: $textwht;
+                font-family: $globalFont !important;
+
+                &:focus {
+                    color: $textdrk;
+                }
+            }
+
+            .calendar-controls {
+
+                display: flex;
+                justify-content: flex-end;
+                width: 100%;
+
+                .btn {
+                    color: $textwht;
+                    background: transparent;
+                    border-radius: 5px;
+                    margin: 0 5px;
+                    border: 0;
+                    position: relative;
+                    font-size: 12px;
+                    display: flex;
+                    align-items: center;
+                    outline: 0;
+
+                    span {
+                        padding: 6px 0 0 0;
+                        font-size: 12px;
+                        font-weight: bold;
+                        position: absolute;
+                        margin-left: 6px;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-95%, -42%);
+                    }
+
+
+                    &:before {
+                        font-size: 30px;
+                    }
+
+                    &.entypo-calendar {
+                        &:before {
+                            font-weight: 100;
+                        }
+                    }
+                }
+
+            }
+
         }
-        .extra {
-        display: none;
+
+        .weekday-initials {
+
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+
+            .day-of-week-label {
+
+                // flex: 0 0 14.285714285714286%;
+                width: 14.285714285714286%;
+                max-width: 14.285714285714286%;
+                text-align: center;
+                position: relative;
+                background: $primary;
+                padding: 4px 0;
+                color: $textdrk;
+                opacity: .5;
+                font-size: 14px;
+
+                @media screen and (max-width: $end-small) {
+                    font-size: 16px;
+                }
+
+                &.show-current-weekday {
+                    color: $textwht;
+                    opacity: 1;
+                    border-radius: 5px;
+                    font-weight: bold;
+                }
+
+            }
+
+
         }
-        .num-box{
-        box-sizing: border-box;
-        width: 14.28%;
-        height: auto;
-        background-color: $textwht;
+
+
+    }
+
+
+    .calendar-container {
+
+        width: 100%;
+        height: 100%;
+        padding: 5px 0;
         position: relative;
-        outline: none;
-        border: 1px solid transparent;
-        transition: all .1s ease-in-out;
-        border-radius: 5px;
+        top: 74px;
 
-        .close-day, .open-day{
-            display: none;
-        }
+        .row {
 
-        .num-container{
-            float: left;
-            border-radius: 100%;
-            margin: 5px;
+            width: 100%;
+            height: 18%;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 5px;
-            transition: background-color .2s ease-in-out;
-            display: none;
-            .num{
-            font-size: 30px;
-            border-radius: 100%;
-            color: $primary;
-            }
-        }
-        .weekday {
-            position: absolute;
-            top: 0;
-            width: 100%;
-            margin-top: 4px;
-            text-align: center;
-            display: inline-block;
-            color: #455A64;
-            height: 19%;
-            transition: all .3s ease-in-out;
-            br{
-                display: none;
-            }
-            .num-date{
-                color: $primary;
-                padding: 1px;
-                border-radius: 100%;
-                font-size: 14px;
-            }
-            .current-day{
-                border: 2px solid $primary;
-                background-color: $primary;
-                color: $textwht;
-            }
-        }
-        .main-info {
-            position: absolute;
-            top: 20%;
-            left: 0;
-            width: 100%;
-            height: 79%;
-            overflow: auto;
-            transition: all .7s ease-in-out;
+            margin: 1px 0;
+            padding: 1px 0;
+            overflow: hidden;
 
-            &::-webkit-scrollbar {
-                width: 0px;
-            }
-            &::-webkit-scrollbar-track {
-                background: transparent;
-            }
-            &::-webkit-scrollbar-thumb {
-                background: rgba(0, 0, 0, .2);
-                border-radius: 50px;
-            }
-            &::-webkit-scrollbar-thumb:hover {
-                background: rgba(126, 93, 93, 0.7); 
+            &:nth-child(1) {
+                margin-top: 5px;
             }
 
-            span {
-                display: none;
+            &:nth-child(6) {
+                margin-bottom: 5px;
             }
 
-            p {
-                font-size: 10px;
-                color: $textdrk;
-                padding: 5px 5px;
-                overflow: hidden;
+            @media screen and (min-width: $end-small) {
+
+                height: 14.285714285714286%;
+
+            }
+
+            @media screen and (min-width: 1000px) {
+
+                height: 18%;
+
+            }
+
+            .day-box {
+
+                width: 14.2%;
+                height: 100%;
+                // flex-grow: 1;
+                transition: all .3s ease-in-out;
                 position: relative;
-                border-bottom: 1px solid $textdrk;
-                // padding-right: 15px;
-                margin: 3px 0;
-                transition: all .3s ease-in-out;
-                width: auto;
-                height: 6px;
 
-                @media screen and (max-width: $end-small) {
-                    font-size: 9px;
-                    padding-top: 2px;
-                }
-
-                &:hover, &:focus {
-                    background: rgba(255, 0, 0, 0.4);
-                    border-bottom: 1px solid $primary;
-                    cursor: default;
-                    transition: all .3s ease-in-out;
-                }
-
-                button {
+                button.close-day {
                     display: none;
+                }
+
+                .date-value {
+                    display: none;
+                }
+
+                .num-box {
+                    display: flex;
+                    width: 11.5px;
+                    margin: auto;
+                    padding: 5px;
                     border-radius: 100%;
-                    padding: 0;
-                    margin: 0;
-                    border: 0;
-                    background: transparent;
-                    position: absolute;
+                    position: relative;
                     top: 3px;
-                    right: 3px;
                     cursor: pointer;
-                }
-            }
-        }
-        .date-value{
-            display: none;
-        }
 
-        &.dead_month_color {
-            opacity: .5;
-            pointer-events: none;
-        }
-
-        &.clicked-day {
-            border: 1px solid $textdrk;
-            transition: all .3s ease-in-out;
-            animation-name: shrink;
-            animation-duration: .5s;
-            animation-timing-function: ease-in-out;
-            // box-shadow: 1px 1px 10px #333333;
-            z-index: 99;
-            .weekday{
-                transition: all .3s ease-in-out;
-                .num-date {
-                    font-weight: bolder;
-                    font-size: 14px;
-                }
-            }
-
-            // @media screen and (min-width: $end-small) {
-            &.double-click {
-                max-width: $end-small;
-                margin: auto;
-                z-index: 99;
-                width: 100%;
-                height: 400px;
-                top: 50%;
-                position: fixed;
-                transform: translate(0, -50%);
-                box-shadow: 1px 1px 10px $textdrk;
-                transition: all .3s ease-in-out;
-                animation-name: grow;
-                animation-duration: .5s;
-                animation-timing-function: ease-in-out;
-                display: block;
-
-                @media screen and (max-width: $end-small) {
-                    bottom: 0;
-                    box-shadow: none;
-                    top: 154px;
-                    margin: 0;
-                    height: auto;
-                    transform: translate(0, 0);
-                    border: 0;
-                }
-
-                @media screen and (max-width: $mid-small) {
-                    top: 144px;
-                }
-
-                .weekday {
-                    margin-top: 25px;
-                    height: 10%;
-                    transition: all .3s ease-in-out;
-
-                    .num-date{
-                        padding: 2px;
-                        font-size: 20px;
+                    @media screen and (min-width: $end-small) {
+                        width: 17px;
                     }
-                } 
 
-                .main-info {
-                    top: 14%;
-                    height: 84%;
-                    transition: all .7s ease-in-out;
+                    .num-date {
+                        cursor: pointer;
+                        font-size: 10px;
 
-                    p {
-                        height: auto;
-                        font-size: 18px;
-                        padding: 2px 40px 0 10px;
-                        transition: all .3s ease-in-out;
-                        margin: 3px 20px;
+                        @media screen and (min-width: $end-small) {
+                            font-size: 16px;
+                        }
+                    }
 
-                        &:hover {
-                            button {
-                                font-size: 25px;
-                                right: 12px;
-                                display: block;
-                                top: -3px;
-                                outline: none;
+                    &.current-day {
+                        background: $primary;
+                        color: $textwht;
+                    }
+                }
 
-                                &:hover {
-                                    color: rgba(255, 0, 0, 0.8);
+                .main-info-section {
+                    overflow: hidden;
+                    height: calc(100% - 40px);
+                    padding: 5px 10%;
+
+                    @media screen and (min-width: $mid-small) {
+                        padding: 5px;
+                    }
+
+                    &::-webkit-scrollbar {
+                        width: 0px;
+                    }
+
+                    &.animate-events-one {
+                        height: 0;
+                    }
+
+                    &.animate-events-two {
+                        // transition: all 1.5s ease-in-out;
+                        height: calc(100% - 45px);
+
+                        .event {
+                            &:hover, &:focus {
+                                background: rgba(255,0,0,.8);
+                                color: $textwht;
+                                transition: all .2s ease-in-out;
+                                border-radius: 5px;
+                                button {
+                                    display: inline;
+                                    background: transparent;
+                                    border: 0;
+                                    position: absolute;
+                                    right: 4%;
+                                    top: -1px;
+                                    font-size: 20px;
+                                    cursor: pointer;
                                 }
                             }
                         }
                     }
+
+                    .event {
+                        font-size: 10px;
+                        cursor: pointer;
+                        height: 11px;
+                        overflow: hidden;
+                        margin: 5px 0px;
+                        padding: 2px 20% 0 4%;
+                        transition: all .2s ease-in-out;
+                        text-align: center;
+                        position: relative;
+                        display: none;
+
+                        &.visible {
+                            display: block;
+                            border-left: 2px solid rgba(255,0,0,.8);
+                            transition: all .2s ease-in-out;
+                        }
+
+                        @media screen and (min-width: $mid-small) {
+                            text-align: left;
+                            font-size: 12px;
+                            height: 13px;
+                        }
+
+                        input {
+                            display: none;
+                        }
+
+                        button {
+                            display: none;
+
+                            &:hover {
+                                color: $textwht;
+                            }
+                        }
+                    }
+
+                    input, button {
+                        display: none;
+                    }
                 }
 
-                .close-day {
-                    display: block;
-                    position: absolute;
-                    right: 40px;
-                    top: 20px;
-                    font-size: 25px;
-                    padding: 0px 20px;
-                    cursor: pointer;
-                    opacity: .5;
-                    color: red;
-                    transform: translateX(50%);
-                    transition: all .2s ease-in-out;
+                &.dead-month-color {
+                    opacity: .3;
+                    pointer-events: none;
+                }
 
-                    &:hover {
-                        @media screen and (min-width: $mid-small) {
-                            color: $textdrk;
-                            opacity: 1;
-                            transition: all .2s ease-in-out;
+                &.clicked-day {
+                    border: 1px solid $textdrk;
+                    border-radius: 5px;
+                    transition: all .3s ease-in-out;
+                    animation-name: shrink;
+                    animation-duration: .3s;
+                    animation-timing-function: ease-in-out;
+
+                    .num-date {
+                        font-weight: bold;
+                    }
+                }
+
+                @keyframes shrink{
+                    25%  {transform: scale(.5, .5);}
+                }
+
+                &.double-click {
+                    background: #fff;
+                    position: fixed;
+                    top: 121.5px;
+                    bottom: 53px;
+                    left: 50%;
+                    transform: translate(-50%, 0%);
+                    height: auto;
+                    width: 100%;
+                    max-width: 800px;
+                    z-index: 99;
+                    transition: height, width 0.3s ease-in-out;
+                    border: none;
+
+                    @media screen and (min-width: $end-small) {
+                        bottom: 50%;
+                        left: 50%;
+                        transform: translate(-50%, 25%);
+                        height: 50%;
+                        border: 1px solid #333333;
+                    }
+
+                    button.close-day {
+                        display: inline;
+                        position: absolute;
+                        top: 2px;
+                        right: 4%;
+                        background: transparent;
+                        border-radius: 5px;
+                        border: 0;
+                        cursor: pointer;
+
+                        &:before {
+                            font-size: 30px;
+                            height: 30px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                        }
+                    }
+
+                    .num-box {
+                        width: 22.5px;
+
+                        .num-date {
+                            font-size: 20px;
+                        }
+                    }
+
+                    .main-info-section {
+                        padding: 5px 0;
+                        .event {
+                            font-size: 16px !important;
+                            height: auto !important;
+                            overflow: initial !important;
+                            text-align: left;
+                            margin: 5px 4%;
+                        }
+
+                        button.delete-event {
+                            display: block;
+                            margin: auto;
+                            background-color: red;
+                            color: #fff;
+                            border-radius: 10px;
+                            padding: 10px;
+                            border: 0;
+                            font-size: 15px;
+                            margin: 20px auto;
                         }
                     }
                 }
+
             }
-            // }
-            @keyframes grow{
-                50%  {transform: scale(1, 1);}
-            }
+
+
         }
-        @keyframes shrink{
-            25%  {transform: scale(.5, .5);}
+
+        .bottom-of-cal-fix {
+            height: 53px;
         }
-        }
+
+
     }
-    .not-showing {
+
+    .add-item-button {
+        padding: 15px;
+        position: fixed;
+        bottom: 60.9px;
+        font-size: 20px;
+        border-radius: 100%;
+        border: none;
+        background-color: $alert;
+        color: $textwht;
+        right: 20px;
+        z-index: 999;
         transition: all .3s ease-in-out;
-        .weekday {
-            bottom: 0;
-            top: initial !important;
-            transition: all .3s ease-in-out;
-        }
-        .double-click {
-            .weekday {
-                top: 0 !important;
-                bottom: initial !important;
-                transition: all .3s ease-in-out;
+        // box-shadow: 1px 1px 10px #333333;
+
+        &:hover {
+            &:before {
+                @media screen and (min-width: $mid-small) {
+                    color: #333333;
+                    opacity: .4;
+                    transition: all .2s ease-in-out;
+                }
             }
         }
-    }
-    .cur_trans_box{
-        display: none;
-    }
-}
 
-.add-item-form {
-    position: fixed;
-    bottom: -5px;
-    right: 0px;
-    font-size: 20px;
-    width: 100%;
-    height: 0px;
-    overflow: hidden;
-    max-width: $end-small;
-    transition:  width .4s, height .4s;
-    transition-timing-function: ease-in-out;
-    background: $textwht;
-    border: 1px solid $textdrk;
-    z-index: 99999;
-
-    @media screen and (min-width: $end-small) {
-      right: 50%;
-      transform: translateX(50%);
+        @media screen and (min-width: $end-small) {
+            right: 50%;
+            transform: translateX(50%);
+        }
     }
 
-&.show-form {
-    position: fixed;
-    margin: auto;
-    bottom: 50%;
-    height: 400px;
-    width: 100%;
-    max-width: $end-small;
-    overflow: initial;
-    transition: width .4s, height .4s, border-radius .5s;
-    transition-timing-function: ease-in-out;
-    background-color: $textwht;
-    box-shadow: 1px 1px 10px $textdrk;
-    float: none;
-    overflow: auto;
-    transform: translate(50%, 50%);
-    color: $textdrk;
-    border-radius: 5px;
-    background: $textwht;
 
-    &::-webkit-scrollbar {
-      width: 4px;
-    }
-    &::-webkit-scrollbar-track {
-      background: transparent;
-    }
-    &::-webkit-scrollbar-thumb {
-      background: rgba(0, 0, 0, .2);
-      border-radius: 50px;
-    }
-    &::-webkit-scrollbar-thumb:hover {
-      background: rgba(126, 93, 93, 0.7); 
-    }
-
-    @media screen and (max-width: $end-small) {
-        width: 100%;
-        left: 0;
-        right: 0;
+    .add-item-container {
+        position: fixed;
         bottom: 0;
-        height: 100vh;
-        top: 0px;
-        transform: translateX(0);
-        border-radius: 0;
-        border: 0;
-        box-shadow: none;
-    }
+        right: 0;
+        height: 0;
+        width: 0;
+        transition: all .3s ease-in-out;
+        overflow: auto;
 
-}
+        &::-webkit-scrollbar {
+            width: 4px;
+        }
+        &::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        &::-webkit-scrollbar-thumb {
+            background: rgba(0, 0, 0, .2);
+            border-radius: 50px;
+        }
+        &::-webkit-scrollbar-thumb:hover {
+            background: rgba(126, 93, 93, 0.7); 
+        }
 
-.form-nav {
-    position: sticky;
-    top: 0;
-    padding: 15px 0 15px 20px;
-    background: $alert;
-    color: $textwht;
-    h2 {
-        margin: 0;
-        margin-right: 54px;
-    }
-}
+        @media screen and (min-width: $end-small) {
+            right: 50% !important;
+            width: auto;
+            transform: translateX(50%);
+        }
 
-form {
-    padding: 20px;
-    margin: auto;
-    color: $textdrk;
-
-    @media screen and (min-width: $end-small) {
-        display: flex;
-        justify-content: space-between;
-        flex-wrap: wrap;
-
-        .input-wrapper {
+        &.show-form {
+            height: 100%;
             width: 100%;
+            z-index: 9999;
+            background: $textwht;
+            transition: all .3s ease-in-out;
+            right: 0;
 
             @media screen and (min-width: $end-small) {
-                width: 49%;
+                bottom: 50%;
+                right: 50%;
+                transform: translate(50%, 50%);
+                height: 50%;
+                width: 100%;
+                max-width: 800px;
+                border: 1px solid #333333;
+                border-radius: 5px;
             }
         }
-    }
 
-    label {
-        display: block;
-        margin: 0;
-        padding: 0;
-        width: 100%;
-        font-weight: bold;
-        font-size: 15px;
-    }
+        .form-nav-bar {
+            position: sticky;
+            top: 0;
+            margin: 0 4%;
+            background: $textwht;
+            h2 {
+                padding: 15px 0;
+                margin: 0;
+            }
 
-    .select-item, .checkbox {
-        display: flex;
-        justify-content: space-evenly;
-        align-items: flex-start;
-        flex-wrap: wrap;
-        margin: 10px 0;
-        input {
-            display: none;
+            .close-form {
+                position: absolute;
+                display: inline;
+                top: 13px;
+                right: 0;
+                background: transparent;
+                border-radius: 5px;
+                border: 0;
+                cursor: pointer;
+
+                &:before {
+                    font-size: 30px;
+                    height: 30px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+            }
+        }
+
+        .input-wrapper {
+            margin: 0 4%;
         }
 
         label {
-            font-weight: normal;
-            display: inline;
-            width: auto;
-            padding: 10px;
-            transition: all .3s ease-in-out;
+            display: block;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            font-weight: bold;
             font-size: 15px;
         }
 
-        .selected {
-            background-color: rgba(255,0,0,.2);
-            color: $alert;
-            border-radius: 10px;
-            transition: color .5s ease-in-out;
-        }
-    }
-
-    select, .date-input input, .date-input-end input, .time-input-end input, .item-title input , .event-description textarea, .amount-input input, .location-input input, .time-input input {
-        width: 100%;
-        padding: 10px 0;
-        border: 0;
-        border-bottom: 1px solid #c4c7cc;
-        margin: 10px 0;
-        -webkit-box-sizing: border-box;
-        -moz-box-sizing: border-box;
-        box-sizing: border-box;
-        font-size: 15px;
-        transition: all .3s ease-in-out;
-        background: transparent;
-        color: $textdrk;
-
-        &:focus, &:active {
+        select, .date-input input, .date-input-end input, .time-input-end input, .item-title input , .event-description textarea, .amount-input input, .location-input input, .time-input input {
+            width: 100%;
+            padding: 10px 0;
             border: 0;
-            border-bottom: 1px solid $primary;
-            outline: 0;
-            transition: all .3s ease-in-out;
-            font-size: 16px;
-        }
-        &:-internal-autofill-selected {
-            box-shadow: inset 0 0 0 100px transparent;
-        }
-    }
-
-    select {
-        &:hover {
+            border-bottom: 1px solid #c4c7cc;
+            margin: 10px 0;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
             font-size: 15px;
-        }
-    }
+            transition: all .3s ease-in-out;
+            background: transparent;
+            color: $textdrk;
 
-    .date-input, .date-input-end, .time-input, .time-input-end {
-        input {
-            padding: 7.5px;
-        }
-    }
-
-    .input-wrapper:last-child {
-        width: 100%;
-    }
-
-    textarea {
-        height: 75px;
-    }
-
-    .event-description, .description-label, .amount-input, .amount-label, .location-label, .location-input, .time-input, .time-label, .date-input-end, .time-input-end {
-        display: none;
-    }
-
-    .show-input {
-        display: block;
-    }
-
-    ul {
-        list-style: none;
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        flex-wrap: wrap;
-        padding: 0;
-
-        @media screen and (max-width: $end-small) {
-            justify-content: space-evenly;
-
-            li {
-            width: 150px;
+            &:focus, &:active {
+                border: 0;
+                border-bottom: 1px solid $primary;
+                outline: 0;
+                transition: all .3s ease-in-out;
+                font-size: 16px;
+            }
+            &:-internal-autofill-selected {
+                box-shadow: inset 0 0 0 100px transparent;
             }
         }
-        li {
-            margin: 5px;
+
+        textarea {
+            height: 75px;
+        }
+
+        button.submit-form {
+            background-color: $alert;
+            color: $textwht;
+            border-radius: 10px;
+            padding: 10px;
+            border: 0;
+            font-size: 15px;
+            float: right;
+            margin: 20px 0;
         }
     }
 
-    button.submit-form {
-        background-color: $alert;
-        color: $textwht;
-        border-radius: 10px;
-        padding: 10px;
-        border: 0;
-        font-size: 15px;
-        float: right;
-        margin: 20px 0;
-    }
 
-}
 
-.close-form {
-    display: block;
-    position: absolute;
-    right: 0;
-    top: 17px;
-    font-size: 27px;
-    padding: 0px 20px;
-    cursor: pointer;
-    color: $textwht;
 
-    &:hover {
-        @media screen and (min-width: $mid-small) {
-            color: #333333;
-            opacity: .4;
-            transition: all .2s ease-in-out;
-        }
-    }
-}
-}
 
-.add-item-button {
-    padding: 15px;
-    position: fixed;
-    bottom: 60.9px;
-    font-size: 20px;
-    border-radius: 100%;
-    border: none;
-    background-color: $alert;
-    color: $textwht;
-    right: 20px;
-    z-index: 999;
-    transition: all .3s ease-in-out;
-    // box-shadow: 1px 1px 10px #333333;
-
-    &:hover {
-        &:before {
-            @media screen and (min-width: $mid-small) {
-                color: #333333;
-                opacity: .4;
-                transition: all .2s ease-in-out;
-            }
-        }
-    }
-
-    @media screen and (min-width: $end-small) {
-        right: 50%;
-        transform: translateX(50%);
-    }
-}
-
-.scroll-down {
-    bottom: 20px;
-    transition: all .3s ease-in-out;
 }
