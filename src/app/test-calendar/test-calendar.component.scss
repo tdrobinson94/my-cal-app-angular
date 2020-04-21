@@ -374,8 +374,16 @@
                             margin: 5px 4%;
                         }
 
-                        button {
-                            display: inline-block;
+                        button.delete-event {
+                            display: block;
+                            margin: auto;
+                            background-color: red;
+                            color: #fff;
+                            border-radius: 10px;
+                            padding: 10px;
+                            border: 0;
+                            font-size: 15px;
+                            margin: 20px auto;
                         }
                     }
                 }

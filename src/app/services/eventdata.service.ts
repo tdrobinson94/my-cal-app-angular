@@ -15,7 +15,7 @@ export class EventDataService {
     getToken() {
         const token = this.cookieService.get('token');
         const config = {
-            headers: new HttpHeaders({ 'Authorization': 'Bearer ' + token })
+            headers: new HttpHeaders({ Authorization: 'Bearer ' + token })
         };
 
         return config;
@@ -32,7 +32,7 @@ export class EventDataService {
 
     deleteEvent(eventId) {
         console.log(eventId.event_input);
-        return this.http.delete(this.apiUrl + '/deleteevent/' + eventId.event_input, eventId);
+        return this.http.delete(this.apiUrl + '/deleteevent/' + eventId.event_input, this.getToken());
     }
 
 }

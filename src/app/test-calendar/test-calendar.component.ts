@@ -367,7 +367,6 @@ export class TestCalendarComponent implements OnInit, AfterViewInit {
     this.deleteItemForm = new FormGroup({
       event_input: new FormControl($(e.target).val()),
     });
-
     console.log(this.deleteItemForm.value);
   }
 
