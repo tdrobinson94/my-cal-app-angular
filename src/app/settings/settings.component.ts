@@ -17,13 +17,16 @@ export class SettingsComponent implements OnInit {
     username: new FormControl(''),
     password: new FormControl('')
   });
-  firstName: string = '';
-  lastName: string = '';
-  userName: string = '';
-  Email: string = '';
+  firstName = '';
+  lastName = '';
+  userName = '';
+  Email = '';
+  loading = false;
+
   constructor(private dataService: UserDataService, private cookieService: CookieService, private router: Router) { }
 
   ngOnInit(): void {
+    this.loading = true;
     $('html, body').animate({ scrollTop: 0 }, 500);
     this.dataService.getUser()
       .subscribe((response) => {
@@ -38,10 +41,12 @@ export class SettingsComponent implements OnInit {
           username: new FormControl(res[3]),
           password: new FormControl('')
         });
+        this.loading = false;
       });
   }
 
   updatedMyUser() {
+    this.loading = true;
     this.dataService.updatedUser(this.updateForm.value)
       .subscribe((response) => {
         let res = Object.values(response);
@@ -53,6 +58,7 @@ export class SettingsComponent implements OnInit {
           username: new FormControl(data[3]),
           password: new FormControl('')
         });
+        this.loading = false;
       });
   }
 
@@ -61,9 +67,11 @@ export class SettingsComponent implements OnInit {
   }
 
   deleteMyUser() {
+    this.loading = true;
     this.dataService.deleteUser()
       .subscribe((response) => {
         console.log(response);
+        this.loading = false;
       });
     this.dataService.logout();
     setTimeout(() => {

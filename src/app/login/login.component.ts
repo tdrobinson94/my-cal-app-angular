@@ -32,6 +32,7 @@ export class LoginComponent implements OnInit {
           $('.fail-message-2').addClass('show-fail');
           this.loading = false;
         } else if (response.status === 201) {
+          this.loading = false;
           console.log('User has logged in');
           console.log(response);
           this.cookieService.set('userId', response.body.id);

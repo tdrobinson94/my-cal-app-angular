@@ -17,9 +17,12 @@ export class ProfileComponent implements OnInit {
   Email: string = '';
   firstInitial: string = '';
   lastInitial: string = '';
+  loading = false;
+  
   constructor(private dataService: UserDataService, private cookieService: CookieService, private router: Router) { }
 
   ngOnInit(): void {
+    this.loading = true;
     $('html, body').animate({ scrollTop: 0 }, 500);
     this.dataService.getUser()
       .subscribe((response) => {
@@ -30,6 +33,7 @@ export class ProfileComponent implements OnInit {
         this.Email = (res[4]);
         this.firstInitial = this.firstName.substring(0, 1);
         this.lastInitial = this.lastName.substring(0, 1);
+        this.loading = false;
       });
   }
 

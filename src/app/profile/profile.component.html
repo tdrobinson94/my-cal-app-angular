@@ -12,3 +12,16 @@
     <p>Username: {{userName}}</p>
     <p>Email: {{Email}}</p>
 </div>
+
+<div *ngIf="this.loading" class="loading-container">
+    <div class="lds-roller">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</div>

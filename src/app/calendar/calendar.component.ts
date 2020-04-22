@@ -56,6 +56,8 @@ export class CalendarComponent implements OnInit, AfterViewInit {
     location: new FormControl(''),
   });
 
+  loading = false;
+
   ngOnInit(): void {
     this.createCalendarGrid();
   }
@@ -333,6 +335,7 @@ export class CalendarComponent implements OnInit, AfterViewInit {
   }
 
   getEvents() {
+    this.loading = true;
     this.dataService.getEvents()
       .subscribe((response) => {
         let i;
@@ -363,6 +366,8 @@ export class CalendarComponent implements OnInit, AfterViewInit {
             }
           }
           this.events = eventlist;
+
+          this.loading = false;
         }
       });
   }
