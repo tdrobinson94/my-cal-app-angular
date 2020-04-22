@@ -497,22 +497,23 @@
         .form-nav-bar {
             position: sticky;
             top: 0;
-            margin: 0 4%;
-            background: $textwht;
+            background: $primary;
             h2 {
-                padding: 15px 0;
-                margin: 0;
+                padding: 13px 4%;
+                margin: 0 0 15px;
+                color: #fff;
             }
 
             .close-form {
                 position: absolute;
                 display: inline;
                 top: 13px;
-                right: 0;
+                right: 4%;
                 background: transparent;
                 border-radius: 5px;
                 border: 0;
                 cursor: pointer;
+                color: $textwht;
 
                 &:before {
                     font-size: 30px;

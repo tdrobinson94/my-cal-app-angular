@@ -80,7 +80,7 @@ export class CalendarComponent implements OnInit, AfterViewInit {
     // Create each weekday title
     for (i = 0; i < this.weekDayAbbrv.length; i++) {
       if (this.weekDayAbbrv[i].num === this.currentDayofWeek) {
-        console.log('This is the weekday: ' + this.weekDayAbbrv[i].num);
+        // console.log('This is the weekday: ' + this.weekDayAbbrv[i].num);
       }
     }
 
@@ -244,7 +244,6 @@ export class CalendarComponent implements OnInit, AfterViewInit {
   }
 
   changeCal() {
-    console.log('changing cal');
     $('.add-item-form').removeClass('show-form');
     $('.day-box').removeClass('clicked-day');
     $('.num-box').removeClass('first-day current-day');
