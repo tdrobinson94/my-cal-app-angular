@@ -396,8 +396,8 @@ export class CalendarComponent implements OnInit, AfterViewInit {
     const minutes = String(this.clock.getMinutes()).padStart(2, '0');
     const hours = String(this.clock.getHours()).padStart(2, '0');
     const extraHour = String(this.clock.getHours() + 1).padStart(2, '0');
-    const currentTime = hours + ':' + minutes;
-    const endTime = (extraHour) + ':' + minutes;
+    const currentTime = hours + ':' + '00';
+    const endTime = (extraHour) + ':' + '00';
 
     $('.add-item-container').animate({ scrollTop: 0 }, 400);
     $('.add-item-container').addClass('show-form');
