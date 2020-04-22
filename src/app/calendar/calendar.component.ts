@@ -256,7 +256,7 @@ export class CalendarComponent implements OnInit, AfterViewInit {
       this.getEvents();
     }, 100);
 
-    $('html, body').animate({ scrollTop: $('.selected-day').position().top - 75 }, 200);
+    $('html, body').animate({ scrollTop: $('.selected-day').position().top - 75 }, 400);
   }
 
   prevClick() {

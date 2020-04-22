@@ -33,7 +33,7 @@ export class EventDataService {
     deleteEvent(eventId) {
         console.log(eventId.event_input);
         const param = { id: eventId.event_input };
-        return this.http.delete(this.apiUrl + '/deleteevent/' + eventId.event_input, { params: param });
+        return this.http.delete(this.apiUrl + '/deleteevent/' + eventId.event_input);
     }
 
 }

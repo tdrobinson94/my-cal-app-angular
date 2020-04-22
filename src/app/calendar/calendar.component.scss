@@ -369,7 +369,8 @@
                         overflow: auto;
 
                         form {
-                            @media screen and (max-width: $mid-small) {
+                            padding: 5px 0;
+                            @media screen and (max-width: $end-small) {
                                 padding-bottom: 70px;
                             }
                         }
