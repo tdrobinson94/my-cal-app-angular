@@ -45,6 +45,7 @@ export class SignupComponent implements OnInit {
           $('.fail-message').addClass('show-fail');
           this.loading = false;
         }
+        this.loading = false;
       });
   }
 

@@ -321,6 +321,9 @@ export class CalendarComponent implements OnInit, AfterViewInit {
     if ($(e.target).hasClass('close-day')) {
       $('.day-box').removeClass('double-click');
       $('.main-info-section').removeClass('animate-events-one animate-events-two');
+      setTimeout(() => {
+        $('.main-info-section').animate({ scrollTop: 0 }, 300);
+      }, 400);
     } else if (!$(e.currentTarget).hasClass('clicked-day') && !$(e.currentTarget).hasClass('double-click')) {
       $('.day-box').removeClass('clicked-day double-click');
       $(e.currentTarget).addClass('clicked-day');
