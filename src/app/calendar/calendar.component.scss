@@ -247,9 +247,9 @@
                     }
 
                     .event {
-                        font-size: 10px;
+                        font-size: 9px;
                         cursor: pointer;
-                        height: 11px;
+                        height: 10px;
                         overflow: hidden;
                         margin: 5px 0px;
                         padding: 2px 20% 0 4%;
@@ -469,13 +469,14 @@
         }
 
         &.show-form {
-            height: calc(100% - 53px);
+            height: calc(100% - 107px);
             padding-bottom: 53px;
             width: 100%;
             z-index: 9999;
-            background: $textwht;
-            transition: all .3s ease-in-out;
+            background: #fff;
+            transition: all 0.3s ease-in-out;
             right: 0;
+            top: 54px;
 
             @media screen and (min-width: $end-small) {
                 bottom: 50%;
