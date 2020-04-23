@@ -15,7 +15,8 @@ import { SwipeEvent } from 'ng-swipe';
 })
 export class CalendarComponent implements OnInit, AfterViewInit {
 
-  constructor(private dataService: EventDataService, private cookieService: CookieService) { }
+  constructor(private dataService: EventDataService, private cookieService: CookieService) { 
+  }
 
   // Date variables
   clock = new Date();
@@ -111,6 +112,7 @@ export class CalendarComponent implements OnInit, AfterViewInit {
 
 
   ngAfterViewInit(): void {
+    localStorage.setItem('day', this.clock.toLocaleDateString());
     this.changeCal();
   }
 
@@ -313,14 +315,23 @@ export class CalendarComponent implements OnInit, AfterViewInit {
   }
 
   onSwipeMove(e: SwipeEvent) {
-    alert('hey');
-    console.log(`swipe direction: ${e.direction}`);
-    console.log(`swipe distance: ${e.distance}`);
+    // console.log('Start');
+    // console.log(`swipe direction: ${e.direction}`);
+    // console.log(`swipe distance: ${e.distance}`);
   }
 
   onSwipeEnd(e: SwipeEvent) {
-    console.log(`swipe direction: ${e.direction}`);
-    console.log(`swipe distance: ${e.distance}`);
+    // if (e.direction === 'x' && e.distance > 75) {
+    //   console.log('swipe right');
+    //   setTimeout(() => {
+    //     this.prevClick();
+    //   }, 500);
+    // } else if (e.direction === 'x' && e.distance < -75) {
+    //   console.log('swipe left');
+    //   setTimeout(() => {
+    //     this.nextClick();
+    //   }, 500);
+    // }
   }
 
   clickonDay(e) {
