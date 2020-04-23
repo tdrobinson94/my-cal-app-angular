@@ -128,7 +128,12 @@ footer {
     bottom: 0;
     z-index: 9999;
     transition: all .3s ease-in-out;
+    display: none;
     // box-shadow: 1px -2px 10px #333333;
+
+    @media screen and (min-width: $end-small) {
+        display: block;
+    }
 
     p {
         color: $textwht;

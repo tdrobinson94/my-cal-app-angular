@@ -130,10 +130,14 @@
     .calendar-container {
 
         width: 100%;
-        height: calc(100% - 188px);
+        height: calc(100% - 134px);
         padding: 5px 0;
         position: relative;
         top: 74px;
+
+        @media screen and (min-width: $end-small) {
+            height: calc(100% - 188px);
+        }
 
         .row {
 
@@ -411,7 +415,7 @@
     .add-item-button {
         padding: 15px;
         position: fixed;
-        bottom: 60.9px;
+        bottom: 20px;
         font-size: 20px;
         border-radius: 100%;
         border: none;
@@ -421,6 +425,10 @@
         z-index: 999;
         transition: all .3s ease-in-out;
         // box-shadow: 1px 1px 10px #333333;
+
+        @media screen and (min-width: $end-small) {
+            bottom: 60.9px;
+        }
 
         &:hover {
             &:before {
@@ -447,6 +455,7 @@
         width: 0;
         transition: all .3s ease-in-out;
         overflow: auto;
+        z-index: 9999;
 
         &::-webkit-scrollbar {
             width: 4px;
@@ -472,7 +481,6 @@
             height: calc(100% - 107px);
             padding-bottom: 53px;
             width: 100%;
-            z-index: 9999;
             background: #fff;
             transition: all 0.3s ease-in-out;
             right: 0;

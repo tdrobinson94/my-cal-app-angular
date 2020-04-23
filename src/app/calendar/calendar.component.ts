@@ -252,12 +252,7 @@ export class CalendarComponent implements OnInit, AfterViewInit {
     this.renderMonth();
     this.renderPrevMonthDays();
     this.selectedDay();
-
-    setTimeout(() => {
-      this.getEvents();
-    }, 100);
-
-    $('html, body').animate({ scrollTop: $('.selected-day').position().top - 75 }, 400);
+    this.getEvents();
   }
 
   prevClick() {
@@ -326,7 +321,6 @@ export class CalendarComponent implements OnInit, AfterViewInit {
     } else if (!$(e.currentTarget).hasClass('clicked-day') && !$(e.currentTarget).hasClass('double-click')) {
       $('.day-box').removeClass('clicked-day double-click');
       $(e.currentTarget).addClass('clicked-day');
-      $('html, body').animate({ scrollTop: $('.clicked-day').position().top - 75 }, 400);
     } else if ($(e.currentTarget).hasClass('clicked-day')) {
       $(e.currentTarget).addClass('double-click');
       $(e.currentTarget).find('.main-info-section').addClass('animate-events-one');
@@ -441,12 +435,8 @@ export class CalendarComponent implements OnInit, AfterViewInit {
       .subscribe((response) => {
         this.addItemForm.reset();
         $('.add-item-container').removeClass('show-form');
-        $('body, html').animate({ scrollTop: $('.clicked-day').position().top - 75 }, 200);
       });
-
-    setTimeout(() => {
-      this.getEvents();
-    }, 300);
+    this.getEvents();
   }
 
 }
