@@ -254,7 +254,6 @@
                         margin: 5px 0px;
                         padding: 2px 20% 0 4%;
                         transition: all .2s ease-in-out;
-                        text-align: center;
                         position: relative;
                         display: none;
 
@@ -360,7 +359,8 @@
                     }
 
                     .main-info-section {
-                        padding: 5px 0;
+                        padding: 0;
+                        margin: 5px 0;
                         overflow: auto;
 
                         form {
@@ -476,7 +476,6 @@
             background: #fff;
             transition: all 0.3s ease-in-out;
             right: 0;
-            top: 54px;
 
             @media screen and (min-width: $end-small) {
                 bottom: 50%;
