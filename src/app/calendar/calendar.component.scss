@@ -231,6 +231,7 @@
                         height: calc(100% - 45px);
 
                         .event {
+
                             &:hover, &:focus {
                                 background: rgba(255,0,0,.8);
                                 color: $textwht;
@@ -256,7 +257,7 @@
                         height: 10px;
                         overflow: hidden;
                         margin: 5px 0px;
-                        padding: 2px 20% 0 4%;
+                        padding: 2px 0 0 4%;
                         transition: all .2s ease-in-out;
                         position: relative;
                         display: none;
@@ -271,6 +272,16 @@
                             text-align: left;
                             font-size: 12px;
                             height: 13px;
+                        }
+
+                        .event-details {
+                            &.title {
+                                margin-top: 0;
+
+                                span {
+                                    display: none;
+                                }
+                            }
                         }
 
                         input {
@@ -318,19 +329,19 @@
                     position: fixed;
                     top: 121.5px;
                     bottom: 53px;
-                    left: 50%;
-                    transform: translate(-50%, 0%);
-                    height: auto;
+                    height: calc(100% - 54px);
                     width: 100%;
                     max-width: 800px;
                     z-index: 99;
                     transition: height, width 0.3s ease-in-out;
                     border: none;
+                    animation-name: grow;
+                    animation-duration: .3s;
+                    animation-timing-function: ease-in-out;
 
                     @media screen and (min-width: $end-small) {
                         bottom: 50%;
-                        left: 50%;
-                        transform: translate(-50%, 25%);
+                        transform: translate(0, 25%);
                         height: 50%;
                         border: 1px solid #333333;
                     }
@@ -380,9 +391,24 @@
                             overflow: initial !important;
                             text-align: left;
                             margin: 5px 4%;
+                            padding: 2px 55px 0 4%;
 
-                            p {
+                            .event-details {
                                 margin: 5px 0 0 0;
+
+                                &:last-of-type {
+                                    font-size: 14px;
+                                    padding-bottom: 5px;
+                                }
+
+                                &.title {
+                                    font-weight: bold;
+
+                                    span {
+                                        display: inline;
+                                        font-weight: 100;
+                                    }
+                                }
                             }
                         }
 
@@ -398,6 +424,10 @@
                             margin: 20px auto;
                         }
                     }
+                }
+
+                @keyframes grow{
+                    25%  {transform: scale(1, 1);}
                 }
 
             }

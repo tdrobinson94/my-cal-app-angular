@@ -34,8 +34,13 @@
                     <form [formGroup]="deleteItemForm" (ngSubmit)="deleteEvent()">
                         <div *ngFor="let event of events">
                             <div class="event" [ngClass]="event.eventstart_date">
-                                {{event.eventtitle}} - {{event.eventdesc}}
-                                <p>{{event.eventstart_time}} - {{event.eventend_time}}</p>
+                                <p class="event-details title">
+                                    {{event.eventtitle}}
+                                    <span>- {{event.eventdesc}}</span>
+                                </p>
+                                <p class="event-details">
+                                    {{event.eventstart_time}} - {{event.eventend_time}}
+                                </p>
                                 <button class="entypo-minus" (click)="deleteEventButtonClick($event)"
                                     value="{{event.eventid}}"></button>
                             </div>

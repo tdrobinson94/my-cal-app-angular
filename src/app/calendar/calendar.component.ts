@@ -373,6 +373,7 @@ export class CalendarComponent implements OnInit, AfterViewInit {
               eventtitle: response[i].title.toString(),
               eventstart_date: response[i].start_date.substring(0, 10).toString(),
               eventdesc: response[i].description.toString(),
+              // eventlocation: response[i].location,
               eventstart_time: moment(response[i].start_time, 'HH:mm:ss').format('h:mm A'),
               eventend_time: moment(response[i].end_time, 'HH:mm:ss').format('h:mm A')
             };
