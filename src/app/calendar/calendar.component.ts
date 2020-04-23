@@ -312,14 +312,15 @@ export class CalendarComponent implements OnInit, AfterViewInit {
     }, 100);
   }
 
-  onSwipeMove(event: SwipeEvent) {
-    console.log(`swipe direction: ${event.direction}`);
-    console.log(`swipe distance: ${event.distance}`);
+  onSwipeMove(e: SwipeEvent) {
+    alert('hey');
+    console.log(`swipe direction: ${e.direction}`);
+    console.log(`swipe distance: ${e.distance}`);
   }
 
-  onSwipeEnd(event: SwipeEvent) {
-    console.log(`swipe direction: ${event.direction}`);
-    console.log(`swipe distance: ${event.distance}`);
+  onSwipeEnd(e: SwipeEvent) {
+    console.log(`swipe direction: ${e.direction}`);
+    console.log(`swipe distance: ${e.distance}`);
   }
 
   clickonDay(e) {
