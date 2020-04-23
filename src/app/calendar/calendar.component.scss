@@ -422,7 +422,7 @@
         background-color: $alert;
         color: $textwht;
         right: 20px;
-        z-index: 999;
+        z-index: 9999;
         transition: all .3s ease-in-out;
         // box-shadow: 1px 1px 10px #333333;
 
@@ -449,13 +449,15 @@
 
     .add-item-container {
         position: fixed;
-        bottom: 0;
-        right: 0;
-        height: 0;
-        width: 0;
-        transition: all .3s ease-in-out;
-        overflow: auto;
-        z-index: 9999;
+        bottom: 20px;
+        right: 20px;
+        height: 53px;
+        width: 50px;
+        transition: all 0.3s ease-in-out;
+        z-index: 99;
+        border-radius: 100%;
+        color: transparent;
+        overflow: hidden;
 
         &::-webkit-scrollbar {
             width: 4px;
@@ -473,8 +475,12 @@
 
         @media screen and (min-width: $end-small) {
             right: 50% !important;
-            width: auto;
+            bottom: 60.9px;
+            width: 50px;
+            height: 53px;
             transform: translateX(50%);
+            overflow: hidden;
+            border-radius: 100%;
         }
 
         &.show-form {
@@ -483,7 +489,12 @@
             width: 100%;
             background: #fff;
             transition: all 0.3s ease-in-out;
-            right: 0;
+            right: 0px;
+            bottom: 0;
+            z-index: 99999;
+            border-radius: 0;
+            color: $textdrk;
+            overflow: auto;
 
             @media screen and (min-width: $end-small) {
                 bottom: 50%;
