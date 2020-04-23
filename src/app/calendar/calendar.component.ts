@@ -252,7 +252,9 @@ export class CalendarComponent implements OnInit, AfterViewInit {
     this.renderMonth();
     this.renderPrevMonthDays();
     this.selectedDay();
-    this.getEvents();
+    setTimeout(() => {
+      this.getEvents();
+    }, 100);
   }
 
   prevClick() {
@@ -415,17 +417,6 @@ export class CalendarComponent implements OnInit, AfterViewInit {
     }
   }
 
-  // startTimeChange() {
-  //   const minutes = String(this.clock.getMinutes()).padStart(2, '0');
-  //   const extraHour = Number($('.time-input input').val().substring(0, 2)) + 1;
-  //   const endTime = (extraHour) + ':' + minutes;
-    
-  //   this.addItemForm = new FormGroup({
-  //     start_time: new FormControl($('.time-input input').val()),
-  //     end_time: new FormControl(endTime),
-  //   });
-  // }
-
   closeForm() {
     $('.add-item-container').removeClass('show-form');
   }
@@ -436,7 +427,10 @@ export class CalendarComponent implements OnInit, AfterViewInit {
         this.addItemForm.reset();
         $('.add-item-container').removeClass('show-form');
       });
-    this.getEvents();
+
+    setTimeout(() => {
+      this.getEvents();
+    }, 300);
   }
 
 }
