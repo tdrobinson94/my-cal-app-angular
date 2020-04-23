@@ -6,6 +6,7 @@ import { MONTHS } from './months.constant';
 import $ from 'jquery';
 import _ from 'lodash';
 import * as moment from 'moment';
+import { SwipeEvent } from 'ng-swipe';
 
 @Component({
   selector: 'app-calendar',
@@ -309,6 +310,16 @@ export class CalendarComponent implements OnInit, AfterViewInit {
     setTimeout(() => {
       this.changeCal();
     }, 100);
+  }
+
+  onSwipeMove(event: SwipeEvent) {
+    console.log(`swipe direction: ${event.direction}`);
+    console.log(`swipe distance: ${event.distance}`);
+  }
+
+  onSwipeEnd(event: SwipeEvent) {
+    console.log(`swipe direction: ${event.direction}`);
+    console.log(`swipe distance: ${event.distance}`);
   }
 
   clickonDay(e) {

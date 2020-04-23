@@ -7,6 +7,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
+import { SwipeModule } from 'ng-swipe';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -26,13 +27,14 @@ import { TestDirectiveDirective } from './test-directive.directive';
 
 
 @NgModule({
-  imports: [  
+  imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     // MbscModule,
     ReactiveFormsModule,
     FormsModule,
+    SwipeModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
   declarations: [
