@@ -422,6 +422,10 @@ export class CalendarComponent implements OnInit, AfterViewInit {
     $('.add-item-container').animate({ scrollTop: 0 }, 400);
     $('.add-item-container').addClass('show-form');
     $('.add-item-button').hide();
+    $('.form-nav-bar, .add-item-form').addClass('animate-events-one');
+    setTimeout(() => {
+      $('.form-nav-bar, .add-item-form').addClass('animate-events-two');
+    }, 401);
 
     this.addItemForm = new FormGroup({
       item_type: new FormControl(1),
@@ -444,6 +448,7 @@ export class CalendarComponent implements OnInit, AfterViewInit {
 
   closeForm() {
     $('.add-item-container').removeClass('show-form');
+    $('.form-nav-bar, .add-item-form').removeClass('animate-events-one animate-events-two');
     setTimeout(() => {
       $('.add-item-button').show();
     }, 300);
@@ -453,7 +458,7 @@ export class CalendarComponent implements OnInit, AfterViewInit {
     this.dataService.createEvent(this.addItemForm.value)
       .subscribe((response) => {
         this.addItemForm.reset();
-        $('.add-item-container').removeClass('show-form');
+        this.closeForm();
       });
 
     setTimeout(() => {
