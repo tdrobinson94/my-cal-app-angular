@@ -587,6 +587,9 @@
 
         .animate-events-one {
             display: none;
+            &.form-nav-bar {
+                display: block;
+            }
         }
 
         .animate-events-two {

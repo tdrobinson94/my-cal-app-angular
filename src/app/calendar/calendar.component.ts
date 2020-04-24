@@ -425,7 +425,7 @@ export class CalendarComponent implements OnInit, AfterViewInit {
     $('.form-nav-bar, .add-item-form').addClass('animate-events-one');
     setTimeout(() => {
       $('.form-nav-bar, .add-item-form').addClass('animate-events-two');
-    }, 401);
+    }, 450);
 
     this.addItemForm = new FormGroup({
       item_type: new FormControl(1),
