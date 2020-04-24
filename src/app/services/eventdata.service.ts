@@ -22,6 +22,7 @@ export class EventDataService {
     }
 
     createEvent(eventData): Observable<any> {
+        console.log(this.getToken());
         return this.http.post(this.apiUrl + '/event', eventData, this.getToken());
     }
 
@@ -30,10 +31,9 @@ export class EventDataService {
         return this.http.get(this.apiUrl + '/user/events', { params: param });
     }
 
-    deleteEvent(eventId) {
+    deleteEvent(eventId): Observable<any> {
         console.log(eventId.event_input);
-        const param = { id: eventId.event_input };
-        return this.http.delete(this.apiUrl + '/deleteevent/' + eventId.event_input);
+        return this.http.delete(this.apiUrl + '/delete/event/' + eventId.event_input, eventId.event_input);
     }
 
 }

@@ -421,6 +421,7 @@ export class CalendarComponent implements OnInit, AfterViewInit {
 
     $('.add-item-container').animate({ scrollTop: 0 }, 400);
     $('.add-item-container').addClass('show-form');
+    $('.add-item-button').hide();
 
     this.addItemForm = new FormGroup({
       item_type: new FormControl(1),
@@ -443,6 +444,9 @@ export class CalendarComponent implements OnInit, AfterViewInit {
 
   closeForm() {
     $('.add-item-container').removeClass('show-form');
+    setTimeout(() => {
+      $('.add-item-button').show();
+    }, 300);
   }
 
   submitEvent() {

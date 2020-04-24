@@ -169,7 +169,7 @@
                 width: 14.2%;
                 height: 100%;
                 // flex-grow: 1;
-                transition: all .3s ease-in-out;
+                transition: height .3s ease-in-out !important;
                 position: relative;
 
                 button.close-day {
@@ -237,7 +237,7 @@
                                 color: $textwht;
                                 transition: all .2s ease-in-out;
                                 border-radius: 5px;
-                                button {
+                                button, input {
                                     display: inline;
                                     background: transparent;
                                     border: 0;
@@ -333,7 +333,7 @@
                     width: 100%;
                     max-width: 800px;
                     z-index: 99;
-                    transition: height, width 0.3s ease-in-out;
+                    transition: height, width 0.3s ease-in-out !important;
                     border: none;
                     animation-name: grow;
                     animation-duration: .3s;
@@ -518,6 +518,7 @@
             transform: translateX(50%);
             overflow: hidden;
             border-radius: 100%;
+            max-width: 800px;
         }
 
         &.show-form {
