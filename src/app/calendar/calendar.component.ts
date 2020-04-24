@@ -459,11 +459,11 @@ export class CalendarComponent implements OnInit, AfterViewInit {
       .subscribe((response) => {
         this.addItemForm.reset();
         this.closeForm();
-      });
 
-    setTimeout(() => {
-      this.getEvents();
-    }, 300);
+        setTimeout(() => {
+          this.getEvents();
+        }, 300);
+      });
   }
 
 }
