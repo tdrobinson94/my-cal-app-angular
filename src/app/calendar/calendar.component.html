@@ -36,8 +36,9 @@
                             <div class="event" [ngClass]="event.eventstart_date">
                                 <p class="event-details title">
                                     {{event.eventtitle}}
-                                    <span>- {{event.eventdesc}}</span>
+                                    <span *ngIf="event.eventdesc">{{event.eventdesc}}</span>
                                 </p>
+                                <p class="event-details location" *ngIf="event.eventlocation">{{event.eventlocation}}</p>
                                 <p class="event-details">
                                     {{event.eventstart_time}} - {{event.eventend_time}}
                                 </p>
@@ -94,7 +95,7 @@
 
             <div class="input-wrapper event-description">
                 <label class="description-label">Description</label>
-                <textarea placeholder="Add description" formControlName="description" required></textarea>
+                <textarea placeholder="Add description" formControlName="description"></textarea>
             </div>
 
             <div class="input-wrapper date-input">

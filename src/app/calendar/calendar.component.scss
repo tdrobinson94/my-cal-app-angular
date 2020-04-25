@@ -426,6 +426,10 @@
                                     span {
                                         display: inline;
                                         font-weight: initial;
+                                        
+                                        &:before {
+                                            content: '- '
+                                        }
                                     }
                                 }
                             }
