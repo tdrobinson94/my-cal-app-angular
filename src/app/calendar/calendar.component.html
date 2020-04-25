@@ -42,13 +42,11 @@
                                 <p class="event-details">
                                     {{event.eventstart_time}} - {{event.eventend_time}}
                                 </p>
-                                <!-- <a class="entypo-minus" (click)="deleteEventButtonClick($event)">{{event.eventid}}</a> -->
                                 <button class="entypo-minus" (click)="deleteEventButtonClick($event)"
                                     value="{{event.eventid}}"></button>
                             </div>
                         </div>
                         <input formControlName="id" type="text" name="id" class="event_input" />
-                        <!-- <button type="submit" class="delete-event">Delete</button> -->
                     </form>
                 </div>
             </div>

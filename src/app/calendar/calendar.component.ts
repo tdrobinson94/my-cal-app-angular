@@ -413,10 +413,10 @@ export class CalendarComponent implements OnInit, AfterViewInit {
     this.dataService.deleteEvent(this.deleteItemForm.value)
       .subscribe((response) => {
         console.log(response);
+        setTimeout(() => {
+          this.getEvents();
+        }, 300);
       });
-    setTimeout(() => {
-      this.getEvents();
-    }, 200);
   }
 
   openForm() {
@@ -456,12 +456,6 @@ export class CalendarComponent implements OnInit, AfterViewInit {
       end_time: new FormControl(endTime),
       location: new FormControl(''),
     });
-
-    // if ($(window).width() <= 800) {
-
-    // } else {
-    //   $('.clicked-day').removeClass('double-click');
-    // }
   }
 
   onStartDateChange() {
