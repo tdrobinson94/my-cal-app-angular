@@ -396,6 +396,10 @@ export class CalendarComponent implements OnInit, AfterViewInit {
           }
           this.events = eventlist;
 
+          setTimeout(() => {
+            console.log($('.visible'));
+          }, 300);
+
           this.loading = false;
         }
       });
