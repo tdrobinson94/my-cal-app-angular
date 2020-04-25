@@ -60,7 +60,7 @@ export class CalendarComponent implements OnInit, AfterViewInit {
 
   loading = false;
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.createCalendarGrid();
   }
 
@@ -111,8 +111,14 @@ export class CalendarComponent implements OnInit, AfterViewInit {
   }
 
 
-  ngAfterViewInit(): void {
+  ngAfterViewInit() {
     localStorage.setItem('day', this.clock.toLocaleDateString());
+    setInterval(() => {
+      this.clock = new Date();
+      if (this.currentDay !== this.clock.getDate()) {
+        this.changeCal();
+      }
+    }, 10 * 1000);
     this.changeCal();
   }
 
@@ -426,7 +432,7 @@ export class CalendarComponent implements OnInit, AfterViewInit {
       extraHour = '0' + extraHour;
       extraHour.toString();
     }
-    const currentTime = hours + ':' + minutes;
+    const currentTime = hours.toString() + ':' + minutes.toString();
     const endTime = (extraHour) + ':' + minutes;
 
     $('.add-item-container').animate({ scrollTop: 0 }, 400);
@@ -449,11 +455,11 @@ export class CalendarComponent implements OnInit, AfterViewInit {
       location: new FormControl(''),
     });
 
-    if ($(window).width() <= 800) {
+    // if ($(window).width() <= 800) {
 
-    } else {
-      $('.clicked-day').removeClass('double-click');
-    }
+    // } else {
+    //   $('.clicked-day').removeClass('double-click');
+    // }
   }
 
   onStartDateChange() {
@@ -499,6 +505,7 @@ export class CalendarComponent implements OnInit, AfterViewInit {
   }
 
   closeForm() {
+    this.addItemForm.reset();
     $('.add-item-container').removeClass('show-form');
     $('.form-nav-bar, .add-item-form').removeClass('animate-events-one animate-events-two');
     setTimeout(() => {
