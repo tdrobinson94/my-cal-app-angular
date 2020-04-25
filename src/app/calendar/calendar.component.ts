@@ -409,14 +409,12 @@ export class CalendarComponent implements OnInit, AfterViewInit {
       });
     } else if ($(e.target).hasClass('edit-event')) {
       console.log('Edit Button');
-    } else if ($(e.currentTarget).hasClass('visible')) {
+    } else if (!$(e.currentTarget).hasClass('selected-event')) {
       $('.visible').removeClass('selected-event');
       $(e.currentTarget).addClass('selected-event');
+    } else if ($(e.currentTarget).hasClass('selected-event')) {
+      $(e.currentTarget).removeClass('selected-event');
     }
-
-    setTimeout(() => {
-      $('.visible').removeClass('selected-event');
-    }, 7000);
   }
 
   deleteEvent(e) {

@@ -245,7 +245,7 @@
                         .event {
 
                             &:hover, &:focus {
-                                // background: rgba(255,0,0,.8);
+                                // background: rgba(255,0,0,.7);
                                 // color: $textwht;
                                 transition: all .2s ease-in-out;
                                 border-radius: 5px;
@@ -419,7 +419,7 @@
                             overflow: initial !important;
                             text-align: left;
                             margin: 5px 4%;
-                            padding: 2px 55px 0 4%;
+                            padding: 2px 55px 5px 4%;
 
                             .event-details {
                                 margin: 5px 0 0 0;
