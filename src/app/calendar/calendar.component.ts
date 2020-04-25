@@ -413,9 +413,15 @@ export class CalendarComponent implements OnInit, AfterViewInit {
 
   openForm() {
     const day = $('.clicked-day .date-value').text();
-    const minutes = String(this.clock.getMinutes()).padStart(2, '0');
-    const hours = String(this.clock.getHours()).padStart(2, '0');
-    const extraHour = String(this.clock.getHours() + 1).padStart(2, '0');
+    const minutes = Number(String(this.clock.getMinutes()).padStart(2, '0'));
+    const hours = Number(String(this.clock.getHours()).padStart(2, '0'));
+    let extraHour: any = Number(String(this.clock.getHours() + 1).padStart(2, '0'));
+    if (extraHour === 24 && minutes > 0) {
+      extraHour = '00';
+    } else if (extraHour < 10) {
+      extraHour = '0' + extraHour;
+      extraHour.toString();
+    }
     const currentTime = hours + ':' + minutes;
     const endTime = (extraHour) + ':' + minutes;
 
