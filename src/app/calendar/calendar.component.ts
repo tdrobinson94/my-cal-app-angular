@@ -413,9 +413,10 @@ export class CalendarComponent implements OnInit, AfterViewInit {
     this.dataService.deleteEvent(this.deleteItemForm.value)
       .subscribe((response) => {
         console.log(response);
-        // this.getEvents();
-        // return response.id !== event_id;
       });
+    setTimeout(() => {
+      this.getEvents();
+    }, 200);
   }
 
   openForm() {
