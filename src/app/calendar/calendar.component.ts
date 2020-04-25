@@ -43,7 +43,7 @@ export class CalendarComponent implements OnInit, AfterViewInit {
   eachEvent: any;
 
   deleteItemForm = new FormGroup({
-    event_input: new FormControl(''),
+    id: new FormControl(''),
   });
 
   addItemForm = new FormGroup({
@@ -396,10 +396,6 @@ export class CalendarComponent implements OnInit, AfterViewInit {
           }
           this.events = eventlist;
 
-          setTimeout(() => {
-            console.log($('.visible'));
-          }, 300);
-
           this.loading = false;
         }
       });
@@ -407,7 +403,7 @@ export class CalendarComponent implements OnInit, AfterViewInit {
 
   deleteEventButtonClick(e) {
     this.deleteItemForm = new FormGroup({
-      event_input: new FormControl($(e.target).val()),
+      id: new FormControl($(e.target).val()),
     });
     console.log(this.deleteItemForm.value);
   }

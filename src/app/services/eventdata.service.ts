@@ -32,8 +32,7 @@ export class EventDataService {
     }
 
     deleteEvent(eventId): Observable<any> {
-        console.log(eventId.event_input);
-        return this.http.delete(this.apiUrl + '/delete/event/' + eventId.event_input, eventId.event_input);
+        return this.http.delete(this.apiUrl + '/delete/event/' + eventId.id, eventId);
     }
 
 }
