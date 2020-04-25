@@ -346,6 +346,7 @@ export class CalendarComponent implements OnInit, AfterViewInit {
     if ($(e.target).hasClass('close-day')) {
       $('.day-box').removeClass('double-click');
       $('.main-info-section').removeClass('animate-events-one animate-events-two');
+      $('.visible').removeClass('selected-event');
       setTimeout(() => {
         $('.main-info-section').animate({ scrollTop: 0 }, 300);
       }, 400);
@@ -401,14 +402,27 @@ export class CalendarComponent implements OnInit, AfterViewInit {
       });
   }
 
-  deleteEventButtonClick(e) {
+  selectEvent(e) {
+    if ($(e.target).hasClass('delete-event')) {
+      this.deleteItemForm = new FormGroup({
+        id: new FormControl($(e.target).val()),
+      });
+    } else if ($(e.target).hasClass('edit-event')) {
+      console.log('Edit Button');
+    } else if ($(e.currentTarget).hasClass('visible')) {
+      $('.visible').removeClass('selected-event');
+      $(e.currentTarget).addClass('selected-event');
+    }
+
+    setTimeout(() => {
+      $('.visible').removeClass('selected-event');
+    }, 7000);
+  }
+
+  deleteEvent(e) {
     this.deleteItemForm = new FormGroup({
       id: new FormControl($(e.target).val()),
     });
-    console.log(this.deleteItemForm.value);
-  }
-
-  deleteEvent() {
     console.log(this.deleteItemForm.value);
     this.dataService.deleteEvent(this.deleteItemForm.value)
       .subscribe((response) => {

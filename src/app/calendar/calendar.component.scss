@@ -245,11 +245,11 @@
                         .event {
 
                             &:hover, &:focus {
-                                background: rgba(255,0,0,.8);
-                                color: $textwht;
+                                // background: rgba(255,0,0,.8);
+                                // color: $textwht;
                                 transition: all .2s ease-in-out;
                                 border-radius: 5px;
-                                button, input {
+                                input {
                                     display: inline;
                                     background: transparent;
                                     border: 0;
@@ -306,20 +306,26 @@
                             }
                         }
 
-                        input {
-                            display: none;
-                        }
-
                         button {
                             display: none;
+                            background-color: $primary;
+                            color: $textwht;
+                            border-radius: 10px;
+                            padding: 10px;
+                            border: 0;
+                            font-size: 15px;
 
                             &:hover {
                                 color: $textwht;
                             }
+
+                            &.edit-event {
+                                background-color: rgba(0, 0, 0, .8);
+                            }
                         }
                     }
 
-                    input, button {
+                    input {
                         display: none;
                     }
                 }
@@ -436,18 +442,13 @@
                                     }
                                 }
                             }
-                        }
 
-                        button.delete-event {
-                            display: block;
-                            margin: auto;
-                            background-color: red;
-                            color: #fff;
-                            border-radius: 10px;
-                            padding: 10px;
-                            border: 0;
-                            font-size: 15px;
-                            margin: 20px auto;
+                            &.selected-event {
+                                button {
+                                    display: inline;
+                                    margin-right: 5px;
+                                }
+                            }
                         }
                     }
                 }

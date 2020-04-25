@@ -31,9 +31,9 @@
                 <div class="num-box"><span class="num-date"></span></div>
                 <div class="date-value"></div>
                 <div class="main-info-section">
-                    <form [formGroup]="deleteItemForm" (ngSubmit)="deleteEvent()">
+                    <form [formGroup]="deleteItemForm">
                         <div *ngFor="let event of events">
-                            <div class="event" [ngClass]="event.eventstart_date">
+                            <div class="event" [ngClass]="event.eventstart_date"  (click)="selectEvent($event)">
                                 <p class="event-details title">
                                     {{event.eventtitle}}
                                     <span *ngIf="event.eventdesc">{{event.eventdesc}}</span>
@@ -42,8 +42,9 @@
                                 <p class="event-details">
                                     {{event.eventstart_time}} - {{event.eventend_time}}
                                 </p>
-                                <button class="entypo-minus" (click)="deleteEventButtonClick($event)"
-                                    value="{{event.eventid}}"></button>
+                                <button class="edit-event" value="{{event.eventid}}">Edit</button>
+                                <button class="delete-event" (click)="deleteEvent($event)"
+                                    value="{{event.eventid}}">Delete</button>
                             </div>
                         </div>
                         <input formControlName="id" type="text" name="id" class="event_input" />
