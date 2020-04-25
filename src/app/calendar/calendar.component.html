@@ -64,7 +64,7 @@
         <form class="add-item-form" [formGroup]="addItemForm" (ngSubmit)="submitEvent()">
             <div class="input-wrapper item-type">
                 <label>Select Type</label>
-                <select formControlName="item_type">
+                <select formControlName="item_type" required>
                     <option value="1">Event</option>
                     <!-- <option value="2">Reminder</option>
                     <option value="3">Task</option>
@@ -75,7 +75,7 @@
 
             <div class="input-wrapper frequency">
                 <label>Select Frequency</label>
-                <select formControlName="frequency">
+                <select formControlName="frequency" required>
                     <option value="0">Once</option>
                     <!-- <option value="1">Daily</option>
                     <option value="2">Weekly</option>
@@ -89,32 +89,32 @@
 
             <div class="input-wrapper item-title">
                 <label>Title</label>
-                <input type="text" placeholder="Title or name" formControlName="title">
+                <input type="text" placeholder="Title or name" formControlName="title" required>
             </div>
 
             <div class="input-wrapper event-description">
                 <label class="description-label">Description</label>
-                <textarea placeholder="Add description" formControlName="description"></textarea>
+                <textarea placeholder="Add description" formControlName="description" required></textarea>
             </div>
 
             <div class="input-wrapper date-input">
                 <label>Start Date</label>
-                <input type="date" formControlName="start_date"/>
+                <input type="date" formControlName="start_date" (change)="onStartDateChange()" required/>
             </div>
 
             <div class="input-wrapper date-input-end">
                 <label>End Date</label>
-                <input type="date" formControlName="end_date" />
+                <input type="date" formControlName="end_date" required/>
             </div>
 
             <div class="input-wrapper time-input">
                 <label class="time-label">Start Time</label>
-                <input type="time" formControlName="start_time"/>
+                <input type="time" formControlName="start_time" (change)="onStartTimeChange()" required/>
             </div>
 
             <div class="input-wrapper time-input-end">
                 <label class="time-label">End Time</label>
-                <input type="time" formControlName="end_time" />
+                <input type="time" formControlName="end_time" required/>
             </div>
 
             <div class="input-wrapper location-input">
@@ -123,7 +123,7 @@
             </div>
 
             <div class="input-wrapper">
-                <button class="submit-form" type="submit">Enter</button>
+                <button class="submit-form" type="submit" [disabled]="!addItemForm.valid">Enter</button>
             </div>
         </form>
     </div>

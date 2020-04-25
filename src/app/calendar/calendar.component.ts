@@ -416,8 +416,8 @@ export class CalendarComponent implements OnInit, AfterViewInit {
     const minutes = String(this.clock.getMinutes()).padStart(2, '0');
     const hours = String(this.clock.getHours()).padStart(2, '0');
     const extraHour = String(this.clock.getHours() + 1).padStart(2, '0');
-    const currentTime = hours + ':' + '00';
-    const endTime = (extraHour) + ':' + '00';
+    const currentTime = hours + ':' + minutes;
+    const endTime = (extraHour) + ':' + minutes;
 
     $('.add-item-container').animate({ scrollTop: 0 }, 400);
     $('.add-item-container').addClass('show-form');
@@ -444,6 +444,44 @@ export class CalendarComponent implements OnInit, AfterViewInit {
     } else {
       $('.clicked-day').removeClass('double-click');
     }
+  }
+
+  onStartDateChange() {
+    this.addItemForm = new FormGroup({
+      item_type: new FormControl($('.item-type select').val()),
+      frequency: new FormControl($('.frequency select').val()),
+      title: new FormControl($('.item-title input').val()),
+      description: new FormControl($('.event-description textarea').val()),
+      start_date: new FormControl($('.date-input input').val()),
+      end_date: new FormControl($('.date-input input').val()),
+      start_time: new FormControl($('.time-input input').val()),
+      end_time: new FormControl($('.time-input-end input').val()),
+      location: new FormControl($('.location-input input').val()),
+    });
+  }
+
+  onStartTimeChange() {
+    const minutes = Number(String($('.time-input input').val()).slice(-2));
+    let hours: any = Number(String($('.time-input input').val()).substring(0, 2)) + 1;
+    if (hours === 24 && minutes > 0) {
+      hours = '00';
+    } else if (hours < 10) {
+      hours = '0' + hours;
+      hours.toString();
+    }
+    const endTime = hours + ':' + minutes;
+    
+    this.addItemForm = new FormGroup({
+      item_type: new FormControl($('.item-type select').val()),
+      frequency: new FormControl($('.frequency select').val()),
+      title: new FormControl($('.item-title input').val()),
+      description: new FormControl($('.event-description textarea').val()),
+      start_date: new FormControl($('.date-input input').val()),
+      end_date: new FormControl($('.date-input-end input').val()),
+      start_time: new FormControl($('.time-input input').val()),
+      end_time: new FormControl(endTime),
+      location: new FormControl($('.location-input input').val()),
+    });
   }
 
   closeForm() {
