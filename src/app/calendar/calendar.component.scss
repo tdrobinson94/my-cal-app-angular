@@ -205,6 +205,7 @@
                         -moz-user-select: none;
                         -ms-user-select: none;
                         user-select: none;
+                        outline: none !important;
 
                         @media screen and (min-width: $end-small) {
                             font-size: 16px;
@@ -291,6 +292,7 @@
                             -moz-user-select: none;
                             -ms-user-select: none;
                             user-select: none;
+                            outline: none !important;
 
                             &.title {
                                 margin-top: 0;
