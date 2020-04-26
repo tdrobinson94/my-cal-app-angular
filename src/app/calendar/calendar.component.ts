@@ -537,6 +537,7 @@ export class CalendarComponent implements OnInit, AfterViewInit {
     });
 
     this.updateItemForm = new FormGroup({
+      id: new FormControl($('.event-id-update input').val()),
       item_type: new FormControl($('.item-type-update select').val()),
       frequency: new FormControl($('.frequency-update select').val()),
       title: new FormControl($('.item-title-update input').val()),
@@ -579,6 +580,7 @@ export class CalendarComponent implements OnInit, AfterViewInit {
     });
 
     this.updateItemForm = new FormGroup({
+      id: new FormControl($('.event-id-update input').val()),
       item_type: new FormControl($('.item-type-update select').val()),
       frequency: new FormControl($('.frequency-update select').val()),
       title: new FormControl($('.item-title-update input').val()),
