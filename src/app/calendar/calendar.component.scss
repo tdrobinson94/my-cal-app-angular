@@ -311,7 +311,6 @@
                             background-color: $primary;
                             color: $textwht;
                             border-radius: 5px;
-                            padding: 7px;
                             border: 0;
                             font-size: 12px;
 
@@ -321,6 +320,11 @@
 
                             &.edit-event {
                                 background-color: rgba(0, 0, 0, .8);
+                                transition: all .3s ease-in-out;
+                            }
+
+                            &.delete-event {
+                                transition: all .4s ease-in-out;
                             }
                         }
                     }
@@ -447,24 +451,24 @@
                                 button {
                                     display: inline;
                                     margin-right: 5px;
+                                    padding: 7px;
 
                                     &.edit-event {
-                                        animation-name: sm-grow-1;
+                                        animation-name: appear;
                                         animation-duration: .3s;
                                         animation-timing-function: ease-in-out;
+                                        transition: all .3s ease-in-out;
                                     }
 
                                     &.delete-event {
-                                        animation-name: sm-grow-2;
-                                        animation-duration: .4s;
-                                        animation-timing-function: ease-in-out;
+                                        animation-name: appear;
+                                        animation-duration: .3s;
+                                        animation-timing-function: ease-in-out;transition: all .3s ease-in-out;
                                     }
                                 }
-                                @keyframes sm-grow-1 {
-                                    50%  {transform: scale(.8, .8);}
-                                }
-                                @keyframes sm-grow-2 {
-                                    50%  {transform: scale(.8, .8);}
+                                @keyframes appear {
+                                    0% { opacity: 0; }
+                                    100% { opacity: 1; }
                                 }
                             }
                         }

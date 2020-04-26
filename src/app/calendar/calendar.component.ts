@@ -439,7 +439,13 @@ export class CalendarComponent implements OnInit, AfterViewInit {
       minutes = '0' + minutes;
       minutes.toString();
     }
-    const hours = Number(String(this.clock.getHours()).padStart(2, '0'));
+    let hours: any = Number(String(this.clock.getHours()).padStart(2, '0'));
+    if (hours === 24 && minutes > 0) {
+      hours = '00';
+    } else if (hours < 10) {
+      hours = '0' + hours;
+      hours.toString();
+    }
     let extraHour: any = Number(String(this.clock.getHours() + 1).padStart(2, '0'));
     if (extraHour === 24 && minutes > 0) {
       extraHour = '00';
