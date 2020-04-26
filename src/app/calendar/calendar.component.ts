@@ -117,6 +117,7 @@ export class CalendarComponent implements OnInit, AfterViewInit {
       this.clock = new Date();
       if (this.currentDay !== this.clock.getDate()) {
         this.changeCal();
+        this.currentDay = this.clock.getDate();
       }
     }, 10 * 1000);
     this.changeCal();
