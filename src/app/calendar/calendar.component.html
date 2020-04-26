@@ -36,10 +36,10 @@
                             <p class="event-details title">
                                 {{event.eventtitle}}
                             </p>
-                            <p class="event-details description" *ngIf="event.eventdesc">
+                            <p class="event-details description">
                                 {{event.eventdesc}}
                             </p>
-                            <p class="event-details location" *ngIf="event.eventlocation">
+                            <p class="event-details location">
                                 {{event.eventlocation}}
                             </p>
 
@@ -47,10 +47,9 @@
                                 {{event.eventfrequency}}
                             </p>
 
-                            <p class="event-details">
-                                {{event.eventstart_time}} - {{event.eventend_time}}
+                            <p class="event-details time">
+                                <span>{{event.eventstart_time}}</span> - <span>{{event.eventend_time}}</span>
                             </p>
-                            <button class="edit-event" value="{{event.eventid}}">Edit</button>
                             <button class="delete-event" (click)="deleteEvent($event)"
                                 value="{{event.eventid}}">Delete</button>
                         </div>
@@ -92,7 +91,7 @@
                         
                         <div class="input-wrapper date-input-update">
                             <label>Start Date</label>
-                            <input type="date" formControlName="start_date" (change)="onStartDateChange()" required />
+                            <input type="date" formControlName="start_date" (change)="onStartDateChange($event)" required />
                         </div>
                         
                         <div class="input-wrapper date-input-end-update">
@@ -102,7 +101,7 @@
                         
                         <div class="input-wrapper time-input-update">
                             <label class="time-label">Start Time</label>
-                            <input type="time" formControlName="start_time" (change)="onStartTimeChange()" required />
+                            <input type="time" formControlName="start_time" (change)="onStartTimeChange($event)" required />
                         </div>
                         
                         <div class="input-wrapper time-input-end-update">
@@ -170,7 +169,7 @@
 
             <div class="input-wrapper date-input">
                 <label>Start Date</label>
-                <input type="date" formControlName="start_date" (change)="onStartDateChange()" required/>
+                <input type="date" formControlName="start_date" (change)="onStartDateChange($event)" required/>
             </div>
 
             <div class="input-wrapper date-input-end">
@@ -180,7 +179,7 @@
 
             <div class="input-wrapper time-input">
                 <label class="time-label">Start Time</label>
-                <input type="time" formControlName="start_time" (change)="onStartTimeChange()" required/>
+                <input type="time" formControlName="start_time" (change)="onStartTimeChange($event)" required/>
             </div>
 
             <div class="input-wrapper time-input-end">

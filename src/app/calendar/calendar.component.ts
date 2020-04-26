@@ -444,25 +444,23 @@ export class CalendarComponent implements OnInit, AfterViewInit {
       this.deleteItemForm = new FormGroup({
         id: new FormControl($(e.target).val()),
       });
-    } else if ($(e.target).hasClass('edit-event')) {
-      $('.add-item-button, .add-item-container').hide();
-      $('.update-event-form').addClass('show-update-form');
-      this.updateItemForm = new FormGroup({
-        id: new FormControl($(e.target).val()),
-        frequency: new FormControl(Number($(e.target).prev().prev('.frequency').html())),
-        title: new FormControl($(e.target).prev().prev().prev('.title').html()),
-        description: new FormControl($(e.target).prev().prev('.description').html()),
-        start_date: new FormControl(day),
-        end_date: new FormControl(day),
-        start_time: new FormControl(currentTime),
-        end_time: new FormControl(endTime),
-        location: new FormControl($('.location-input input').val()),
-      });
     } else if (!$(e.currentTarget).hasClass('selected-event')) {
       $('.visible').removeClass('selected-event');
       $(e.currentTarget).addClass('selected-event');
     } else if ($(e.currentTarget).hasClass('selected-event')) {
-      $(e.currentTarget).removeClass('selected-event');
+      $('.add-item-button, .add-item-container').hide();
+      $('.update-event-form').addClass('show-update-form');
+      this.updateItemForm = new FormGroup({
+        id: new FormControl(e.currentTarget.childNodes[5].value),
+        frequency: new FormControl(Number(e.currentTarget.childNodes[3].innerHTML)),
+        title: new FormControl(e.currentTarget.childNodes[0].innerHTML),
+        description: new FormControl(e.currentTarget.childNodes[1].innerHTML),
+        start_date: new FormControl(day),
+        end_date: new FormControl(day),
+        start_time: new FormControl(currentTime),
+        end_time: new FormControl(endTime),
+        location: new FormControl(e.currentTarget.childNodes[2].innerHTML),
+      });
     }
   }
 
@@ -525,35 +523,49 @@ export class CalendarComponent implements OnInit, AfterViewInit {
     });
   }
 
-  onStartDateChange() {
+  onStartDateChange(e) {
     this.addItemForm = new FormGroup({
       item_type: new FormControl($('.item-type select').val()),
       frequency: new FormControl($('.frequency select').val()),
       title: new FormControl($('.item-title input').val()),
       description: new FormControl($('.event-description textarea').val()),
-      start_date: new FormControl($('.date-input input').val()),
-      end_date: new FormControl($('.date-input input').val()),
+      start_date: new FormControl(e.target.value),
+      end_date: new FormControl(e.target.value),
       start_time: new FormControl($('.time-input input').val()),
       end_time: new FormControl($('.time-input-end input').val()),
       location: new FormControl($('.location-input input').val()),
     });
+
+    this.updateItemForm = new FormGroup({
+      item_type: new FormControl($('.item-type-update select').val()),
+      frequency: new FormControl($('.frequency-update select').val()),
+      title: new FormControl($('.item-title-update input').val()),
+      description: new FormControl($('.event-description-update textarea').val()),
+      start_date: new FormControl(e.target.value),
+      end_date: new FormControl(e.target.value),
+      start_time: new FormControl($('.time-input-update input').val()),
+      end_time: new FormControl($('.time-input-end-update input').val()),
+      location: new FormControl($('.location-input-update input').val()),
+    });
   }
 
-  onStartTimeChange() {
-    let minutes: any = Number(String($('.time-input input').val()).slice(-2));
+  onStartTimeChange(e) {
+    let minutes: any = Number(String(e.target.value).slice(-2));
     if (minutes < 10) {
       minutes = '0' + minutes;
       minutes.toString();
     }
-    let hours: any = Number(String($('.time-input input').val()).substring(0, 2)) + 1;
+
+    let hours: any = Number(String(e.target.value).substring(0, 2)) + 1;
     if (hours === 24 && minutes > 0) {
       hours = '00';
     } else if (hours < 10) {
       hours = '0' + hours;
       hours.toString();
     }
+
     const endTime = hours + ':' + minutes;
-    
+
     this.addItemForm = new FormGroup({
       item_type: new FormControl($('.item-type select').val()),
       frequency: new FormControl($('.frequency select').val()),
@@ -561,9 +573,21 @@ export class CalendarComponent implements OnInit, AfterViewInit {
       description: new FormControl($('.event-description textarea').val()),
       start_date: new FormControl($('.date-input input').val()),
       end_date: new FormControl($('.date-input-end input').val()),
-      start_time: new FormControl($('.time-input input').val()),
+      start_time: new FormControl(e.target.value),
       end_time: new FormControl(endTime),
       location: new FormControl($('.location-input input').val()),
+    });
+
+    this.updateItemForm = new FormGroup({
+      item_type: new FormControl($('.item-type-update select').val()),
+      frequency: new FormControl($('.frequency-update select').val()),
+      title: new FormControl($('.item-title-update input').val()),
+      description: new FormControl($('.event-description-update textarea').val()),
+      start_date: new FormControl($('.date-input-update input').val()),
+      end_date: new FormControl($('.date-input-update input').val()),
+      start_time: new FormControl(e.target.value),
+      end_time: new FormControl(endTime),
+      location: new FormControl($('.location-input-update input').val()),
     });
   }
 
@@ -605,6 +629,7 @@ export class CalendarComponent implements OnInit, AfterViewInit {
 
   closeEventUpdateForm() {
     this.updateItemForm.reset();
+    $('.event').removeClass('selected-event');
     $('.update-event-form').removeClass('show-update-form');
     $('.add-item-button, .add-item-container').show();
     // $('.form-nav-bar, .add-item-form').removeClass('animate-events-one animate-events-two');
