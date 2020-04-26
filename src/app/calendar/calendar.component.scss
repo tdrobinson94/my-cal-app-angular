@@ -329,8 +329,18 @@
                         }
                     }
 
-                    input {
+                    form {
                         display: none;
+
+                        &.update-event-form {
+                            animation-name: shrink-2;
+                            animation-duration: .3s;
+                            animation-timing-function: ease-in-out;
+                        }
+                    }
+
+                    @keyframes shrink-2{
+                        25%  {transform: scale(.5, .5);}
                     }
                 }
 
@@ -428,6 +438,10 @@
                             .event-details {
                                 margin: 5px 0 0 0;
 
+                                &.frequency {
+                                    display: none;
+                                }
+
                                 &:last-of-type {
                                     font-size: 14px;
                                     padding-bottom: 5px;
@@ -472,10 +486,143 @@
                                 }
                             }
                         }
+
+                        .update-event-form {
+                            &.show-update-form {
+                                display: block;
+                                position: fixed;
+                                top: 122px;
+                                width: 100%;
+                                height: calc(100% - 125px);
+                                overflow: auto;
+                                background: $textwht;
+                                padding: 0;
+                                animation-name: grow-2;
+                                animation-duration: .3s;
+                                animation-timing-function: ease-in-out;
+
+                                @media screen and (min-width: $end-small) {
+                                    top: 0px;
+                                    border-radius: 5px;
+                                    height: calc(100% - 15px);
+                                }
+
+                                .form-nav-bar {
+                                    position: sticky;
+                                    top: 0;
+                                    background: $primary;
+                                    h2 {
+                                        padding: 13px 4%;
+                                        margin: 0 0 15px;
+                                        color: #fff;
+                                    }
+
+                                    .close-form {
+                                        position: absolute;
+                                        display: inline;
+                                        top: 13px;
+                                        right: 4%;
+                                        background: transparent;
+                                        border-radius: 5px;
+                                        border: 0;
+                                        cursor: pointer;
+                                        color: $textwht;
+
+                                        &:before {
+                                            font-size: 30px;
+                                            height: 30px;
+                                            display: flex;
+                                            align-items: center;
+                                            justify-content: center;
+                                        }
+                                    }
+                                }
+
+                                .input-wrapper {
+                                    margin: 0 4%;
+                                }
+
+                                label {
+                                    display: block;
+                                    margin: 0;
+                                    padding: 0;
+                                    width: 100%;
+                                    font-weight: bold;
+                                    font-size: 15px;
+                                }
+
+                                .event-id-update {
+                                    display: none;
+                                }
+
+                                select, .date-input-update input, .date-input-end-update input, .time-input-end-update input, .item-title-update input , .event-description-update textarea, .amount-input-update input, .location-input-update input, .time-input-update input {
+                                    width: 100%;
+                                    padding: 10px 0;
+                                    border: 0;
+                                    border-bottom: 1px solid #c4c7cc;
+                                    margin: 10px 0;
+                                    -webkit-box-sizing: border-box;
+                                    -moz-box-sizing: border-box;
+                                    box-sizing: border-box;
+                                    font-size: 15px;
+                                    transition: all .3s ease-in-out;
+                                    background: transparent;
+                                    color: $textdrk;
+
+                                    &:focus, &:active {
+                                        border: 0;
+                                        border-bottom: 1px solid $primary;
+                                        outline: 0;
+                                        transition: all .3s ease-in-out;
+                                        font-size: 16px;
+                                    }
+                                    &:-internal-autofill-selected {
+                                        box-shadow: inset 0 0 0 100px transparent;
+                                    }
+                                }
+
+                                textarea {
+                                    height: 75px;
+                                }
+
+                                button.submit-form {
+                                    background-color: $alert;
+                                    color: $textwht;
+                                    border-radius: 5px;
+                                    padding: 10px;
+                                    border: 0;
+                                    font-size: 15px;
+                                    float: right;
+                                    margin: 20px 0;
+
+                                    &:disabled {
+                                        opacity: .3;
+                                    }
+                                }
+
+                                &::-webkit-scrollbar {
+                                    width: 4px;
+                                }
+                                &::-webkit-scrollbar-track {
+                                    background: transparent;
+                                }
+                                &::-webkit-scrollbar-thumb {
+                                    background: rgba(0, 0, 0, .2);
+                                    border-radius: 50px;
+                                }
+                                &::-webkit-scrollbar-thumb:hover {
+                                    background: rgba(126, 93, 93, 0.7); 
+                                }
+                            }
+
+                            @keyframes grow-2 {
+                                25%  {transform: scale(1, .90);}
+                            }
+                        }
                     }
                 }
 
-                @keyframes grow{
+                @keyframes grow {
                     25%  {transform: scale(1, .90);}
                 }
 

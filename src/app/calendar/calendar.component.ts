@@ -58,6 +58,18 @@ export class CalendarComponent implements OnInit, AfterViewInit {
     location: new FormControl(''),
   });
 
+  updateItemForm = new FormGroup({
+    id: new FormControl(''),
+    frequency: new FormControl(''),
+    title: new FormControl(''),
+    description: new FormControl(''),
+    start_date: new FormControl(''),
+    end_date: new FormControl(''),
+    start_time: new FormControl(''),
+    end_time: new FormControl(''),
+    location: new FormControl(''),
+  });
+
   loading = false;
 
   ngOnInit() {
@@ -382,6 +394,7 @@ export class CalendarComponent implements OnInit, AfterViewInit {
               eventstart_date: response[i].start_date.substring(0, 10).toString(),
               eventdesc: response[i].description,
               eventlocation: response[i].location,
+              eventfrequency: response[i].frequency,
               eventstart_time: moment(response[i].start_time, 'HH:mm:ss').format('h:mm A'),
               eventend_time: moment(response[i].end_time, 'HH:mm:ss').format('h:mm A'),
               eventcreatedAt: moment(response[i].created_at).format()
@@ -404,12 +417,47 @@ export class CalendarComponent implements OnInit, AfterViewInit {
   }
 
   selectEvent(e) {
+    const day = $('.clicked-day .date-value').text();
+    let minutes: any = Number(String(this.clock.getMinutes()).padStart(2, '0'));
+    if (minutes < 10) {
+      minutes = '0' + minutes;
+      minutes.toString();
+    }
+    let hours: any = Number(String(this.clock.getHours()).padStart(2, '0'));
+    if (hours === 24 && minutes > 0) {
+      hours = '00';
+    } else if (hours < 10) {
+      hours = '0' + hours;
+      hours.toString();
+    }
+    let extraHour: any = Number(String(this.clock.getHours() + 1).padStart(2, '0'));
+    if (extraHour === 24 && minutes > 0) {
+      extraHour = '00';
+    } else if (extraHour < 10) {
+      extraHour = '0' + extraHour;
+      extraHour.toString();
+    }
+    const currentTime = hours.toString() + ':' + minutes.toString();
+    const endTime = (extraHour) + ':' + minutes;
+
     if ($(e.target).hasClass('delete-event')) {
       this.deleteItemForm = new FormGroup({
         id: new FormControl($(e.target).val()),
       });
     } else if ($(e.target).hasClass('edit-event')) {
-      console.log('Edit Button');
+      $('.add-item-button, .add-item-container').hide();
+      $('.update-event-form').addClass('show-update-form');
+      this.updateItemForm = new FormGroup({
+        id: new FormControl($(e.target).val()),
+        frequency: new FormControl(Number($(e.target).prev().prev('.frequency').html())),
+        title: new FormControl($(e.target).prev().prev().prev('.title').html()),
+        description: new FormControl($(e.target).prev().prev('.description').html()),
+        start_date: new FormControl(day),
+        end_date: new FormControl(day),
+        start_time: new FormControl(currentTime),
+        end_time: new FormControl(endTime),
+        location: new FormControl($('.location-input input').val()),
+      });
     } else if (!$(e.currentTarget).hasClass('selected-event')) {
       $('.visible').removeClass('selected-event');
       $(e.currentTarget).addClass('selected-event');
@@ -538,6 +586,31 @@ export class CalendarComponent implements OnInit, AfterViewInit {
           this.getEvents();
         }, 300);
       });
+  }
+
+  updateEvent() {
+    this.loading = true;
+    this.dataService.updatedEvent(this.updateItemForm.value)
+      .subscribe((response) => {
+        this.closeEventUpdateForm();
+        const res = Object.values(response);
+        const data = Object.values(res[1]);
+        this.loading = false;
+
+        setTimeout(() => {
+          this.getEvents();
+        }, 300);
+      });
+  }
+
+  closeEventUpdateForm() {
+    this.updateItemForm.reset();
+    $('.update-event-form').removeClass('show-update-form');
+    $('.add-item-button, .add-item-container').show();
+    // $('.form-nav-bar, .add-item-form').removeClass('animate-events-one animate-events-two');
+    // setTimeout(() => {
+    //   $('.add-item-button').show();
+    // }, 300);
   }
 
 }

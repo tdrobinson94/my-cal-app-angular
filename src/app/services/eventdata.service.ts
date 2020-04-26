@@ -31,6 +31,11 @@ export class EventDataService {
         return this.http.get(this.apiUrl + '/user/events', { params: param });
     }
 
+    updatedEvent(eventData) {
+        const param = { id: eventData.id };
+        return this.http.post(this.apiUrl + '/update/event/' + eventData.id,  eventData);
+    }
+
     deleteEvent(eventId): Observable<any> {
         const param = { id: eventId.id }; 
         return this.http.delete(this.apiUrl + '/delete/event/' + eventId.id, { params: param });
