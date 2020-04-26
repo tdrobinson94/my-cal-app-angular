@@ -310,10 +310,10 @@
                             display: none;
                             background-color: $primary;
                             color: $textwht;
-                            border-radius: 10px;
-                            padding: 10px;
+                            border-radius: 5px;
+                            padding: 7px;
                             border: 0;
-                            font-size: 15px;
+                            font-size: 12px;
 
                             &:hover {
                                 color: $textwht;
@@ -447,6 +447,24 @@
                                 button {
                                     display: inline;
                                     margin-right: 5px;
+
+                                    &.edit-event {
+                                        animation-name: sm-grow-1;
+                                        animation-duration: .3s;
+                                        animation-timing-function: ease-in-out;
+                                    }
+
+                                    &.delete-event {
+                                        animation-name: sm-grow-2;
+                                        animation-duration: .4s;
+                                        animation-timing-function: ease-in-out;
+                                    }
+                                }
+                                @keyframes sm-grow-1 {
+                                    50%  {transform: scale(.8, .8);}
+                                }
+                                @keyframes sm-grow-2 {
+                                    50%  {transform: scale(.8, .8);}
                                 }
                             }
                         }
@@ -669,7 +687,7 @@
         button.submit-form {
             background-color: $alert;
             color: $textwht;
-            border-radius: 10px;
+            border-radius: 5px;
             padding: 10px;
             border: 0;
             font-size: 15px;
