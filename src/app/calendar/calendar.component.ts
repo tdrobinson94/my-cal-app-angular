@@ -452,14 +452,14 @@ export class CalendarComponent implements OnInit, AfterViewInit {
       $('.update-event-form').addClass('show-update-form');
       this.updateItemForm = new FormGroup({
         id: new FormControl(e.currentTarget.childNodes[5].value),
-        frequency: new FormControl(Number(e.currentTarget.childNodes[3].innerHTML)),
-        title: new FormControl(e.currentTarget.childNodes[0].innerHTML),
-        description: new FormControl(e.currentTarget.childNodes[1].innerHTML),
+        frequency: new FormControl(Number(e.currentTarget.childNodes[3].innerHTML.trim())),
+        title: new FormControl(e.currentTarget.childNodes[0].innerHTML.trim()),
+        description: new FormControl(e.currentTarget.childNodes[1].innerHTML.trim()),
         start_date: new FormControl(day),
         end_date: new FormControl(day),
         start_time: new FormControl(currentTime),
         end_time: new FormControl(endTime),
-        location: new FormControl(e.currentTarget.childNodes[2].innerHTML),
+        location: new FormControl(e.currentTarget.childNodes[2].innerHTML.trim()),
       });
     }
   }
