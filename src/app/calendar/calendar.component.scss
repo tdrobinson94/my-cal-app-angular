@@ -377,12 +377,14 @@
                     animation-name: grow;
                     animation-duration: .3s;
                     animation-timing-function: ease-in-out;
+                    border-radius: 0;
 
                     @media screen and (min-width: $end-small) {
                         bottom: 50%;
                         transform: translate(0, 25%);
                         height: 50%;
                         border: 1px solid #333333;
+                        border-radius: 5px;
                     }
 
                     button.close-day {
