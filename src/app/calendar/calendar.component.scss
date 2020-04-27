@@ -188,7 +188,7 @@
                     border-radius: 100%;
                     position: relative;
                     top: 3px;
-                    cursor: pointer;
+                    pointer-events: none;
 
                     @media screen and (min-width: $end-small) {
                         width: 17px;
