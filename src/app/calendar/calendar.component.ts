@@ -471,7 +471,9 @@ export class CalendarComponent implements OnInit, AfterViewInit {
       $(e.currentTarget).addClass('selected-event');
     } else if ($(e.currentTarget).hasClass('selected-event')) {
       $('.add-item-button, .add-item-container').hide();
-      $('.update-event-form').addClass('show-update-form');
+      setTimeout(() => {
+        $('.update-event-form').addClass('show-update-form');
+      }, 200);
       $('.update-event-form').animate({ scrollTop: 0 }, 400);
 
       this.updateItemForm = new FormGroup({
