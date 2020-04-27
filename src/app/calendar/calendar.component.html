@@ -31,7 +31,7 @@
                 <div class="num-box"><span class="num-date"></span></div>
                 <div class="date-value"></div>
                 <div class="main-info-section">
-                    <div *ngFor="let event of events">
+                    <div class="event-container" *ngFor="let event of events">
                         <div class="event" [ngClass]="event.eventstart_date"  (click)="selectEvent($event)">
                             <p class="event-details title">
                                 {{event.eventtitle}}

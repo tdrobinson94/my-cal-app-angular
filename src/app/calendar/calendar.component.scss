@@ -426,6 +426,14 @@
                             }
                         }
 
+                        .event-container {
+                            &:last-of-type {
+                                .event {
+                                    margin-bottom: 50px;
+                                }
+                            }
+                        }
+
                         .event {
                             font-size: 16px !important;
                             height: auto !important;
