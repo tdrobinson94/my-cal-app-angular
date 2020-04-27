@@ -391,7 +391,7 @@ export class CalendarComponent implements OnInit, AfterViewInit {
             eventlist[i] = {
               eventid: response[i].id.toString(),
               eventtitle: response[i].title,
-              eventstart_date: response[i].start_date.substring(0, 10).toString(),
+              eventstart_date: response[i].start_date.substring(0, 10),
               eventdesc: response[i].description,
               eventlocation: response[i].location,
               eventfrequency: response[i].frequency,
@@ -413,6 +413,28 @@ export class CalendarComponent implements OnInit, AfterViewInit {
 
           this.loading = false;
         }
+        
+        // const begDate = moment(new Date(this.currentYear - 5, 0)).format();
+        // const endDate = moment(new Date(this.currentYear + 5, 11)).format();
+        // console.log(begDate);
+        // console.log(endDate);
+
+        // this.events.filter(
+        //   (e) => {
+        //     let date;
+        //     let hitDates = e.eventstart_date || {};
+        //     hitDates = Object.keys(hitDates);
+        //     hitDates = hitDates.some((dateStr) => {
+        //       date = new Date(dateStr);
+        //       return date > begDate && date < endDate;
+        //     })
+
+        //     return (date) > begDate &&
+        //     (date) < endDate;
+        //   }
+        // );
+
+        // console.log(this.events);
       });
   }
 
@@ -450,6 +472,8 @@ export class CalendarComponent implements OnInit, AfterViewInit {
     } else if ($(e.currentTarget).hasClass('selected-event')) {
       $('.add-item-button, .add-item-container').hide();
       $('.update-event-form').addClass('show-update-form');
+      $('.update-event-form').animate({ scrollTop: 0 }, 400);
+
       this.updateItemForm = new FormGroup({
         id: new FormControl(e.currentTarget.childNodes[5].value),
         frequency: new FormControl(Number(e.currentTarget.childNodes[3].innerHTML.trim())),
