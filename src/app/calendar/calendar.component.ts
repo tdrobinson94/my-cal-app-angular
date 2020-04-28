@@ -460,7 +460,7 @@ export class CalendarComponent implements OnInit, AfterViewInit {
       const eMinutes: any = e.currentTarget.childNodes[4].childNodes[0].innerHTML.trim().split(':')[1].substring(0, 2);
 
       if (timeofday === 'PM' && eHours < 10) {
-        eHours = 24 - (eHours + 10);
+        eHours = 24 - (12 - eHours);
       } else if (timeofday === 'PM' && eHours >= 10) {
         if (eHours === 12) {
           eHours = eHours;
