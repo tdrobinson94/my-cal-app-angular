@@ -469,11 +469,16 @@ export class CalendarComponent implements OnInit, AfterViewInit {
         }
       } else if (timeofday === 'AM' && eHours < 10) {
         eHours = '0' + eHours;
+        console.log(eHours);
       }
 
-      let eEndTimeHours: any = eHours + 1;
+      let eEndTimeHours: any = Number(eHours) + 1;
+      console.log(eEndTimeHours);
       if (eEndTimeHours === 24) {
         eEndTimeHours = '00';
+      }
+      if (eEndTimeHours < 10) {
+        eEndTimeHours = '0' + eEndTimeHours;
       }
       const eCurrentTime = eHours + ':' + eMinutes;
       const eEndTime = eEndTimeHours + ':' + eMinutes;
