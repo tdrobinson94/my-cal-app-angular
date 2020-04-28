@@ -440,27 +440,6 @@ export class CalendarComponent implements OnInit, AfterViewInit {
 
   selectEvent(e) {
     const day = $('.clicked-day .date-value').text();
-    let minutes: any = Number(String(this.clock.getMinutes()).padStart(2, '0'));
-    if (minutes < 10) {
-      minutes = '0' + minutes;
-      minutes.toString();
-    }
-    let hours: any = Number(String(this.clock.getHours()).padStart(2, '0'));
-    if (hours === 24 && minutes > 0) {
-      hours = '00';
-    } else if (hours < 10) {
-      hours = '0' + hours;
-      hours.toString();
-    }
-    let extraHour: any = Number(String(this.clock.getHours() + 1).padStart(2, '0'));
-    if (extraHour === 24 && minutes > 0) {
-      extraHour = '00';
-    } else if (extraHour < 10) {
-      extraHour = '0' + extraHour;
-      extraHour.toString();
-    }
-    const currentTime = hours.toString() + ':' + minutes.toString();
-    const endTime = (extraHour) + ':' + minutes;
 
     if ($(e.target).hasClass('delete-event')) {
       this.deleteItemForm = new FormGroup({
@@ -476,6 +455,29 @@ export class CalendarComponent implements OnInit, AfterViewInit {
       }, 200);
       $('.update-event-form').animate({ scrollTop: 0 }, 400);
 
+      const timeofday = e.currentTarget.childNodes[4].childNodes[0].innerHTML.trim().split(' ')[1];
+      let eHours: any = Number(e.currentTarget.childNodes[4].childNodes[0].innerHTML.trim().split(':')[0]);
+      const eMinutes: any = e.currentTarget.childNodes[4].childNodes[0].innerHTML.trim().split(':')[1].substring(0, 2);
+
+      if (timeofday === 'PM' && eHours < 10) {
+        eHours = 24 - (eHours + 10);
+      } else if (timeofday === 'PM' && eHours >= 10) {
+        if (eHours === 12) {
+          eHours = eHours;
+        } else {
+          eHours = eHours + 12;
+        }
+      } else if (timeofday === 'AM' && eHours < 10) {
+        eHours = '0' + eHours;
+      }
+
+      let eEndTimeHours: any = eHours + 1;
+      if (eEndTimeHours === 24) {
+        eEndTimeHours = '00';
+      }
+      const eCurrentTime = eHours + ':' + eMinutes;
+      const eEndTime = eEndTimeHours + ':' + eMinutes;
+      
       this.updateItemForm = new FormGroup({
         id: new FormControl(e.currentTarget.childNodes[5].value),
         frequency: new FormControl(Number(e.currentTarget.childNodes[3].innerHTML.trim())),
@@ -483,8 +485,8 @@ export class CalendarComponent implements OnInit, AfterViewInit {
         description: new FormControl(e.currentTarget.childNodes[1].innerHTML.trim()),
         start_date: new FormControl(day),
         end_date: new FormControl(day),
-        start_time: new FormControl(currentTime),
-        end_time: new FormControl(endTime),
+        start_time: new FormControl(eCurrentTime),
+        end_time: new FormControl(eEndTime),
         location: new FormControl(e.currentTarget.childNodes[2].innerHTML.trim()),
       });
     }
