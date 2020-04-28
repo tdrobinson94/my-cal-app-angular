@@ -647,7 +647,7 @@
         border: none;
         background-color: $alert;
         color: $textwht;
-        right: 20px;
+        right: 10px;
         z-index: 9999;
         transition: all .3s ease-in-out;
         // box-shadow: 1px 1px 10px #333333;
@@ -676,7 +676,7 @@
     .add-item-container {
         position: fixed;
         bottom: 5px;
-        right: 20px;
+        right: 10px;
         height: 53px;
         width: 50px;
         transition: all 0.3s ease-in-out;
