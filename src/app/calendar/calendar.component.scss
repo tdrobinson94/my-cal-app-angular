@@ -236,7 +236,7 @@
                     }
 
                     &.animate-events-two {
-                        height: calc(100% - 130px);
+                        height: calc(100% - 150px);
 
                         @media screen and (min-width: $end-small) {
                             height: calc(100% - 50px);
@@ -423,14 +423,6 @@
                             padding: 5px 0;
                             @media screen and (max-width: $end-small) {
                                 padding-bottom: 15px;
-                            }
-                        }
-
-                        .event-container {
-                            &:last-of-type {
-                                .event {
-                                    margin-bottom: 50px;
-                                }
                             }
                         }
 
@@ -649,7 +641,7 @@
     .add-item-button {
         padding: 15px;
         position: fixed;
-        bottom: 20px;
+        bottom: 5px;
         font-size: 20px;
         border-radius: 100%;
         border: none;
@@ -683,7 +675,7 @@
 
     .add-item-container {
         position: fixed;
-        bottom: 20px;
+        bottom: 5px;
         right: 20px;
         height: 53px;
         width: 50px;
