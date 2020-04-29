@@ -273,7 +273,6 @@ export class CalendarComponent implements OnInit, AfterViewInit {
     $('.event').removeClass('selected-event');
     $('.update-event-form').removeClass('show-update-form');
     $('.add-item-button, .add-item-container').show();
-    $('.main-info-section').removeClass('animate-events-one animate-events-two');
 
     this.renderMonth();
     this.renderPrevMonthDays();
