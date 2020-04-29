@@ -14,7 +14,7 @@
         </div>
         <div class="input-wrapper username">
             <label>Username</label>
-            <input formControlName="username" name="username-field" type="text" placeholder="Username" autocomplete="off" required />
+            <input formControlName="username" name="username-field" type="text" placeholder="Username" autocomplete="new-password" required />
         </div>
         <div class="input-wrapper email">
             <label>Email</label>
@@ -22,7 +22,7 @@
         </div>
         <div class="input-wrapper password">
             <label>Password</label>
-            <input formControlName="password" name="password-field" placeholder="Password" type="password" autocomplete="off" required />
+            <input formControlName="password" name="password-field" placeholder="Password" type="password" autocomplete="new-password" required />
         </div>
         <div class="input-wrapper">
             <button [disabled]="!signupForm.valid" class="signup" type="submit">Signup</button>
