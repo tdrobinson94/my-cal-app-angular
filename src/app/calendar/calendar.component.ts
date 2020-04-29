@@ -464,9 +464,9 @@ export class CalendarComponent implements OnInit, AfterViewInit {
       let eEndTimeHours: any = Number(e.currentTarget.childNodes[4].children[1].innerHTML.trim().split(':')[0]);
       const eEndTimeMinutes = e.currentTarget.childNodes[4].children[1].innerHTML.trim().split(':')[1].substring(0, 2);
 
-      if (timeofday === 'PM' && eHours < 10) {
+      if (timeofday === 'PM' && eHours <= 10) {
         eHours = 24 - (12 - eHours);
-      } else if (timeofday === 'PM' && eHours >= 10) {
+      } else if (timeofday === 'PM' && eHours > 10) {
         if (eHours === 12) {
           eHours = eHours;
         } else {
@@ -476,13 +476,12 @@ export class CalendarComponent implements OnInit, AfterViewInit {
         eHours = '0' + eHours;
       }
 
-      if (timeofday2 === 'PM' && eEndTimeHours < 10) {
+      if (timeofday2 === 'PM' && eEndTimeHours <= 10) {
         eEndTimeHours = 24 - (12 - eEndTimeHours);
-      } else if (timeofday2 === 'PM' && eEndTimeHours >= 10) {
+      } else if (timeofday2 === 'PM' && eEndTimeHours > 10) {
         if (eEndTimeHours === 12) {
           eEndTimeHours = eEndTimeHours;
         } else {
-          eHours = eHours + 12;
           eEndTimeHours = eEndTimeHours + 12;
         }
       } else if (timeofday2 === 'AM' && eEndTimeHours < 10) {
@@ -490,7 +489,7 @@ export class CalendarComponent implements OnInit, AfterViewInit {
       }
       const eCurrentTime = eHours + ':' + eMinutes;
       const eEndTime = eEndTimeHours + ':' + eEndTimeMinutes;
-      
+
       this.updateItemForm = new FormGroup({
         id: new FormControl(e.currentTarget.childNodes[5].value),
         frequency: new FormControl(Number(e.currentTarget.childNodes[3].innerHTML.trim())),
