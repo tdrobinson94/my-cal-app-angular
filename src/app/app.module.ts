@@ -1,12 +1,11 @@
 // import { MbscModule } from '@mobiscroll/angular';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, APP_INITIALIZER } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
-import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { CookieService } from 'ngx-cookie-service';
 import { SwipeModule } from 'ng-swipe';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -49,7 +48,7 @@ import { TestDirectiveDirective } from './test-directive.directive';
     TestCalendarComponent,
     TestDirectiveDirective
   ],
-  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }, UserDataService, CookieService, AuthGuard, GuestGuard,
+  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }, UserDataService, AuthGuard, GuestGuard,
   EventDataService],
   bootstrap: [AppComponent]
 })

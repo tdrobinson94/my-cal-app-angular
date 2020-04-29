@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { UserDataService } from '../services/userdata.service';
 import { Router } from '@angular/router';
-import { CookieService } from 'ngx-cookie-service';
 import $ from 'jquery';
 
 @Component({
@@ -17,7 +16,7 @@ export class LoginComponent implements OnInit {
   });
   userName: string = '';
   loading: boolean = false;
-  constructor(private dataService: UserDataService, private router: Router, private cookieService: CookieService) { }
+  constructor(private dataService: UserDataService, private router: Router) { }
 
   ngOnInit(): void {
     $('html, body').animate({ scrollTop: 0 }, 500);
@@ -34,8 +33,8 @@ export class LoginComponent implements OnInit {
         } else if (response.status === 201) {
           this.loading = false;
           console.log('User has logged in');
-          this.cookieService.set('userId', response.body.id);
-          this.cookieService.set('token', response.body.token);
+          localStorage.setItem('userId', response.body.id);
+          localStorage.setItem('token', response.body.token);
           this.userName = (response.body.username);
           $('.success-message').addClass('show-success');
           this.loginForm.reset();
