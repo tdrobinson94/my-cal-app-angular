@@ -455,9 +455,13 @@ export class CalendarComponent implements OnInit, AfterViewInit {
       }, 200);
       $('.update-event-form').animate({ scrollTop: 0 }, 400);
 
-      const timeofday = e.currentTarget.childNodes[4].childNodes[0].innerHTML.trim().split(' ')[1];
-      let eHours: any = Number(e.currentTarget.childNodes[4].childNodes[0].innerHTML.trim().split(':')[0]);
-      const eMinutes: any = e.currentTarget.childNodes[4].childNodes[0].innerHTML.trim().split(':')[1].substring(0, 2);
+      const timeofday = e.currentTarget.childNodes[4].children[0].innerHTML.trim().split(' ')[1];
+      let eHours: any = Number(e.currentTarget.childNodes[4].children[0].innerHTML.trim().split(':')[0]);
+      const eMinutes: any = e.currentTarget.childNodes[4].children[0].innerHTML.trim().split(':')[1].substring(0, 2);
+
+      const timeofday2 = e.currentTarget.childNodes[4].children[1].innerHTML.trim().split(' ')[1];
+      let eEndTimeHours: any = Number(e.currentTarget.childNodes[4].children[1].innerHTML.trim().split(':')[0]);
+      const eEndTimeMinutes = e.currentTarget.childNodes[4].children[1].innerHTML.trim().split(':')[1].substring(0, 2);
 
       if (timeofday === 'PM' && eHours < 10) {
         eHours = 24 - (12 - eHours);
@@ -469,19 +473,22 @@ export class CalendarComponent implements OnInit, AfterViewInit {
         }
       } else if (timeofday === 'AM' && eHours < 10) {
         eHours = '0' + eHours;
-        console.log(eHours);
       }
 
-      let eEndTimeHours: any = Number(eHours) + 1;
-      console.log(eEndTimeHours);
-      if (eEndTimeHours === 24) {
-        eEndTimeHours = '00';
-      }
-      if (eEndTimeHours < 10) {
+      if (timeofday2 === 'PM' && eEndTimeHours < 10) {
+        eEndTimeHours = 24 - (12 - eEndTimeHours);
+      } else if (timeofday2 === 'PM' && eEndTimeHours >= 10) {
+        if (eEndTimeHours === 12) {
+          eEndTimeHours = eEndTimeHours;
+        } else {
+          eHours = eHours + 12;
+          eEndTimeHours = eEndTimeHours + 12;
+        }
+      } else if (timeofday2 === 'AM' && eEndTimeHours < 10) {
         eEndTimeHours = '0' + eEndTimeHours;
       }
       const eCurrentTime = eHours + ':' + eMinutes;
-      const eEndTime = eEndTimeHours + ':' + eMinutes;
+      const eEndTime = eEndTimeHours + ':' + eEndTimeMinutes;
       
       this.updateItemForm = new FormGroup({
         id: new FormControl(e.currentTarget.childNodes[5].value),
