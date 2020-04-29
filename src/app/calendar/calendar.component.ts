@@ -124,7 +124,6 @@ export class CalendarComponent implements OnInit, AfterViewInit {
 
 
   ngAfterViewInit() {
-    localStorage.setItem('day', this.clock.toLocaleDateString());
     setInterval(() => {
       this.clock = new Date();
       if (this.currentDay !== this.clock.getDate()) {
