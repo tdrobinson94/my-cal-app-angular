@@ -270,6 +270,9 @@ export class CalendarComponent implements OnInit, AfterViewInit {
     $('.day-box').removeClass('clicked-day');
     $('.num-box').removeClass('first-day current-day');
     $('.day-box').removeClass('selected-day');
+    $('.event').removeClass('selected-event');
+    $('.update-event-form').removeClass('show-update-form');
+    $('.add-item-button, .add-item-container').show();
 
     this.renderMonth();
     this.renderPrevMonthDays();
@@ -283,7 +286,6 @@ export class CalendarComponent implements OnInit, AfterViewInit {
     $('.add-item-form').removeClass('show-form');
     $('.day-box').removeClass('selected-day double-click');
     $('.num-box').removeClass('first-day');
-    $('.transaction-button').removeClass('show');
     if ($(document).find('#year').val() <= (this.currentYear - 5)) {
       $(document).find('#year').val(this.currentYear - 5).change();
       $(document).find('#month').val(0).change();
@@ -304,7 +306,6 @@ export class CalendarComponent implements OnInit, AfterViewInit {
     $('.add-item-form').removeClass('show-form');
     $('.day-box').removeClass('selected-day double-click');
     $('.num-box').removeClass('first-day');
-    $('.transaction-button').removeClass('show');
     $(document).find('#month').val(this.currentMonth).change();
     $(document).find('#year').val(this.currentYear).change();
     setTimeout(() => {
@@ -316,7 +317,6 @@ export class CalendarComponent implements OnInit, AfterViewInit {
     $('.add-item-form').removeClass('show-form');
     $('.day-box').removeClass('selected-day double-click');
     $('.num-box').removeClass('first-day');
-    $('.transaction-button').removeClass('show');
     if ($(document).find('#year').val() >= (this.currentYear + 5) && $(document).find('#month').val() == 11) {
       $(document).find('#year').val(this.currentYear + 5).change();
       $(document).find('#month').val(11).change();
