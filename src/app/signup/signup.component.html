@@ -6,23 +6,23 @@
     <form class="signupForm" [formGroup]="signupForm" (ngSubmit)="onSubmit()" autocomplete="off">
         <div class="input-wrapper item-name">
             <label>First Name</label>
-            <input formControlName="firstname" name="firstname" type="text" placeholder="First name" required/>
+            <input formControlName="firstname" name="firstname" type="text" placeholder="First name" autocomplete="off" required/>
         </div>
         <div class="input-wrapper item-name">
             <label>Last Name</label>
-            <input formControlName="lastname" name="lastname" type="text" placeholder="Last name" required/>
+            <input formControlName="lastname" name="lastname" type="text" placeholder="Last name" autocomplete="off" required/>
         </div>
         <div class="input-wrapper username">
             <label>Username</label>
-            <input formControlName="username" name="username" type="text" placeholder="Username" required />
+            <input formControlName="username" name="username" type="text" placeholder="Username" autocomplete="off" required />
         </div>
         <div class="input-wrapper email">
             <label>Email</label>
-            <input formControlName="email" name="email" type="email" placeholder="Email" required/>
+            <input formControlName="email" name="email" type="email" placeholder="Email" autocomplete="off" required/>
         </div>
         <div class="input-wrapper password">
             <label>Password</label>
-            <input formControlName="password" name="password" placeholder="Password" type="password" required />
+            <input formControlName="password" name="password" placeholder="Password" type="password" autocomplete="off" required />
         </div>
         <div class="input-wrapper">
             <button [disabled]="!signupForm.valid" class="signup" type="submit">Signup</button>
