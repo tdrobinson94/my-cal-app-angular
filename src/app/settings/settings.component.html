@@ -10,23 +10,23 @@
             <form class="update-form" [formGroup]="updateForm" autocomplete="off" (ngSubmit)="updatedMyUser()">
                 <div class="input-wrapper email">
                     <label>Email</label>
-                    <input name="email" type="text" placeholder="{{Email}}" autocomplete="off" readonly required />
+                    <input name="email" type="text" placeholder="{{Email}}" readonly required />
                 </div>
                 <div class="input-wrapper username">
                     <label>First Name</label>
-                    <input formControlName="firstname" name="firstname" autocomplete="off" type="text" placeholder="First Name" required />
+                    <input formControlName="firstname" name="firstname" type="text" placeholder="First Name" required />
                 </div>
                 <div class="input-wrapper username">
                     <label>Last Name</label>
-                    <input formControlName="lastname" name="lastname" autocomplete="off" type="text" placeholder="Last Name" required />
+                    <input formControlName="lastname" name="lastname" type="text" placeholder="Last Name" required />
                 </div>
                 <div class="input-wrapper username">
                     <label>Username</label>
-                    <input formControlName="username" name="username" autocomplete="off" type="text" placeholder="Username" required />
+                    <input formControlName="username" name="username" type="text" placeholder="Username" required />
                 </div>
                 <div class="input-wrapper password">
                     <label>Password</label>
-                    <input formControlName="password" name="password" autocomplete="off" placeholder="Password" type="password" required />
+                    <input formControlName="password" name="password" placeholder="Password" type="password" required />
                 </div>
                 <div class="input-wrapper">
                     <button [disabled]="!updateForm.valid" class="update" type="submit">Update</button>
