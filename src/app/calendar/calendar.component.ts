@@ -130,6 +130,7 @@ export class CalendarComponent implements OnInit, AfterViewInit {
       if (this.currentDay !== this.clock.getDate()) {
         this.changeCal();
         this.currentDay = this.clock.getDate();
+        this.currentDayofWeek = this.clock.getDay();
       }
     }, 10 * 1000);
     this.changeCal();
