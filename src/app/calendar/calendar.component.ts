@@ -266,13 +266,13 @@ export class CalendarComponent implements OnInit, AfterViewInit {
   }
 
   changeCal() {
+    $('.update-event-form').removeClass('show-update-form');
+    $('.main-info-section').removeClass('animate-events-one animate-events-two');
+    $('.add-item-button, .add-item-container').show();
     $('.add-item-form').removeClass('show-form');
     $('.day-box').removeClass('clicked-day');
     $('.num-box').removeClass('first-day current-day');
     $('.day-box').removeClass('selected-day');
-    $('.event').removeClass('selected-event');
-    $('.update-event-form').removeClass('show-update-form');
-    $('.add-item-button, .add-item-container').show();
 
     this.renderMonth();
     this.renderPrevMonthDays();
