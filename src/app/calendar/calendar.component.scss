@@ -219,8 +219,8 @@
                 }
 
                 .main-info-section {
-                    // overflow: hidden;
-                    height: calc(100% - 50px);
+                    overflow: hidden;
+                    height: calc(100% - 40px);
                     padding: 5px 10%;
 
                     @media screen and (min-width: $mid-small) {
