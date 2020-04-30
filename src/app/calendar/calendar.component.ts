@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { EventDataService } from '../services/eventdata.service';
 import { CookieService } from 'ngx-cookie-service';
@@ -13,7 +13,7 @@ import { SwipeEvent } from 'ng-swipe';
   templateUrl: './calendar.component.html',
   styleUrls: ['./calendar.component.scss']
 })
-export class CalendarComponent implements OnInit, AfterViewInit {
+export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
 
   constructor(private dataService: EventDataService, private cookieService: CookieService) { 
   }
@@ -400,6 +400,8 @@ export class CalendarComponent implements OnInit, AfterViewInit {
               eventcreatedAt: moment(response[i].created_at).format()
             };
 
+
+
             if (eventlist[i].eventstart_date === day.find('.date-value').html()) {
 
               setTimeout(() => {
@@ -677,6 +679,11 @@ export class CalendarComponent implements OnInit, AfterViewInit {
     // setTimeout(() => {
     //   $('.add-item-button').show();
     // }, 300);
+  }
+
+
+  ngOnDestroy() {
+    
   }
 
 }
