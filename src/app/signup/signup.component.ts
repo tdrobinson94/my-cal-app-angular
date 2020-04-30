@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { UserDataService } from '../services/userdata.service';
 import { Router } from '@angular/router';
-import { CookieService } from 'ngx-cookie-service';
 import $ from 'jquery';
 
 @Component({
@@ -19,7 +18,7 @@ export class SignupComponent implements OnInit {
     password: new FormControl('')
   });
   loading: boolean = false;
-  constructor(private dataService: UserDataService, private router: Router, private cookieService: CookieService) { }
+  constructor(private dataService: UserDataService, private router: Router) { }
 
   ngOnInit(): void {
     $('html, body').animate({ scrollTop: 0 }, 500);

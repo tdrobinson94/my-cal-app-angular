@@ -1,4 +1,3 @@
-// import { MbscModule } from '@mobiscroll/angular';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
@@ -22,7 +21,6 @@ import { GuestGuard } from './guest.guard';
 import { ProfileComponent } from './profile/profile.component';
 import { EventDataService } from './services/eventdata.service';
 import { TestCalendarComponent } from './test-calendar/test-calendar.component';
-import { TestDirectiveDirective } from './test-directive.directive';
 
 
 @NgModule({
@@ -30,7 +28,6 @@ import { TestDirectiveDirective } from './test-directive.directive';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    // MbscModule,
     ReactiveFormsModule,
     FormsModule,
     SwipeModule,
@@ -45,8 +42,7 @@ import { TestDirectiveDirective } from './test-directive.directive';
     CalendarComponent,
     SettingsComponent,
     ProfileComponent,
-    TestCalendarComponent,
-    TestDirectiveDirective
+    TestCalendarComponent
   ],
   providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }, UserDataService, AuthGuard, GuestGuard,
   EventDataService],

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { UserDataService } from '../services/userdata.service';
-import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 import $ from 'jquery';
 
@@ -11,22 +10,22 @@ import $ from 'jquery';
 })
 export class ProfileComponent implements OnInit {
 
-  firstName: string = '';
-  lastName: string = '';
-  userName: string = '';
-  Email: string = '';
-  firstInitial: string = '';
-  lastInitial: string = '';
+  firstName = '';
+  lastName = '';
+  userName = '';
+  Email = '';
+  firstInitial = '';
+  lastInitial = '';
   loading = false;
   
-  constructor(private dataService: UserDataService, private cookieService: CookieService, private router: Router) { }
+  constructor(private dataService: UserDataService, private router: Router) { }
 
   ngOnInit(): void {
     this.loading = true;
     $('html, body').animate({ scrollTop: 0 }, 500);
     this.dataService.getUser()
       .subscribe((response) => {
-        let res = Object.values(response);
+        const res = Object.values(response);
         this.userName = (res[3]);
         this.firstName = (res[1]);
         this.lastName = (res[2]);

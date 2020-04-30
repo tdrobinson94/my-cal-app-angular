@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { UserDataService } from '../services/userdata.service';
 import { Router, NavigationEnd } from '@angular/router';
 import $ from 'jquery';
-import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-layout',
@@ -10,14 +9,14 @@ import { CookieService } from 'ngx-cookie-service';
   styleUrls: ['./layout.component.scss']
 })
 export class LayoutComponent implements OnInit {
-  firstName: string = '';
-  lastName: string = '';
-  firstInitial: string = '';
-  lastInitial: string = '';
+  firstName = '';
+  lastName = '';
+  firstInitial = '';
+  lastInitial = '';
   showAfterLogin: any;
   deferredPrompt;
 
-  constructor(public dataService: UserDataService, private cookieService: CookieService, private router: Router) {
+  constructor(public dataService: UserDataService, private router: Router) {
 
     this.router.events.forEach((event) => {
       if (event instanceof NavigationEnd) {
@@ -71,7 +70,7 @@ export class LayoutComponent implements OnInit {
   changeOfRoutes() {
     this.dataService.getUser()
       .subscribe((response) => {
-        let res = Object.values(response);
+        const res = Object.values(response);
         this.firstName = (res[1]);
         this.lastName = (res[2]);
         this.firstInitial = this.firstName.substring(0, 1);

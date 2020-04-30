@@ -1,7 +1,6 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { EventDataService } from '../services/eventdata.service';
-import { CookieService } from 'ngx-cookie-service';
 import { MONTHS } from '../calendar/months.constant';
 import $ from 'jquery';
 import _ from 'lodash';
@@ -14,7 +13,7 @@ import * as moment from 'moment';
 })
 export class TestCalendarComponent implements OnInit, AfterViewInit {
 
-  constructor(private dataService: EventDataService, private cookieService: CookieService) { }
+  constructor(private dataService: EventDataService) { }
 
   // Date variables
   clock = new Date();

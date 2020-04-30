@@ -1,7 +1,6 @@
 import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { EventDataService } from '../services/eventdata.service';
-import { CookieService } from 'ngx-cookie-service';
 import { MONTHS } from './months.constant';
 import $ from 'jquery';
 import _ from 'lodash';
@@ -15,8 +14,7 @@ import { SwipeEvent } from 'ng-swipe';
 })
 export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
 
-  constructor(private dataService: EventDataService, private cookieService: CookieService) { 
-  }
+  constructor(private dataService: EventDataService) { }
 
   // Date variables
   clock = new Date();
