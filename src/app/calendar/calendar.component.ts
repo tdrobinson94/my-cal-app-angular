@@ -619,8 +619,8 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   allDaySelected(e) {
-    const startTime = 23 + ':' + 59;
-    const endTime = '00' + ':' + '00';
+    const endTime = 23 + ':' + 59;
+    const startTime = '00' + ':' + '00';
 
     if (e.target.checked === true) {
       this.addItemForm = new FormGroup({
