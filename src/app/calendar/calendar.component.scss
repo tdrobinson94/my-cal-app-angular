@@ -581,6 +581,22 @@
                                     }
                                 }
 
+                                .time-all-day {
+                                    &::after {
+                                        display: block;
+                                        content: "";
+                                        clear: both;
+                                    }
+                                    input {
+                                        float: right;
+                                        width: auto;
+                                    }
+                                    label {
+                                        width: auto;
+                                        float: right;
+                                    }
+                                }
+
                                 textarea {
                                     height: 75px;
                                 }
@@ -828,6 +844,22 @@
             }
             &:-internal-autofill-selected {
                 box-shadow: inset 0 0 0 100px transparent;
+            }
+        }
+
+        .time-all-day {
+            &::after {
+                display: block;
+                content: "";
+                clear: both;
+            }
+            input {
+                float: right;
+                width: auto;
+            }
+            label {
+                width: auto;
+                float: right;
             }
         }
 

@@ -108,6 +108,10 @@
                             <label class="time-label">End Time</label>
                             <input type="time" formControlName="end_time" required />
                         </div>
+
+                        <div class="input-wrapper time-all-day">
+                            <input type="checkbox" (change)="allDaySelected($event)" /><label for="all-day">All day</label>
+                        </div>
                         
                         <div class="input-wrapper location-input-update">
                             <label class="location-label">Location</label>
@@ -187,6 +191,10 @@
             <div class="input-wrapper time-input-end">
                 <label class="time-label">End Time</label>
                 <input type="time" formControlName="end_time" required/>
+            </div>
+
+            <div class="input-wrapper time-all-day">
+                <input id="all-day" type="checkbox" (change)="allDaySelected($event)"/><label for="all-day">All day</label>
             </div>
 
             <div class="input-wrapper location-input">

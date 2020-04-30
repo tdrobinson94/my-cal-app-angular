@@ -632,6 +632,40 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
     });
   }
 
+  allDaySelected(e) {
+    const startTime = 23 + ':' + 59;
+    const endTime = '00' + ':' + '00';
+
+    if (e.target.checked === true) {
+      this.addItemForm = new FormGroup({
+        item_type: new FormControl($('.item-type select').val()),
+        frequency: new FormControl($('.frequency select').val()),
+        title: new FormControl($('.item-title input').val()),
+        description: new FormControl($('.event-description textarea').val()),
+        start_date: new FormControl($('.date-input input').val()),
+        end_date: new FormControl($('.date-input-end input').val()),
+        start_time: new FormControl(startTime),
+        end_time: new FormControl(endTime),
+        location: new FormControl($('.location-input input').val()),
+      });
+
+      this.updateItemForm = new FormGroup({
+        id: new FormControl($('.event-id-update input').val()),
+        item_type: new FormControl($('.item-type-update select').val()),
+        frequency: new FormControl($('.frequency-update select').val()),
+        title: new FormControl($('.item-title-update input').val()),
+        description: new FormControl($('.event-description-update textarea').val()),
+        start_date: new FormControl($('.date-input-update input').val()),
+        end_date: new FormControl($('.date-input-update input').val()),
+        start_time: new FormControl(startTime),
+        end_time: new FormControl(endTime),
+        location: new FormControl($('.location-input-update input').val()),
+      });
+    } else {
+
+    }
+  }
+
   closeForm() {
     this.addItemForm.reset();
     $('.add-item-container').removeClass('show-form');
