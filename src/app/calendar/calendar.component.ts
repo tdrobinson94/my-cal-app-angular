@@ -53,6 +53,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
     end_date: new FormControl(''),
     start_time: new FormControl(''),
     end_time: new FormControl(''),
+    all_day: new FormControl(''),
     location: new FormControl(''),
   });
 
@@ -65,6 +66,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
     end_date: new FormControl(''),
     start_time: new FormControl(''),
     end_time: new FormControl(''),
+    all_day: new FormControl(''),
     location: new FormControl(''),
   });
 
@@ -413,28 +415,6 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
 
           this.loading = false;
         }
-        
-        // const begDate = moment(new Date(this.currentYear - 5, 0)).format();
-        // const endDate = moment(new Date(this.currentYear + 5, 11)).format();
-        // console.log(begDate);
-        // console.log(endDate);
-
-        // this.events.filter(
-        //   (e) => {
-        //     let date;
-        //     let hitDates = e.eventstart_date || {};
-        //     hitDates = Object.keys(hitDates);
-        //     hitDates = hitDates.some((dateStr) => {
-        //       date = new Date(dateStr);
-        //       return date > begDate && date < endDate;
-        //     })
-
-        //     return (date) > begDate &&
-        //     (date) < endDate;
-        //   }
-        // );
-
-        // console.log(this.events);
       });
   }
 
@@ -498,6 +478,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
         end_date: new FormControl(day),
         start_time: new FormControl(eCurrentTime),
         end_time: new FormControl(eEndTime),
+        all_day: new FormControl(''),
         location: new FormControl(e.currentTarget.childNodes[2].innerHTML.trim()),
       });
     }
@@ -558,6 +539,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
       end_date: new FormControl(day),
       start_time: new FormControl(currentTime),
       end_time: new FormControl(endTime),
+      all_day: new FormControl(''),
       location: new FormControl(''),
     });
   }
@@ -572,6 +554,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
       end_date: new FormControl(e.target.value),
       start_time: new FormControl($('.time-input input').val()),
       end_time: new FormControl($('.time-input-end input').val()),
+      all_day: new FormControl($('.time-all-day input').val()),
       location: new FormControl($('.location-input input').val()),
     });
 
@@ -585,6 +568,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
       end_date: new FormControl(e.target.value),
       start_time: new FormControl($('.time-input-update input').val()),
       end_time: new FormControl($('.time-input-end-update input').val()),
+      all_day: new FormControl($('.time-all-day input').val()),
       location: new FormControl($('.location-input-update input').val()),
     });
   }
@@ -615,6 +599,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
       end_date: new FormControl($('.date-input-end input').val()),
       start_time: new FormControl(e.target.value),
       end_time: new FormControl(endTime),
+      all_day: new FormControl($('.time-all-day input').val()),
       location: new FormControl($('.location-input input').val()),
     });
 
@@ -628,6 +613,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
       end_date: new FormControl($('.date-input-update input').val()),
       start_time: new FormControl(e.target.value),
       end_time: new FormControl(endTime),
+      all_day: new FormControl($('.time-all-day input').val()),
       location: new FormControl($('.location-input-update input').val()),
     });
   }
@@ -646,6 +632,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
         end_date: new FormControl($('.date-input-end input').val()),
         start_time: new FormControl(startTime),
         end_time: new FormControl(endTime),
+        all_day: new FormControl($('.time-all-day input').val()),
         location: new FormControl($('.location-input input').val()),
       });
 
@@ -659,10 +646,9 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
         end_date: new FormControl($('.date-input-update input').val()),
         start_time: new FormControl(startTime),
         end_time: new FormControl(endTime),
+        all_day: new FormControl($('.time-all-day input').val()),
         location: new FormControl($('.location-input-update input').val()),
       });
-    } else {
-
     }
   }
 

@@ -110,7 +110,7 @@
                         </div>
 
                         <div class="input-wrapper time-all-day">
-                            <input type="checkbox" (change)="allDaySelected($event)" /><label for="all-day">All day</label>
+                            <input type="checkbox" (change)="allDaySelected($event)" formControlName="all_day"/><label for="all-day">All day</label>
                         </div>
                         
                         <div class="input-wrapper location-input-update">
@@ -194,7 +194,7 @@
             </div>
 
             <div class="input-wrapper time-all-day">
-                <input id="all-day" type="checkbox" (change)="allDaySelected($event)"/><label for="all-day">All day</label>
+                <input id="all-day" type="checkbox" (change)="allDaySelected($event)" formControlName="all_day"/><label for="all-day">All day</label>
             </div>
 
             <div class="input-wrapper location-input">
