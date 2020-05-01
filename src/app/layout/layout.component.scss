@@ -24,6 +24,10 @@ header {
                 display: flex;
                 align-items: center;
                 padding: 0;
+
+                &:active, &:focus {
+                    opacity: 1;
+                }
                 .hamburger-box {
                     width: 30px;
                 }
