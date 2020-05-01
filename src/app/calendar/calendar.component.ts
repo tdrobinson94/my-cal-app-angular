@@ -348,17 +348,22 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
 
 
   onSwipeLeft(e) {
-    this.nextClick();
+    if (!$('.day-box').hasClass('double-click')) {
+      this.nextClick();
+    }
   }
 
   onSwipeRight(e) {
-    this.prevClick();
+    if (!$('.day-box').hasClass('double-click')) {
+      this.prevClick();
+    }
   }
 
   clickonDay(e) {
     $('.add-item-form').removeClass('show-form');
     $('.extra').hide();
     if ($(e.target).hasClass('prev-day')) {
+      $('.visible').removeClass('selected-event');
       if (!$(e.currentTarget).prev().hasClass('dead-month-color')) {
         $('.day-box').removeClass('clicked-day double-click');
         if ($(e.currentTarget).prev().length === 0) {
@@ -368,6 +373,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
         }
       }
     } else if ($(e.target).hasClass('next-day')) {
+      $('.visible').removeClass('selected-event');
       if (!$(e.currentTarget).next().hasClass('dead-month-color')) {
         $('.day-box').removeClass('clicked-day double-click');
         if ($(e.currentTarget).next().length === 0) {
