@@ -155,14 +155,14 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
   // Find the start day of the selected Month and Year and render each day number into the calendar table
   renderMonth() {
     // Use jquery to slightly manipulate DOM and render
-    MONTHS[1].days = Number($('#year').val()) % 4 === 0 ? 29 : 28;
+    console.log($(document).find('#month').val());
+    MONTHS[1].days = Number($('#year').val()) % 4 == 0 ? 29 : 28;
     const currentMonth = $(document).find('#month').val();
     let nextMonth = Number($(document).find('#month').val()) + 2;
     let currentYear = $(document).find('#year').val();
     const startOfMonth = new Date(currentYear, currentMonth, 1).getDay();
     const monthDays = MONTHS[$(document).find('#month').val()].days;
     const weeks = $(document).find('.weeks').children();
-
     _.range(1, 43).forEach((dayIndex, i) => {
       // Get the index of each box in the first row of the calendar table
       const day = $(weeks[startOfMonth + dayIndex - 1]);
@@ -180,6 +180,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
       }
 
       if (dayIndex > monthDays) {
+        console.log(nextMonth);
         // If calendar hits Dec set next month to Jan of next year
         if (nextMonth === 13) {
           nextMonth = 1;
@@ -244,11 +245,11 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   renderPrevMonthDays() {
-    MONTHS[1].days = Number($(document).find('#year').val()) % 4 === 0 ? 29 : 28;
+    MONTHS[1].days = Number($(document).find('#year').val()) % 4 == 0 ? 29 : 28;
     let currentYear = $(document).find('#year').val();
     let prevMonth = Number($(document).find('#month').val());
     const startOfMonth = new Date($(document).find('#year').val(), $(document).find('#month').val(), 1).getDay();
-    const prevMonthDays = $(document).find('#month').val() === 0 ? 31 : MONTHS[$(document).find('#month').val() - 1].days;
+    const prevMonthDays = $(document).find('#month').val() == 0 ? 31 : MONTHS[$(document).find('#month').val() - 1].days;
     const weeks = $(document).find('.weeks').children();
     const prevDays = _.range(1, prevMonthDays + 1).slice(-startOfMonth);
 
@@ -333,11 +334,11 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
     $('.add-item-form').removeClass('show-form');
     $('.day-box').removeClass('selected-day double-click');
     $('.num-box').removeClass('first-day');
-    if ($(document).find('#year').val() >= (this.currentYear + 5) && $(document).find('#month').val() === 11) {
+    if ($(document).find('#year').val() >= (this.currentYear + 5) && $(document).find('#month').val() == 11) {
       $(document).find('#year').val(this.currentYear + 5).change();
       $(document).find('#month').val(11).change();
     } else {
-      if ($(document).find('#month').val() == null || $(document).find('#month').val() === 11) {
+      if ($(document).find('#month').val() == null || $(document).find('#month').val() == 11) {
         $(document).find('#month').val(0).change();
         $(document).find('#year').val(Number($(document).find('#year').val()) + 1).change();
       } else {
