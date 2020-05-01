@@ -14,10 +14,10 @@
             margin: 0;
         }
 
-        a {
+        .entypo-cog {
             text-decoration: none;
             position: absolute;
-            right: 7%;
+            right: 5%;
             top: 25%;
             font-size: 25px;
             color: #fff;
@@ -25,6 +25,14 @@
 
             @media screen and (min-width: $end-small) {
                 right: 6%;
+            }
+
+            @media screen and (min-width: 1000px) {
+              right: 5.5%;
+            }
+
+            &:active {
+                color: $textdrk;
             }
         }
 

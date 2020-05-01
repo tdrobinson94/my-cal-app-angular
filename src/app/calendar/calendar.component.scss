@@ -413,6 +413,7 @@
                         border-radius: 5px;
                         border: 0;
                         cursor: pointer;
+                        outline: none;
 
                         &:before {
                             font-size: 30px;
@@ -420,6 +421,10 @@
                             display: flex;
                             align-items: center;
                             justify-content: center;
+                        }
+
+                        &:active {
+                            color: $primary;
                         }
                     }
 
@@ -495,6 +500,10 @@
                                         animation-name: appear;
                                         animation-duration: .3s;
                                         animation-timing-function: ease-in-out;transition: all .3s ease-in-out;
+
+                                        &:hover {
+                                            padding: 9px;
+                                        }
                                     }
                                 }
                                 @keyframes appear {
@@ -551,6 +560,10 @@
                                             display: flex;
                                             align-items: center;
                                             justify-content: center;
+                                        }
+
+                                        &:active {
+                                            color: $textdrk;
                                         }
                                     }
                                 }
@@ -804,6 +817,10 @@
                     display: flex;
                     align-items: center;
                     justify-content: center;
+                }
+
+                &:active {
+                    color: $textdrk;
                 }
             }
         }

@@ -77,8 +77,8 @@ header {
             color: #fff;
             text-decoration: none;
             font-weight: bold;
-            @media screen and (min-width: $end-small) {
-
+            &:active {
+                color: $textdrk;
             }
         }
 
@@ -131,6 +131,10 @@ header {
                 &:hover {
                     background: darken($primary, 10%);
                     border-radius: 5px;
+                }
+
+                &:active {
+                    color: $textdrk;
                 }
             }
         }
