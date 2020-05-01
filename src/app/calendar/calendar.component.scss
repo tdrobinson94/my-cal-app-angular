@@ -26,6 +26,10 @@
             display: flex;
             align-items: center;
 
+            @media screen and (min-width: $end-small) {
+                width: 90%;
+            }
+
             .selector {
                 display: inline;
                 margin-left: 10px;
@@ -39,6 +43,10 @@
 
                 &:focus {
                     color: $textdrk;
+                }
+
+                &.month-selector {
+                    margin-left: 0;
                 }
             }
 

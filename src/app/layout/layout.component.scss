@@ -12,7 +12,7 @@ header {
         
         .menu-btn {
             position: absolute;
-            left: 3%;
+            right: 5%;
             top: 15px;
             background: transparent;
             border: 0;
@@ -35,9 +35,7 @@ header {
                     color: $textwht;
                     z-index: 2;
                     font-size: 13px;
-                    @media screen and (max-width: 450px) {
-                        display: none;
-                    }
+                    display: none;
                 }
             }
 
@@ -70,8 +68,13 @@ header {
             background: rgba(0,0,0,.2);
             font-size: 18px;
             position: absolute;
-            right: 0;
+            left: 0;
             top: -10px;
+
+            @media screen and (min-width: $end-small) {
+                right: 0;
+                left: auto;
+            }
         }
         
         ul {
