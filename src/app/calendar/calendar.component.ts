@@ -5,7 +5,6 @@ import { MONTHS } from './months.constant';
 import $ from 'jquery';
 import _ from 'lodash';
 import * as moment from 'moment';
-import { SwipeEvent } from 'ng-swipe';
 
 @Component({
   selector: 'app-calendar',
@@ -311,9 +310,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
         $(document).find('#month').val(Number($(document).find('#month').val()) - 1).change();
       }
     }
-    setTimeout(() => {
-      this.changeCal();
-    }, 100);
+    this.changeCal();
   }
 
   currentClick() {
@@ -322,9 +319,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
     $('.num-box').removeClass('first-day');
     $(document).find('#month').val(this.currentMonth).change();
     $(document).find('#year').val(this.currentYear).change();
-    setTimeout(() => {
-      this.changeCal();
-    }, 100);
+    this.changeCal();
   }
 
   nextClick() {
@@ -342,29 +337,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
         $(document).find('#month').val(Number($(document).find('#month').val()) + 1).change();
       }
     }
-    setTimeout(() => {
-      this.changeCal();
-    }, 100);
-  }
-
-  onSwipeMove(e: SwipeEvent) {
-    // console.log('Start');
-    // console.log(`swipe direction: ${e.direction}`);
-    // console.log(`swipe distance: ${e.distance}`);
-  }
-
-  onSwipeEnd(e: SwipeEvent) {
-    // if (e.direction === 'x' && e.distance > 75) {
-    //   console.log('swipe right');
-    //   setTimeout(() => {
-    //     this.prevClick();
-    //   }, 500);
-    // } else if (e.direction === 'x' && e.distance < -75) {
-    //   console.log('swipe left');
-    //   setTimeout(() => {
-    //     this.nextClick();
-    //   }, 500);
-    // }
+    this.changeCal();
   }
 
   clickonDay(e) {
