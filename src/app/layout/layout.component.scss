@@ -24,10 +24,20 @@ header {
                 display: flex;
                 align-items: center;
                 padding: 0;
+                .hamburger-box {
+                    width: 30px;
+                }
                 .hamburger-inner {
-                    // &:before, &:after, & {
-                    //     background-color: black !important;
-                    // }
+                    &:before, &:after, & {
+                        width: 30px;
+                        height: 3px;
+                    }
+                    &:before {
+                        top: -8px;
+                    }
+                    &:after {
+                        bottom: -8px;
+                    }
                 }
                 .hamburger-label{
                     display: inline;
@@ -36,6 +46,12 @@ header {
                     z-index: 2;
                     font-size: 13px;
                     display: none;
+                }
+
+                &.is-active {
+                    .hamburger-inner:after {
+                        bottom: 0;
+                    }
                 }
             }
 

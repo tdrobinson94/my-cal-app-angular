@@ -24,6 +24,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
   currentDayofWeek = this.clock.getDay();
   isCurrentWeekday = false;
 
+  // Calendar variables
   rows: any = [];
   weekDays: any = [];
   weekDayAbbrv: any = [
@@ -32,6 +33,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
     { name: 'Sat', num: 6 }
   ];
 
+  // Selector options variables
   monthSelectorOptions: any = [];
   yearSelectorOptions: any = [];
 
@@ -40,10 +42,13 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
   events: any;
   eachEvent: any;
 
+  // Delete event form
   deleteItemForm = new FormGroup({
     id: new FormControl(''),
   });
 
+
+  // Add event form
   addItemForm = new FormGroup({
     item_type: new FormControl(''),
     frequency: new FormControl(''),
@@ -57,6 +62,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
     location: new FormControl(''),
   });
 
+  // Update event form
   updateItemForm = new FormGroup({
     id: new FormControl(''),
     frequency: new FormControl(''),
@@ -70,49 +76,51 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
     location: new FormControl(''),
   });
 
+  // Hide loading indicator
   loading = false;
 
   ngOnInit() {
     this.createCalendarGrid();
   }
 
+  // This will set our calendar table and the control bar
   createCalendarGrid() {
     let i;
 
-    // Create rows
+    // Create 6 rows
     const rowsInCalendar = 6;
     for (i = 0; i < rowsInCalendar; i++) {
       this.rows.push(i);
     }
 
-    // Create each weekday box
+    // Create each weekday box or 7 columns
     const daysInWeek = 7;
     for (i = 0; i < daysInWeek; i++) {
       this.weekDays.push(i);
     }
 
-    // Create each weekday title
+    // Create each weekday title in the control bar
     for (i = 0; i < this.weekDayAbbrv.length; i++) {
       if (this.weekDayAbbrv[i].num === this.currentDayofWeek) {
         // console.log('This is the weekday: ' + this.weekDayAbbrv[i].num);
       }
     }
 
-    // Create the options for the month selector
+    // Create the options for the month selector in control bar
     for (i = 0; i < MONTHS.length; i++) {
       const months = MONTHS[i];
 
       this.monthSelectorOptions.push(months);
     }
 
-    // Create the options for the year selector
+    // Create the options for the year selector in control bar
     for (i = 0; i <= 10; i++) {
       const yearStart = this.currentYear - 5;
 
       this.yearSelectorOptions.push(yearStart + i);
     }
 
-    // Detect the user device
+    // Detect the user device for specific UI compatability adjustments
     if (navigator.userAgent.indexOf('Mac') !== -1) {
       if (navigator.userAgent.indexOf('Chrome') !== -1) {
         $('.calendar-navbar').addClass('mac');
@@ -122,8 +130,9 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
-
   ngAfterViewInit() {
+    // Every 10 sec get update the date automatically and if day changes
+    // update the calendar as well as the current day number and day of week
     setInterval(() => {
       this.clock = new Date();
       if (this.currentDay !== this.clock.getDate()) {
@@ -132,11 +141,15 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
         this.currentDayofWeek = this.clock.getDay();
       }
     }, 10 * 1000);
+
+    // On first load init calendar
     this.changeCal();
   }
 
+  // Find the start day of the selected Month and Year and render each day number into the calendar table
   renderMonth() {
-    MONTHS[1].days = Number($('#year').val()) % 4 == 0 ? 29 : 28;
+    // Use jquery to slightly manipulate DOM and render
+    MONTHS[1].days = Number($('#year').val()) % 4 === 0 ? 29 : 28;
     const currentMonth = $(document).find('#month').val();
     let nextMonth = Number($(document).find('#month').val()) + 2;
     let currentYear = $(document).find('#year').val();
@@ -145,76 +158,76 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
     const weeks = $(document).find('.weeks').children();
 
     _.range(1, 43).forEach((dayIndex, i) => {
+      // Get the index of each box in the first row of the calendar table
       const day = $(weeks[startOfMonth + dayIndex - 1]);
 
-      if (this.clock.getDate() === dayIndex && this.clock.getMonth() == $('#month').val() && this.clock.getFullYear() == $('#year').val()) {
+      // if current month and year find the current day and style it
+      if (this.clock.getDate() === dayIndex && this.clock.getMonth() ===
+      $('#month').val() && this.clock.getFullYear() === $('#year').val()) {
         day.find('.num-box').addClass('current-day');
         day.find('.num-box').parent().addClass('clicked-day day-background-color selected-day').removeClass('dead-month-color');
-      } else {
+      }
+      // If not current month then find 1st day and style it
+      else {
         day.find('.day-box').children().removeClass('current-day');
         day.find('.num-date').parent().parent().removeClass('dead-month-color day-background-color');
       }
+
       if (dayIndex > monthDays) {
-        if (nextMonth == 13) {
+        // If calendar hits Dec set next month to Jan of next year
+        if (nextMonth === 13) {
           nextMonth = 1;
           currentYear = Number(currentYear) + 1;
         }
+
+        // If calendar hits any month thats not december
+        const standardMonth = '0' + nextMonth;
+        const newDayIndex = (dayIndex - monthDays);
+        const standardDayIndex = '0' + newDayIndex;
         if (nextMonth < 10) {
-          const standardMonth = '0' + nextMonth;
-          if ((dayIndex - monthDays) < 10) {
-            const newDayIndex = (dayIndex - monthDays);
-            const standardDayIndex = '0' + (dayIndex - monthDays);
-            day.find('.day-box').html(currentYear + '-' + standardMonth + '-' + standardDayIndex);
+
+          if ((newDayIndex) < 10) {
             day.find('.date-value').html(currentYear + '-' + standardMonth + '-' + standardDayIndex);
             day.find('.num-date').html(newDayIndex).parent().parent().addClass('dead-month-color');
           } else {
-            day.find('.day-box').html(currentYear + '-' + standardMonth + '-' + (dayIndex - monthDays));
-            day.find('.date-value').html(currentYear + '-' + standardMonth + '-' + (dayIndex - monthDays));
-            day.find('.num-date').html((dayIndex - monthDays)).parent().parent().addClass('dead-month-color');
+            day.find('.date-value').html(currentYear + '-' + standardMonth + '-' + newDayIndex);
+            day.find('.num-date').html(newDayIndex).parent().parent().addClass('dead-month-color');
           }
         } else {
-          const standardMonth = '0' + nextMonth;
           if ((dayIndex - monthDays) < 10) {
-            const newDayIndex = (dayIndex - monthDays);
-            const standardDayIndex = '0' + (dayIndex - monthDays);
-            day.find('.day-box').html(currentYear + '-' + standardMonth + '-' + standardDayIndex);
             day.find('.date-value').html(currentYear + '-' + standardMonth + '-' + standardDayIndex);
             day.find('.num-date').html(newDayIndex).parent().parent().addClass('dead-month-color');
           } else {
-            day.find('.day-box').html(currentYear + '-' + standardMonth + '-' + (dayIndex - monthDays));
-            day.find('.date-value').html(currentYear + '-' + standardMonth + '-' + (dayIndex - monthDays));
-            day.find('.num-date').html((dayIndex - monthDays)).parent().parent().addClass('dead-month-color');
+            day.find('.date-value').html(currentYear + '-' + standardMonth + '-' + newDayIndex);
+            day.find('.num-date').html(newDayIndex).parent().parent().addClass('dead-month-color');
           }
         }
       } else {
         const thisMonth = (Number(currentMonth) + 1);
+        const standardNewMonth = '0' + thisMonth;
+        const newDays = dayIndex;
+        const standardNewDays = '0' + dayIndex;
+        
         if (thisMonth < 10) {
-          const standardNewMonth = '0' + thisMonth;
           if (dayIndex < 10) {
-            const newDays = dayIndex;
-            const standardNewDays = '0' + dayIndex;
-            day.find('.day-box').html(currentYear + '-' + standardNewMonth + '-' + standardNewDays);
             day.find('.date-value').html(currentYear + '-' + standardNewMonth + '-' + standardNewDays);
             day.find('.num-date').html('&nbsp' + newDays + '&nbsp');
           } else {
-            day.find('.day-box').html(currentYear + '-' + standardNewMonth + '-' + (dayIndex));
-            day.find('.date-value').html(currentYear + '-' + standardNewMonth + '-' + (dayIndex));
-            day.find('.num-date').html((dayIndex));
+            day.find('.date-value').html(currentYear + '-' + standardNewMonth + '-' + newDays);
+            day.find('.num-date').html(newDays);
           }
         } else {
           if (dayIndex < 10) {
-            const newDays = dayIndex;
-            const standardNewDays = '0' + dayIndex;
-            day.find('.day-box').html(currentYear + '-' + thisMonth + '-' + standardNewDays);
             day.find('.date-value').html(currentYear + '-' + thisMonth + '-' + standardNewDays);
             day.find('.num-date').html('&nbsp' + newDays + '&nbsp');
           } else {
-            day.find('.day-box').html(currentYear + '-' + thisMonth + '-' + (dayIndex));
-            day.find('.date-value').html(currentYear + '-' + thisMonth + '-' + (dayIndex));
-            day.find('.num-date').html((dayIndex));
+            day.find('.date-value').html(currentYear + '-' + thisMonth + '-' + newDays);
+            day.find('.num-date').html(newDays);
           }
         }
       }
+
+      // Find the 1 day of each month and add Class first-day
       if (day.find('.num-date').html() === '&nbsp;' + '1' + '&nbsp;') {
         day.find('.num-date').parent().addClass('first-day');
       } else {
@@ -225,27 +238,28 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   renderPrevMonthDays() {
-    MONTHS[1].days = Number($(document).find('#year').val()) % 4 == 0 ? 29 : 28
+    MONTHS[1].days = Number($(document).find('#year').val()) % 4 === 0 ? 29 : 28;
     let currentYear = $(document).find('#year').val();
     let prevMonth = Number($(document).find('#month').val());
     const startOfMonth = new Date($(document).find('#year').val(), $(document).find('#month').val(), 1).getDay();
-    const prevMonthDays = $(document).find('#month').val() == 0 ? 31 : MONTHS[$(document).find('#month').val() - 1].days;
+    const prevMonthDays = $(document).find('#month').val() === 0 ? 31 : MONTHS[$(document).find('#month').val() - 1].days;
     const weeks = $(document).find('.weeks').children();
     const prevDays = _.range(1, prevMonthDays + 1).slice(-startOfMonth);
+
     _.range(0, startOfMonth).forEach((dayIndex) => {
       const day = $(weeks[dayIndex]);
+
       if (startOfMonth > dayIndex) {
-        if (prevMonth == 0) {
+        if (prevMonth === 0) {
           prevMonth = 12;
           currentYear = Number(currentYear) - 1;
         }
+
         if (prevMonth < 10) {
           const standardNewMonth = '0' + prevMonth;
-          day.find('.day-box').html(currentYear + '-' + standardNewMonth + '-' + (prevDays[dayIndex]));
           day.find('.date-value').html(currentYear + '-' + standardNewMonth + '-' + (prevDays[dayIndex]));
           day.find('.num-date').html((prevDays[dayIndex]));
         } else {
-          day.find('.day-box').html(currentYear + '-' + prevMonth + '-' + (prevDays[dayIndex]));
           day.find('.date-value').html(currentYear + '-' + prevMonth + '-' + (prevDays[dayIndex]));
           day.find('.num-date').html((prevDays[dayIndex]));
         }
@@ -317,11 +331,11 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
     $('.add-item-form').removeClass('show-form');
     $('.day-box').removeClass('selected-day double-click');
     $('.num-box').removeClass('first-day');
-    if ($(document).find('#year').val() >= (this.currentYear + 5) && $(document).find('#month').val() == 11) {
+    if ($(document).find('#year').val() >= (this.currentYear + 5) && $(document).find('#month').val() === 11) {
       $(document).find('#year').val(this.currentYear + 5).change();
       $(document).find('#month').val(11).change();
     } else {
-      if ($(document).find('#month').val() == null || $(document).find('#month').val() == 11) {
+      if ($(document).find('#month').val() == null || $(document).find('#month').val() === 11) {
         $(document).find('#month').val(0).change();
         $(document).find('#year').val(Number($(document).find('#year').val()) + 1).change();
       } else {
@@ -400,7 +414,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
               eventcreatedAt: moment(response[i].created_at).format()
             };
 
-
+            
 
             if (eventlist[i].eventstart_date === day.find('.date-value').html()) {
 
@@ -418,31 +432,40 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
       });
   }
 
+  // Click on an Event
   selectEvent(e) {
     const day = $('.clicked-day .date-value').text();
 
+    // If delete button has been clicked
     if ($(e.target).hasClass('delete-event')) {
       this.deleteItemForm = new FormGroup({
         id: new FormControl($(e.target).val()),
       });
-    } else if (!$(e.currentTarget).hasClass('selected-event')) {
+    }
+    // If an event has been clicked once
+    else if (!$(e.currentTarget).hasClass('selected-event')) {
       $('.visible').removeClass('selected-event');
       $(e.currentTarget).addClass('selected-event');
-    } else if ($(e.currentTarget).hasClass('selected-event')) {
+    } 
+    // If an event has been clicked twice
+    else if ($(e.currentTarget).hasClass('selected-event')) {
       $('.add-item-button, .add-item-container').hide();
       setTimeout(() => {
         $('.update-event-form').addClass('show-update-form');
       }, 200);
       $('.update-event-form').animate({ scrollTop: 0 }, 400);
 
+      // Define variables by finding the html of the 1st child element an reducing it to AM or PM, just hours, and just minutes
       const timeofday = e.currentTarget.childNodes[4].children[0].innerHTML.trim().split(' ')[1];
       let eHours: any = Number(e.currentTarget.childNodes[4].children[0].innerHTML.trim().split(':')[0]);
       const eMinutes: any = e.currentTarget.childNodes[4].children[0].innerHTML.trim().split(':')[1].substring(0, 2);
 
+      // This is a repeat of the above just for creating the end date, except this time we find the 2nd child element
       const timeofday2 = e.currentTarget.childNodes[4].children[1].innerHTML.trim().split(' ')[1];
       let eEndTimeHours: any = Number(e.currentTarget.childNodes[4].children[1].innerHTML.trim().split(':')[0]);
       const eEndTimeMinutes = e.currentTarget.childNodes[4].children[1].innerHTML.trim().split(':')[1].substring(0, 2);
 
+      // Define how to display Hours, this checks for AM/PM on a 24hr format
       if (timeofday === 'PM' && eHours <= 10) {
         eHours = 24 - (12 - eHours);
       } else if (timeofday === 'PM' && eHours > 10) {
@@ -457,6 +480,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
         eHours = '00';
       }
 
+      // Repeat of above but for the end time
       if (timeofday2 === 'PM' && eEndTimeHours <= 10) {
         eEndTimeHours = 24 - (12 - eEndTimeHours);
       } else if (timeofday2 === 'PM' && eEndTimeHours > 10) {
@@ -468,9 +492,12 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
       } else if (timeofday2 === 'AM' && eEndTimeHours < 10) {
         eEndTimeHours = '0' + eEndTimeHours;
       }
+
+      // Set the time to variables and concat the values to a proper time input format
       const eCurrentTime = eHours + ':' + eMinutes;
       const eEndTime = eEndTimeHours + ':' + eEndTimeMinutes;
 
+      // Update the form with the time values defined above
       this.updateItemForm = new FormGroup({
         id: new FormControl(e.currentTarget.childNodes[5].value),
         frequency: new FormControl(Number(e.currentTarget.childNodes[3].innerHTML.trim())),
@@ -486,14 +513,16 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
+  // Delete an event
   deleteEvent(e) {
+    // On click set the value of the form with the value of the button
     this.deleteItemForm = new FormGroup({
-      id: new FormControl($(e.target).val()),
+      id: new FormControl(e.target.value),
     });
-    console.log(this.deleteItemForm.value);
+    // Delete the event
     this.dataService.deleteEvent(this.deleteItemForm.value)
       .subscribe((response) => {
-        console.log(response);
+        // Get the new Events table after the item has been deleted
         setTimeout(() => {
           this.getEvents();
         }, 300);
@@ -680,8 +709,6 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
     this.dataService.updatedEvent(this.updateItemForm.value)
       .subscribe((response) => {
         this.closeEventUpdateForm();
-        const res = Object.values(response);
-        const data = Object.values(res[1]);
         this.loading = false;
 
         setTimeout(() => {
@@ -695,10 +722,6 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
     $('.event').removeClass('selected-event');
     $('.update-event-form').removeClass('show-update-form');
     $('.add-item-button, .add-item-container').show();
-    // $('.form-nav-bar, .add-item-form').removeClass('animate-events-one animate-events-two');
-    // setTimeout(() => {
-    //   $('.add-item-button').show();
-    // }, 300);
   }
 
 

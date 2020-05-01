@@ -40,13 +40,20 @@
                 transition: all .2s ease-in-out;
                 color: $textwht;
                 font-family: $globalFont !important;
+                -moz-appearance: none;
+                -webkit-appearance: none; 
+                appearance: none;
 
                 &:focus {
                     color: $textdrk;
                 }
 
                 &.month-selector {
-                    margin-left: 0;
+                    margin-left: 5px;
+
+                    @media screen and (min-width: $end-small) {
+                        margin-left: 0;
+                    }
                 }
             }
 
@@ -73,10 +80,9 @@
                         font-size: 12px;
                         font-weight: bold;
                         position: absolute;
-                        margin-left: 6px;
                         top: 50%;
                         left: 50%;
-                        transform: translate(-95%, -42%);
+                        transform: translate(-50%, -42%);
                     }
 
 
