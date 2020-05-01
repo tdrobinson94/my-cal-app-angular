@@ -193,6 +193,10 @@
                     display: none;
                 }
 
+                .next-day, .prev-day {
+                    display: none;
+                }
+
                 .date-value {
                     display: none;
                 }
@@ -408,7 +412,7 @@
                         display: inline;
                         position: absolute;
                         top: 2px;
-                        right: 4%;
+                        right: 1%;
                         background: transparent;
                         border-radius: 5px;
                         border: 0;
@@ -426,6 +430,29 @@
                         &:active {
                             color: $primary;
                         }
+                    }
+
+                    .next-day, .prev-day {
+                        display: inline;
+                        position: absolute;
+                        top: 50%;
+                        color: $textdrk;
+                        background: transparent;
+                        border-radius: 5px;
+                        margin: 0 5px;
+                        border: 0;
+                        font-size: 30px;
+                        display: flex;
+                        align-items: center;
+                        outline: 0;
+                        transform: translateY(-50%);
+                        opacity: .5;
+                    }
+                    .next-day {
+                        right: 0;
+                    }
+                    .prev-day {
+                        left: 0;
                     }
 
                     .num-box {

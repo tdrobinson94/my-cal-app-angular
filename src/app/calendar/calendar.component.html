@@ -30,6 +30,8 @@
                 <button class="close-day entypo-down-open"></button>
                 <div class="num-box"><span class="num-date"></span></div>
                 <div class="date-value"></div>
+                <button class="prev-day entypo-left-open"></button>
+                <button class="next-day entypo-right-open"></button>
                 <div class="main-info-section">
                     <div class="event-container" *ngFor="let event of events">
                         <div class="event" [ngClass]="event.eventstart_date"  (click)="selectEvent($event)">
