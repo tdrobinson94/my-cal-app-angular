@@ -349,18 +349,6 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
     this.prevClick();
   }
 
-  onSwipeDayLeft(e) {
-    // if ($(e.target).hasClass('double-click')) {
-    //   console.log('next day');
-    // }
-  }
-
-  onSwipeDayRight(e) {
-    // if ($(e.currentTarget).hasClass('double-click')) {
-    //   console.log('prev day');
-    // }
-  }
-
   clickonDay(e) {
     $('.add-item-form').removeClass('show-form');
     $('.extra').hide();
