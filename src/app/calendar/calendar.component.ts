@@ -453,6 +453,8 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
         }
       } else if (timeofday === 'AM' && eHours < 10) {
         eHours = '0' + eHours;
+      } else if (timeofday === 'AM' && eHours === 12) {
+        eHours = '00';
       }
 
       if (timeofday2 === 'PM' && eEndTimeHours <= 10) {
