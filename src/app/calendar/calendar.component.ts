@@ -155,7 +155,6 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
   // Find the start day of the selected Month and Year and render each day number into the calendar table
   renderMonth() {
     // Use jquery to slightly manipulate DOM and render
-    console.log($(document).find('#month').val());
     MONTHS[1].days = Number($('#year').val()) % 4 == 0 ? 29 : 28;
     const currentMonth = $(document).find('#month').val();
     let nextMonth = Number($(document).find('#month').val()) + 2;
@@ -180,7 +179,6 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
       }
 
       if (dayIndex > monthDays) {
-        console.log(nextMonth);
         // If calendar hits Dec set next month to Jan of next year
         if (nextMonth === 13) {
           nextMonth = 1;
