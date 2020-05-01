@@ -23,8 +23,8 @@
         </div>
     </div>
 
-    <div class="calendar-container" #calendar>
-
+    <div class="calendar-container" #calendar
+    (swipeleft)="onSwipeLeft($event)" (swiperight)="onSwipeRight($event)">
         <div class="weeks row" *ngFor="let row of rows">
             <div id="day-box" class="day-box" *ngFor="let week of weekDays" #daybox (click)="clickonDay($event)">
                 <button class="close-day entypo-down-open"></button>

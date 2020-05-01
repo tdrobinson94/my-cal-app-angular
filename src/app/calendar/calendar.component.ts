@@ -340,6 +340,15 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
     this.changeCal();
   }
 
+
+  onSwipeLeft(e) {
+    this.nextClick();
+  }
+
+  onSwipeRight(e) {
+    this.prevClick();
+  }
+
   clickonDay(e) {
     $('.add-item-form').removeClass('show-form');
     $('.extra').hide();
