@@ -435,7 +435,7 @@
                     .next-day, .prev-day {
                         display: inline;
                         position: absolute;
-                        top: 50%;
+                        top: 45%;
                         color: $textdrk;
                         background: transparent;
                         border-radius: 5px;
@@ -445,7 +445,7 @@
                         display: flex;
                         align-items: center;
                         outline: 0;
-                        transform: translateY(-50%);
+                        transform: translateY(-100%);
                         opacity: .5;
                     }
                     .next-day {
