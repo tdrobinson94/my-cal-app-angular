@@ -480,11 +480,12 @@
                             overflow: initial !important;
                             text-align: left;
                             margin: 5px 8%;
-                            padding: 2px 55px 5px 4%;
+                            padding: 2px 55px 2px 4%;
                             pointer-events: all;
 
                             .event-details {
-                                margin: 5px 0 0 0;
+                                margin: 2px 0 0 0;
+                                font-size: 14px;
 
                                 &.frequency {
                                     display: none;
@@ -492,11 +493,12 @@
 
                                 &:last-of-type {
                                     font-size: 14px;
-                                    padding-bottom: 5px;
+                                    padding-bottom: 2px;
                                 }
 
                                 &.title {
                                     font-weight: bold;
+                                    font-size: 15px;
 
                                     span {
                                         display: inline;
