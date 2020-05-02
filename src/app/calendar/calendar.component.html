@@ -11,10 +11,15 @@
             </select>
 
             <div class="calendar-controls">
-                <button class="prev btn entypo-left-open" (click)="prevClick()"></button>
-                <button id="todays-day" class="current btn entypo-calendar"
-                    (click)="currentClick()"><span>{{currentDay}}</span></button>
-                <button class="next btn entypo-right-open" (click)="nextClick()"></button>
+                <button class="prev btn" (click)="prevClick()">
+                    <span class="material-icons">keyboard_arrow_left</span>
+                </button>
+                <button id="todays-day" class="current btn" (click)="currentClick()">
+                    <span class="material-icons">today</span>
+                </button>
+                <button class="next btn" (click)="nextClick()">
+                    <span class="material-icons">keyboard_arrow_right</span>
+                </button>
             </div>
         </div>
         <div class="weekday-initials">
@@ -27,11 +32,17 @@
     (swipeleft)="onSwipeLeft($event)" (swiperight)="onSwipeRight($event)">
         <div class="weeks row" *ngFor="let row of rows">
             <div id="day-box" class="day-box" *ngFor="let week of weekDays" #daybox (click)="clickonDay($event)">
-                <button class="close-day entypo-down-open"></button>
+                <button class="close-day">
+                    <span class="material-icons close-day-icon">clear</span>
+                </button>
                 <div class="num-box"><span class="num-date"></span></div>
                 <div class="date-value"></div>
-                <button class="prev-day entypo-left-open"></button>
-                <button class="next-day entypo-right-open"></button>
+                <button class="prev-day">
+                    <span class="material-icons prev-day-icon">keyboard_arrow_left</span>
+                </button>
+                <button class="next-day">
+                    <span class="material-icons next-day-icon">keyboard_arrow_right</span>
+                </button>
                 <div class="main-info-section">
                     <div class="event-container" *ngFor="let event of events">
                         <div class="event" [ngClass]="event.eventstart_date"  (click)="selectEvent($event)">
@@ -62,7 +73,9 @@
                     <form class="update-event-form" [formGroup]="updateItemForm">
                         <div class="form-nav-bar">
                             <h2>Update Item</h2>
-                            <div class="close-form entypo-down-open" (click)="closeEventUpdateForm()"></div>
+                            <div class="close-form" (click)="closeEventUpdateForm()">
+                                <span class="material-icons">clear</span>
+                            </div>
                         </div>
                         <div class="input-wrapper event-id-update">
                             <input formControlName="id" type="text" name="id" />
@@ -132,12 +145,16 @@
 
     </div>
 
-    <button class="add-item-button entypo-list-add" (click)="openForm()"></button>
+    <button class="add-item-button" (click)="openForm()">
+        <span class="material-icons">add</span>
+    </button>
 
     <div class="add-item-container">
         <div class="form-nav-bar">
             <h2>Place Items on Calendar</h2>
-            <div class="close-form entypo-down-open" (click)="closeForm()"></div>
+            <div class="close-form" (click)="closeForm()">
+                <span class="material-icons">clear</span>
+            </div>
         </div>
         <form class="add-item-form" [formGroup]="addItemForm" (ngSubmit)="submitEvent()">
             <div class="input-wrapper item-type">

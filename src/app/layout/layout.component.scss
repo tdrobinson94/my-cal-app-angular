@@ -35,6 +35,7 @@ header {
                     &:before, &:after, & {
                         width: 30px;
                         height: 3px;
+                        border-radius: none;
                     }
                     &:before {
                         top: -8px;

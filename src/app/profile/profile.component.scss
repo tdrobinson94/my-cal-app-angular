@@ -14,14 +14,16 @@
             margin: 0;
         }
 
-        .entypo-cog {
+        .settings {
             text-decoration: none;
             position: absolute;
             right: 5%;
-            top: 25%;
-            font-size: 25px;
+            top: 29%;
             color: #fff;
-            animation: spin 10s linear infinite;
+
+            span {
+              animation: spin 10s linear infinite;
+            }
 
             @media screen and (min-width: $end-small) {
                 right: 6%;
@@ -34,15 +36,15 @@
             &:active {
                 color: $textdrk;
             }
-        }
 
-        @keyframes spin {
-            0% {
-                transform: rotateZ(0);
-            }
-            100% {
-                transform: rotateZ(360deg);
-            }
+            @keyframes spin {
+              0% {
+                  transform: rotateZ(0);
+              }
+              100% {
+                  transform: rotateZ(360deg);
+              }
+          }
         }
     }
 }

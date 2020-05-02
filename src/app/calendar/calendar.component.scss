@@ -67,7 +67,7 @@
                     color: $textwht;
                     background: transparent;
                     border-radius: 5px;
-                    margin: 0 5px;
+                    margin: 0 15px;
                     border: 0;
                     position: relative;
                     font-size: 12px;
@@ -75,13 +75,23 @@
                     align-items: center;
                     outline: 0;
 
+                    &:first-child {
+                        margin-left: 0;
+                    }
+
+                    &:last-child {
+                        margin-right: 10px;
+                        @media screen and (min-width: $end-small) {
+                            margin-right: 0;
+                        }
+                    }
+
                     &:active {
                         color: $textdrk;
                     }
 
                     span {
-                        padding: 6px 0 0 0;
-                        font-weight: bold;
+                        font-size: 30px !important;
                         position: absolute;
                         top: 50%;
                         left: 50%;
@@ -420,7 +430,7 @@
                         outline: none;
 
                         &:before {
-                            font-size: 30px;
+                            font-size: 20px;
                             height: 30px;
                             display: flex;
                             align-items: center;
@@ -440,12 +450,21 @@
                         background: transparent;
                         border-radius: 5px;
                         border: 0;
-                        font-size: 30px;
+                        font-size: 20px;
                         display: flex;
                         align-items: center;
                         outline: 0;
                         transform: translateY(-100%);
                         opacity: .5;
+
+                        @media screen and (min-width: $end-small) {
+                            top: 50%;
+                            transform: translateY(-50%);
+                        }
+
+                        span {
+                            font-size: 30px !important;
+                        }
                     }
                     .next-day {
                         right: 0;
@@ -479,9 +498,13 @@
                             height: auto !important;
                             overflow: initial !important;
                             text-align: left;
-                            margin: 5px 8%;
-                            padding: 2px 55px 2px 4%;
+                            margin: 5px 8.5%;
+                            padding: 2px 55px 4px 4%;
                             pointer-events: all;
+
+                            @media screen and (min-width: $mid-small) {
+                                margin: 5px 4.5%;
+                            }
 
                             .event-details {
                                 margin: 2px 0 0 0;
@@ -493,7 +516,7 @@
 
                                 &:last-of-type {
                                     font-size: 14px;
-                                    padding-bottom: 2px;
+                                    padding-bottom: 4px;
                                 }
 
                                 &.title {
@@ -583,7 +606,7 @@
                                         color: $textwht;
 
                                         &:before {
-                                            font-size: 30px;
+                                            font-size: 20px;
                                             height: 30px;
                                             display: flex;
                                             align-items: center;
@@ -724,6 +747,7 @@
         right: 10px;
         z-index: 9999;
         transition: all .3s ease-in-out;
+        display: flex;
         // box-shadow: 1px 1px 10px #333333;
 
         @media screen and (min-width: $end-small) {
@@ -840,7 +864,7 @@
                 color: $textwht;
 
                 &:before {
-                    font-size: 30px;
+                    font-size: 20px;
                     height: 30px;
                     display: flex;
                     align-items: center;
