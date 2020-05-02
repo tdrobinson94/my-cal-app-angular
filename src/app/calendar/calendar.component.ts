@@ -167,8 +167,8 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
       const day = $(weeks[startOfMonth + dayIndex - 1]);
 
       // if current month and year find the current day and style it
-      if (this.clock.getDate() === dayIndex && this.clock.getMonth() ===
-      $('#month').val() && this.clock.getFullYear() === $('#year').val()) {
+      if (this.clock.getDate() === dayIndex && this.clock.getMonth() ==
+      $('#month').val() && this.clock.getFullYear() == $('#year').val()) {
         day.find('.num-box').addClass('current-day');
         day.find('.num-box').parent().addClass('clicked-day day-background-color selected-day').removeClass('dead-month-color');
       }
@@ -276,9 +276,9 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   selectedDay() {
-    if ($('.day-box').hasClass('day-background-color') === true) {
+    if ($('.day-box').hasClass('day-background-color') == true) {
       $(document).find('#todays-day').html($('.current-day').html());
-    } else if ($('.num-box').hasClass('first-day') === true) {
+    } else if ($('.num-box').hasClass('first-day') == true) {
       $('.first-day').parent().addClass('selected-day clicked-day');
       $('.dead-month-color').removeClass('clicked-day');
     }
@@ -425,8 +425,6 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
               eventend_time: moment(response[i].end_time, 'HH:mm:ss').format('h:mm A'),
               eventcreatedAt: moment(response[i].created_at).format()
             };
-
-            
 
             if (eventlist[i].eventstart_date === day.find('.date-value').html()) {
 
