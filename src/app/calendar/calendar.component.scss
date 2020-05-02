@@ -456,6 +456,7 @@
                         outline: 0;
                         transform: translateY(-100%);
                         opacity: .5;
+                        padding: 0;
 
                         @media screen and (min-width: $end-small) {
                             top: 50%;
