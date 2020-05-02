@@ -63,9 +63,8 @@
                             <p class="event-details time">
                                 <span>{{event.eventstart_time}}</span> - <span>{{event.eventend_time}}</span>
                             </p>
-                            <button class="delete-event" (click)="deleteEvent($event)" value="{{event.eventid}}">
-                                <span class="material-icons">delete</span>
-                            </button>
+                            <button class="delete-event" (click)="deleteEvent($event)"
+                            value="{{event.eventid}}">Delete</button>
                         </div>
                     </div>
                     <form [formGroup]="deleteItemForm">

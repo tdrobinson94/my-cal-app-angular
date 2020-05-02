@@ -500,7 +500,7 @@
                             overflow: initial !important;
                             text-align: left;
                             margin: 5px 8.5%;
-                            padding: 2px 40px 4px 4%;
+                            padding: 2px 55px 4px 4%;
                             pointer-events: all;
 
                             @media screen and (min-width: $mid-small) {
@@ -542,7 +542,7 @@
                                 button {
                                     display: inline;
                                     margin-right: 5px;
-                                    padding: 3px;
+                                    padding: 7px;
                                     position: absolute;
                                     right: 0;
                                     top: 50%;
@@ -553,8 +553,8 @@
                                         animation-duration: .3s;
                                         animation-timing-function: ease-in-out;transition: all .3s ease-in-out;
 
-                                        &:hover {
-                                            padding: 9px;
+                                        span {
+                                            font-size: 20px !important;
                                         }
                                     }
                                 }
