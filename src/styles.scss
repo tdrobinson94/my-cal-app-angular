@@ -36,7 +36,7 @@ body {
     width: 100%;
     margin: auto;
     height: calc(100% - 53px);
-    font-family: sans-serif;
+    font-family: $globalFont;
     position: relative;
     top: 50px;
     // overflow-x: hidden;
