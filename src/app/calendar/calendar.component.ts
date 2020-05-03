@@ -286,12 +286,11 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
 
   changeCal() {
     $('.update-event-form').removeClass('show-update-form');
+    $('.day-box').removeClass('clicked-day double-click selected-day');
     $('.main-info-section').removeClass('animate-events-one animate-events-two');
     $('.add-item-button, .add-item-container').show();
     $('.add-item-form').removeClass('show-form');
-    $('.day-box').removeClass('clicked-day');
     $('.num-box').removeClass('first-day current-day');
-    $('.day-box').removeClass('selected-day');
 
     this.renderMonth();
     this.renderPrevMonthDays();
@@ -302,9 +301,6 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   prevClick() {
-    $('.add-item-form').removeClass('show-form');
-    $('.day-box').removeClass('selected-day double-click');
-    $('.num-box').removeClass('first-day');
     if ($(document).find('#year').val() <= (this.currentYear - 5)) {
       $(document).find('#year').val(this.currentYear - 5).change();
       $(document).find('#month').val(0).change();
@@ -320,18 +316,12 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   currentClick() {
-    $('.add-item-form').removeClass('show-form');
-    $('.day-box').removeClass('selected-day double-click');
-    $('.num-box').removeClass('first-day');
     $(document).find('#month').val(this.currentMonth).change();
     $(document).find('#year').val(this.currentYear).change();
     this.changeCal();
   }
 
   nextClick() {
-    $('.add-item-form').removeClass('show-form');
-    $('.day-box').removeClass('selected-day double-click');
-    $('.num-box').removeClass('first-day');
     if ($(document).find('#year').val() >= (this.currentYear + 5) && $(document).find('#month').val() == 11) {
       $(document).find('#year').val(this.currentYear + 5).change();
       $(document).find('#month').val(11).change();
@@ -349,13 +339,19 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
 
   onSwipeLeft(e) {
     if (!$('.day-box').hasClass('double-click')) {
-      this.nextClick();
+      if (navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/webOS/i) || navigator.userAgent.match(/iPhone/i)
+      || navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPod/i)) {
+        this.nextClick();
+      }
     }
   }
 
   onSwipeRight(e) {
     if (!$('.day-box').hasClass('double-click')) {
-      this.prevClick();
+      if (navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/webOS/i) || navigator.userAgent.match(/iPhone/i)
+        || navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPod/i)) {
+        this.prevClick();
+      }
     }
   }
 
