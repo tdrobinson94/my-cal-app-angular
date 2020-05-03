@@ -366,20 +366,38 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
       $('.visible').removeClass('selected-event');
       if (!$(e.currentTarget).prev().hasClass('dead-month-color')) {
         $('.day-box').removeClass('clicked-day double-click');
+        $('.main-info-section').removeClass('animate-events-one animate-events-two');
         if ($(e.currentTarget).prev().length === 0) {
           $(e.currentTarget).parent().prev().children().eq(6).addClass('clicked-day double-click');
+          $('.double-click').find('.main-info-section').addClass('animate-events-one');
+          setTimeout(() => {
+            $('.double-click').find('.main-info-section').addClass('animate-events-two');
+          }, 400);
         } else {
           $(e.currentTarget).prev().addClass('clicked-day double-click');
+          $('.double-click').find('.main-info-section').addClass('animate-events-one');
+          setTimeout(() => {
+            $('.double-click').find('.main-info-section').addClass('animate-events-two');
+          }, 400);
         }
       }
     } else if ($(e.target).hasClass('next-day-icon')) {
       $('.visible').removeClass('selected-event');
       if (!$(e.currentTarget).next().hasClass('dead-month-color')) {
         $('.day-box').removeClass('clicked-day double-click');
+        $('.main-info-section').removeClass('animate-events-one animate-events-two');
         if ($(e.currentTarget).next().length === 0) {
           $(e.currentTarget).parent().next().children().eq(0).addClass('clicked-day double-click');
+          $('.double-click').find('.main-info-section').addClass('animate-events-one');
+          setTimeout(() => {
+            $('.double-click').find('.main-info-section').addClass('animate-events-two');
+          }, 400);
         } else {
           $(e.currentTarget).next().addClass('clicked-day double-click');
+          $('.double-click').find('.main-info-section').addClass('animate-events-one');
+          setTimeout(() => {
+            $('.double-click').find('.main-info-section').addClass('animate-events-two');
+          }, 400);
         }
       }
     } else if ($(e.target).hasClass('close-day-icon')) {
@@ -396,7 +414,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
       $(e.currentTarget).addClass('double-click');
       $(e.currentTarget).find('.main-info-section').addClass('animate-events-one');
       setTimeout(() => {
-        $('.double-click .main-info-section').addClass('animate-events-two');
+        $('.double-click').find('.main-info-section').addClass('animate-events-two');
       }, 400);
     }
   }
