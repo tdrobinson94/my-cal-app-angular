@@ -355,6 +355,26 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
+  onSwipeDayLeft(e) {
+    if ($('.day-box').hasClass('double-click')) {
+      console.log('true');
+      if (navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/webOS/i) || navigator.userAgent.match(/iPhone/i)
+        || navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPod/i)) {
+        alert('Prev Day');
+      }
+    }
+  }
+
+  onSwipeDayRight(e) {
+    if ($('.day-box').hasClass('double-click')) {
+      console.log('true');
+      if (navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/webOS/i) || navigator.userAgent.match(/iPhone/i)
+        || navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPod/i)) {
+        alert('Next Day');
+      }
+    }
+  }
+
   clickonDay(e) {
     $('.add-item-form').removeClass('show-form');
     $('.extra').hide();
