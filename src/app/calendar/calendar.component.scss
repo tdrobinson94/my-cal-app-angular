@@ -457,15 +457,21 @@
                         opacity: .5;
                         padding: 0;
 
+                        @media screen and (min-width: $mid-small) {
+                            display: flex;
+                        }
+
                         @media screen and (min-width: $end-small) {
                             top: 50%;
                             transform: translateY(-50%);
-                            display: flex;
                         }
 
                         span {
                             font-size: 30px !important;
                         }
+                    }
+                    .hide {
+                        display: none !important;
                     }
                     .next-day {
                         right: 0;
