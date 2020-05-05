@@ -143,7 +143,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
     setInterval(() => {
       this.clock = new Date();
       if (this.currentDay !== this.clock.getDate()) {
-        this.changeCal();
+        // this.changeCal();
         this.currentDay = this.clock.getDate();
         this.currentDayofWeek = this.clock.getDay();
       }
