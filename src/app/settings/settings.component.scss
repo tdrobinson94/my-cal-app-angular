@@ -135,8 +135,8 @@
             }
         }
 
-        .update {
-            background-color: red;
+        .update, .delete {
+            background-color: $buttongry;
             color: #fff;
             border-radius: 5px;
             padding: 10px;
@@ -145,31 +145,17 @@
             margin: 20px auto;
             display: block;
             transition: all .3s ease-in-out;
+            float: right;
 
             &:disabled {
                 opacity: .3;
-                display: none;
                 transition: all .3s ease-in-out;
             }
         }
-        }
-    }
 
-    .settings-wrapper {
-        text-align: center;
-
-        button {
-        background-color: red;
-        color: #fff;
-        border-radius: 5px;
-        padding: 10px;
-        border: 0;
-        font-size: 15px;
-        margin: 20px auto;
-        display: block;
-
-        &:disabled {
-          opacity: .3;
+        .delete {
+          background-color: $primary;
+          float: left;
         }
       }
     }

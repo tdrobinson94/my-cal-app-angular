@@ -239,7 +239,7 @@
                         outline: none !important;
 
                         @media screen and (min-width: $end-small) {
-                            font-size: 16px;
+                            font-size: 12px;
                         }
                     }
 
@@ -291,9 +291,9 @@
                     }
 
                     .event {
-                        font-size: 9px;
+                        font-size: 7px;
                         cursor: pointer;
-                        height: 14px;
+                        height: 11px;
                         overflow: hidden;
                         margin: 0 0 3px;
                         padding: 2px 0 0 4%;
@@ -310,8 +310,8 @@
 
                         @media screen and (min-width: $mid-small) {
                             text-align: left;
-                            font-size: 12px;
-                            height: 17px;
+                            font-size: 9px;
+                            height: 13px;
                         }
 
                         .event-details {
@@ -429,12 +429,8 @@
                         cursor: pointer;
                         outline: none;
 
-                        &:before {
-                            font-size: 20px;
-                            height: 30px;
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
+                        span {
+                            font-size: 25px;
                         }
 
                         &:active {
@@ -467,7 +463,7 @@
                         }
 
                         span {
-                            font-size: 30px !important;
+                            font-size: 35px !important;
                         }
                     }
                     .hide {
@@ -481,10 +477,8 @@
                     }
 
                     .num-box {
-                        width: 16.5px;
-
                         .num-date {
-                            font-size: 15px;
+                            font-size: 12px;
                         }
                     }
 
@@ -507,7 +501,7 @@
                             overflow: initial !important;
                             text-align: left;
                             margin: 5px 4%;
-                            padding: 2px 55px 4px 4%;
+                            padding: 2px 4% 4px;
                             pointer-events: all;
 
                             @media screen and (min-width: $mid-small) {
@@ -516,20 +510,20 @@
 
                             .event-details {
                                 margin: 2px 0 0 0;
-                                font-size: 14px;
+                                font-size: 11px;
 
                                 &.frequency {
                                     display: none;
                                 }
 
                                 &:last-of-type {
-                                    font-size: 14px;
+                                    font-size: 11px;
                                     padding-bottom: 4px;
                                 }
 
                                 &.title {
                                     font-weight: bold;
-                                    font-size: 15px;
+                                    font-size: 12px;
 
                                     span {
                                         display: inline;
@@ -559,6 +553,10 @@
                                         animation-name: appear;
                                         animation-duration: .3s;
                                         animation-timing-function: ease-in-out;transition: all .3s ease-in-out;
+
+                                        &.hidden {
+                                            visibility: hidden;
+                                        }
 
                                         span {
                                             font-size: 20px !important;
@@ -692,8 +690,8 @@
                                     height: 75px;
                                 }
 
-                                button.submit-form {
-                                    background-color: $alert;
+                                button.submit-form, button.delete-event {
+                                    background-color: $buttongry;
                                     color: $textwht;
                                     border-radius: 5px;
                                     padding: 10px;
@@ -705,6 +703,11 @@
                                     &:disabled {
                                         opacity: .3;
                                     }
+                                }
+
+                                button.delete-event {
+                                    float: left;
+                                    background-color: $alert;
                                 }
 
                                 &::-webkit-scrollbar {
@@ -960,7 +963,7 @@
         }
 
         button.submit-form {
-            background-color: $alert;
+            background-color: $buttongry;
             color: $textwht;
             border-radius: 5px;
             padding: 10px;

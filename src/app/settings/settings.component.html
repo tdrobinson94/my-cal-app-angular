@@ -31,14 +31,14 @@
                 <div class="input-wrapper">
                     <button [disabled]="!updateForm.valid" class="update" type="submit">Update</button>
                 </div>
+                <div class="input-wrapper">
+                    <button class="delete" (click)="deleteMyUser()">Delete</button>
+                </div>
             </form>
         </div>
         <!-- <div class="input-wrapper theme">
             <label>Theme</label>
         </div> -->
-    </div>
-    <div class="settings-wrapper">
-        <button (click)="deleteMyUser()">Delete User</button>
     </div>
     <div class="bottom">
 

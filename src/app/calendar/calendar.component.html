@@ -63,7 +63,7 @@
                             <p class="event-details time">
                                 <span>{{event.eventstart_time}}</span> - <span>{{event.eventend_time}}</span>
                             </p>
-                            <button class="delete-event" (click)="deleteEvent($event)"
+                            <button class="delete-event hidden" (click)="deleteEvent($event)"
                             value="{{event.eventid}}">Delete</button>
                         </div>
                     </div>
@@ -135,6 +135,10 @@
                         
                         <div class="input-wrapper">
                             <button class="submit-form" type="submit" [disabled]="!updateItemForm.valid" (click)="updateEvent()">Update</button>
+                        </div>
+
+                        <div class="input-wrapper">
+                            <button class="delete-event" (click)="deleteEvent($event)">Delete</button>
                         </div>
                         
                     </form>

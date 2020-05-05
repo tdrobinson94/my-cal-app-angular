@@ -653,12 +653,25 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
   // Delete an event
   deleteEvent(e) {
     // On click set the value of the form with the value of the button
-    this.deleteItemForm = new FormGroup({
-      id: new FormControl(e.target.value),
+    this.updateItemForm = new FormGroup({
+      id: new FormControl($('.event-id-update input').val()),
+      item_type: new FormControl(''),
+      frequency: new FormControl(''),
+      title: new FormControl(''),
+      description: new FormControl(''),
+      start_date: new FormControl(''),
+      end_date: new FormControl(''),
+      start_time: new FormControl(''),
+      end_time: new FormControl(''),
+      all_day: new FormControl(''),
+      location: new FormControl(''),
     });
+
+    this.closeForm();
     // Delete the event
-    this.dataService.deleteEvent(this.deleteItemForm.value)
+    this.dataService.deleteEvent(this.updateItemForm.value)
       .subscribe((response) => {
+        this.closeEventUpdateForm();
         // Get the new Events table after the item has been deleted
         setTimeout(() => {
           this.getEvents();
