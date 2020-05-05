@@ -1,4 +1,5 @@
-import { BrowserModule, HammerModule } from '@angular/platform-browser';
+import { BrowserModule, HammerModule, HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
+import * as Hammer from 'hammerjs';
 import { NgModule } from '@angular/core';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
@@ -21,6 +22,13 @@ import { ProfileComponent } from './profile/profile.component';
 import { EventDataService } from './services/eventdata.service';
 import { TestCalendarComponent } from './test-calendar/test-calendar.component';
 
+
+export class HammerConfig extends HammerGestureConfig {
+  overrides: any = {
+    swipe: { direction: Hammer.DIRECTION_ALL }
+  };
+}
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -42,8 +50,11 @@ import { TestCalendarComponent } from './test-calendar/test-calendar.component';
     ProfileComponent,
     TestCalendarComponent
   ],
-  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }, UserDataService, AuthGuard, GuestGuard,
-  EventDataService],
+  providers: [
+    { provide: HAMMER_GESTURE_CONFIG, useClass: HammerConfig },
+    { provide: LocationStrategy, useClass: HashLocationStrategy }, UserDataService, AuthGuard, GuestGuard,
+    EventDataService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

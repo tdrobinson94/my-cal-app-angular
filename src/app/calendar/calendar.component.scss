@@ -443,7 +443,7 @@
                     }
 
                     .next-day, .prev-day {
-                        display: inline;
+                        display: none;
                         position: absolute;
                         top: 45%;
                         color: $textdrk;
@@ -451,7 +451,6 @@
                         border-radius: 5px;
                         border: 0;
                         font-size: 20px;
-                        display: flex;
                         align-items: center;
                         outline: 0;
                         transform: translateY(-100%);
@@ -461,6 +460,7 @@
                         @media screen and (min-width: $end-small) {
                             top: 50%;
                             transform: translateY(-50%);
+                            display: flex;
                         }
 
                         span {
@@ -486,6 +486,7 @@
                         padding: 0;
                         margin: 5px 0;
                         overflow: auto;
+                        touch-action: pan-y !important;
 
                         form {
                             padding: 5px 0;
@@ -499,7 +500,7 @@
                             height: auto !important;
                             overflow: initial !important;
                             text-align: left;
-                            margin: 5px 8.5%;
+                            margin: 5px 4%;
                             padding: 2px 55px 4px 4%;
                             pointer-events: all;
 
