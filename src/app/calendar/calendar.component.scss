@@ -267,7 +267,7 @@
                     }
 
                     &.animate-events-two {
-                        height: calc(100% - 160px);
+                        height: calc(100% - 105px);
 
                         @media screen and (min-width: $end-small) {
                             height: calc(100% - 50px);
@@ -841,7 +841,7 @@
             @media screen and (min-width: $end-small) {
                 bottom: 50%;
                 right: 50%;
-                transform: translate(50%, 50%);
+                transform: translate(50%, 52%);
                 height: 50%;
                 width: 100%;
                 max-width: 800px;
