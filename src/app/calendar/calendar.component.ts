@@ -144,6 +144,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
       this.clock = new Date();
       if (this.currentDay !== this.clock.getDate()) {
         $('.num-box').removeClass('current-day');
+        console.log($('.day-box .num-date:contains(' + this.currentDay + ')').eq(0).parent());
         this.currentDay = this.clock.getDate();
         this.currentDayofWeek = this.clock.getDay();
         setTimeout(() => {
@@ -467,6 +468,23 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
             }
           }
         }
+      }
+    }
+  }
+
+  onSwipeDown(e) {
+    if (navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/webOS/i) || navigator.userAgent.match(/iPhone/i)
+    || navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPod/i)) {
+      if (!$('.day-box').hasClass('double-click')) {
+        window.location.reload();
+      } else {
+        console.log('swipe down');
+        // $('.day-box').removeClass('double-click');
+        // $('.main-info-section').removeClass('animate-events-one animate-events-two');
+        // $('.visible').removeClass('selected-event');
+        // setTimeout(() => {
+        //   $('.main-info-section').animate({ scrollTop: 0 }, 300);
+        // }, 400);
       }
     }
   }
