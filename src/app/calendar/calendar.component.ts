@@ -146,7 +146,9 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
         $('.num-box').removeClass('current-day');
         this.currentDay = this.clock.getDate();
         this.currentDayofWeek = this.clock.getDay();
-        $('.day-box .num-date:contains(' + this.currentDay + ')').eq(0).parent().addClass('current-day');
+        setTimeout(() => {
+          $('.day-box .num-date:contains(' + this.currentDay + ')').eq(0).parent().addClass('current-day');
+        }, 200);
       }
     }, 10 * 1000);
 
