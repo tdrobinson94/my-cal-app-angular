@@ -144,15 +144,15 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
       this.clock = new Date();
       if (this.currentDay !== this.clock.getDate()) {
         $('.num-box').removeClass('current-day');
-        console.log($('.day-box .num-date:contains(' + this.currentDay + ')').eq(0).parent());
         this.currentDay = this.clock.getDate();
         this.currentDayofWeek = this.clock.getDay();
         setTimeout(() => {
-          $('.day-box .num-date:contains(' + this.currentDay + ')').eq(0).parent().addClass('current-day');
+          $('.day-box').find('.current-day').parent().next().find('.num-box').addClass('current-day');
         }, 200);
       }
-    }, 10 * 1000);
 
+      console.log($('.day-box').find('.current-day').parent().next().find('.num-box'));
+    }, 10 * 1000);
     // On first load init calendar
     this.changeCal();
   }
@@ -479,12 +479,6 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
         // window.location.reload();
       } else {
         console.log('swipe down');
-        // $('.day-box').removeClass('double-click');
-        // $('.main-info-section').removeClass('animate-events-one animate-events-two');
-        // $('.visible').removeClass('selected-event');
-        // setTimeout(() => {
-        //   $('.main-info-section').animate({ scrollTop: 0 }, 300);
-        // }, 400);
       }
     }
   }
@@ -864,10 +858,12 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   submitEvent() {
+    this.loading = true;
     this.dataService.createEvent(this.addItemForm.value)
       .subscribe((response) => {
         this.addItemForm.reset();
         this.closeForm();
+        this.loading = false;
 
         setTimeout(() => {
           this.getEvents();
