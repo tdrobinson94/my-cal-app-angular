@@ -145,13 +145,19 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
       if (this.currentDay !== this.clock.getDate()) {
         this.currentDay = this.clock.getDate();
         this.currentDayofWeek = this.clock.getDay();
-        setTimeout(() => {
-          $('.day-box').find('.current-day').parent().next().find('.num-box').addClass('current-day');
-          $('.day-box').find('.current-day').eq(0).removeClass('current-day');
-        }, 200);
-      }
 
-      console.log($('.day-box').find('.current-day').parent().next().find('.num-box'));
+        if ($('.day-box').find('.current-day').parent().next().length === 0) {
+          setTimeout(() => {
+            $('.day-box').find('.current-day').parent().parent().next().find('.num-box').eq(0).addClass('current-day');
+            $('.day-box').find('.current-day').eq(0).removeClass('current-day');
+          }, 200);
+        } else {
+            setTimeout(() => {
+              $('.day-box').find('.current-day').parent().next().find('.num-box').addClass('current-day');
+              $('.day-box').find('.current-day').eq(0).removeClass('current-day');
+            }, 200);
+        }
+      }
     }, 10 * 1000);
     // On first load init calendar
     this.changeCal();
