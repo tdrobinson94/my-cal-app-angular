@@ -50,6 +50,8 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
 
   // Add event form
   addItemForm = new FormGroup({
+    user_id: new FormControl(''),
+    group_id: new FormControl(''),
     item_type: new FormControl(''),
     frequency: new FormControl(''),
     title: new FormControl(''),
@@ -64,6 +66,8 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
 
   // Update event form
   updateItemForm = new FormGroup({
+    user_id: new FormControl(''),
+    group_id: new FormControl(''),
     id: new FormControl(''),
     frequency: new FormControl(''),
     title: new FormControl(''),
@@ -202,22 +206,37 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
         const standardMonth = '0' + nextMonth;
         const newDayIndex = (dayIndex - monthDays);
         const standardDayIndex = '0' + newDayIndex;
+        const getTime = new Date(currentYear, Number(standardMonth), Number(standardDayIndex)).getTime();
+        const getTimeZone = new Date(currentYear, Number(standardMonth), Number(standardDayIndex)).getTimezoneOffset();
+
         if (nextMonth < 10) {
 
           if ((newDayIndex) < 10) {
             day.find('.date-value').html(currentYear + '-' + standardMonth + '-' + standardDayIndex);
             day.find('.num-date').html(newDayIndex).parent().parent().addClass('dead-month-color');
+
+            console.log(newDayIndex + ': ' + (25569.0 + ((getTime - ((getTimeZone * 60 * 1000))) /
+              (1000 * 60 * 60 * 24))).toString().substring(0, 20));
           } else {
             day.find('.date-value').html(currentYear + '-' + standardMonth + '-' + newDayIndex);
             day.find('.num-date').html(newDayIndex).parent().parent().addClass('dead-month-color');
+            
+            console.log(newDayIndex + ': ' + (25569.0 + ((getTime - ((getTimeZone * 60 * 1000))) /
+              (1000 * 60 * 60 * 24))).toString().substring(0, 20));
           }
         } else {
           if ((dayIndex - monthDays) < 10) {
             day.find('.date-value').html(currentYear + '-' + standardMonth + '-' + standardDayIndex);
             day.find('.num-date').html(newDayIndex).parent().parent().addClass('dead-month-color');
+            
+            console.log(newDayIndex + ': ' + (25569.0 + ((getTime - ((getTimeZone * 60 * 1000))) /
+              (1000 * 60 * 60 * 24))).toString().substring(0, 20));
           } else {
             day.find('.date-value').html(currentYear + '-' + standardMonth + '-' + newDayIndex);
             day.find('.num-date').html(newDayIndex).parent().parent().addClass('dead-month-color');
+            
+            console.log(newDayIndex + ': ' + (25569.0 + ((getTime - ((getTimeZone * 60 * 1000))) /
+              (1000 * 60 * 60 * 24))).toString().substring(0, 20));
           }
         }
       } else {
@@ -225,22 +244,37 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
         const standardNewMonth = '0' + thisMonth;
         const newDays = dayIndex;
         const standardNewDays = '0' + dayIndex;
+
+        const getTime = new Date(currentYear, Number(standardNewMonth), Number(standardNewDays)).getTime();
+        const getTimeZone = new Date(currentYear, Number(standardNewMonth), Number(standardNewDays)).getTimezoneOffset();
         
         if (thisMonth < 10) {
           if (dayIndex < 10) {
             day.find('.date-value').html(currentYear + '-' + standardNewMonth + '-' + standardNewDays);
             day.find('.num-date').html('&nbsp' + newDays + '&nbsp');
+
+            console.log(newDays + ': ' + (25569.0 + ((getTime - ((getTimeZone * 60 * 1000))) /
+              (1000 * 60 * 60 * 24))).toString().substring(0, 20));
           } else {
             day.find('.date-value').html(currentYear + '-' + standardNewMonth + '-' + newDays);
             day.find('.num-date').html(newDays);
+
+            console.log(newDays + ': ' + (25569.0 + ((getTime - ((getTimeZone * 60 * 1000))) /
+              (1000 * 60 * 60 * 24))).toString().substring(0, 20));
           }
         } else {
           if (dayIndex < 10) {
             day.find('.date-value').html(currentYear + '-' + thisMonth + '-' + standardNewDays);
             day.find('.num-date').html('&nbsp' + newDays + '&nbsp');
+
+            console.log(newDays + ': ' + (25569.0 + ((getTime - ((getTimeZone * 60 * 1000))) /
+              (1000 * 60 * 60 * 24))).toString().substring(0, 20));
           } else {
             day.find('.date-value').html(currentYear + '-' + thisMonth + '-' + newDays);
             day.find('.num-date').html(newDays);
+
+            console.log(newDays + ': ' + (25569.0 + ((getTime - ((getTimeZone * 60 * 1000))) /
+              (1000 * 60 * 60 * 24))).toString().substring(0, 20));
           }
         }
       }
@@ -267,6 +301,9 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
     _.range(0, startOfMonth).forEach((dayIndex) => {
       const day = $(weeks[dayIndex]);
 
+      const getTime = new Date(currentYear, Number(prevMonth), Number((prevDays[dayIndex]))).getTime();
+      const getTimeZone = new Date(currentYear, Number(prevMonth), Number((prevDays[dayIndex]))).getTimezoneOffset();
+
       if (startOfMonth > dayIndex) {
         if (prevMonth === 0) {
           prevMonth = 12;
@@ -277,9 +314,15 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
           const standardNewMonth = '0' + prevMonth;
           day.find('.date-value').html(currentYear + '-' + standardNewMonth + '-' + (prevDays[dayIndex]));
           day.find('.num-date').html((prevDays[dayIndex]));
+
+          console.log((prevDays[dayIndex]) + ': ' + (25569.0 + ((getTime - ((getTimeZone * 60 * 1000))) /
+            (1000 * 60 * 60 * 24))).toString().substring(0, 5));
         } else {
           day.find('.date-value').html(currentYear + '-' + prevMonth + '-' + (prevDays[dayIndex]));
           day.find('.num-date').html((prevDays[dayIndex]));
+
+          console.log((prevDays[dayIndex]) + ': ' + (25569.0 + ((getTime - ((getTimeZone * 60 * 1000))) /
+            (1000 * 60 * 60 * 24))).toString().substring(0, 5));
         }
 
         day.find('.num-date').parent().parent().addClass('dead-month-color');
@@ -305,8 +348,8 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
     $('.add-item-form').removeClass('show-form');
     $('.num-box').removeClass('first-day current-day');
 
-    this.renderMonth();
     this.renderPrevMonthDays();
+    this.renderMonth();
     this.selectedDay();
     setTimeout(() => {
       this.getEvents();
@@ -568,6 +611,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
               eventid: response[i].id.toString(),
               eventtitle: response[i].title,
               eventstart_date: response[i].start_date.substring(0, 10),
+              eventend_date: response[i].end_date.substring(0, 10),
               eventdesc: response[i].description,
               eventlocation: response[i].location,
               eventfrequency: response[i].frequency,
@@ -576,14 +620,13 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
               eventcreatedAt: moment(response[i].created_at).format()
             };
 
-            if (eventlist[i].eventstart_date === day.find('.date-value').html()) {
-
+            if (day.find('.date-value').html() === eventlist[i].eventend_date) {
               setTimeout(() => {
                 if (day.find('.event').hasClass(day.find('.date-value').html())) {
                   day.find('.' + day.find('.date-value').html()).addClass('visible');
                 }
               }, 100);
-            }
+            } 
           }
           this.events = eventlist;
 
@@ -656,9 +699,12 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
       // Set the time to variables and concat the values to a proper time input format
       const eCurrentTime = eHours + ':' + eMinutes;
       const eEndTime = eEndTimeHours + ':' + eEndTimeMinutes;
+      const userID = localStorage.getItem('userId');
 
       // Update the form with the time values defined above
       this.updateItemForm = new FormGroup({
+        user_id: new FormControl(userID),
+        group_id: new FormControl(''),
         id: new FormControl(e.currentTarget.childNodes[5].value),
         frequency: new FormControl(Number(e.currentTarget.childNodes[3].innerHTML.trim())),
         title: new FormControl(e.currentTarget.childNodes[0].innerHTML.trim()),
@@ -670,6 +716,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
         all_day: new FormControl(''),
         location: new FormControl(e.currentTarget.childNodes[2].innerHTML.trim()),
       });
+      console.log(this.updateItemForm.value);
     }
   }
 
@@ -677,7 +724,9 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
   deleteEvent(e) {
     // On click set the value of the form with the value of the button
     this.updateItemForm = new FormGroup({
-      id: new FormControl($('.event-id-update input').val()),
+      user_id: new FormControl(''),
+      group_id: new FormControl(''),
+      id: new FormControl(this.updateItemForm.value.id),
       item_type: new FormControl(''),
       frequency: new FormControl(''),
       title: new FormControl(''),
@@ -734,7 +783,11 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
       $('.form-nav-bar, .add-item-form').addClass('animate-events-two');
     }, 450);
 
+    const userID = localStorage.getItem('userId');
+
     this.addItemForm = new FormGroup({
+      user_id: new FormControl(userID),
+      group_id: new FormControl(''),
       item_type: new FormControl(1),
       frequency: new FormControl(0),
       title: new FormControl(''),
@@ -749,31 +802,35 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   onStartDateChange(e) {
+
     this.addItemForm = new FormGroup({
-      item_type: new FormControl($('.item-type select').val()),
-      frequency: new FormControl($('.frequency select').val()),
-      title: new FormControl($('.item-title input').val()),
-      description: new FormControl($('.event-description textarea').val()),
+      user_id: new FormControl(this.addItemForm.value.user_id),
+      group_id: new FormControl(this.updateItemForm.value.group_id),
+      item_type: new FormControl(this.addItemForm.value.item_type),
+      frequency: new FormControl(this.addItemForm.value.frequency),
+      title: new FormControl(this.addItemForm.value.title),
+      description: new FormControl(this.addItemForm.value.description),
       start_date: new FormControl(e.target.value),
       end_date: new FormControl(e.target.value),
-      start_time: new FormControl($('.time-input input').val()),
-      end_time: new FormControl($('.time-input-end input').val()),
-      all_day: new FormControl($('.time-all-day input').val()),
-      location: new FormControl($('.location-input input').val()),
+      start_time: new FormControl(this.addItemForm.value.start_time),
+      end_time: new FormControl(this.addItemForm.value.end_time),
+      all_day: new FormControl(this.addItemForm.value.all_day),
+      location: new FormControl(this.addItemForm.value.location),
     });
 
     this.updateItemForm = new FormGroup({
-      id: new FormControl($('.event-id-update input').val()),
-      item_type: new FormControl($('.item-type-update select').val()),
-      frequency: new FormControl($('.frequency-update select').val()),
-      title: new FormControl($('.item-title-update input').val()),
-      description: new FormControl($('.event-description-update textarea').val()),
+      user_id: new FormControl(this.updateItemForm.value.user_id),
+      group_id: new FormControl(this.updateItemForm.value.group_id),
+      item_type: new FormControl(this.updateItemForm.value.item_type),
+      frequency: new FormControl(this.updateItemForm.value.frequency),
+      title: new FormControl(this.updateItemForm.value.title),
+      description: new FormControl(this.updateItemForm.value.description),
       start_date: new FormControl(e.target.value),
       end_date: new FormControl(e.target.value),
-      start_time: new FormControl($('.time-input-update input').val()),
-      end_time: new FormControl($('.time-input-end-update input').val()),
-      all_day: new FormControl($('.time-all-day input').val()),
-      location: new FormControl($('.location-input-update input').val()),
+      start_time: new FormControl(this.updateItemForm.value.start_time),
+      end_time: new FormControl(this.updateItemForm.value.end_time),
+      all_day: new FormControl(this.updateItemForm.value.all_day),
+      location: new FormControl(this.updateItemForm.value.location),
     });
   }
 
@@ -795,31 +852,103 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
     const endTime = hours + ':' + minutes;
 
     this.addItemForm = new FormGroup({
-      item_type: new FormControl($('.item-type select').val()),
-      frequency: new FormControl($('.frequency select').val()),
-      title: new FormControl($('.item-title input').val()),
-      description: new FormControl($('.event-description textarea').val()),
-      start_date: new FormControl($('.date-input input').val()),
-      end_date: new FormControl($('.date-input-end input').val()),
-      start_time: new FormControl(e.target.value),
-      end_time: new FormControl(endTime),
-      all_day: new FormControl($('.time-all-day input').val()),
-      location: new FormControl($('.location-input input').val()),
-    });
+        user_id: new FormControl(this.addItemForm.value.user_id),
+      group_id: new FormControl(this.updateItemForm.value.group_id),
+        item_type: new FormControl(this.addItemForm.value.item_type),
+        frequency: new FormControl(this.addItemForm.value.frequency),
+        title: new FormControl(this.addItemForm.value.title),
+        description: new FormControl(this.addItemForm.value.description),
+        start_date: new FormControl(this.addItemForm.value.start_date),
+        end_date: new FormControl(this.addItemForm.value.end_date),
+        start_time: new FormControl(e.target.value),
+        end_time: new FormControl(endTime),
+        all_day: new FormControl(this.addItemForm.value.all_day),
+        location: new FormControl(this.addItemForm.value.location),
+      });
 
     this.updateItemForm = new FormGroup({
-      id: new FormControl($('.event-id-update input').val()),
-      item_type: new FormControl($('.item-type-update select').val()),
-      frequency: new FormControl($('.frequency-update select').val()),
-      title: new FormControl($('.item-title-update input').val()),
-      description: new FormControl($('.event-description-update textarea').val()),
-      start_date: new FormControl($('.date-input-update input').val()),
-      end_date: new FormControl($('.date-input-update input').val()),
+      user_id: new FormControl(this.updateItemForm.value.user_id),
+      group_id: new FormControl(this.updateItemForm.value.group_id),
+      item_type: new FormControl(this.updateItemForm.value.item_type),
+      frequency: new FormControl(this.updateItemForm.value.frequency),
+      title: new FormControl(this.updateItemForm.value.title),
+      description: new FormControl(this.updateItemForm.value.description),
+      start_date: new FormControl(this.updateItemForm.value.start_date),
+      end_date: new FormControl(this.updateItemForm.value.end_date),
       start_time: new FormControl(e.target.value),
       end_time: new FormControl(endTime),
-      all_day: new FormControl($('.time-all-day input').val()),
-      location: new FormControl($('.location-input-update input').val()),
+      all_day: new FormControl(this.updateItemForm.value.all_day),
+      location: new FormControl(this.updateItemForm.value.location),
     });
+  }
+
+  frequencyChange(e) {
+    console.log(this.addItemForm.value.frequency);
+    if (this.addItemForm.value.frequency == 0) {
+      this.addItemForm = new FormGroup({
+        user_id: new FormControl(this.addItemForm.value.user_id),
+        group_id: new FormControl(''),
+        item_type: new FormControl(this.addItemForm.value.item_type),
+        frequency: new FormControl(this.addItemForm.value.frequency),
+        title: new FormControl(this.addItemForm.value.title),
+        description: new FormControl(this.addItemForm.value.description),
+        start_date: new FormControl(this.addItemForm.value.start_date),
+        end_date: new FormControl(this.addItemForm.value.end_date),
+        start_time: new FormControl(this.addItemForm.value.start_time),
+        end_time: new FormControl(this.addItemForm.value.end_time),
+        all_day: new FormControl(this.addItemForm.value.all_day),
+        location: new FormControl(this.addItemForm.value.location),
+      });
+
+      this.updateItemForm = new FormGroup({
+        user_id: new FormControl(this.updateItemForm.value.user_id),
+        group_id: new FormControl(''),
+        item_type: new FormControl(this.updateItemForm.value.item_type),
+        frequency: new FormControl(this.updateItemForm.value.frequency),
+        title: new FormControl(this.updateItemForm.value.title),
+        description: new FormControl(this.updateItemForm.value.description),
+        start_date: new FormControl(this.updateItemForm.value.start_date),
+        end_date: new FormControl(this.updateItemForm.value.end_date),
+        start_time: new FormControl(this.updateItemForm.value.start_time),
+        end_time: new FormControl(this.updateItemForm.value.end_time),
+        all_day: new FormControl(this.updateItemForm.value.all_day),
+        location: new FormControl(this.updateItemForm.value.location),
+      });
+    } else {
+      let i = 1;
+      const groupID = i;
+      this.addItemForm = new FormGroup({
+        user_id: new FormControl(this.addItemForm.value.user_id),
+        group_id: new FormControl(groupID),
+        item_type: new FormControl(this.addItemForm.value.item_type),
+        frequency: new FormControl(this.addItemForm.value.frequency),
+        title: new FormControl(this.addItemForm.value.title),
+        description: new FormControl(this.addItemForm.value.description),
+        start_date: new FormControl(this.addItemForm.value.start_date),
+        end_date: new FormControl(this.addItemForm.value.end_date),
+        start_time: new FormControl(this.addItemForm.value.start_time),
+        end_time: new FormControl(this.addItemForm.value.end_time),
+        all_day: new FormControl(this.addItemForm.value.all_day),
+        location: new FormControl(this.addItemForm.value.location),
+      });
+
+      this.updateItemForm = new FormGroup({
+        user_id: new FormControl(this.updateItemForm.value.user_id),
+        group_id: new FormControl(groupID),
+        item_type: new FormControl(this.updateItemForm.value.item_type),
+        frequency: new FormControl(this.updateItemForm.value.frequency),
+        title: new FormControl(this.updateItemForm.value.title),
+        description: new FormControl(this.updateItemForm.value.description),
+        start_date: new FormControl(this.updateItemForm.value.start_date),
+        end_date: new FormControl(this.updateItemForm.value.end_date),
+        start_time: new FormControl(this.updateItemForm.value.start_time),
+        end_time: new FormControl(this.updateItemForm.value.end_time),
+        all_day: new FormControl(this.updateItemForm.value.all_day),
+        location: new FormControl(this.updateItemForm.value.location),
+      });
+
+      console.log(groupID);
+    }
   }
 
   allDaySelected(e) {
@@ -828,30 +957,33 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
 
     if (e.target.checked === true) {
       this.addItemForm = new FormGroup({
-        item_type: new FormControl($('.item-type select').val()),
-        frequency: new FormControl($('.frequency select').val()),
-        title: new FormControl($('.item-title input').val()),
-        description: new FormControl($('.event-description textarea').val()),
-        start_date: new FormControl($('.date-input input').val()),
-        end_date: new FormControl($('.date-input-end input').val()),
+        user_id: new FormControl(this.addItemForm.value.user_id),
+        group_id: new FormControl(''),
+        item_type: new FormControl(this.addItemForm.value.item_type),
+        frequency: new FormControl(this.addItemForm.value.frequency),
+        title: new FormControl(this.addItemForm.value.title),
+        description: new FormControl(this.addItemForm.value.description),
+        start_date: new FormControl(this.addItemForm.value.start_date),
+        end_date: new FormControl(this.addItemForm.value.end_date),
         start_time: new FormControl(startTime),
         end_time: new FormControl(endTime),
-        all_day: new FormControl($('.time-all-day input').val()),
-        location: new FormControl($('.location-input input').val()),
+        all_day: new FormControl(this.addItemForm.value.all_day),
+        location: new FormControl(this.addItemForm.value.location),
       });
 
       this.updateItemForm = new FormGroup({
-        id: new FormControl($('.event-id-update input').val()),
-        item_type: new FormControl($('.item-type-update select').val()),
-        frequency: new FormControl($('.frequency-update select').val()),
-        title: new FormControl($('.item-title-update input').val()),
-        description: new FormControl($('.event-description-update textarea').val()),
-        start_date: new FormControl($('.date-input-update input').val()),
-        end_date: new FormControl($('.date-input-update input').val()),
+        user_id: new FormControl(this.updateItemForm.value.user_id),
+        group_id: new FormControl(''),
+        item_type: new FormControl(this.updateItemForm.value.item_type),
+        frequency: new FormControl(this.updateItemForm.value.frequency),
+        title: new FormControl(this.updateItemForm.value.title),
+        description: new FormControl(this.updateItemForm.value.description),
+        start_date: new FormControl(this.updateItemForm.value.start_date),
+        end_date: new FormControl(this.updateItemForm.value.end_date),
         start_time: new FormControl(startTime),
         end_time: new FormControl(endTime),
-        all_day: new FormControl($('.time-all-day input').val()),
-        location: new FormControl($('.location-input-update input').val()),
+        all_day: new FormControl(this.updateItemForm.value.all_day),
+        location: new FormControl(this.updateItemForm.value.location),
       });
     }
   }
@@ -867,16 +999,63 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
 
   submitEvent() {
     this.loading = true;
-    this.dataService.createEvent(this.addItemForm.value)
-      .subscribe((response) => {
-        this.addItemForm.reset();
-        this.closeForm();
-        this.loading = false;
+    if (this.addItemForm.value.frequency == 0) {
+      console.log(this.addItemForm.value);
+      this.dataService.createEvent(this.addItemForm.value)
+        .subscribe((response) => {
+          this.addItemForm.reset();
+          this.closeForm();
+          this.loading = false;
 
-        setTimeout(() => {
-          this.getEvents();
-        }, 300);
+          setTimeout(() => {
+            this.getEvents();
+          }, 300);
+        });
+    } else if (this.addItemForm.value.frequency == 1) {
+      console.log('Daily');
+      let i = 1;
+      const groupID = i++;
+      this.addItemForm = new FormGroup({
+        user_id: new FormControl(this.addItemForm.value.user_id),
+        group_id: new FormControl(groupID),
+        item_type: new FormControl(this.addItemForm.value.item_type),
+        frequency: new FormControl(this.addItemForm.value.frequency),
+        title: new FormControl(this.addItemForm.value.title),
+        description: new FormControl(this.addItemForm.value.description),
+        start_date: new FormControl(this.addItemForm.value.start_date),
+        end_date: new FormControl(this.addItemForm.value.end_date),
+        start_time: new FormControl(this.addItemForm.value.start_time),
+        end_time: new FormControl(this.addItemForm.value.end_time),
+        all_day: new FormControl(this.addItemForm.value.all_day),
+        location: new FormControl(this.addItemForm.value.location),
       });
+      console.log(this.addItemForm.value);
+      this.dataService.createMultipleEvent(this.addItemForm.value)
+        .subscribe((response) => {
+          this.addItemForm.reset();
+          this.closeForm();
+          this.loading = false;
+
+          setTimeout(() => {
+            this.getEvents();
+          }, 300);
+        });
+    } else if (this.addItemForm.value.frequency == 2) {
+      console.log('Weekly');
+      this.loading = false;
+    } else if (this.addItemForm.value.frequency == 3) {
+      console.log('Bi-weekly');
+      this.loading = false;
+    } else if (this.addItemForm.value.frequency == 4) {
+      console.log('Monthly');
+      this.loading = false;
+    } else if (this.addItemForm.value.frequency == 5) {
+      console.log('Semi-annual');
+      this.loading = false;
+    } else if (this.addItemForm.value.frequency == 6) {
+      console.log('Annual');
+      this.loading = false;
+    }
   }
 
   updateEvent() {

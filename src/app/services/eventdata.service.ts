@@ -21,8 +21,11 @@ export class EventDataService {
     }
 
     createEvent(eventData): Observable<any> {
-        console.log(this.getToken());
         return this.http.post(this.apiUrl + '/event', eventData, this.getToken());
+    }
+
+    createMultipleEvent(eventData): Observable<any> {
+        return this.http.post(this.apiUrl + '/events', eventData, this.getToken());
     }
 
     getEvents(): Observable<any> {

@@ -638,6 +638,12 @@
 
                                 .input-wrapper {
                                     margin: 0 4%;
+
+                                    &.invisible {
+                                        visibility: hidden;
+                                        height: 0;
+                                        width: 0;
+                                    }
                                 }
 
                                 label {
@@ -647,10 +653,6 @@
                                     width: 100%;
                                     font-weight: bold;
                                     font-size: 15px;
-                                }
-
-                                .event-id-update {
-                                    display: none;
                                 }
 
                                 select, .date-input-update input, .date-input-end-update input, .time-input-end-update input, .item-title-update input , .event-description-update textarea, .amount-input-update input, .location-input-update input, .time-input-update input {
@@ -914,6 +916,12 @@
 
         .input-wrapper {
             margin: 0 4%;
+
+            &.invisible {
+                visibility: hidden;
+                height: 0;
+                width: 0;
+            }
         }
 
         label {
