@@ -6,6 +6,7 @@ import $ from 'jquery';
 import _ from 'lodash';
 import * as moment from 'moment';
 import 'hammerjs';
+import { toExcelDate } from 'js-excel-date-convert';
 
 @Component({
   selector: 'app-calendar',
@@ -206,8 +207,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
         const standardMonth = '0' + nextMonth;
         const newDayIndex = (dayIndex - monthDays);
         const standardDayIndex = '0' + newDayIndex;
-        const getTime = new Date(currentYear, Number(standardMonth), Number(standardDayIndex)).getTime();
-        const getTimeZone = new Date(currentYear, Number(standardMonth), Number(standardDayIndex)).getTimezoneOffset();
+        const excelDate = toExcelDate(new Date(currentYear, Number(standardMonth), Number(newDayIndex))).toString();
 
         if (nextMonth < 10) {
 
@@ -215,28 +215,24 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
             day.find('.date-value').html(currentYear + '-' + standardMonth + '-' + standardDayIndex);
             day.find('.num-date').html(newDayIndex).parent().parent().addClass('dead-month-color');
 
-            console.log(newDayIndex + ': ' + (25569.0 + ((getTime - ((getTimeZone * 60 * 1000))) /
-              (1000 * 60 * 60 * 24))).toString().substring(0, 20));
+            console.log(newDayIndex + ': ' + excelDate);
           } else {
             day.find('.date-value').html(currentYear + '-' + standardMonth + '-' + newDayIndex);
             day.find('.num-date').html(newDayIndex).parent().parent().addClass('dead-month-color');
             
-            console.log(newDayIndex + ': ' + (25569.0 + ((getTime - ((getTimeZone * 60 * 1000))) /
-              (1000 * 60 * 60 * 24))).toString().substring(0, 20));
+            console.log(newDayIndex + ': ' + excelDate);
           }
         } else {
           if ((dayIndex - monthDays) < 10) {
             day.find('.date-value').html(currentYear + '-' + standardMonth + '-' + standardDayIndex);
             day.find('.num-date').html(newDayIndex).parent().parent().addClass('dead-month-color');
             
-            console.log(newDayIndex + ': ' + (25569.0 + ((getTime - ((getTimeZone * 60 * 1000))) /
-              (1000 * 60 * 60 * 24))).toString().substring(0, 20));
+            console.log(newDayIndex + ': ' + excelDate);
           } else {
             day.find('.date-value').html(currentYear + '-' + standardMonth + '-' + newDayIndex);
             day.find('.num-date').html(newDayIndex).parent().parent().addClass('dead-month-color');
             
-            console.log(newDayIndex + ': ' + (25569.0 + ((getTime - ((getTimeZone * 60 * 1000))) /
-              (1000 * 60 * 60 * 24))).toString().substring(0, 20));
+            console.log(newDayIndex + ': ' + excelDate);
           }
         }
       } else {
@@ -245,36 +241,31 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
         const newDays = dayIndex;
         const standardNewDays = '0' + dayIndex;
 
-        const getTime = new Date(currentYear, Number(standardNewMonth), Number(standardNewDays)).getTime();
-        const getTimeZone = new Date(currentYear, Number(standardNewMonth), Number(standardNewDays)).getTimezoneOffset();
+        const excelDate = toExcelDate(new Date(currentYear, Number(standardNewMonth), Number(newDays))).toString();
         
         if (thisMonth < 10) {
           if (dayIndex < 10) {
             day.find('.date-value').html(currentYear + '-' + standardNewMonth + '-' + standardNewDays);
             day.find('.num-date').html('&nbsp' + newDays + '&nbsp');
 
-            console.log(newDays + ': ' + (25569.0 + ((getTime - ((getTimeZone * 60 * 1000))) /
-              (1000 * 60 * 60 * 24))).toString().substring(0, 20));
+            console.log(newDays + ': ' + excelDate);
           } else {
             day.find('.date-value').html(currentYear + '-' + standardNewMonth + '-' + newDays);
             day.find('.num-date').html(newDays);
 
-            console.log(newDays + ': ' + (25569.0 + ((getTime - ((getTimeZone * 60 * 1000))) /
-              (1000 * 60 * 60 * 24))).toString().substring(0, 20));
+            console.log(newDays + ': ' + excelDate);
           }
         } else {
           if (dayIndex < 10) {
             day.find('.date-value').html(currentYear + '-' + thisMonth + '-' + standardNewDays);
             day.find('.num-date').html('&nbsp' + newDays + '&nbsp');
 
-            console.log(newDays + ': ' + (25569.0 + ((getTime - ((getTimeZone * 60 * 1000))) /
-              (1000 * 60 * 60 * 24))).toString().substring(0, 20));
+            console.log(newDays + ': ' + excelDate);
           } else {
             day.find('.date-value').html(currentYear + '-' + thisMonth + '-' + newDays);
             day.find('.num-date').html(newDays);
 
-            console.log(newDays + ': ' + (25569.0 + ((getTime - ((getTimeZone * 60 * 1000))) /
-              (1000 * 60 * 60 * 24))).toString().substring(0, 20));
+            console.log(newDays + ': ' + excelDate);
           }
         }
       }
@@ -301,8 +292,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
     _.range(0, startOfMonth).forEach((dayIndex) => {
       const day = $(weeks[dayIndex]);
 
-      const getTime = new Date(currentYear, Number(prevMonth), Number((prevDays[dayIndex]))).getTime();
-      const getTimeZone = new Date(currentYear, Number(prevMonth), Number((prevDays[dayIndex]))).getTimezoneOffset();
+      const excelDate = toExcelDate(new Date(currentYear, Number(prevMonth), Number((prevDays[dayIndex]))));
 
       if (startOfMonth > dayIndex) {
         if (prevMonth === 0) {
@@ -315,14 +305,12 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
           day.find('.date-value').html(currentYear + '-' + standardNewMonth + '-' + (prevDays[dayIndex]));
           day.find('.num-date').html((prevDays[dayIndex]));
 
-          console.log((prevDays[dayIndex]) + ': ' + (25569.0 + ((getTime - ((getTimeZone * 60 * 1000))) /
-            (1000 * 60 * 60 * 24))).toString().substring(0, 5));
+          console.log((prevDays[dayIndex]) + ': ' + excelDate);
         } else {
           day.find('.date-value').html(currentYear + '-' + prevMonth + '-' + (prevDays[dayIndex]));
           day.find('.num-date').html((prevDays[dayIndex]));
 
-          console.log((prevDays[dayIndex]) + ': ' + (25569.0 + ((getTime - ((getTimeZone * 60 * 1000))) /
-            (1000 * 60 * 60 * 24))).toString().substring(0, 5));
+          console.log((prevDays[dayIndex]) + ': ' + excelDate);
         }
 
         day.find('.num-date').parent().parent().addClass('dead-month-color');
