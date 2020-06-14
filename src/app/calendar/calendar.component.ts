@@ -614,7 +614,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
               }, 100);
             }
 
-            if (day.find('.date-value').html() === eventlist[i].eventend_date && eventlist[i].eventfrequency === 2) {
+            if (day.find('.date-value').html() === eventlist[i].eventend_date) {
               setTimeout(() => {
                 day.find('.event[endDate="' + day.find('.date-value').html() + '"]').addClass('visible');
               }, 100);
