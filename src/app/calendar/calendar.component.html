@@ -65,7 +65,9 @@
                                 <span>{{event.eventstart_time}}</span> - <span>{{event.eventend_time}}</span>
                             </p>
 
-                            <p class="event-details end">{{event.eventend_date}}</p>
+                            <p class="event-details end">
+                                {{event.eventend_date}}
+                            </p>
                             <button class="delete-event hidden" (click)="deleteEvent($event)"
                             value="{{event.eventid}}">Delete</button>
                         </div>
@@ -158,11 +160,11 @@
 
     </div>
 
-    <button class="add-item-button" (click)="openForm()">
+    <button class="add-item-button" (click)="openForm()" [ngStyle]="{display: hideFormButton ? 'none' : 'flex'}">
         <span class="material-icons">add</span>
     </button>
 
-    <div class="add-item-container">
+    <div class="add-item-container" [ngClass]="{'show-form': openform}">
         <div class="form-nav-bar">
             <h2>Add Items</h2>
             <div class="close-form" (click)="closeForm()">

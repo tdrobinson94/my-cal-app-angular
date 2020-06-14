@@ -24,6 +24,8 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
   currentDay = this.clock.getDate();
   currentDayofWeek = this.clock.getDay();
   isCurrentWeekday = false;
+  openform = false;
+  hideFormButton = false;
 
   // Calendar variables
   rows: any = [];
@@ -742,6 +744,14 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   openForm() {
+    $('.add-item-container').animate({ scrollTop: 0 }, 400);
+    this.openform = true;
+    this.hideFormButton = true;
+    $('.form-nav-bar, .add-item-form').addClass('animate-events-one');
+    setTimeout(() => {
+      $('.form-nav-bar, .add-item-form').addClass('animate-events-two');
+    }, 450);
+
     const day = $('.clicked-day .date-value').text();
     let minutes: any = Number(String(this.clock.getMinutes()).padStart(2, '0'));
     if (minutes < 10) {
@@ -764,14 +774,6 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
     }
     const currentTime = hours.toString() + ':' + minutes.toString();
     const endTime = (extraHour) + ':' + minutes;
-
-    $('.add-item-container').animate({ scrollTop: 0 }, 400);
-    $('.add-item-container').addClass('show-form');
-    $('.add-item-button').hide();
-    $('.form-nav-bar, .add-item-form').addClass('animate-events-one');
-    setTimeout(() => {
-      $('.form-nav-bar, .add-item-form').addClass('animate-events-two');
-    }, 450);
 
     const userID = localStorage.getItem('userId');
 
@@ -980,10 +982,10 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
 
   closeForm() {
     this.addItemForm.reset();
-    $('.add-item-container').removeClass('show-form');
+    this.openform = false;
     $('.form-nav-bar, .add-item-form').removeClass('animate-events-one animate-events-two');
     setTimeout(() => {
-      $('.add-item-button').show();
+      this.hideFormButton = false;
     }, 300);
   }
 
