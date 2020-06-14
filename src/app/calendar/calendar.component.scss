@@ -201,7 +201,7 @@
             }
 
             @media screen and (min-width: $end-small) {
-                height: 24.2%;
+                height: 19.2%;
             }
 
             @media screen and (max-height: $end-small) and (min-width: $end-small) {
@@ -428,15 +428,15 @@
                     border-radius: 0;
 
                     @media screen and (min-width: $end-small) {
-                        bottom: 50%;
-                        transform: translate(0, 25%);
+                        top: 50%;
+                        transform: translate(-49%);
                         height: 50%;
                         border: 1px solid #333333;
                         border-radius: 5px;
                     }
 
                     @media screen and (min-height: 600px) {
-                        transform: translate(0, 2%);
+                        transform: translateY(-49%);
                         height: 59%;
                     }
 
