@@ -164,6 +164,21 @@
 
         @media screen and (min-width: $end-small) {
             height: calc(100% - 188px);
+            overflow: auto;
+
+            &::-webkit-scrollbar {
+                width: 2px;
+            }
+            &::-webkit-scrollbar-track {
+                background: white;
+            }
+            &::-webkit-scrollbar-thumb {
+                background: rgba(0, 0, 0, .2);
+                border-radius: 50px;
+            }
+            &::-webkit-scrollbar-thumb:hover {
+                background: rgba(126, 93, 93, 0.7); 
+            }
         }
 
         .row {
@@ -186,9 +201,11 @@
             }
 
             @media screen and (min-width: $end-small) {
+                height: 24.2%;
+            }
 
-                height: 16.2%;
-
+            @media screen and (max-height: $end-small) and (min-width: $end-small) {
+                height: 21.2%;
             }
 
             .day-box {
@@ -502,6 +519,17 @@
                         overflow: auto;
                         touch-action: pan-y !important;
 
+                        @media screen and (min-width: $mid-small) {
+                            display: flex;
+                            flex-flow: column wrap;
+                        }
+
+                        .event-container {
+                            @media screen and (min-width: $mid-small) {
+                                width: 50%;
+                            }
+                        }
+
                         form {
                             padding: 5px 0;
                             @media screen and (max-width: $end-small) {
@@ -519,7 +547,7 @@
                             pointer-events: all;
 
                             @media screen and (min-width: $mid-small) {
-                                margin: 5px 4.5%;
+                                margin: 5px 7.5%;
                             }
 
                             .event-details {
@@ -559,9 +587,9 @@
                                 border-radius: 5px;
                                 transition: all .3s ease-in-out;
 
-                                .event-details.description, .event-details.location {
-                                    display: block;
-                                }
+                                // .event-details.description, .event-details.location {
+                                //     display: block;
+                                // }
 
                                 button {
                                     display: inline;
@@ -736,7 +764,7 @@
                                 }
 
                                 &::-webkit-scrollbar {
-                                    width: 4px;
+                                    width: 2px;
                                 }
                                 &::-webkit-scrollbar-track {
                                     background: transparent;
@@ -820,7 +848,7 @@
         }
 
         &::-webkit-scrollbar {
-            width: 4px;
+            width: 2px;
         }
         &::-webkit-scrollbar-track {
             background: transparent;
