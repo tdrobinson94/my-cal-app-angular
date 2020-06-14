@@ -418,6 +418,16 @@
                         border-radius: 5px;
                     }
 
+                    @media screen and (min-height: 600px) {
+                        transform: translate(0, 2%);
+                        height: 59%;
+                    }
+
+                    @media screen and (min-height: 600px) and (max-width: $end-small) {
+                        height: 80%;
+                        transform: none;
+                    }
+
                     button.close-day {
                         display: inline;
                         position: absolute;
@@ -460,6 +470,10 @@
                         @media screen and (min-width: $end-small) {
                             top: 50%;
                             transform: translateY(-50%);
+                        }
+
+                        @media screen and (min-height: 600px) {
+                            top: 50%;
                         }
 
                         span {
@@ -859,6 +873,11 @@
                 border: 1px solid #333333;
                 border-radius: 5px;
                 animation: none;
+            }
+
+            @media screen and (min-height: 600px) and (min-width: $end-small) {
+                transform: translate(50%, 53%);
+                height: 60%;
             }
         }
 

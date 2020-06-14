@@ -608,15 +608,18 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
               eventcreatedAt: moment(response[i].created_at).format()
             };
 
-            if (day.find('.date-value').html() === eventlist[i].eventend_date) {
+            if (day.find('.date-value').html() === eventlist[i].eventstart_date) {
               setTimeout(() => {
                 if (day.find('.event').hasClass(day.find('.date-value').html())) {
                   day.find('.' + day.find('.date-value').html()).addClass('visible');
                 }
               }, 100);
-            } 
+            }
           }
           this.events = eventlist;
+          if (dayIndex === 42) {
+            console.log(this.events);
+          }
 
           this.loading = false;
         }
