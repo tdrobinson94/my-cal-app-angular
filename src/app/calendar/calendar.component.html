@@ -37,6 +37,7 @@
                 </button>
                 <div class="num-box"><span class="num-date"></span></div>
                 <div class="date-value"></div>
+                <div class="excel-date"></div>
                 <button class="prev-day">
                     <span class="material-icons prev-day-icon">keyboard_arrow_left</span>
                 </button>
@@ -63,6 +64,8 @@
                             <p class="event-details time">
                                 <span>{{event.eventstart_time}}</span> - <span>{{event.eventend_time}}</span>
                             </p>
+
+                            <p class="event-details end">{{event.eventend_date}}</p>
                             <button class="delete-event hidden" (click)="deleteEvent($event)"
                             value="{{event.eventid}}">Delete</button>
                         </div>

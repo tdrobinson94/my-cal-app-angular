@@ -214,25 +214,21 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
           if ((newDayIndex) < 10) {
             day.find('.date-value').html(currentYear + '-' + standardMonth + '-' + standardDayIndex);
             day.find('.num-date').html(newDayIndex).parent().parent().addClass('dead-month-color');
-
-            console.log(newDayIndex + ': ' + excelDate);
+            day.find('.excel-date').html(excelDate);
           } else {
             day.find('.date-value').html(currentYear + '-' + standardMonth + '-' + newDayIndex);
             day.find('.num-date').html(newDayIndex).parent().parent().addClass('dead-month-color');
-            
-            console.log(newDayIndex + ': ' + excelDate);
+            day.find('.excel-date').html(excelDate);
           }
         } else {
           if ((dayIndex - monthDays) < 10) {
             day.find('.date-value').html(currentYear + '-' + standardMonth + '-' + standardDayIndex);
             day.find('.num-date').html(newDayIndex).parent().parent().addClass('dead-month-color');
-            
-            console.log(newDayIndex + ': ' + excelDate);
+            day.find('.excel-date').html(excelDate);
           } else {
             day.find('.date-value').html(currentYear + '-' + standardMonth + '-' + newDayIndex);
             day.find('.num-date').html(newDayIndex).parent().parent().addClass('dead-month-color');
-            
-            console.log(newDayIndex + ': ' + excelDate);
+            day.find('.excel-date').html(excelDate);
           }
         }
       } else {
@@ -247,25 +243,21 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
           if (dayIndex < 10) {
             day.find('.date-value').html(currentYear + '-' + standardNewMonth + '-' + standardNewDays);
             day.find('.num-date').html('&nbsp' + newDays + '&nbsp');
-
-            console.log(newDays + ': ' + excelDate);
+            day.find('.excel-date').html(excelDate);
           } else {
             day.find('.date-value').html(currentYear + '-' + standardNewMonth + '-' + newDays);
             day.find('.num-date').html(newDays);
-
-            console.log(newDays + ': ' + excelDate);
+            day.find('.excel-date').html(excelDate);
           }
         } else {
           if (dayIndex < 10) {
             day.find('.date-value').html(currentYear + '-' + thisMonth + '-' + standardNewDays);
             day.find('.num-date').html('&nbsp' + newDays + '&nbsp');
-
-            console.log(newDays + ': ' + excelDate);
+            day.find('.excel-date').html(excelDate);
           } else {
             day.find('.date-value').html(currentYear + '-' + thisMonth + '-' + newDays);
             day.find('.num-date').html(newDays);
-
-            console.log(newDays + ': ' + excelDate);
+            day.find('.excel-date').html(excelDate);
           }
         }
       }
@@ -304,13 +296,11 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
           const standardNewMonth = '0' + prevMonth;
           day.find('.date-value').html(currentYear + '-' + standardNewMonth + '-' + (prevDays[dayIndex]));
           day.find('.num-date').html((prevDays[dayIndex]));
-
-          console.log((prevDays[dayIndex]) + ': ' + excelDate);
+          day.find('.excel-date').html(excelDate);
         } else {
           day.find('.date-value').html(currentYear + '-' + prevMonth + '-' + (prevDays[dayIndex]));
           day.find('.num-date').html((prevDays[dayIndex]));
-
-          console.log((prevDays[dayIndex]) + ': ' + excelDate);
+          day.find('.excel-date').html(excelDate);
         }
 
         day.find('.num-date').parent().parent().addClass('dead-month-color');
@@ -619,6 +609,10 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
                 day.find('.event[endDate="' + day.find('.date-value').html() + '"]').addClass('visible');
               }, 100);
             }
+
+            if (day.find('.date-value').html()) {
+
+            }
           }
           this.events = eventlist;
           if (dayIndex === 42) {
@@ -659,6 +653,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
       const eMinutes: any = e.currentTarget.childNodes[4].children[0].innerHTML.trim().split(':')[1].substring(0, 2);
 
       // This is a repeat of the above just for creating the end date, except this time we find the 2nd child element
+      const endDay = e.currentTarget.childNodes[5].innerHTML.trim();
       const timeofday2 = e.currentTarget.childNodes[4].children[1].innerHTML.trim().split(' ')[1];
       let eEndTimeHours: any = Number(e.currentTarget.childNodes[4].children[1].innerHTML.trim().split(':')[0]);
       const eEndTimeMinutes = e.currentTarget.childNodes[4].children[1].innerHTML.trim().split(':')[1].substring(0, 2);
@@ -700,12 +695,12 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
       this.updateItemForm = new FormGroup({
         user_id: new FormControl(userID),
         group_id: new FormControl(''),
-        id: new FormControl(e.currentTarget.childNodes[5].value),
+        id: new FormControl(e.currentTarget.childNodes[6].value),
         frequency: new FormControl(Number(e.currentTarget.childNodes[3].innerHTML.trim())),
         title: new FormControl(e.currentTarget.childNodes[0].innerHTML.trim()),
         description: new FormControl(e.currentTarget.childNodes[1].innerHTML.trim()),
         start_date: new FormControl(day),
-        end_date: new FormControl(day),
+        end_date: new FormControl(endDay),
         start_time: new FormControl(eCurrentTime),
         end_time: new FormControl(eEndTime),
         all_day: new FormControl(''),

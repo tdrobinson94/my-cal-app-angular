@@ -207,7 +207,7 @@
                     display: none;
                 }
 
-                .date-value {
+                .date-value, .excel-date {
                     display: none;
                 }
 
@@ -526,7 +526,7 @@
                                 margin: 2px 0 0 0;
                                 font-size: 11px;
 
-                                &.frequency {
+                                &.frequency, &.end {
                                     display: none;
                                 }
 
