@@ -608,11 +608,15 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
               eventcreatedAt: moment(response[i].created_at).format()
             };
 
-            if (day.find('.date-value').html() === eventlist[i].eventstart_date) {
+            if (day.find('.date-value').html() === eventlist[i].eventstart_date ) {
               setTimeout(() => {
-                if (day.find('.event').hasClass(day.find('.date-value').html())) {
-                  day.find('.' + day.find('.date-value').html()).addClass('visible');
-                }
+                day.find('.event[startDate="' + day.find('.date-value').html() + '"]').addClass('visible');
+              }, 100);
+            }
+
+            if (day.find('.date-value').html() === eventlist[i].eventend_date && eventlist[i].eventfrequency === 2) {
+              setTimeout(() => {
+                day.find('.event[endDate="' + day.find('.date-value').html() + '"]').addClass('visible');
               }, 100);
             }
           }
@@ -1004,11 +1008,9 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
         });
     } else if (this.addItemForm.value.frequency == 1) {
       console.log('Daily');
-      let i = 1;
-      const groupID = i++;
       this.addItemForm = new FormGroup({
         user_id: new FormControl(this.addItemForm.value.user_id),
-        group_id: new FormControl(groupID),
+        group_id: new FormControl(),
         item_type: new FormControl(this.addItemForm.value.item_type),
         frequency: new FormControl(this.addItemForm.value.frequency),
         title: new FormControl(this.addItemForm.value.title),
