@@ -50,10 +50,10 @@
                             <p class="event-details title">
                                 {{event.eventtitle}}
                             </p>
-                            <p class="event-details description">
+                            <p class="event-details description" [ngStyle]="{display: event.eventdesc ? 'inline' : 'none' }">
                                 {{event.eventdesc}}
                             </p>
-                            <p class="event-details location">
+                            <p class="event-details location" [ngStyle]="{display: event.eventlocation ? 'block' : 'none' }">
                                 {{event.eventlocation}}
                             </p>
 

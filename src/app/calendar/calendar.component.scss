@@ -284,7 +284,7 @@
                     }
 
                     &.animate-events-two {
-                        height: calc(100% - 40px);
+                        height: calc(100% - 60px);
 
                         @media screen and (min-width: $end-small) {
                             height: calc(100% - 50px);
@@ -515,7 +515,7 @@
 
                     .main-info-section {
                         padding: 0;
-                        margin: 5px 0;
+                        margin: 20px 0;
                         overflow: auto;
                         touch-action: pinch-zoom !important;
 
@@ -560,13 +560,23 @@
                                     display: none;
                                 }
 
-                                &.description, &.location {
+                                &.location {
                                     display: none;
                                 }
 
                                 &:last-of-type {
                                     font-size: 11px;
                                     padding-bottom: 4px;
+                                }
+
+                                &.description, &.title {
+                                    display: inline;
+                                }
+
+                                &.description {
+                                    &:before {
+                                        content: " - ";
+                                    }
                                 }
 
                                 &.title {
@@ -784,6 +794,9 @@
                                 25%  {transform: scale(.95, .95);}
                             }
                         }
+                    }
+                    .normal-scrolling {
+                        touch-action: pan-y !important;
                     }
                 }
 
