@@ -138,13 +138,6 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
     } else if (navigator.userAgent.indexOf('Win') !== -1) {
       // console.log('Windows');
     }
-
-    if (navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/webOS/i) || navigator.userAgent.match(/iPhone/i)
-    || navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPod/i)) {
-      $('.prev, .next').hide();
-    } else {
-      $('.prev, .next').show();
-    }
   }
 
   ngAfterViewInit() {
@@ -171,6 +164,16 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
         }
       }
     }, 10 * 1000);
+
+    if (navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/webOS/i) || navigator.userAgent.match(/iPhone/i)
+      || navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPod/i)) {
+      $('.prev, .next').hide();
+      $('.close-day').addClass('mobile-hide');
+    } else {
+      $('.prev, .next').show();
+      $('.close-day').removeClass('mobile-hide');
+    }
+
     // On first load init calendar
     this.changeCal();
   }
