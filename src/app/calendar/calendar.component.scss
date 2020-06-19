@@ -16,7 +16,7 @@
         flex-wrap: wrap;
 
         &.mac {
-            top: 57px;
+            top: 54px;
         }
 
         .controls {
@@ -284,7 +284,7 @@
                     }
 
                     &.animate-events-two {
-                        height: calc(100% - 105px);
+                        height: calc(100% - 40px);
 
                         @media screen and (min-width: $end-small) {
                             height: calc(100% - 50px);
@@ -517,7 +517,7 @@
                         padding: 0;
                         margin: 5px 0;
                         overflow: auto;
-                        touch-action: pan-y !important;
+                        touch-action: pinch-zoom !important;
 
                         @media screen and (min-width: $mid-small) {
                             display: flex;

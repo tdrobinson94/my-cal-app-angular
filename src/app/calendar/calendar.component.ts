@@ -26,6 +26,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
   isCurrentWeekday = false;
   openform = false;
   hideFormButton = false;
+  makeEventVisible = false;
 
   // Calendar variables
   rows: any = [];
@@ -44,6 +45,8 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
 
   events: any;
   eachEvent: any;
+
+  groupID: any = 0;
 
   // Delete event form
   deleteItemForm = new FormGroup({
@@ -507,9 +510,14 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
     if (navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/webOS/i) || navigator.userAgent.match(/iPhone/i)
     || navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPod/i)) {
       if (!$('.day-box').hasClass('double-click')) {
-        // window.location.reload();
+        this.getEvents();
       } else {
-        console.log('swipe down');
+        $('.day-box').removeClass('double-click');
+        $('.main-info-section').removeClass('animate-events-one animate-events-two');
+        $('.visible').removeClass('selected-event');
+        setTimeout(() => {
+          $('.main-info-section').animate({ scrollTop: 0 }, 300);
+        }, 400);
       }
     }
   }
@@ -606,15 +614,37 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
               }, 100);
             }
 
-            if (day.find('.date-value').html() === eventlist[i].eventend_date) {
-              setTimeout(() => {
-                day.find('.event[endDate="' + day.find('.date-value').html() + '"]').addClass('visible');
-              }, 100);
-            }
+            // if (day.find('.date-value').html() === eventlist[i].eventend_date) {
+            //   setTimeout(() => {
+            //     day.find('.event[endDate="' + day.find('.date-value').html() + '"]').addClass('visible');
+            //   }, 100);
+            // }
+            // const excelStartDate = toExcelDate(
+            //   new Date(
+            //     eventlist[i].eventstart_date.substring(0, 4),
+            //     eventlist[i].eventstart_date.substring(5, 7),
+            //     eventlist[i].eventstart_date.substring(8, 10)
+            //     )
+            //   ).toString();
+            // const excelEndDate = toExcelDate(
+            //   new Date(
+            //     eventlist[i].eventend_date.substring(0, 4),
+            //     eventlist[i].eventend_date.substring(5, 7),
+            //     eventlist[i].eventend_date.substring(8, 10)
+            //     )
+            //   ).toString();
 
-            if (day.find('.date-value').html()) {
-
-            }
+            // if (day.find('.excel-date').html() >= excelStartDate &&
+            // day.find('.excel-date').html() <= excelEndDate &&
+            // eventlist[i].eventfrequency === 1
+            // ) {
+            //   console.log(eventlist[i].eventstart_date);
+            //   setTimeout(() => {
+            //     console.log(day.find('.excel-date').prev().html());
+            //     console.log(day.find('.event[startDate="' + day.find('.excel-date').prev().html() + '"]'));
+            //     day.find('.event[frequency="' + 1 + '"]').addClass('visible');
+            //   }, 100);
+            // }
           }
           this.events = eventlist;
           if (dayIndex === 42) {
@@ -991,61 +1021,17 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
 
   submitEvent() {
     this.loading = true;
-    if (this.addItemForm.value.frequency == 0) {
-      console.log(this.addItemForm.value);
-      this.dataService.createEvent(this.addItemForm.value)
-        .subscribe((response) => {
-          this.addItemForm.reset();
-          this.closeForm();
-          this.loading = false;
+    console.log(this.addItemForm.value);
+    this.dataService.createEvent(this.addItemForm.value)
+      .subscribe((response) => {
+        this.addItemForm.reset();
+        this.closeForm();
+        this.loading = false;
 
-          setTimeout(() => {
-            this.getEvents();
-          }, 300);
-        });
-    } else if (this.addItemForm.value.frequency == 1) {
-      console.log('Daily');
-      this.addItemForm = new FormGroup({
-        user_id: new FormControl(this.addItemForm.value.user_id),
-        group_id: new FormControl(),
-        item_type: new FormControl(this.addItemForm.value.item_type),
-        frequency: new FormControl(this.addItemForm.value.frequency),
-        title: new FormControl(this.addItemForm.value.title),
-        description: new FormControl(this.addItemForm.value.description),
-        start_date: new FormControl(this.addItemForm.value.start_date),
-        end_date: new FormControl(this.addItemForm.value.end_date),
-        start_time: new FormControl(this.addItemForm.value.start_time),
-        end_time: new FormControl(this.addItemForm.value.end_time),
-        all_day: new FormControl(this.addItemForm.value.all_day),
-        location: new FormControl(this.addItemForm.value.location),
+        setTimeout(() => {
+          this.getEvents();
+        }, 300);
       });
-      console.log(this.addItemForm.value);
-      this.dataService.createMultipleEvent(this.addItemForm.value)
-        .subscribe((response) => {
-          this.addItemForm.reset();
-          this.closeForm();
-          this.loading = false;
-
-          setTimeout(() => {
-            this.getEvents();
-          }, 300);
-        });
-    } else if (this.addItemForm.value.frequency == 2) {
-      console.log('Weekly');
-      this.loading = false;
-    } else if (this.addItemForm.value.frequency == 3) {
-      console.log('Bi-weekly');
-      this.loading = false;
-    } else if (this.addItemForm.value.frequency == 4) {
-      console.log('Monthly');
-      this.loading = false;
-    } else if (this.addItemForm.value.frequency == 5) {
-      console.log('Semi-annual');
-      this.loading = false;
-    } else if (this.addItemForm.value.frequency == 6) {
-      console.log('Annual');
-      this.loading = false;
-    }
   }
 
   updateEvent() {
