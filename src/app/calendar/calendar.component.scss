@@ -287,7 +287,7 @@
                         height: calc(100% - 60px);
 
                         @media screen and (min-width: $end-small) {
-                            height: calc(100% - 50px);
+                            height: calc(100% - 65px);
                         }
 
                         .event {
@@ -518,13 +518,6 @@
                         margin: 20px 0;
                         overflow: auto;
                         touch-action: pinch-zoom !important;
-
-                        @media screen and (min-width: $mid-small) {
-                            display: flex;
-                            flex-wrap: wrap;
-                            width: 100%;
-                            flex-direction: column;
-                        }
 
                         .event-container {
                             @media screen and (min-width: $mid-small) {
