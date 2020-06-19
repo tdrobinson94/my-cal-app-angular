@@ -581,7 +581,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
       }, 400);
       console.log($('.double-click .main-info-section .visible').length);
 
-      if ($('.double-click .main-info-section .visible').length > 8) {
+      if ($('.double-click .main-info-section .visible').length > 9) {
         $('.double-click .main-info-section').addClass('normal-scrolling');
       } else {
         $('.double-click .main-info-section').removeClass('normal-scrolling');
