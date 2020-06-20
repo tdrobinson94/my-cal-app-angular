@@ -169,9 +169,11 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
       || navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPod/i)) {
       $('.prev, .next').hide();
       $('.close-day').addClass('mobile-hide');
+      $('.num-date').removeClass('mobile-hide-helpers');
     } else {
       $('.prev, .next').show();
       $('.close-day').removeClass('mobile-hide');
+      $('.num-date').addClass('mobile-hide-helpers');
     }
 
     // On first load init calendar
@@ -515,12 +517,16 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
       if (!$('.day-box').hasClass('double-click')) {
         this.getEvents();
       } else {
-        $('.day-box').removeClass('double-click');
-        $('.main-info-section').removeClass('animate-events-one animate-events-two');
-        $('.visible').removeClass('selected-event');
-        setTimeout(() => {
-          $('.main-info-section').animate({ scrollTop: 0 }, 300);
-        }, 400);
+        if ($(e.target).hasClass('event') || $(e.target).hasClass('main-info-section') || $(e.target).hasClass('event-details')) {
+          console.log('no scroll');
+        } else {
+          $('.day-box').removeClass('double-click');
+          $('.main-info-section').removeClass('animate-events-one animate-events-two');
+          $('.visible').removeClass('selected-event');
+          setTimeout(() => {
+            $('.main-info-section').animate({ scrollTop: 0 }, 300);
+          }, 400);
+        }
       }
     }
   }
