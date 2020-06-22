@@ -522,12 +522,12 @@
                             &:before {
                                 color: $textdrk;
                                 position: absolute;
-                                content: "↓  swipe down from here to close  ↓";
+                                content: "🞃  swipe down from here to close day 🞃";
                                 bottom: -13px;
                                 left: 50%;
                                 transform: translateX(-50%);
-                                width: 200px;
-                                font-size: 9px;
+                                width: 220px;
+                                font-size: 11px;
                                 opacity: .3;
                                 animation-name: bounce-3;
                                 animation-timing-function: ease-in-out;

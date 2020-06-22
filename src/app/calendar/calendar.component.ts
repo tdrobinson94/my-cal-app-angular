@@ -672,7 +672,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
 
       setTimeout(() => {
         $('.double-click .num-date').addClass('auto-hide');
-      }, 4000);
+      }, 9000);
     }
   }
 
