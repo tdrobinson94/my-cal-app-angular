@@ -288,6 +288,10 @@
                             height: calc(100% - 65px);
                         }
 
+                        @media screen and (max-height: 600px) {
+                            height: calc(100% - 130px);
+                        }
+
                         .event {
 
                             &:hover, &:focus {
@@ -555,7 +559,7 @@
                     .main-info-section {
                         padding: 0;
                         overflow: auto;
-                        touch-action: pan-y !important;
+                        touch-action: pinch-zoom !important;
 
                         .event-container {
                             @media screen and (min-width: $mid-small) {
@@ -629,10 +633,6 @@
                                 background: rgba(255,0,0,.2);
                                 border-radius: 5px;
                                 transition: all .3s ease-in-out;
-
-                                // .event-details.description, .event-details.location {
-                                //     display: block;
-                                // }
 
                                 button {
                                     display: inline;
@@ -825,6 +825,10 @@
                                 25%  {transform: scale(.95, .95);}
                             }
                         }
+                    }
+
+                    .normal-scrolling {
+                        touch-action: pan-y !important;
                     }
                 }
 

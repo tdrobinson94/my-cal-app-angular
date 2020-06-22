@@ -590,6 +590,12 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
         $('.double-click').find('.main-info-section').addClass('animate-events-two');
       }, 400);
       console.log($('.double-click .main-info-section .visible').length);
+      
+      if ($('.double-click .main-info-section').height() <= $('.double-click .visible-parent').last().position().top) {
+        $('.double-click .main-info-section').addClass('normal-scrolling');
+      } else {
+        $('.double-click .main-info-section').removeClass('normal-scrolling');
+      }
 
       setTimeout(() => {
         $('.double-click .num-date').addClass('auto-hide');
@@ -626,6 +632,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
             if (day.find('.date-value').html() === eventlist[i].eventstart_date ) {
               setTimeout(() => {
                 day.find('.event[startDate="' + day.find('.date-value').html() + '"]').addClass('visible');
+                day.find('.event[startDate="' + day.find('.date-value').html() + '"]').parent().addClass('visible-parent');
               }, 100);
             }
 
