@@ -584,11 +584,16 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
       $(e.currentTarget).addClass('clicked-day');
     } else if ($(e.currentTarget).hasClass('clicked-day')) {
       $(e.currentTarget).addClass('double-click');
+      $('.double-click .num-date').removeClass('auto-hide');
       $(e.currentTarget).find('.main-info-section').addClass('animate-events-one');
       setTimeout(() => {
         $('.double-click').find('.main-info-section').addClass('animate-events-two');
       }, 400);
       console.log($('.double-click .main-info-section .visible').length);
+
+      setTimeout(() => {
+        $('.double-click .num-date').addClass('auto-hide');
+      }, 4000);
     }
   }
 
