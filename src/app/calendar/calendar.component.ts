@@ -666,13 +666,13 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
 
         if ($('.double-click .main-info-section').height() <= $('.double-click .visible-parent').last().position().top) {
           $('.double-click .main-info-section').addClass('normal-scrolling');
-        } 
+        };
       }, 400);
       console.log($('.double-click .main-info-section .visible').length);
 
       setTimeout(() => {
         $('.double-click .num-date').addClass('auto-hide');
-      }, 7000);
+      }, 4000);
     }
   }
 
