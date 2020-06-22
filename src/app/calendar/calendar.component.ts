@@ -168,11 +168,11 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
     if (navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/webOS/i) || navigator.userAgent.match(/iPhone/i)
       || navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPod/i)) {
       $('.prev, .next').hide();
-      $('.close-day').addClass('mobile-hide');
+      // $('.close-day').addClass('mobile-hide');
       $('.num-date').removeClass('mobile-hide-helpers');
     } else {
       $('.prev, .next').show();
-      $('.close-day').removeClass('mobile-hide');
+      // $('.close-day').removeClass('mobile-hide');
       $('.num-date').addClass('mobile-hide-helpers');
     }
 
@@ -589,12 +589,6 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
         $('.double-click').find('.main-info-section').addClass('animate-events-two');
       }, 400);
       console.log($('.double-click .main-info-section .visible').length);
-
-      if ($('.double-click .main-info-section .visible').length > 9) {
-        $('.double-click .main-info-section').addClass('normal-scrolling');
-      } else {
-        $('.double-click .main-info-section').removeClass('normal-scrolling');
-      }
     }
   }
 

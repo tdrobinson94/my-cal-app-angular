@@ -123,7 +123,6 @@
 
             .day-of-week-label {
 
-                // flex: 0 0 14.285714285714286%;
                 width: 14.285714285714286%;
                 max-width: 14.285714285714286%;
                 text-align: center;
@@ -212,7 +211,6 @@
 
                 width: 14.2%;
                 height: 100%;
-                // flex-grow: 1;
                 transition: height .3s ease-in-out !important;
                 position: relative;
 
@@ -512,42 +510,36 @@
                     }
 
                     .num-box {
+                        margin-bottom: 20px;
                         .num-date {
                             font-size: 12px;
 
-                            &:before, &:after {
+                            &:before {
+                                color: $textdrk;
                                 position: absolute;
-                                width: 120px;
+                                content: "swipe down from here to close";
+                                bottom: -13px;
+                                left: 50%;
+                                transform: translateX(-50%);
+                                width: 200px;
                                 font-size: 9px;
                                 opacity: .3;
                                 animation-name: bounce-3;
                                 animation-timing-function: ease-in-out;
                                 animation-duration: 1s;
-                                animation-iteration-count: 6;
+                                animation-iteration-count: infinite;
                                 text-align: center;
                             }
 
-                            &:before {
-                                content: "swipe from top to close";
-                                left: -40vw;
-                                // transform: translate(-35vw, 0);
-                            }
-
-                            &:after {
-                                content: "swipe from top to close";
-                                right: -40vw;
-                                // transform: translate(35vw, 0);
-                            }
-
                             @keyframes bounce-3 {
-                                0%   { transform: translateY(0); }
-                                50%  { transform: translateY(2px); }
-                                100% { transform: translateY(0);}
+                                0%   { transform: translate(-50%, 0); }
+                                50%  { transform: translate(-50%, 2px); }
+                                100% { transform: translate(-50%, 0); }
                             }
                         }
 
                         .mobile-hide-helpers {
-                            &:before, &:after {
+                            &:before {
                                 display: none;
                             }
                         }
@@ -555,9 +547,8 @@
 
                     .main-info-section {
                         padding: 0;
-                        margin: 20px 0;
                         overflow: auto;
-                        touch-action: pinch-zoom !important;
+                        touch-action: pan-y !important;
 
                         .event-container {
                             @media screen and (min-width: $mid-small) {
@@ -827,9 +818,6 @@
                                 25%  {transform: scale(.95, .95);}
                             }
                         }
-                    }
-                    .normal-scrolling {
-                        touch-action: pan-y !important;
                     }
                 }
 
