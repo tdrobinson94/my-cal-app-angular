@@ -521,7 +521,7 @@
                             &:before {
                                 color: $textdrk;
                                 position: absolute;
-                                content: "swipe down from here to close";
+                                content: "▽ swipe down from here to close ▽";
                                 bottom: -13px;
                                 left: 50%;
                                 transform: translateX(-50%);
@@ -829,6 +829,7 @@
 
                     .normal-scrolling {
                         touch-action: pan-y !important;
+                        overscroll-behavior: none
                     }
                 }
 
