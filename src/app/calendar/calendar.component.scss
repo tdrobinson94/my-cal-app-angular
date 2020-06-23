@@ -227,6 +227,16 @@
                     display: none;
                 }
 
+                .event-count {
+                    position: absolute;
+                    font-size: 9px;
+                    left: 5%;
+                    top: 5px;
+                    // padding: 0px 4px;
+                    border-radius: 100%;
+                    color: $primary;
+                }
+
                 .num-box {
                     display: flex;
                     width: 11.5px;
@@ -512,6 +522,11 @@
                     }
                     .prev-day {
                         left: 0;
+                    }
+
+                    .event-count {
+                        top: 6px;
+                        font-size: 10px;
                     }
 
                     .num-box {

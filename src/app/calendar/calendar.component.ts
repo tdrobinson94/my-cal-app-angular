@@ -666,13 +666,29 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
 
         if ($('.double-click .main-info-section').height() <= $('.double-click .visible-parent').last().position().top) {
           $('.double-click .main-info-section').addClass('normal-scrolling');
-        };
+        }
       }, 400);
-      console.log($('.double-click .main-info-section .visible').length);
 
       setTimeout(() => {
         $('.double-click .num-date').addClass('auto-hide');
       }, 9000);
+    }
+  }
+
+  eachDayEventsCount() {
+    let dayIndex;
+    const weeks = $(document).find('.weeks').children();
+
+    for (dayIndex = 0; dayIndex <= 42; dayIndex++) {
+      const day = $(weeks[dayIndex - 1]);
+
+      setTimeout(() => {
+        console.log(day.find('.visible-parent').length);
+        if (day.find('.visible-parent').length !== 0) {
+          day.find('.event-count').html(day.find('.visible-parent').length);
+        } 
+      }, 4000);
+
     }
   }
 
@@ -749,6 +765,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
           this.loading = false;
         }
       });
+    this.eachDayEventsCount();
   }
 
   // Click on an Event
