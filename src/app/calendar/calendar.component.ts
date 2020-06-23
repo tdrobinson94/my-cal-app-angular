@@ -687,7 +687,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
         if (day.find('.visible-parent').length !== 0) {
           day.find('.event-count').html(day.find('.visible-parent').length);
         } 
-      }, 4000);
+      }, 1000);
 
     }
   }
