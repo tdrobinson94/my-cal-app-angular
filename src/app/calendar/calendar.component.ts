@@ -681,13 +681,12 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
 
     for (dayIndex = 0; dayIndex <= 42; dayIndex++) {
       const day = $(weeks[dayIndex - 1]);
-
-      setTimeout(() => {
-        console.log(day.find('.visible-parent').length);
-        if (day.find('.visible-parent').length !== 0) {
-          day.find('.event-count').html(day.find('.visible-parent').length);
-        } 
-      }, 1000);
+      console.log(day.find('.visible-parent').length);
+      if (day.find('.visible-parent').length !== 0) {
+        day.find('.event-count').html(day.find('.visible-parent').length);
+      } else {
+        day.find('.event-count').empty();
+      }
 
     }
   }
@@ -765,7 +764,9 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
           this.loading = false;
         }
       });
-    this.eachDayEventsCount();
+    setTimeout(() => {
+      this.eachDayEventsCount();
+    }, 1000);
   }
 
   // Click on an Event
