@@ -766,7 +766,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
       });
     setTimeout(() => {
       this.eachDayEventsCount();
-    }, 1000);
+    }, 1500);
   }
 
   // Click on an Event
