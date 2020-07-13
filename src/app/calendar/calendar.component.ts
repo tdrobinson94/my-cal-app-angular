@@ -664,9 +664,11 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
       setTimeout(() => {
         $('.double-click').find('.main-info-section').addClass('animate-events-two');
 
-        if ($('.double-click .main-info-section').height() <= $('.double-click .visible-parent').last().position().top) {
-          $('.double-click .main-info-section').addClass('normal-scrolling');
-        }
+        if ($('.double-click .visible-parent').last().position() !== undefined) {
+          if ($('.double-click .main-info-section').height() <= $('.double-click .visible-parent').last().position().top) {
+            $('.double-click .main-info-section').addClass('normal-scrolling');
+          }
+        } 
       }, 400);
 
       setTimeout(() => {
