@@ -229,12 +229,13 @@
 
                 .event-count {
                     position: absolute;
-                    font-size: 9px;
+                    font-size: 7px;
                     left: 5%;
-                    top: 7px;
-                    // padding: 0px 4px;
+                    top: 9px;
                     border-radius: 100%;
-                    color: $primary;
+                    color: #fff;
+                    background-color: red;
+                    padding: 0px 1px;
                 }
 
                 .num-box {
@@ -525,8 +526,10 @@
                     }
 
                     .event-count {
-                        top: 8px;
-                        font-size: 12px;
+                        top: 7px;
+                        left: 2%;
+                        font-size: 9px;
+                        padding: 1px 4px;
                     }
 
                     .num-box {

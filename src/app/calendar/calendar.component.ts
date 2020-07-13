@@ -682,10 +682,12 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
     for (dayIndex = 0; dayIndex <= 42; dayIndex++) {
       const day = $(weeks[dayIndex - 1]);
       console.log(day.find('.visible-parent').length);
-      if (day.find('.visible-parent').length !== 0) {
-        day.find('.event-count').html(day.find('.visible-parent').length);
+      if (day.find('.visible-parent').length !== 0 && day.find('.visible-parent').length <= 9) {
+        day.find('.event-count').html('&nbsp' + day.find('.visible-parent').length + '&nbsp').show();
+      } else if (day.find('.visible-parent').length !== 0) {
+        day.find('.event-count').html(day.find('.visible-parent').length).show();
       } else {
-        day.find('.event-count').empty();
+        day.find('.event-count').empty().hide();
       }
 
     }
@@ -721,52 +723,14 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
               setTimeout(() => {
                 day.find('.event[startDate="' + day.find('.date-value').html() + '"]').addClass('visible');
                 day.find('.event[startDate="' + day.find('.date-value').html() + '"]').parent().addClass('visible-parent');
+                this.eachDayEventsCount();
               }, 100);
             }
-
-            // if (day.find('.date-value').html() === eventlist[i].eventend_date) {
-            //   setTimeout(() => {
-            //     day.find('.event[endDate="' + day.find('.date-value').html() + '"]').addClass('visible');
-            //   }, 100);
-            // }
-            // const excelStartDate = toExcelDate(
-            //   new Date(
-            //     eventlist[i].eventstart_date.substring(0, 4),
-            //     eventlist[i].eventstart_date.substring(5, 7),
-            //     eventlist[i].eventstart_date.substring(8, 10)
-            //     )
-            //   ).toString();
-            // const excelEndDate = toExcelDate(
-            //   new Date(
-            //     eventlist[i].eventend_date.substring(0, 4),
-            //     eventlist[i].eventend_date.substring(5, 7),
-            //     eventlist[i].eventend_date.substring(8, 10)
-            //     )
-            //   ).toString();
-
-            // if (day.find('.excel-date').html() >= excelStartDate &&
-            // day.find('.excel-date').html() <= excelEndDate &&
-            // eventlist[i].eventfrequency === 1
-            // ) {
-            //   console.log(eventlist[i].eventstart_date);
-            //   setTimeout(() => {
-            //     console.log(day.find('.excel-date').prev().html());
-            //     console.log(day.find('.event[startDate="' + day.find('.excel-date').prev().html() + '"]'));
-            //     day.find('.event[frequency="' + 1 + '"]').addClass('visible');
-            //   }, 100);
-            // }
           }
           this.events = eventlist;
-          if (dayIndex === 42) {
-            console.log(this.events);
-          }
-
           this.loading = false;
         }
       });
-    setTimeout(() => {
-      this.eachDayEventsCount();
-    }, 1500);
   }
 
   // Click on an Event
@@ -1135,6 +1099,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
   submitEvent() {
     this.loading = true;
     console.log(this.addItemForm.value);
+
     this.dataService.createEvent(this.addItemForm.value)
       .subscribe((response) => {
         this.addItemForm.reset();
