@@ -685,6 +685,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
       const day = $(weeks[dayIndex - 1]);
       console.log(day.find('.visible-parent').length);
       if (day.find('.visible-parent').length !== 0 && day.find('.visible-parent').length <= 9) {
+        day.find('.event-count').empty();
         day.find('.event-count').html('&nbsp' + day.find('.visible-parent').length + '&nbsp').show();
       } else if (day.find('.visible-parent').length !== 0) {
         day.find('.event-count').html(day.find('.visible-parent').length).show();
