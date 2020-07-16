@@ -443,6 +443,8 @@
                     animation-timing-function: ease-in-out;
                     border-radius: 0;
 
+                    will-change: transform;
+
                     -webkit-transform: translateZ(0);
                     -moz-transform: translateZ(0);
                     -ms-transform: translateZ(0);
@@ -1003,6 +1005,8 @@
             border-radius: 0;
             color: $textdrk;
             overflow: auto;
+
+            will-change: transform;
 
             -webkit-transform: translateZ(0);
             -moz-transform: translateZ(0);
