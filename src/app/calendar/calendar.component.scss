@@ -443,6 +443,17 @@
                     animation-timing-function: ease-in-out;
                     border-radius: 0;
 
+                    -webkit-transform: translateZ(0);
+                    -moz-transform: translateZ(0);
+                    -ms-transform: translateZ(0);
+                    -o-transform: translateZ(0);
+                    transform: translateZ(0);
+
+                    transition: all 0.3s ease-in-out;
+                    -moz-transition: all .3s ease-in-out;
+                    -webkit-transition: all .3s ease-in-out;
+                    -o-transition: all .3s ease-in-out;
+
                     @media screen and (min-width: $end-small) {
                         top: 50%;
                         transform: translate(0,-49%);
@@ -584,6 +595,17 @@
                         @media screen and (min-width: $end-small) {
                             width: 50%;
                             transition: all .3s ease-in-out;
+
+                            -webkit-transform: translateZ(0);
+                            -moz-transform: translateZ(0);
+                            -ms-transform: translateZ(0);
+                            -o-transform: translateZ(0);
+                            transform: translateZ(0);
+
+                            transition: all 0.3s ease-in-out;
+                            -moz-transition: all .3s ease-in-out;
+                            -webkit-transition: all .3s ease-in-out;
+                            -o-transition: all .3s ease-in-out;
                         }
                     }
 
@@ -708,6 +730,17 @@
                                 animation-duration: .3s;
                                 animation-timing-function: ease-in-out;
                                 overscroll-behavior: none;
+
+                                -webkit-transform: translateZ(0);
+                                -moz-transform: translateZ(0);
+                                -ms-transform: translateZ(0);
+                                -o-transform: translateZ(0);
+                                transform: translateZ(0);
+
+                                transition: all 0.3s ease-in-out;
+                                -moz-transition: all .3s ease-in-out;
+                                -webkit-transition: all .3s ease-in-out;
+                                -o-transition: all .3s ease-in-out;
 
                                 @media screen and (min-width: $end-small) {
                                     top: 0px;
@@ -970,7 +1003,17 @@
             border-radius: 0;
             color: $textdrk;
             overflow: auto;
+
+            -webkit-transform: translateZ(0);
+            -moz-transform: translateZ(0);
+            -ms-transform: translateZ(0);
+            -o-transform: translateZ(0);
+            transform: translateZ(0);
+
             transition: all 0.3s ease-in-out;
+            -moz-transition: all .3s ease-in-out;
+            -webkit-transition: all .3s ease-in-out;
+            -o-transition: all .3s ease-in-out;
 
             @media screen and (min-width: $end-small) {
                 bottom: 50%;
