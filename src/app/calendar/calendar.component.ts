@@ -89,6 +89,8 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
   // Hide loading indicator
   loading = false;
 
+  getEventsFinished = false;
+
   ngOnInit() {
     this.createCalendarGrid();
   }
@@ -424,6 +426,9 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
             }
           } else {
             this.nextClick();
+            if (this.getEventsFinished === true) {
+              $('.clicked-day').addClass('double-click');
+            }
           }
         } else if ($(e.target).hasClass('event')) {
           if (!$(e.target).parent().parent().parent().next().hasClass('dead-month-color')) {
@@ -462,6 +467,9 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
             }
           } else {
             this.nextClick();
+            if (this.getEventsFinished === true) {
+              $('.clicked-day').addClass('double-click');
+            }
           }
         } else if ($(e.target).hasClass('event-details')) {
           if (!$(e.target).parent().parent().parent().parent().next().hasClass('dead-month-color')) {
@@ -500,6 +508,9 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
             }
           } else {
             this.nextClick();
+            if (this.getEventsFinished === true) {
+              $('.clicked-day').addClass('double-click');
+            }
           }
         }
       }
@@ -744,6 +755,8 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
 
   getEvents() {
     this.loading = true;
+    this.getEventsFinished = false;
+    console.log('Finished: ' + this.getEventsFinished);
     this.dataService.getEvents()
       .subscribe((response) => {
         let i;
@@ -775,6 +788,8 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
                 day.find('.event[startDate="' + day.find('.date-value').html() + '"]').addClass('visible');
                 day.find('.event[startDate="' + day.find('.date-value').html() + '"]').parent().addClass('visible-parent');
                 this.eachDayEventsCount();
+                this.getEventsFinished = true;
+                console.log('Finished: ' + this.getEventsFinished);
               }, 100);
             }
           }
