@@ -700,7 +700,7 @@
 
                                 .form-nav-bar {
                                     position: sticky;
-                                    top: 0;
+                                    top: -1px;
                                     background: $primary;
                                     h2 {
                                         padding: 13px 4%;
@@ -965,9 +965,14 @@
             }
         }
 
+        .normal-scrolling {
+            touch-action: pan-y !important;
+            overscroll-behavior: none;
+        }
+
         .form-nav-bar {
             position: sticky;
-            top: 0;
+            top: -1px;
             background: $primary;
             h2 {
                 padding: 13px 4%;

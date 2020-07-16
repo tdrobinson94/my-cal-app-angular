@@ -587,8 +587,8 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
   onSwipeDown(e) {
     if (navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/webOS/i) || navigator.userAgent.match(/iPhone/i)
     || navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPod/i)) {
-      if (!$('.day-box').hasClass('double-click')) {
-        this.getEvents();
+      if (!$('.day-box').hasClass('double-click') || $('.update-event-form').hasClass('show-update-form')) {
+        // this.getEvents();
       } else {
         if ($(e.target).hasClass('event') || $(e.target).hasClass('main-info-section') || $(e.target).hasClass('event-details')) {
           console.log('no scroll');
@@ -608,9 +608,8 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
   onSwipeDownForm(e) {
     if (navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/webOS/i) || navigator.userAgent.match(/iPhone/i)
       || navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPod/i)) {
-      if ($(e.target).hasClass('form-title')) {
-        this.closeForm();
-      }
+      this.closeForm();
+      this.closeEventUpdateForm();
     }
   }
 

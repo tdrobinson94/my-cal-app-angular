@@ -29,9 +29,9 @@
     </div>
 
     <div class="calendar-container" #calendar
-    (swipeleft)="onSwipeLeft($event)" (swiperight)="onSwipeRight($event)" (swipedown)="onSwipeDown($event)">
+    (swipeleft)="onSwipeLeft($event)" (swiperight)="onSwipeRight($event)">
         <div class="weeks row" *ngFor="let row of rows">
-            <div id="day-box" class="day-box" *ngFor="let week of weekDays" #daybox (click)="clickonDay($event)">
+            <div id="day-box" class="day-box" *ngFor="let week of weekDays" #daybox (click)="clickonDay($event)" (swipedown)="onSwipeDown($event)">
                 <button class="close-day">
                     <span class="material-icons close-day-icon">clear</span>
                 </button>
@@ -79,7 +79,7 @@
                         <input formControlName="id" type="text" name="id" class="event_input" />
                     </form>
                     <form class="update-event-form" [formGroup]="updateItemForm">
-                        <div class="form-nav-bar">
+                        <div class="form-nav-bar" (swipedown)="onSwipeDownForm($event)">
                             <h2 class="form-title">Update Item</h2>
                             <div class="close-form" (click)="closeEventUpdateForm()">
                                 <span class="material-icons">clear</span>
@@ -167,8 +167,8 @@
         <span class="material-icons">add</span>
     </button>
 
-    <div class="add-item-container" #form [ngClass]="{'show-form': openform}" (swipedown)="onSwipeDownForm($event)">
-        <div class="form-nav-bar">
+    <div class="add-item-container" #form [ngClass]="{'show-form': openform}">
+        <div class="form-nav-bar" (swipedown)="onSwipeDownForm($event)">
             <h2 class="form-title">Add Items</h2>
             <div class="close-form" (click)="closeForm()">
                 <span class="material-icons">clear</span>
