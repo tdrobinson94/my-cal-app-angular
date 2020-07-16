@@ -247,6 +247,7 @@
                     position: relative;
                     top: 3px;
                     pointer-events: none;
+                    color: $textdrk;
 
                     @media screen and (min-width: $end-small) {
                         width: 17px;
@@ -337,6 +338,7 @@
                             border-left: 2px solid rgba(255,0,0,.8);
                             transition: all .2s ease-in-out;
                             pointer-events: none;
+                            color: $textdrk;
                         }
 
                         @media screen and (min-width: $mid-small) {
@@ -409,7 +411,7 @@
                 }
 
                 &.clicked-day {
-                    border: 1px solid $textdrk;
+                    border: 1px solid #252525;
                     border-radius: 5px;
                     transition: all .3s ease-in-out;
                     animation-name: shrink;
@@ -426,7 +428,7 @@
                 }
 
                 &.double-click {
-                    background: #fff;
+                    background: $background;
                     position: fixed;
                     top: 124px;
                     bottom: 53px;
@@ -472,6 +474,7 @@
 
                         span {
                             font-size: 25px;
+                            color: #fff;
                         }
 
                         &:active {
@@ -608,6 +611,7 @@
                             margin: 5px 4%;
                             padding: 2px 4% 4px;
                             pointer-events: all;
+                            color: $textdrk;
 
                             @media screen and (min-width: $mid-small) {
                                 margin: 5px 7.5%;
@@ -698,7 +702,7 @@
                                 width: 100%;
                                 height: calc(100% - 125px);
                                 overflow: auto;
-                                background: $textwht;
+                                background: $background;
                                 padding: 0;
                                 animation-name: grow-2;
                                 animation-duration: .3s;
@@ -772,6 +776,7 @@
                                     width: 100%;
                                     font-weight: bold;
                                     font-size: 15px;
+                                    color: $textdrk;
                                 }
 
                                 select, .date-input-update input, .date-input-end-update input, .time-input-end-update input, .item-title-update input , .event-description-update textarea, .amount-input-update input, .location-input-update input, .time-input-update input {
@@ -958,7 +963,7 @@
             height: calc(100% - 107px);
             width: 100%;
             padding-bottom: 15px;
-            background: #fff;
+            background: $background;
             right: 0px;
             bottom: 0;
             z-index: 99999;
@@ -1055,6 +1060,7 @@
             width: 100%;
             font-weight: bold;
             font-size: 15px;
+            color: $textdrk;
         }
 
         select, .date-input input, .date-input-end input, .time-input-end input, .item-title input , .event-description textarea, .amount-input input, .location-input input, .time-input input {
