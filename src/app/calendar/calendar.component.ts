@@ -662,6 +662,8 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
     $('.extra').hide();
     if ($(e.target).hasClass('prev-day-icon')) {
       $('.visible').removeClass('selected-event');
+      $('.update-event-form').removeClass('show-update-form');
+      $('.num-box').removeClass('event-opened');
       if (!$(e.currentTarget).prev().hasClass('dead-month-color')) {
         $('.day-box').removeClass('clicked-day double-click');
         $('.main-info-section').removeClass('animate-events-one animate-events-two');
@@ -681,6 +683,8 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
       }
     } else if ($(e.target).hasClass('next-day-icon')) {
       $('.visible').removeClass('selected-event');
+      $('.update-event-form').removeClass('show-update-form');
+      $('.num-box').removeClass('event-opened');
       if (!$(e.currentTarget).next().hasClass('dead-month-color')) {
         $('.day-box').removeClass('clicked-day double-click');
         $('.main-info-section').removeClass('animate-events-one animate-events-two');
@@ -803,11 +807,14 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
     // If an event has been clicked once
     else if (!$(e.currentTarget).hasClass('selected-event')) {
       $('.visible').removeClass('selected-event');
+      $('.update-event-form').removeClass('show-update-form');
       $(e.currentTarget).addClass('selected-event');
+      $('.num-box').removeClass('event-opened');
     } 
     // If an event has been clicked twice
     else if ($(e.currentTarget).hasClass('selected-event')) {
       $('.add-item-button, .add-item-container').hide();
+      $('.num-box').addClass('event-opened');
       setTimeout(() => {
         $('.update-event-form').addClass('show-update-form');
       }, 200);
@@ -873,6 +880,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
         location: new FormControl(e.currentTarget.childNodes[2].innerHTML.trim()),
       });
       console.log(this.updateItemForm.value);
+      $('.update-event-form .form-nav-bar .form-title').html(e.currentTarget.childNodes[0].innerHTML.trim());
     }
   }
 
@@ -1185,6 +1193,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
   closeEventUpdateForm() {
     this.updateItemForm.reset();
     $('.event').removeClass('selected-event');
+    $('.num-box').removeClass('event-opened');
     $('.update-event-form').removeClass('show-update-form');
     $('.add-item-button, .add-item-container').show();
   }

@@ -497,6 +497,7 @@
                         transform: translateY(-100%);
                         opacity: .5;
                         padding: 0;
+                        z-index: 999;
 
                         @media screen and (min-width: $mid-small) {
                             display: flex;
@@ -534,6 +535,7 @@
 
                     .num-box {
                         margin-bottom: 25px;
+                        transition: all .3s ease-in-out;
                         .num-date {
                             font-size: 12px;
 
@@ -575,10 +577,21 @@
                         }
                     }
 
+                    .event-opened {
+                        @media screen and (min-width: $end-small) {
+                            width: 50%;
+                            transition: all .3s ease-in-out;
+                        }
+                    }
+
                     .main-info-section {
                         padding: 0;
                         overflow: auto;
                         touch-action: pinch-zoom !important;
+
+                        @media screen and (min-width: $end-small) {
+                            width: 50%;
+                        }
 
                         form {
                             padding: 5px 0;
@@ -694,8 +707,10 @@
 
                                 @media screen and (min-width: $end-small) {
                                     top: 0px;
+                                    right: 0;
                                     border-radius: 5px;
                                     height: calc(100% - 10px);
+                                    width: 50%;
                                 }
 
                                 .form-nav-bar {
@@ -737,6 +752,10 @@
 
                                 .input-wrapper {
                                     margin: 0 4%;
+
+                                    @media screen and (min-width: $end-small) {
+                                        margin: 0 6%;
+                                    }
 
                                     &.invisible {
                                         visibility: hidden;
