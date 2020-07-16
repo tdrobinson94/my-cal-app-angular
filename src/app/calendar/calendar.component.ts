@@ -605,6 +605,15 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
+  onSwipeDownForm(e) {
+    if (navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/webOS/i) || navigator.userAgent.match(/iPhone/i)
+      || navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPod/i)) {
+      if ($(e.target).hasClass('form-title')) {
+        this.closeForm();
+      }
+    }
+  }
+
   clickonDay(e) {
     $('.add-item-form').removeClass('show-form');
     $('.extra').hide();
@@ -683,14 +692,10 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
 
     for (dayIndex = 0; dayIndex <= 42; dayIndex++) {
       const day = $(weeks[dayIndex - 1]);
-      console.log(day.find('.visible-parent').length);
       if (day.find('.visible-parent').length !== 0 && day.find('.visible-parent').length <= 9) {
-        day.find('.event-count').empty();
         day.find('.event-count').html('&nbsp' + day.find('.visible-parent').length + '&nbsp').show();
       } else if (day.find('.visible-parent').length !== 0) {
         day.find('.event-count').html(day.find('.visible-parent').length).show();
-      } else {
-        day.find('.event-count').empty().hide();
       }
 
     }
@@ -707,6 +712,8 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
 
         for (dayIndex = 0; dayIndex <= 42; dayIndex++) {
           const day = $(weeks[dayIndex - 1]);
+
+          day.find('.event-count').empty().hide();
 
           for (i = 0; i < response.length; i++) {
             eventlist[i] = {

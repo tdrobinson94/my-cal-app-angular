@@ -80,7 +80,7 @@
                     </form>
                     <form class="update-event-form" [formGroup]="updateItemForm">
                         <div class="form-nav-bar">
-                            <h2>Update Item</h2>
+                            <h2 class="form-title">Update Item</h2>
                             <div class="close-form" (click)="closeEventUpdateForm()">
                                 <span class="material-icons">clear</span>
                             </div>
@@ -167,9 +167,9 @@
         <span class="material-icons">add</span>
     </button>
 
-    <div class="add-item-container" [ngClass]="{'show-form': openform}">
+    <div class="add-item-container" #form [ngClass]="{'show-form': openform}" (swipedown)="onSwipeDownForm($event)">
         <div class="form-nav-bar">
-            <h2>Add Items</h2>
+            <h2 class="form-title">Add Items</h2>
             <div class="close-form" (click)="closeForm()">
                 <span class="material-icons">clear</span>
             </div>
