@@ -426,9 +426,6 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
             }
           } else {
             this.nextClick();
-            if (this.getEventsFinished === true) {
-              $('.clicked-day').addClass('double-click');
-            }
           }
         } else if ($(e.target).hasClass('event')) {
           if (!$(e.target).parent().parent().parent().next().hasClass('dead-month-color')) {
@@ -467,9 +464,6 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
             }
           } else {
             this.nextClick();
-            if (this.getEventsFinished === true) {
-              $('.clicked-day').addClass('double-click');
-            }
           }
         } else if ($(e.target).hasClass('event-details')) {
           if (!$(e.target).parent().parent().parent().parent().next().hasClass('dead-month-color')) {
@@ -508,9 +502,6 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
             }
           } else {
             this.nextClick();
-            if (this.getEventsFinished === true) {
-              $('.clicked-day').addClass('double-click');
-            }
           }
         }
       }
