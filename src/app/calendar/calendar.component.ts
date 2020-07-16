@@ -422,6 +422,8 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
                 $('.double-click .num-date').addClass('auto-hide');
               }, 7000);
             }
+          } else {
+            this.nextClick();
           }
         } else if ($(e.target).hasClass('event')) {
           if (!$(e.target).parent().parent().parent().next().hasClass('dead-month-color')) {
@@ -458,6 +460,8 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
                 $('.double-click .num-date').addClass('auto-hide');
               }, 7000);
             }
+          } else {
+            this.nextClick();
           }
         } else if ($(e.target).hasClass('event-details')) {
           if (!$(e.target).parent().parent().parent().parent().next().hasClass('dead-month-color')) {
@@ -494,6 +498,8 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
                 $('.double-click .num-date').addClass('auto-hide');
               }, 7000);
             }
+          } else {
+            this.nextClick();
           }
         }
       }
@@ -541,6 +547,8 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
                 $('.double-click .num-date').addClass('auto-hide');
               }, 7000);
             }
+          } else {
+            this.prevClick();
           }
         } else if ($(e.target).hasClass('event')) {
           if (!$(e.target).parent().parent().parent().prev().hasClass('dead-month-color')) {
@@ -577,6 +585,8 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
                 $('.double-click .num-date').addClass('auto-hide');
               }, 7000);
             }
+          } else {
+            this.prevClick();
           }
         } else if ($(e.target).hasClass('event-details')) {
           if (!$(e.target).parent().parent().parent().parent().prev().hasClass('dead-month-color')) {
@@ -608,6 +618,8 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
                 $('.double-click .num-date').addClass('auto-hide');
               }, 7000);
             }
+          } else {
+            this.prevClick();
           }
         }
       }
