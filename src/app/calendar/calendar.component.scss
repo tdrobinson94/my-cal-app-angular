@@ -462,8 +462,8 @@
                     button.close-day {
                         display: inline;
                         position: absolute;
-                        top: 2px;
-                        right: 1%;
+                        top: 15px;
+                        right: 0%;
                         background: transparent;
                         border-radius: 5px;
                         border: 0;
@@ -527,14 +527,14 @@
                     }
 
                     .event-count {
-                        top: 5px;
-                        left: 3%;
+                        top: 20px;
+                        left: 1%;
                         font-size: 9px;
                         padding: 2px 4px;
                     }
 
                     .num-box {
-                        margin-bottom: 25px;
+                        margin-bottom: 35px;
                         transition: all .3s ease-in-out;
                         .num-date {
                             font-size: 12px;
@@ -708,9 +708,10 @@
                                 @media screen and (min-width: $end-small) {
                                     top: 0px;
                                     right: 0;
-                                    border-radius: 5px;
-                                    height: calc(100% - 10px);
+                                    border-radius: 0 5px 5px 0;
+                                    height: calc(100% - 0px);
                                     width: 50%;
+                                    border-left: 1px solid black;
                                 }
 
                                 .form-nav-bar {
