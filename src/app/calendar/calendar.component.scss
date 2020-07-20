@@ -414,7 +414,7 @@
                     border: 1px solid #252525;
                     border-radius: 5px;
                     transition: all .3s ease-in-out;
-                    animation-name: shrink;
+                    animation-name: shrink-1;
                     animation-duration: .3s;
                     animation-timing-function: ease-in-out;
 
@@ -423,8 +423,8 @@
                     }
                 }
 
-                @keyframes shrink{
-                    25%  {transform: scale(.5, .5);}
+                @keyframes shrink-1 {
+                    25% {transform: scale(.5, .5);}
                 }
 
                 &.double-click {
@@ -544,7 +544,7 @@
 
                     .event-count {
                         top: 20px;
-                        left: 1%;
+                        left: 2%;
                         font-size: 9px;
                         padding: 2px 4px;
                     }
@@ -748,7 +748,7 @@
                                     top: 0px;
                                     right: 0;
                                     border-radius: 0 5px 5px 0;
-                                    height: calc(100% - 0px);
+                                    height: calc(99% - 0px);
                                     width: 50%;
                                     border-left: 1px solid black;
                                 }
@@ -907,8 +907,48 @@
                     }
                 }
 
+                &.swipe-right {
+                    animation-name: swipeRight;
+                    animation-duration: .3s;
+                    animation-timing-function: ease-in-out;
+                }
+
+                &.swipe-left {
+                    animation-name: swipeLeft;
+                    animation-duration: .3s;
+                    animation-timing-function: ease-in-out;
+                }
+
+                @keyframes swipeRight {
+                    from {
+                        left: -100%;
+                    }
+
+                    to {
+                        left: 0;
+                    }
+                }
+
+                @keyframes swipeLeft {
+                    from {
+                        left: 100%;
+                    }
+
+                    to {
+                        left: 0;
+                    }
+                }
+
                 @keyframes grow {
-                    25%  {transform: scale(1, .90);}
+                    from {
+                        transform: scale(.5, .5);
+                        position: relative;
+                    }
+
+                    to {
+                        transform: scale(1, 1);
+                        position: fixed;
+                    }
                 }
 
             }
