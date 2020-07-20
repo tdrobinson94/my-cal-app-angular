@@ -358,10 +358,15 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
         $(document).find('#month').val(Number($(document).find('#month').val()) - 1).change();
       }
     }
-    this.changeCal();
+    $('.calendar-wrapper').addClass('cal-swipe-left');
+    setTimeout(() => {
+      this.changeCal();
+      $('.calendar-wrapper').removeClass('cal-swipe-left cal-swipe-right');
+    }, 200);
   }
 
   currentClick() {
+    $('.calendar-wrapper').removeClass('cal-swipe-left cal-swipe-right');
     $(document).find('#month').val(this.currentMonth).change();
     $(document).find('#year').val(this.currentYear).change();
     this.changeCal();
@@ -379,7 +384,11 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
         $(document).find('#month').val(Number($(document).find('#month').val()) + 1).change();
       }
     }
-    this.changeCal();
+    $('.calendar-wrapper').addClass('cal-swipe-right');
+    setTimeout(() => {
+      this.changeCal();
+      $('.calendar-wrapper').removeClass('cal-swipe-left cal-swipe-right');
+    }, 200);
   }
 
 

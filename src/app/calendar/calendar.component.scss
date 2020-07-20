@@ -1218,6 +1218,36 @@
 
 }
 
+.cal-swipe-right {
+    animation-name: calSwipeRight;
+    animation-duration: .3s;
+    animation-timing-function: ease-in-out;
+}
+.cal-swipe-left {
+    animation-name: calSwipeLeft;
+    animation-duration: .3s;
+    animation-timing-function: ease-in-out;
+}
+
+@keyframes calSwipeLeft {
+    from {
+        left: -100%;
+    }
+
+    to {
+        left: 0;
+    }
+}
+@keyframes calSwipeRight {
+    from {
+        left: 100%;
+    }
+
+    to {
+        left: 0;
+    }
+}
+
 .loading-container {
   position: fixed;
   top: 0;
