@@ -933,6 +933,18 @@
                     animation-timing-function: ease-in-out;
                 }
 
+                &.bounce-right {
+                    animation-name: bounceRight;
+                    animation-duration: .3s;
+                    animation-timing-function: ease-in-out;
+                }
+
+                &.bounce-left {
+                    animation-name: bounceLeft;
+                    animation-duration: .3s;
+                    animation-timing-function: ease-in-out;
+                }
+
                 @keyframes swipeRight {
                     from {
                         left: -100%;
@@ -949,6 +961,34 @@
                     }
 
                     to {
+                        left: 0;
+                    }
+                }
+
+                @keyframes bounceRight {
+                    0% {
+                        left: 0;
+                    }
+
+                    50% {
+                        left: 15%;
+                    }
+
+                    100% {
+                        left: 0;
+                    }
+                }
+                
+                @keyframes bounceLeft {
+                    0% {
+                        left: 0;
+                    }
+
+                    50% {
+                        left: -15%;
+                    }
+
+                    100% {
                         left: 0;
                     }
                 }
