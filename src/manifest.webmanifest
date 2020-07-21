@@ -1,7 +1,7 @@
 {
   "name": "my-cal-app",
   "short_name": "my-cal-app",
-  "theme_color": "#ff0000",
+  "theme_color": "#121212",
   "background_color": "#121212",
   "orientation": "portrait",
   "display": "standalone",

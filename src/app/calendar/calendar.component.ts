@@ -92,7 +92,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
   getEventsFinished = false;
 
   // Gesture Vibration
-  gestureVibration = 5;
+  gestureVibration = 3;
 
   ngOnInit() {
     this.createCalendarGrid();
@@ -738,7 +738,6 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
       $('.day-box').removeClass('clicked-day double-click');
       $(e.currentTarget).addClass('clicked-day');
     } else if ($(e.currentTarget).hasClass('clicked-day')) {
-      window.navigator.vibrate(this.gestureVibration);
       $(e.currentTarget).addClass('double-click');
       $('.double-click .num-date').removeClass('auto-hide');
       $(e.currentTarget).find('.main-info-section').addClass('animate-events-one');
@@ -831,7 +830,6 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
     }
     // If an event has been clicked once
     else if (!$(e.currentTarget).hasClass('selected-event')) {
-      window.navigator.vibrate(this.gestureVibration);
       $('.visible').removeClass('selected-event');
       $('.update-event-form').removeClass('show-update-form');
       $(e.currentTarget).addClass('selected-event');
@@ -839,7 +837,6 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
     } 
     // If an event has been clicked twice
     else if ($(e.currentTarget).hasClass('selected-event')) {
-      window.navigator.vibrate(this.gestureVibration);
       $('.add-item-button, .add-item-container').hide();
       $('.num-box').addClass('event-opened');
       setTimeout(() => {

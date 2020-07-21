@@ -16,6 +16,11 @@ export class LayoutComponent implements OnInit {
   showAfterLogin: any;
   deferredPrompt;
 
+
+  // Gesture Vibration
+  gestureVibration = 3;
+
+
   constructor(public dataService: UserDataService, private router: Router) {
 
     this.router.events.forEach((event) => {
@@ -37,11 +42,13 @@ export class LayoutComponent implements OnInit {
   }
 
   clickNavButton() {
+    window.navigator.vibrate(this.gestureVibration);
     $('.hamburger').toggleClass('is-active');
     $('.wrapper ul').slideToggle();
   }
 
   clickLink() {
+    window.navigator.vibrate(this.gestureVibration);
     if ($(window).width() < 800) {
       $('.hamburger').toggleClass('is-active');
       $('.wrapper ul').slideToggle();
@@ -52,6 +59,7 @@ export class LayoutComponent implements OnInit {
   }
 
   clickLogo() {
+    window.navigator.vibrate(this.gestureVibration);
     if ($(window).width() < 800) {
       $('.hamburger').removeClass('is-active');
       $('.wrapper ul').slideToggle().hide();
@@ -62,6 +70,7 @@ export class LayoutComponent implements OnInit {
   }
 
   clickLogout(){
+    window.navigator.vibrate(this.gestureVibration);
     console.log('User has logged out');
     this.clickLink();
     this.dataService.logout();
