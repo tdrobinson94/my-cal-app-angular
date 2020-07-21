@@ -18,7 +18,7 @@ export class LayoutComponent implements OnInit {
 
 
   // Gesture Vibration
-  gestureVibration = 1;
+  gestureVibration = 2;
 
 
   constructor(public dataService: UserDataService, private router: Router) {
