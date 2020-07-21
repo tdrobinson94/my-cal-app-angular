@@ -91,6 +91,9 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
 
   getEventsFinished = false;
 
+  // Gesture Vibration
+  gestureVibration = 5;
+
   ngOnInit() {
     this.createCalendarGrid();
   }
@@ -346,7 +349,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   prevClick() {
-    window.navigator.vibrate(10);
+    window.navigator.vibrate(this.gestureVibration);
     if ($(document).find('#year').val() <= (this.currentYear - 5)) {
       $(document).find('#year').val(this.currentYear - 5).change();
       $(document).find('#month').val(0).change();
@@ -366,7 +369,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   currentClick() {
-    window.navigator.vibrate(10);
+    window.navigator.vibrate(this.gestureVibration);
     $('.calendar-wrapper').removeClass('cal-swipe-left cal-swipe-right');
     $(document).find('#month').val(this.currentMonth).change();
     $(document).find('#year').val(this.currentYear).change();
@@ -374,7 +377,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   nextClick() {
-    window.navigator.vibrate(10);
+    window.navigator.vibrate(this.gestureVibration);
     if ($(document).find('#year').val() >= (this.currentYear + 5) && $(document).find('#month').val() == 11) {
       $(document).find('#year').val(this.currentYear + 5).change();
       $(document).find('#month').val(11).change();
@@ -397,7 +400,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
   onSwipeLeft(e) {
     if (navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/webOS/i) || navigator.userAgent.match(/iPhone/i)
     || navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPod/i)) {
-      window.navigator.vibrate(10);
+      window.navigator.vibrate(this.gestureVibration);
       if (!$('.day-box').hasClass('double-click')) {
         this.nextClick();
       } else {
@@ -523,7 +526,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
   onSwipeRight(e) {
     if (navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/webOS/i) || navigator.userAgent.match(/iPhone/i)
     || navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPod/i)) {
-      window.navigator.vibrate(10);
+      window.navigator.vibrate(this.gestureVibration);
       if (!$('.day-box').hasClass('double-click')) {
         this.prevClick();
       } else {
@@ -650,7 +653,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
         if ($(e.target).hasClass('event') || $(e.target).hasClass('main-info-section') || $(e.target).hasClass('event-details')) {
           console.log('no scroll');
         } else {
-          window.navigator.vibrate(10);
+          window.navigator.vibrate(this.gestureVibration);
           $('.day-box').removeClass('double-click swipe-right swipe-left');
           $('.main-info-section').removeClass('normal-scrolling');
           $('.main-info-section').removeClass('animate-events-one animate-events-two');
@@ -666,7 +669,6 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
   onSwipeDownForm(e) {
     if (navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/webOS/i) || navigator.userAgent.match(/iPhone/i)
       || navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPod/i)) {
-      window.navigator.vibrate(10);
       this.closeForm();
       this.closeEventUpdateForm();
     }
@@ -679,7 +681,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
       $('.visible').removeClass('selected-event');
       $('.update-event-form').removeClass('show-update-form');
       $('.num-box').removeClass('event-opened');
-      window.navigator.vibrate(10);
+      window.navigator.vibrate(this.gestureVibration);
       if (!$(e.currentTarget).prev().hasClass('dead-month-color')) {
         $('.day-box').removeClass('clicked-day double-click swipe-right swipe-left');
         $('.main-info-section').removeClass('animate-events-one animate-events-two');
@@ -703,7 +705,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
       $('.visible').removeClass('selected-event');
       $('.update-event-form').removeClass('show-update-form');
       $('.num-box').removeClass('event-opened');
-      window.navigator.vibrate(10);
+      window.navigator.vibrate(this.gestureVibration);
       if (!$(e.currentTarget).next().hasClass('dead-month-color')) {
         $('.day-box').removeClass('clicked-day double-click swipe-right swipe-left');
         $('.main-info-section').removeClass('animate-events-one animate-events-two');
@@ -724,7 +726,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
         this.nextClick();
       }
     } else if ($(e.target).hasClass('close-day-icon')) {
-      window.navigator.vibrate(10);
+      window.navigator.vibrate(this.gestureVibration);
       $('.day-box').removeClass('double-click swipe-right swipe-left');
       $('.main-info-section').removeClass('normal-scrolling');
       $('.main-info-section').removeClass('animate-events-one animate-events-two');
@@ -733,10 +735,10 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
         $('.main-info-section').animate({ scrollTop: 0 }, 300);
       }, 400);
     } else if (!$(e.currentTarget).hasClass('clicked-day') && !$(e.currentTarget).hasClass('double-click')) {
-      window.navigator.vibrate(10);
       $('.day-box').removeClass('clicked-day double-click');
       $(e.currentTarget).addClass('clicked-day');
     } else if ($(e.currentTarget).hasClass('clicked-day')) {
+      window.navigator.vibrate(this.gestureVibration);
       $(e.currentTarget).addClass('double-click');
       $('.double-click .num-date').removeClass('auto-hide');
       $(e.currentTarget).find('.main-info-section').addClass('animate-events-one');
@@ -829,7 +831,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
     }
     // If an event has been clicked once
     else if (!$(e.currentTarget).hasClass('selected-event')) {
-      window.navigator.vibrate(10);
+      window.navigator.vibrate(this.gestureVibration);
       $('.visible').removeClass('selected-event');
       $('.update-event-form').removeClass('show-update-form');
       $(e.currentTarget).addClass('selected-event');
@@ -837,7 +839,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
     } 
     // If an event has been clicked twice
     else if ($(e.currentTarget).hasClass('selected-event')) {
-      window.navigator.vibrate(10);
+      window.navigator.vibrate(this.gestureVibration);
       $('.add-item-button, .add-item-container').hide();
       $('.num-box').addClass('event-opened');
       setTimeout(() => {
@@ -944,7 +946,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
     $('.add-item-container').animate({ scrollTop: 0 }, 400);
     this.openform = true;
     this.hideFormButton = true;
-    window.navigator.vibrate(10);
+    window.navigator.vibrate(this.gestureVibration);
     $('.form-nav-bar, .add-item-form').addClass('animate-events-one');
     setTimeout(() => {
       $('.form-nav-bar, .add-item-form').addClass('animate-events-two');
@@ -1179,6 +1181,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   closeForm() {
+    window.navigator.vibrate(this.gestureVibration);
     this.addItemForm.reset();
     this.openform = false;
     $('.form-nav-bar, .add-item-form').removeClass('animate-events-one animate-events-two');
@@ -1188,6 +1191,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   submitEvent() {
+    window.navigator.vibrate(this.gestureVibration);
     this.loading = true;
     console.log(this.addItemForm.value);
 
@@ -1204,6 +1208,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   updateEvent() {
+    window.navigator.vibrate(this.gestureVibration);
     this.loading = true;
     this.dataService.updatedEvent(this.updateItemForm.value)
       .subscribe((response) => {
@@ -1217,6 +1222,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   closeEventUpdateForm() {
+    window.navigator.vibrate(this.gestureVibration);
     this.updateItemForm.reset();
     $('.event').removeClass('selected-event');
     $('.num-box').removeClass('event-opened');

@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1595294980941,
+  "timestamp": 1595335885429,
   "index": "https://tdrobinson94.github.io/my-cal-app-angular/index.html",
   "assetGroups": [
     {
@@ -10,8 +10,8 @@
       "urls": [
         "https://tdrobinson94.github.io/my-cal-app-angular/favicon.ico",
         "https://tdrobinson94.github.io/my-cal-app-angular/index.html",
-        "https://tdrobinson94.github.io/my-cal-app-angular/main-es2015.f22a2b548b7771e090e1.js",
-        "https://tdrobinson94.github.io/my-cal-app-angular/main-es5.f22a2b548b7771e090e1.js",
+        "https://tdrobinson94.github.io/my-cal-app-angular/main-es2015.105c689f248c962f32ca.js",
+        "https://tdrobinson94.github.io/my-cal-app-angular/main-es5.105c689f248c962f32ca.js",
         "https://tdrobinson94.github.io/my-cal-app-angular/manifest.webmanifest",
         "https://tdrobinson94.github.io/my-cal-app-angular/polyfills-es2015.690002c25ea8557bb4b0.js",
         "https://tdrobinson94.github.io/my-cal-app-angular/polyfills-es5.1fd9b76218eca8053895.js",
@@ -51,9 +51,9 @@
     "https://tdrobinson94.github.io/my-cal-app-angular/assets/icons/icon-96x96.png": "3914125a4b445bf111c5627875fc190f560daa41",
     "https://tdrobinson94.github.io/my-cal-app-angular/assets/icons/loader.gif": "4d391bb6ccdc84a78202fcb6e5009aa857b3d1b7",
     "https://tdrobinson94.github.io/my-cal-app-angular/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
-    "https://tdrobinson94.github.io/my-cal-app-angular/index.html": "e6f955f379efc4abd537678b4fe728bade85288e",
-    "https://tdrobinson94.github.io/my-cal-app-angular/main-es2015.f22a2b548b7771e090e1.js": "42df3e6cd905cac8507df8c13f0078279239b9f2",
-    "https://tdrobinson94.github.io/my-cal-app-angular/main-es5.f22a2b548b7771e090e1.js": "eb2c07b94fc9cbb6fe19e02c99d95dbc0f0d4cf8",
+    "https://tdrobinson94.github.io/my-cal-app-angular/index.html": "4e53ec829ece48f13edcd143256d624941ad868a",
+    "https://tdrobinson94.github.io/my-cal-app-angular/main-es2015.105c689f248c962f32ca.js": "cd0066663e8173222c14966053245498047b80c3",
+    "https://tdrobinson94.github.io/my-cal-app-angular/main-es5.105c689f248c962f32ca.js": "048419bc5928bc69f30fb696acbaf51f5f682cc5",
     "https://tdrobinson94.github.io/my-cal-app-angular/manifest.webmanifest": "343481c513172501f02fd6acad65edd898e30769",
     "https://tdrobinson94.github.io/my-cal-app-angular/polyfills-es2015.690002c25ea8557bb4b0.js": "72ad4ccc0a3916ae4598199447cdeadd6d380570",
     "https://tdrobinson94.github.io/my-cal-app-angular/polyfills-es5.1fd9b76218eca8053895.js": "89222a28dbabb780fc372d33834080e0cd3083d9",
