@@ -392,6 +392,22 @@
 
                     form {
                         display: none;
+
+                        &.update-event-form, &.closed {
+                            animation-name: shrink-2;
+                            animation-duration: .3s;
+                            animation-timing-function: ease-in-out;
+                        }
+                    }
+
+                    @keyframes shrink-2{
+                        from  {
+                            top: default;
+                        }
+
+                        to {
+                            top: 100%;
+                        }
                     }
                 }
 
@@ -701,6 +717,7 @@
                         }
 
                         .update-event-form {
+
                             &.show-update-form {
                                 display: block;
                                 position: fixed;
