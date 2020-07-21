@@ -283,6 +283,12 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
       } else {
         day.find('.num-date').parent().removeClass('first-day');
       }
+
+      if (Number(day.find('.num-date').html()) === monthDays) {
+        day.find('.num-date').parent().addClass('last-day');
+      } else {
+        day.find('.num-date').parent().removeClass('last-day');
+      }
     });
 
   }
@@ -441,6 +447,9 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
             }
           } else {
             this.nextClick();
+            setTimeout(() => {
+              $('.clicked-day').addClass('double-click swipe-left');
+            }, 300);
           }
         } else if ($(e.target).hasClass('event')) {
           if (!$(e.target).parent().parent().parent().next().hasClass('dead-month-color')) {
@@ -479,6 +488,9 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
             }
           } else {
             this.nextClick();
+            setTimeout(() => {
+              $('.clicked-day').addClass('double-click swipe-left');
+            }, 300);
           }
         } else if ($(e.target).hasClass('event-details')) {
           if (!$(e.target).parent().parent().parent().parent().next().hasClass('dead-month-color')) {
@@ -517,6 +529,9 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
             }
           } else {
             this.nextClick();
+            setTimeout(() => {
+              $('.clicked-day').addClass('double-click swipe-left');
+            }, 300);
           }
         }
       }
@@ -567,6 +582,9 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
             }
           } else {
             this.prevClick();
+            setTimeout(() => {
+              $('.last-day').parent().addClass('.clicked-day double-click swipe-right');
+            }, 300);
           }
         } else if ($(e.target).hasClass('event')) {
           if (!$(e.target).parent().parent().parent().prev().hasClass('dead-month-color')) {
@@ -605,6 +623,9 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
             }
           } else {
             this.prevClick();
+            setTimeout(() => {
+              $('.last-day').parent().addClass('.clicked-day double-click swipe-right');
+            }, 300);
           }
         } else if ($(e.target).hasClass('event-details')) {
           if (!$(e.target).parent().parent().parent().parent().prev().hasClass('dead-month-color')) {
@@ -638,6 +659,9 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
             }
           } else {
             this.prevClick();
+            setTimeout(() => {
+              $('.last-day').parent().addClass('.clicked-day double-click swipe-right');
+            }, 300);
           }
         }
       }
@@ -774,8 +798,6 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
 
   getEvents() {
     this.loading = true;
-    this.getEventsFinished = false;
-    console.log('Finished: ' + this.getEventsFinished);
     this.dataService.getEvents()
       .subscribe((response) => {
         let i;
@@ -807,8 +829,6 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
                 day.find('.event[startDate="' + day.find('.date-value').html() + '"]').addClass('visible');
                 day.find('.event[startDate="' + day.find('.date-value').html() + '"]').parent().addClass('visible-parent');
                 this.eachDayEventsCount();
-                this.getEventsFinished = true;
-                console.log('Finished: ' + this.getEventsFinished);
               }, 100);
             }
           }
