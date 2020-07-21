@@ -840,7 +840,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
       $('.add-item-button, .add-item-container').hide();
       $('.num-box').addClass('event-opened');
       setTimeout(() => {
-        $('.update-event-form').addClass('show-update-form');
+        $('.update-event-form').addClass('show-update-form').removeClass('closed');
       }, 200);
       $('.update-event-form').animate({ scrollTop: 0 }, 400);
 
@@ -1223,7 +1223,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
     this.updateItemForm.reset();
     $('.event').removeClass('selected-event');
     $('.num-box').removeClass('event-opened');
-    $('.update-event-form').removeClass('show-update-form');
+    $('.update-event-form').removeClass('show-update-form').addClass('closed');
     $('.add-item-button, .add-item-container').show();
   }
 

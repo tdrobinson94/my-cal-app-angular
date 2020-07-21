@@ -392,16 +392,6 @@
 
                     form {
                         display: none;
-
-                        &.update-event-form {
-                            animation-name: shrink-2;
-                            animation-duration: .3s;
-                            animation-timing-function: ease-in-out;
-                        }
-                    }
-
-                    @keyframes shrink-2{
-                        25%  {transform: scale(.5, .5);}
                     }
                 }
 
@@ -442,14 +432,6 @@
                     animation-duration: .3s;
                     animation-timing-function: ease-in-out;
                     border-radius: 0;
-
-                    // will-change: transform, height, width;
-
-                    -webkit-transform: translateZ(0);
-                    -moz-transform: translateZ(0);
-                    -ms-transform: translateZ(0);
-                    -o-transform: translateZ(0);
-                    transform: translateZ(0);
 
                     transition: all 0.3s ease-in-out;
                     -moz-transition: all .3s ease-in-out;
@@ -733,12 +715,6 @@
                                 animation-timing-function: ease-in-out;
                                 overscroll-behavior: none;
 
-                                -webkit-transform: translateZ(0);
-                                -moz-transform: translateZ(0);
-                                -ms-transform: translateZ(0);
-                                -o-transform: translateZ(0);
-                                transform: translateZ(0);
-
                                 transition: all 0.3s ease-in-out;
                                 -moz-transition: all .3s ease-in-out;
                                 -webkit-transition: all .3s ease-in-out;
@@ -896,7 +872,13 @@
                             }
 
                             @keyframes grow-2 {
-                                25%  {transform: scale(.95, .95);}
+                                from  {
+                                    top: 100%;
+                                }
+
+                                to {
+                                    top: default;
+                                }
                             }
                         }
                     }
