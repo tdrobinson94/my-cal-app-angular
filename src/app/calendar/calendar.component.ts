@@ -92,7 +92,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
   getEventsFinished = false;
 
   // Gesture Vibration
-  gestureVibration = 3;
+  gestureVibration = 1;
 
   ngOnInit() {
     this.createCalendarGrid();
