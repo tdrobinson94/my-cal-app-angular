@@ -942,12 +942,10 @@
                 @keyframes grow {
                     from {
                         transform: scale(.5, .5);
-                        position: relative;
                     }
 
                     to {
                         transform: scale(1, 1);
-                        position: fixed;
                     }
                 }
 
@@ -961,6 +959,36 @@
         }
 
 
+    }
+
+    .cal-swipe-right {
+        animation-name: calSwipeRight;
+        animation-duration: .3s;
+        animation-timing-function: ease-in-out;
+    }
+    .cal-swipe-left {
+        animation-name: calSwipeLeft;
+        animation-duration: .3s;
+        animation-timing-function: ease-in-out;
+    }
+
+    @keyframes calSwipeLeft {
+        from {
+            left: -100%;
+        }
+
+        to {
+            left: 0;
+        }
+    }
+    @keyframes calSwipeRight {
+        from {
+            left: 100%;
+        }
+
+        to {
+            left: 0;
+        }
     }
 
     .add-item-button {
@@ -1045,14 +1073,6 @@
             border-radius: 0;
             color: $textdrk;
             overflow: auto;
-
-            // will-change: transform, height, width;
-
-            -webkit-transform: translateZ(0);
-            -moz-transform: translateZ(0);
-            -ms-transform: translateZ(0);
-            -o-transform: translateZ(0);
-            transform: translateZ(0);
 
             transition: all 0.3s ease-in-out;
             -moz-transition: all .3s ease-in-out;
@@ -1216,36 +1236,6 @@
 
 
 
-}
-
-.cal-swipe-right {
-    animation-name: calSwipeRight;
-    animation-duration: .3s;
-    animation-timing-function: ease-in-out;
-}
-.cal-swipe-left {
-    animation-name: calSwipeLeft;
-    animation-duration: .3s;
-    animation-timing-function: ease-in-out;
-}
-
-@keyframes calSwipeLeft {
-    from {
-        left: -100%;
-    }
-
-    to {
-        left: 0;
-    }
-}
-@keyframes calSwipeRight {
-    from {
-        left: 100%;
-    }
-
-    to {
-        left: 0;
-    }
 }
 
 .loading-container {
