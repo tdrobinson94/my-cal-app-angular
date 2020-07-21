@@ -744,6 +744,9 @@
                                     height: calc(99% - 0px);
                                     width: 50%;
                                     border-left: 1px solid black;
+                                    animation-name: slide-left;
+                                    animation-duration: .3s;
+                                    animation-timing-function: ease-in-out;
                                 }
 
                                 .form-nav-bar {
@@ -895,6 +898,18 @@
 
                                 to {
                                     top: default;
+                                }
+                            }
+
+                            @keyframes slide-left {
+                                from  {
+                                    right: -10%;
+                                    opacity: 0;
+                                }
+
+                                to {
+                                    right: 0;
+                                    opacity: 1;
                                 }
                             }
                         }
@@ -1230,11 +1245,6 @@
             }
         }
     }
-
-
-
-
-
 }
 
 .loading-container {
