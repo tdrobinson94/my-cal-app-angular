@@ -346,7 +346,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   prevClick() {
-    window.navigator.vibrate(200);
+    window.navigator.vibrate(50);
     if ($(document).find('#year').val() <= (this.currentYear - 5)) {
       $(document).find('#year').val(this.currentYear - 5).change();
       $(document).find('#month').val(0).change();
@@ -366,7 +366,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   currentClick() {
-    window.navigator.vibrate(200);
+    window.navigator.vibrate(50);
     $('.calendar-wrapper').removeClass('cal-swipe-left cal-swipe-right');
     $(document).find('#month').val(this.currentMonth).change();
     $(document).find('#year').val(this.currentYear).change();
@@ -374,7 +374,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   nextClick() {
-    window.navigator.vibrate(200);
+    window.navigator.vibrate(50);
     if ($(document).find('#year').val() >= (this.currentYear + 5) && $(document).find('#month').val() == 11) {
       $(document).find('#year').val(this.currentYear + 5).change();
       $(document).find('#month').val(11).change();
@@ -397,7 +397,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
   onSwipeLeft(e) {
     if (navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/webOS/i) || navigator.userAgent.match(/iPhone/i)
     || navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPod/i)) {
-      window.navigator.vibrate(200);
+      window.navigator.vibrate(50);
       if (!$('.day-box').hasClass('double-click')) {
         this.nextClick();
       } else {
@@ -523,7 +523,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
   onSwipeRight(e) {
     if (navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/webOS/i) || navigator.userAgent.match(/iPhone/i)
     || navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPod/i)) {
-      window.navigator.vibrate(200);
+      window.navigator.vibrate(50);
       if (!$('.day-box').hasClass('double-click')) {
         this.prevClick();
       } else {
@@ -644,13 +644,13 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
   onSwipeDown(e) {
     if (navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/webOS/i) || navigator.userAgent.match(/iPhone/i)
     || navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPod/i)) {
-      window.navigator.vibrate(200);
       if (!$('.day-box').hasClass('double-click') || $('.update-event-form').hasClass('show-update-form')) {
         // this.getEvents();
       } else {
         if ($(e.target).hasClass('event') || $(e.target).hasClass('main-info-section') || $(e.target).hasClass('event-details')) {
           console.log('no scroll');
         } else {
+          window.navigator.vibrate(50);
           $('.day-box').removeClass('double-click swipe-right swipe-left');
           $('.main-info-section').removeClass('normal-scrolling');
           $('.main-info-section').removeClass('animate-events-one animate-events-two');
@@ -666,7 +666,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
   onSwipeDownForm(e) {
     if (navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/webOS/i) || navigator.userAgent.match(/iPhone/i)
       || navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPod/i)) {
-      window.navigator.vibrate(200);
+      window.navigator.vibrate(50);
       this.closeForm();
       this.closeEventUpdateForm();
     }
@@ -679,6 +679,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
       $('.visible').removeClass('selected-event');
       $('.update-event-form').removeClass('show-update-form');
       $('.num-box').removeClass('event-opened');
+      window.navigator.vibrate(50);
       if (!$(e.currentTarget).prev().hasClass('dead-month-color')) {
         $('.day-box').removeClass('clicked-day double-click swipe-right swipe-left');
         $('.main-info-section').removeClass('animate-events-one animate-events-two');
@@ -702,6 +703,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
       $('.visible').removeClass('selected-event');
       $('.update-event-form').removeClass('show-update-form');
       $('.num-box').removeClass('event-opened');
+      window.navigator.vibrate(50);
       if (!$(e.currentTarget).next().hasClass('dead-month-color')) {
         $('.day-box').removeClass('clicked-day double-click swipe-right swipe-left');
         $('.main-info-section').removeClass('animate-events-one animate-events-two');
@@ -722,6 +724,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
         this.nextClick();
       }
     } else if ($(e.target).hasClass('close-day-icon')) {
+      window.navigator.vibrate(50);
       $('.day-box').removeClass('double-click swipe-right swipe-left');
       $('.main-info-section').removeClass('normal-scrolling');
       $('.main-info-section').removeClass('animate-events-one animate-events-two');
@@ -730,6 +733,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
         $('.main-info-section').animate({ scrollTop: 0 }, 300);
       }, 400);
     } else if (!$(e.currentTarget).hasClass('clicked-day') && !$(e.currentTarget).hasClass('double-click')) {
+      window.navigator.vibrate(50);
       $('.day-box').removeClass('clicked-day double-click');
       $(e.currentTarget).addClass('clicked-day');
     } else if ($(e.currentTarget).hasClass('clicked-day')) {
