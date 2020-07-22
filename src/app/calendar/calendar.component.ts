@@ -449,7 +449,8 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
           } else {
             this.nextClick();
             setTimeout(() => {
-              $('.first-day').parent().addClass('double-click swipe-left');
+              $('.day-box').removeClass('clicked-day');
+              $('.first-day').parent().addClass('clicked-day double-click swipe-left');
             }, 700);
           }
         } else if ($(e.target).hasClass('event')) {
@@ -490,7 +491,8 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
           } else {
             this.nextClick();
             setTimeout(() => {
-              $('.first-day').parent().addClass('double-click swipe-left');
+              $('.day-box').removeClass('clicked-day');
+              $('.first-day').parent().addClass('clicked-day double-click swipe-left');
             }, 700);
           }
         } else if ($(e.target).hasClass('event-details')) {
@@ -531,7 +533,8 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
           } else {
             this.nextClick();
             setTimeout(() => {
-              $('.first-day').parent().addClass('double-click swipe-left');
+              $('.day-box').removeClass('clicked-day');
+              $('.first-day').parent().addClass('clicked-day double-click swipe-left');
             }, 700);
           }
         }
@@ -584,7 +587,8 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
           } else {
             this.prevClick();
             setTimeout(() => {
-              $('.last-day').parent().addClass('.clicked-day double-click swipe-right');
+              $('.day-box').removeClass('clicked-day');
+              $('.last-day').parent().addClass('clicked-day double-click swipe-right');
             }, 700);
           }
         } else if ($(e.target).hasClass('event')) {
@@ -625,7 +629,8 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
           } else {
             this.prevClick();
             setTimeout(() => {
-              $('.last-day').parent().addClass('.clicked-day double-click swipe-right');
+              $('.day-box').removeClass('clicked-day');
+              $('.last-day').parent().addClass('clicked-day double-click swipe-right');
             }, 700);
           }
         } else if ($(e.target).hasClass('event-details')) {
@@ -661,7 +666,8 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
           } else {
             this.prevClick();
             setTimeout(() => {
-              $('.last-day').parent().addClass('.clicked-day double-click swipe-right');
+              $('.day-box').removeClass('clicked-day');
+              $('.last-day').parent().addClass('clicked-day double-click swipe-right');
             }, 700);
           }
         }
@@ -726,7 +732,8 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
       } else {
         this.prevClick();
         setTimeout(() => {
-          $('.last-day').parent().addClass('.clicked-day double-click swipe-right');
+          $('.day-box').removeClass('clicked-day');
+          $('.last-day').parent().addClass('clicked-day double-click swipe-right');
         }, 700);
       }
     } else if ($(e.target).hasClass('next-day-icon')) {
@@ -753,7 +760,8 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
       } else {
         this.nextClick();
         setTimeout(() => {
-          $('.first-day').parent().addClass('double-click swipe-left');
+          $('.day-box').removeClass('clicked-day');
+          $('.first-day').parent().addClass('clicked-day double-click swipe-left');
         }, 700);
       }
     } else if ($(e.target).hasClass('close-day-icon')) {
@@ -839,6 +847,8 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
                 this.eachDayEventsCount();
                 $('.main-info-section').show();
               }, 100);
+            } else {
+              $('.main-info-section').show();
             }
           }
           this.events = eventlist;
