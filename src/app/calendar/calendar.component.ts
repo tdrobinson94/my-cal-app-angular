@@ -360,7 +360,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
 
   prevClick() {
     window.navigator.vibrate(this.gestureVibration);
-    if ($(document).find('#year').val() <= (this.currentYear - 5)) {
+    if ($(document).find('#year').val() < (this.currentYear - 5)) {
       $(document).find('#year').val(this.currentYear - 5).change();
       $(document).find('#month').val(0).change();
     } else {
@@ -388,7 +388,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
 
   nextClick() {
     window.navigator.vibrate(this.gestureVibration);
-    if ($(document).find('#year').val() >= (this.currentYear + 5) && $(document).find('#month').val() == 11) {
+    if ($(document).find('#year').val() > (this.currentYear + 5) && $(document).find('#month').val() == 11) {
       $(document).find('#year').val(this.currentYear + 5).change();
       $(document).find('#month').val(11).change();
     } else {
