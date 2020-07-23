@@ -1005,7 +1005,6 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
     $('.add-item-container').animate({ scrollTop: 0 }, 400);
     this.openform = true;
     this.hideFormButton = true;
-    this.allDay = true;
     window.navigator.vibrate(this.gestureVibration);
     $('.form-nav-bar, .add-item-form').addClass('animate-events-one');
     setTimeout(() => {
@@ -1048,7 +1047,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
       end_date: new FormControl(day),
       start_time: new FormControl(currentTime),
       end_time: new FormControl(endTime),
-      all_day: new FormControl(true),
+      all_day: new FormControl(''),
       location: new FormControl(''),
     });
   }
