@@ -80,7 +80,9 @@
                     </form>
                     <form class="update-event-form" [formGroup]="updateItemForm">
                         <div class="form-nav-bar" (swipedown)="onSwipeDownForm($event)">
-                            <h2 class="form-title">Update Item</h2>
+                            <h2 class="form-title">
+                                <input type="text" placeholder="Title or name" formControlName="title" maxlength="32" required>
+                            </h2>
                             <div class="close-form" (click)="closeEventUpdateForm()">
                                 <span class="material-icons">clear</span>
                             </div>
@@ -94,11 +96,6 @@
                         
                         <div class="input-wrapper invisible">
                             <input type="text" placeholder="Group ID" formControlName="group_id">
-                        </div>
-
-                        <div class="input-wrapper item-title-update">
-                            <label>Title</label>
-                            <input type="text" placeholder="Title or name" formControlName="title" maxlength="32" required>
                         </div>
 
                         <div class="input-wrapper date-input-update">
@@ -170,13 +167,16 @@
     </button>
 
     <div class="add-item-container" #form [ngClass]="{'show-form': openform}">
-        <div class="form-nav-bar" (swipedown)="onSwipeDownForm($event)">
-            <h2 class="form-title">Add Items</h2>
-            <div class="close-form" (click)="closeForm()">
-                <span class="material-icons">clear</span>
-            </div>
-        </div>
         <form class="add-item-form" [formGroup]="addItemForm" (ngSubmit)="submitEvent()">
+            <div class="form-nav-bar" (swipedown)="onSwipeDownForm($event)">
+                <h2 class="form-title">
+                    <input type="text" placeholder="Title" formControlName="title" maxlength="32" required>
+                </h2>
+                <div class="close-form" (click)="closeForm()">
+                    <span class="material-icons">clear</span>
+                </div>
+            </div>
+
             <div class="input-wrapper invisible">
                 <input type="text" placeholder="User ID" formControlName="user_id">
             </div>
@@ -194,11 +194,6 @@
                     <option value="4">Budget</option>
                     <option value="5">Food</option> -->
                 </select>
-            </div>
-
-            <div class="input-wrapper item-title">
-                <label>Title</label>
-                <input type="text" placeholder="Title or name" formControlName="title" maxlength="32" required>
             </div>
 
             <div class="input-wrapper date-input">

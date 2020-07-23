@@ -966,7 +966,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
         });
       }
       console.log(this.updateItemForm.value);
-      $('.update-event-form .form-nav-bar .form-title').html(e.currentTarget.childNodes[0].innerHTML.trim());
+      // $('.update-event-form .form-nav-bar .form-title').html(e.currentTarget.childNodes[0].innerHTML.trim());
     }
   }
 
