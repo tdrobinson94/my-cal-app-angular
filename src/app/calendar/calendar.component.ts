@@ -86,6 +86,8 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
     location: new FormControl(''),
   });
 
+  allDay = false;
+
   // Hide loading indicator
   loading = false;
 
@@ -928,20 +930,41 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
       const userID = localStorage.getItem('userId');
 
       // Update the form with the time values defined above
-      this.updateItemForm = new FormGroup({
-        user_id: new FormControl(userID),
-        group_id: new FormControl(''),
-        id: new FormControl(e.currentTarget.childNodes[6].value),
-        frequency: new FormControl(Number(e.currentTarget.childNodes[3].innerHTML.trim())),
-        title: new FormControl(e.currentTarget.childNodes[0].innerHTML.trim()),
-        description: new FormControl(e.currentTarget.childNodes[1].innerHTML.trim()),
-        start_date: new FormControl(day),
-        end_date: new FormControl(endDay),
-        start_time: new FormControl(eCurrentTime),
-        end_time: new FormControl(eEndTime),
-        all_day: new FormControl(''),
-        location: new FormControl(e.currentTarget.childNodes[2].innerHTML.trim()),
-      });
+      console.log(eCurrentTime + ' - ' + eEndTime);
+
+      if (eCurrentTime === '00:00' && eEndTime === '23:59') {
+        this.allDay = true;
+        this.updateItemForm = new FormGroup({
+          user_id: new FormControl(userID),
+          group_id: new FormControl(''),
+          id: new FormControl(e.currentTarget.childNodes[6].value),
+          frequency: new FormControl(Number(e.currentTarget.childNodes[3].innerHTML.trim())),
+          title: new FormControl(e.currentTarget.childNodes[0].innerHTML.trim()),
+          description: new FormControl(e.currentTarget.childNodes[1].innerHTML.trim()),
+          start_date: new FormControl(day),
+          end_date: new FormControl(endDay),
+          start_time: new FormControl(eCurrentTime),
+          end_time: new FormControl(eEndTime),
+          all_day: new FormControl(true),
+          location: new FormControl(e.currentTarget.childNodes[2].innerHTML.trim()),
+        });
+      } else {
+        this.allDay = false;
+        this.updateItemForm = new FormGroup({
+          user_id: new FormControl(userID),
+          group_id: new FormControl(''),
+          id: new FormControl(e.currentTarget.childNodes[6].value),
+          frequency: new FormControl(Number(e.currentTarget.childNodes[3].innerHTML.trim())),
+          title: new FormControl(e.currentTarget.childNodes[0].innerHTML.trim()),
+          description: new FormControl(e.currentTarget.childNodes[1].innerHTML.trim()),
+          start_date: new FormControl(day),
+          end_date: new FormControl(endDay),
+          start_time: new FormControl(eCurrentTime),
+          end_time: new FormControl(eEndTime),
+          all_day: new FormControl(''),
+          location: new FormControl(e.currentTarget.childNodes[2].innerHTML.trim()),
+        });
+      }
       console.log(this.updateItemForm.value);
       $('.update-event-form .form-nav-bar .form-title').html(e.currentTarget.childNodes[0].innerHTML.trim());
     }
@@ -982,6 +1005,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
     $('.add-item-container').animate({ scrollTop: 0 }, 400);
     this.openform = true;
     this.hideFormButton = true;
+    this.allDay = true;
     window.navigator.vibrate(this.gestureVibration);
     $('.form-nav-bar, .add-item-form').addClass('animate-events-one');
     setTimeout(() => {
@@ -1024,7 +1048,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
       end_date: new FormControl(day),
       start_time: new FormControl(currentTime),
       end_time: new FormControl(endTime),
-      all_day: new FormControl(''),
+      all_day: new FormControl(true),
       location: new FormControl(''),
     });
   }
@@ -1184,6 +1208,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
     const startTime = '00' + ':' + '00';
 
     if (e.target.checked === true) {
+      this.allDay = true;
       this.addItemForm = new FormGroup({
         user_id: new FormControl(this.addItemForm.value.user_id),
         group_id: new FormControl(''),
@@ -1213,6 +1238,8 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
         all_day: new FormControl(this.updateItemForm.value.all_day),
         location: new FormControl(this.updateItemForm.value.location),
       });
+    } else {
+      this.allDay = false;
     }
   }
 

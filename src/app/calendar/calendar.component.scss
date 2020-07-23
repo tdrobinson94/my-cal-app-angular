@@ -656,11 +656,12 @@
                                     padding-bottom: 4px;
                                 }
 
-                                &.description, &.title {
+                                &.title {
                                     display: inline;
                                 }
 
                                 &.description {
+                                    display: none;
                                     &:before {
                                         content: " - ";
                                     }
@@ -721,7 +722,7 @@
                             &.show-update-form {
                                 display: block;
                                 position: fixed;
-                                top: 120px;
+                                top: 124px;
                                 width: 100%;
                                 height: calc(100% - 125px);
                                 overflow: auto;
@@ -743,7 +744,6 @@
                                     border-radius: 0 5px 5px 0;
                                     height: calc(99% - 0px);
                                     width: 50%;
-                                    border-left: 1px solid black;
                                     animation-name: slide-left;
                                     animation-duration: .3s;
                                     animation-timing-function: ease-in-out;
@@ -752,7 +752,7 @@
                                 .form-nav-bar {
                                     position: sticky;
                                     top: -1px;
-                                    background: $primary;
+                                    background: $background;
                                     h2 {
                                         padding: 13px 4%;
                                         margin: 0 0 15px;
@@ -1117,7 +1117,7 @@
         }
 
         &.show-form {
-            height: calc(100% - 138px);
+            height: calc(100% - 139px);
             width: 100%;
             padding-bottom: 15px;
             background: $background;
@@ -1159,7 +1159,7 @@
         .form-nav-bar {
             position: sticky;
             top: -1px;
-            background: $primary;
+            background: $background;
             h2 {
                 padding: 13px 4%;
                 margin: 0 0 15px;

@@ -53,7 +53,7 @@
                             <p class="event-details title">
                                 {{event.eventtitle}}
                             </p>
-                            <p class="event-details description" [ngStyle]="{display: event.eventdesc ? 'inline' : 'none' }">
+                            <p class="event-details description">
                                 {{event.eventdesc}}
                             </p>
                             <p class="event-details location">
@@ -95,6 +95,37 @@
                         <div class="input-wrapper invisible">
                             <input type="text" placeholder="Group ID" formControlName="group_id">
                         </div>
+
+                        <div class="input-wrapper item-title-update">
+                            <label>Title</label>
+                            <input type="text" placeholder="Title or name" formControlName="title" maxlength="32" required>
+                        </div>
+
+                        <div class="input-wrapper date-input-update">
+                            <label>Start Date</label>
+                            <input type="date" formControlName="start_date" (change)="onStartDateChange($event)" required />
+                        </div>
+                        
+                        <div class="input-wrapper date-input-end-update">
+                            <label>End Date</label>
+                            <input type="date" formControlName="end_date" required />
+                        </div>
+
+                        <div class="input-wrapper time-all-day">
+                            <input type="checkbox" (change)="allDaySelected($event)" formControlName="all_day" />
+                            <label for="all-day">All day</label>
+                        </div>
+                        
+                        <div class="input-wrapper time-input-update" [ngStyle]="{display: allDay ? 'none' : 'block'}">
+                            <label class="time-label">Start Time</label>
+                            <input type="time" formControlName="start_time" (change)="onStartTimeChange($event)" required />
+                        </div>
+                        
+                        <div class="input-wrapper time-input-end-update" [ngStyle]="{display: allDay ? 'none' : 'block'}">
+                            <label class="time-label">End Time</label>
+                            <input type="time" formControlName="end_time" required />
+                        </div>
+
                         <div class="input-wrapper frequency-update">
                             <label>Select Frequency</label>
                             <select formControlName="frequency" required (change)="frequencyChange($event)">
@@ -108,38 +139,9 @@
                             </select>
                         </div>
                         
-                        <div class="input-wrapper item-title-update">
-                            <label>Title</label>
-                            <input type="text" placeholder="Title or name" formControlName="title" maxlength="32" required>
-                        </div>
-                        
                         <div class="input-wrapper event-description-update">
                             <label class="description-label">Description</label>
                             <textarea placeholder="Add description" formControlName="description"></textarea>
-                        </div>
-                        
-                        <div class="input-wrapper date-input-update">
-                            <label>Start Date</label>
-                            <input type="date" formControlName="start_date" (change)="onStartDateChange($event)" required />
-                        </div>
-                        
-                        <div class="input-wrapper date-input-end-update">
-                            <label>End Date</label>
-                            <input type="date" formControlName="end_date" required />
-                        </div>
-                        
-                        <div class="input-wrapper time-input-update">
-                            <label class="time-label">Start Time</label>
-                            <input type="time" formControlName="start_time" (change)="onStartTimeChange($event)" required />
-                        </div>
-                        
-                        <div class="input-wrapper time-input-end-update">
-                            <label class="time-label">End Time</label>
-                            <input type="time" formControlName="end_time" required />
-                        </div>
-
-                        <div class="input-wrapper time-all-day">
-                            <input type="checkbox" (change)="allDaySelected($event)" formControlName="all_day"/><label for="all-day">All day</label>
                         </div>
                         
                         <div class="input-wrapper location-input-update">
@@ -194,6 +196,36 @@
                 </select>
             </div>
 
+            <div class="input-wrapper item-title">
+                <label>Title</label>
+                <input type="text" placeholder="Title or name" formControlName="title" maxlength="32" required>
+            </div>
+
+            <div class="input-wrapper date-input">
+                <label>Start Date</label>
+                <input type="date" formControlName="start_date" (change)="onStartDateChange($event)" required />
+            </div>
+            
+            <div class="input-wrapper date-input-end">
+                <label>End Date</label>
+                <input type="date" formControlName="end_date" required />
+            </div>
+
+            <div class="input-wrapper time-all-day">
+                <input id="all-day" type="checkbox" (change)="allDaySelected($event)" formControlName="all_day" /><label
+                    for="all-day">All day</label>
+            </div>
+            
+            <div class="input-wrapper time-input" [ngStyle]="{display: allDay ? 'none' : 'block'}">
+                <label class="time-label">Start Time</label>
+                <input type="time" formControlName="start_time" (change)="onStartTimeChange($event)" required />
+            </div>
+            
+            <div class="input-wrapper time-input-end" [ngStyle]="{display: allDay ? 'none' : 'block'}">
+                <label class="time-label">End Time</label>
+                <input type="time" formControlName="end_time" required />
+            </div>
+
             <div class="input-wrapper frequency">
                 <label>Select Frequency</label>
                 <select formControlName="frequency" required (change)="frequencyChange($event)">
@@ -207,38 +239,9 @@
                 </select>
             </div>
 
-            <div class="input-wrapper item-title">
-                <label>Title</label>
-                <input type="text" placeholder="Title or name" formControlName="title" maxlength="32" required>
-            </div>
-
             <div class="input-wrapper event-description">
                 <label class="description-label">Description</label>
                 <textarea placeholder="Add description" formControlName="description"></textarea>
-            </div>
-
-            <div class="input-wrapper date-input">
-                <label>Start Date</label>
-                <input type="date" formControlName="start_date" (change)="onStartDateChange($event)" required/>
-            </div>
-
-            <div class="input-wrapper date-input-end">
-                <label>End Date</label>
-                <input type="date" formControlName="end_date" required/>
-            </div>
-
-            <div class="input-wrapper time-input">
-                <label class="time-label">Start Time</label>
-                <input type="time" formControlName="start_time" (change)="onStartTimeChange($event)" required/>
-            </div>
-
-            <div class="input-wrapper time-input-end">
-                <label class="time-label">End Time</label>
-                <input type="time" formControlName="end_time" required/>
-            </div>
-
-            <div class="input-wrapper time-all-day">
-                <input id="all-day" type="checkbox" (change)="allDaySelected($event)" formControlName="all_day"/><label for="all-day">All day</label>
             </div>
 
             <div class="input-wrapper location-input">
