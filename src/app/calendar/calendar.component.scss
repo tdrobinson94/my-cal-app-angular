@@ -667,6 +667,10 @@
                                     }
                                 }
 
+                                &.item-type {
+                                    display: none;
+                                }
+
                                 &.title {
                                     font-weight: bold;
                                     font-size: 12px;

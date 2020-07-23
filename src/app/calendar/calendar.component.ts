@@ -839,7 +839,8 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
               eventfrequency: response[i].frequency,
               eventstart_time: moment(response[i].start_time, 'HH:mm:ss').format('h:mm A'),
               eventend_time: moment(response[i].end_time, 'HH:mm:ss').format('h:mm A'),
-              eventcreatedAt: moment(response[i].created_at).format()
+              eventcreatedAt: moment(response[i].created_at).format(),
+              itemtype: response[i].item_type.toString()
             };
 
             if (day.find('.date-value').html() === eventlist[i].eventstart_date ) {
@@ -930,7 +931,6 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
       const userID = localStorage.getItem('userId');
 
       // Update the form with the time values defined above
-      console.log(eCurrentTime + ' - ' + eEndTime);
 
       if (eCurrentTime === '00:00' && eEndTime === '23:59') {
         this.allDay = true;
@@ -938,6 +938,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
           user_id: new FormControl(userID),
           group_id: new FormControl(''),
           id: new FormControl(e.currentTarget.childNodes[6].value),
+          item_type: new FormControl(Number(e.currentTarget.childNodes[7].innerHTML.trim())),
           frequency: new FormControl(Number(e.currentTarget.childNodes[3].innerHTML.trim())),
           title: new FormControl(e.currentTarget.childNodes[0].innerHTML.trim()),
           description: new FormControl(e.currentTarget.childNodes[1].innerHTML.trim()),
@@ -954,6 +955,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
           user_id: new FormControl(userID),
           group_id: new FormControl(''),
           id: new FormControl(e.currentTarget.childNodes[6].value),
+          item_type: new FormControl(Number(e.currentTarget.childNodes[7].innerHTML.trim())),
           frequency: new FormControl(Number(e.currentTarget.childNodes[3].innerHTML.trim())),
           title: new FormControl(e.currentTarget.childNodes[0].innerHTML.trim()),
           description: new FormControl(e.currentTarget.childNodes[1].innerHTML.trim()),
@@ -961,12 +963,11 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
           end_date: new FormControl(endDay),
           start_time: new FormControl(eCurrentTime),
           end_time: new FormControl(eEndTime),
-          all_day: new FormControl(''),
+          all_day: new FormControl(false),
           location: new FormControl(e.currentTarget.childNodes[2].innerHTML.trim()),
         });
       }
       console.log(this.updateItemForm.value);
-      // $('.update-event-form .form-nav-bar .form-title').html(e.currentTarget.childNodes[0].innerHTML.trim());
     }
   }
 
@@ -1047,7 +1048,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
       end_date: new FormControl(day),
       start_time: new FormControl(currentTime),
       end_time: new FormControl(endTime),
-      all_day: new FormControl(''),
+      all_day: new FormControl(false),
       location: new FormControl(''),
     });
   }
@@ -1208,38 +1209,40 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
 
     if (e.target.checked === true) {
       this.allDay = true;
-      this.addItemForm = new FormGroup({
-        user_id: new FormControl(this.addItemForm.value.user_id),
-        group_id: new FormControl(''),
-        item_type: new FormControl(this.addItemForm.value.item_type),
-        frequency: new FormControl(this.addItemForm.value.frequency),
-        title: new FormControl(this.addItemForm.value.title),
-        description: new FormControl(this.addItemForm.value.description),
-        start_date: new FormControl(this.addItemForm.value.start_date),
-        end_date: new FormControl(this.addItemForm.value.end_date),
-        start_time: new FormControl(startTime),
-        end_time: new FormControl(endTime),
-        all_day: new FormControl(this.addItemForm.value.all_day),
-        location: new FormControl(this.addItemForm.value.location),
-      });
-
-      this.updateItemForm = new FormGroup({
-        user_id: new FormControl(this.updateItemForm.value.user_id),
-        group_id: new FormControl(''),
-        item_type: new FormControl(this.updateItemForm.value.item_type),
-        frequency: new FormControl(this.updateItemForm.value.frequency),
-        title: new FormControl(this.updateItemForm.value.title),
-        description: new FormControl(this.updateItemForm.value.description),
-        start_date: new FormControl(this.updateItemForm.value.start_date),
-        end_date: new FormControl(this.updateItemForm.value.end_date),
-        start_time: new FormControl(startTime),
-        end_time: new FormControl(endTime),
-        all_day: new FormControl(this.updateItemForm.value.all_day),
-        location: new FormControl(this.updateItemForm.value.location),
-      });
     } else {
       this.allDay = false;
     }
+
+    this.addItemForm = new FormGroup({
+      user_id: new FormControl(this.addItemForm.value.user_id),
+      group_id: new FormControl(''),
+      item_type: new FormControl(this.addItemForm.value.item_type),
+      frequency: new FormControl(this.addItemForm.value.frequency),
+      title: new FormControl(this.addItemForm.value.title),
+      description: new FormControl(this.addItemForm.value.description),
+      start_date: new FormControl(this.addItemForm.value.start_date),
+      end_date: new FormControl(this.addItemForm.value.end_date),
+      start_time: new FormControl(startTime),
+      end_time: new FormControl(endTime),
+      all_day: new FormControl(this.addItemForm.value.all_day),
+      location: new FormControl(this.addItemForm.value.location),
+    });
+
+    this.updateItemForm = new FormGroup({
+      user_id: new FormControl(this.updateItemForm.value.user_id),
+      group_id: new FormControl(''),
+      id: new FormControl(this.updateItemForm.value.id),
+      item_type: new FormControl(this.updateItemForm.value.item_type),
+      frequency: new FormControl(this.updateItemForm.value.frequency),
+      title: new FormControl(this.updateItemForm.value.title),
+      description: new FormControl(this.updateItemForm.value.description),
+      start_date: new FormControl(this.updateItemForm.value.start_date),
+      end_date: new FormControl(this.updateItemForm.value.end_date),
+      start_time: new FormControl(startTime),
+      end_time: new FormControl(endTime),
+      all_day: new FormControl(this.updateItemForm.value.all_day),
+      location: new FormControl(this.updateItemForm.value.location),
+    });
   }
 
   closeForm() {
@@ -1272,6 +1275,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
   updateEvent() {
     window.navigator.vibrate(this.gestureVibration);
     this.loading = true;
+    console.log(this.updateItemForm.value);
     this.dataService.updatedEvent(this.updateItemForm.value)
       .subscribe((response) => {
         this.closeEventUpdateForm();

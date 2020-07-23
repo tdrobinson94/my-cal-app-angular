@@ -73,6 +73,10 @@
                             </p>
                             <button class="delete-event hidden" (click)="deleteEvent($event)"
                             value="{{event.eventid}}">Delete</button>
+
+                            <p class="event-details item-type">
+                                {{event.itemtype}}
+                            </p>
                         </div>
                     </div>
                     <form [formGroup]="deleteItemForm">
@@ -113,12 +117,12 @@
                             <label for="all-day">All day</label>
                         </div>
                         
-                        <div class="input-wrapper time-input-update" [ngStyle]="{display: allDay ? 'none' : 'block'}">
+                        <div class="input-wrapper time-input-update" [ngClass]="{invisible: allDay}">
                             <label class="time-label">Start Time</label>
                             <input type="time" formControlName="start_time" (change)="onStartTimeChange($event)" required />
                         </div>
                         
-                        <div class="input-wrapper time-input-end-update" [ngStyle]="{display: allDay ? 'none' : 'block'}">
+                        <div class="input-wrapper time-input-end-update" [ngClass]="{invisible: allDay}">
                             <label class="time-label">End Time</label>
                             <input type="time" formControlName="end_time" required />
                         </div>
@@ -211,12 +215,12 @@
                     for="all-day">All day</label>
             </div>
             
-            <div class="input-wrapper time-input" [ngStyle]="{display: allDay ? 'none' : 'block'}">
+            <div class="input-wrapper time-input" [ngClass]="{invisible: allDay}">
                 <label class="time-label">Start Time</label>
                 <input type="time" formControlName="start_time" (change)="onStartTimeChange($event)" required />
             </div>
             
-            <div class="input-wrapper time-input-end" [ngStyle]="{display: allDay ? 'none' : 'block'}">
+            <div class="input-wrapper time-input-end" [ngClass]="{invisible: allDay}">
                 <label class="time-label">End Time</label>
                 <input type="time" formControlName="end_time" required />
             </div>
