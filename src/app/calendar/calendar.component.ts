@@ -1073,6 +1073,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
     this.updateItemForm = new FormGroup({
       user_id: new FormControl(this.updateItemForm.value.user_id),
       group_id: new FormControl(this.updateItemForm.value.group_id),
+      id: new FormControl(this.updateItemForm.value.id),
       item_type: new FormControl(this.updateItemForm.value.item_type),
       frequency: new FormControl(this.updateItemForm.value.frequency),
       title: new FormControl(this.updateItemForm.value.title),
@@ -1105,7 +1106,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
 
     this.addItemForm = new FormGroup({
         user_id: new FormControl(this.addItemForm.value.user_id),
-      group_id: new FormControl(this.updateItemForm.value.group_id),
+        group_id: new FormControl(this.updateItemForm.value.group_id),
         item_type: new FormControl(this.addItemForm.value.item_type),
         frequency: new FormControl(this.addItemForm.value.frequency),
         title: new FormControl(this.addItemForm.value.title),
@@ -1121,6 +1122,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
     this.updateItemForm = new FormGroup({
       user_id: new FormControl(this.updateItemForm.value.user_id),
       group_id: new FormControl(this.updateItemForm.value.group_id),
+      id: new FormControl(this.updateItemForm.value.id),
       item_type: new FormControl(this.updateItemForm.value.item_type),
       frequency: new FormControl(this.updateItemForm.value.frequency),
       title: new FormControl(this.updateItemForm.value.title),
@@ -1155,6 +1157,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
       this.updateItemForm = new FormGroup({
         user_id: new FormControl(this.updateItemForm.value.user_id),
         group_id: new FormControl(''),
+        id: new FormControl(this.updateItemForm.value.id),
         item_type: new FormControl(this.updateItemForm.value.item_type),
         frequency: new FormControl(this.updateItemForm.value.frequency),
         title: new FormControl(this.updateItemForm.value.title),
