@@ -257,7 +257,10 @@
 </div>
 
 
-<div *ngIf="this.loading" class="loading-container">
+<div class="loading-container" [ngStyle]="{display: loading ? 'flex' : 'none'}">
+    <div class="loading-text">
+        Updating Events <span>.</span><span>.</span><span>.</span>
+    </div>
     <div class="lds-roller">
         <div></div>
         <div></div>
