@@ -789,6 +789,19 @@
                                         }
                                     }
 
+                                    .auto-hide {
+                                        &:before {
+                                            color: transparent;
+                                            transition: .5s all ease-in-out;
+                                        }
+                                    }
+
+                                    .mobile-hide-helpers {
+                                        &:before {
+                                            display: none;
+                                        }
+                                    }
+
                                     .close-form {
                                         position: absolute;
                                         display: inline;
@@ -1216,6 +1229,19 @@
                     animation-duration: 1s;
                     animation-iteration-count: infinite;
                     text-align: center;
+                }
+            }
+
+            .auto-hide {
+                &:before {
+                    color: transparent;
+                    transition: .5s all ease-in-out;
+                }
+            }
+
+            .mobile-hide-helpers {
+                &:before {
+                    display: none;
                 }
             }
 
