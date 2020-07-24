@@ -284,14 +284,18 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
       // Find the 1 day of each month and add Class first-day
       if (day.find('.num-date').html() === '&nbsp;' + '1' + '&nbsp;') {
         day.find('.num-date').parent().addClass('first-day');
+        day.find('.num-date').parent().parent().addClass('first-day');
       } else {
         day.find('.num-date').parent().removeClass('first-day');
+        day.find('.num-date').parent().parent().removeClass('first-day');
       }
 
       if (Number(day.find('.num-date').html()) === monthDays) {
         day.find('.num-date').parent().addClass('last-day');
+        day.find('.num-date').parent().parent().addClass('last-day');
       } else {
         day.find('.num-date').parent().removeClass('last-day');
+        day.find('.num-date').parent().parent().removeClass('last-day');
       }
     });
 
@@ -419,7 +423,13 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
           if (!$(e.target).parent().next().hasClass('dead-month-color')) {
             $('.day-box').removeClass('clicked-day double-click swipe-left swipe-right bounce-right bounce-left');
             $('.main-info-section').removeClass('animate-events-one animate-events-two');
-            if ($(e.target).parent().next().length === 0) {
+            if ($(e.target).parent().hasClass('last-day')) {
+              this.nextClick();
+              setTimeout(() => {
+                $('.day-box').removeClass('clicked-day');
+                $('.first-day').parent().addClass('clicked-day double-click swipe-left');
+              }, 200);
+            } else if ($(e.target).parent().next().length === 0) {
               $(e.target).parent().parent().next().children().eq(0).addClass('clicked-day double-click swipe-left');
               $('.double-click .num-date').removeClass('auto-hide');
               $('.double-click').find('.main-info-section').addClass('animate-events-one');
@@ -461,7 +471,13 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
           if (!$(e.target).parent().parent().parent().next().hasClass('dead-month-color')) {
             $('.day-box').removeClass('clicked-day double-click swipe-left swipe-right bounce-right bounce-left');
             $('.main-info-section').removeClass('animate-events-one animate-events-two');
-            if ($(e.target).parent().parent().parent().next().length === 0) {
+            if ($(e.target).parent().parent().parent().hasClass('last-day')) {
+              this.nextClick();
+              setTimeout(() => {
+                $('.day-box').removeClass('clicked-day');
+                $('.first-day').parent().addClass('clicked-day double-click swipe-left');
+              }, 200);
+            } else if ($(e.target).parent().parent().parent().next().length === 0) {
               $(e.target).parent().parent().parent().parent().next().children().eq(0).addClass('clicked-day double-click swipe-left');
               $('.double-click .num-date').removeClass('auto-hide');
               $('.double-click').find('.main-info-section').addClass('animate-events-one');
@@ -503,7 +519,13 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
           if (!$(e.target).parent().parent().parent().parent().next().hasClass('dead-month-color')) {
             $('.day-box').removeClass('clicked-day double-click swipe-left swipe-right bounce-right bounce-left');
             $('.main-info-section').removeClass('animate-events-one animate-events-two');
-            if ($(e.target).parent().parent().parent().parent().next().length === 0) {
+            if ($(e.target).parent().parent().parent().parent().hasClass('last-day')) {
+              this.nextClick();
+              setTimeout(() => {
+                $('.day-box').removeClass('clicked-day');
+                $('.first-day').parent().addClass('clicked-day double-click swipe-left');
+              }, 200);
+            } else if ($(e.target).parent().parent().parent().parent().next().length === 0) {
               $(e.target).parent().parent().parent().parent().parent().next().children().eq(0).addClass('clicked-day double-click swipe-left');
               $('.double-click .num-date').removeClass('auto-hide');
               $('.double-click').find('.main-info-section').addClass('animate-events-one');
@@ -557,7 +579,13 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
           if (!$(e.target).parent().prev().hasClass('dead-month-color')) {
             $('.day-box').removeClass('clicked-day double-click swipe-left swipe-right bounce-right bounce-left');
             $('.main-info-section').removeClass('animate-events-one animate-events-two');
-            if ($(e.target).parent().prev().length === 0) {
+            if ($(e.target).parent().hasClass('first-day')) {
+              this.prevClick();
+              setTimeout(() => {
+                $('.day-box').removeClass('clicked-day');
+                $('.last-day').parent().addClass('clicked-day double-click swipe-right');
+              }, 200);
+            } else if ($(e.target).parent().prev().length === 0) {
               $(e.target).parent().parent().prev().children().eq(6).addClass('clicked-day double-click swipe-right');
               $('.double-click .num-date').removeClass('auto-hide');
               $('.double-click').find('.main-info-section').addClass('animate-events-one');
@@ -599,7 +627,13 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
           if (!$(e.target).parent().parent().parent().prev().hasClass('dead-month-color')) {
             $('.day-box').removeClass('clicked-day double-click swipe-right swipe-left bounce-right bounce-left');
             $('.main-info-section').removeClass('animate-events-one animate-events-two');
-            if ($(e.target).parent().parent().parent().prev().length === 0) {
+            if ($(e.target).parent().parent().parent().hasClass('first-day')) {
+              this.prevClick();
+              setTimeout(() => {
+                $('.day-box').removeClass('clicked-day');
+                $('.last-day').parent().addClass('clicked-day double-click swipe-right');
+              }, 200);
+            } else if ($(e.target).parent().parent().parent().prev().length === 0) {
               $(e.target).parent().parent().parent().parent().prev().children().eq(6).addClass('clicked-day double-click swipe-right');
               $('.double-click .num-date').removeClass('auto-hide');
               $('.double-click').find('.main-info-section').addClass('animate-events-one');
@@ -641,7 +675,13 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
           if (!$(e.target).parent().parent().parent().parent().prev().hasClass('dead-month-color')) {
             $('.day-box').removeClass('clicked-day double-click swipe-right swipe-left bounce-right bounce-left');
             $('.main-info-section').removeClass('animate-events-one animate-events-two');
-            if ($(e.target).parent().parent().parent().parent().prev().length === 0) {
+            if ($(e.target).parent().parent().parent().parent().hasClass('first-day')) {
+              this.prevClick();
+              setTimeout(() => {
+                $('.day-box').removeClass('clicked-day');
+                $('.last-day').parent().addClass('clicked-day double-click swipe-right');
+              }, 200);
+            } else if ($(e.target).parent().parent().parent().parent().prev().length === 0) {
               $(e.target).parent().parent().parent().parent().parent().prev().children().eq(6).addClass('clicked-day double-click swipe-right');
               $('.double-click').find('.main-info-section').addClass('animate-events-one');
               setTimeout(() => {
@@ -720,7 +760,13 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
       if (!$(e.currentTarget).prev().hasClass('dead-month-color')) {
         $('.day-box').removeClass('clicked-day double-click swipe-right swipe-left');
         $('.main-info-section').removeClass('animate-events-one animate-events-two');
-        if ($(e.currentTarget).prev().length === 0) {
+        if ($(e.currentTarget).hasClass('first-day')) {
+          this.prevClick();
+          setTimeout(() => {
+            $('.day-box').removeClass('clicked-day');
+            $('.last-day').parent().addClass('clicked-day double-click swipe-left');
+          }, 200);
+        } else if ($(e.currentTarget).prev().length === 0) {
           $(e.currentTarget).parent().prev().children().eq(6).addClass('clicked-day double-click swipe-left');
           $('.double-click').find('.main-info-section').addClass('animate-events-one');
           setTimeout(() => {
@@ -737,7 +783,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
         this.prevClick();
         setTimeout(() => {
           $('.day-box').removeClass('clicked-day');
-          $('.last-day').parent().addClass('clicked-day double-click swipe-right');
+          $('.last-day').parent().addClass('clicked-day double-click swipe-left');
         }, 200);
       }
     } else if ($(e.target).hasClass('next-day-icon')) {
@@ -748,7 +794,13 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
       if (!$(e.currentTarget).next().hasClass('dead-month-color')) {
         $('.day-box').removeClass('clicked-day double-click swipe-right swipe-left');
         $('.main-info-section').removeClass('animate-events-one animate-events-two');
-        if ($(e.currentTarget).next().length === 0) {
+        if ($(e.currentTarget).hasClass('last-day')) {
+          this.nextClick();
+          setTimeout(() => {
+            $('.day-box').removeClass('clicked-day');
+            $('.first-day').parent().addClass('clicked-day double-click swipe-right');
+          }, 200);
+        } else if ($(e.currentTarget).next().length === 0) {
           $(e.currentTarget).parent().next().children().eq(0).addClass('clicked-day double-click swipe-right');
           $('.double-click').find('.main-info-section').addClass('animate-events-one');
           setTimeout(() => {
@@ -765,7 +817,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
         this.nextClick();
         setTimeout(() => {
           $('.day-box').removeClass('clicked-day');
-          $('.first-day').parent().addClass('clicked-day double-click swipe-left');
+          $('.first-day').parent().addClass('clicked-day double-click swipe-right');
         }, 200);
       }
     } else if ($(e.target).hasClass('close-day-icon')) {
