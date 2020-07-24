@@ -557,7 +557,7 @@
                             &:before {
                                 color: $textdrk;
                                 position: absolute;
-                                content: "▾  swipe from top ▾";
+                                content: "▾  swipe to close ▾";
                                 top: -17px;
                                 left: 50%;
                                 transform: translateX(-50%);
@@ -774,7 +774,7 @@
                                         &:before {
                                             color: $textdrk;
                                             position: absolute;
-                                            content: "▾  swipe from top ▾";
+                                            content: "▾  swipe to close ▾";
                                             top: 1px;
                                             left: 50%;
                                             transform: translateX(-50%);
@@ -1232,7 +1232,7 @@
                 &:before {
                     color: $textdrk;
                     position: absolute;
-                    content: "▾  swipe from top ▾";
+                    content: "▾  swipe to close ▾";
                     top: 1px;
                     left: 50%;
                     transform: translateX(-50%);

@@ -933,12 +933,17 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
     } 
     // If an event has been clicked twice
     else if ($(e.currentTarget).hasClass('selected-event')) {
+      $('.form-nav-bar h2').removeClass('auto-hide');
       $('.add-item-button, .add-item-container').hide();
       $('.num-box').addClass('event-opened');
       setTimeout(() => {
         $('.update-event-form').addClass('show-update-form').removeClass('closed');
       }, 200);
       $('.update-event-form').animate({ scrollTop: 0 }, 400);
+
+      setTimeout(() => {
+        $('.form-nav-bar h2').addClass('auto-hide');
+      }, 7000);
 
       // Define variables by finding the html of the 1st child element an reducing it to AM or PM, just hours, and just minutes
       const timeofday = e.currentTarget.childNodes[4].children[0].innerHTML.trim().split(' ')[1];
@@ -1057,6 +1062,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   openForm() {
+    $('.form-nav-bar h2').removeClass('auto-hide');
     $('.add-item-container').animate({ scrollTop: 0 }, 400);
     this.openform = true;
     this.hideFormButton = true;
@@ -1065,6 +1071,10 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
     setTimeout(() => {
       $('.form-nav-bar, .add-item-form').addClass('animate-events-two');
     }, 450);
+
+    setTimeout(() => {
+      $('.form-nav-bar h2').addClass('auto-hide');
+    }, 7000);
 
     const day = $('.clicked-day .date-value').text();
     let minutes: any = Number(String(this.clock.getMinutes()).padStart(2, '0'));
