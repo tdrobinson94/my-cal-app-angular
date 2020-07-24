@@ -729,7 +729,7 @@
                                 position: fixed;
                                 top: 124px;
                                 width: 100%;
-                                height: calc(100% - 125px);
+                                bottom: 69px;
                                 overflow: auto;
                                 background: $background;
                                 padding: 0;
@@ -897,24 +897,28 @@
                                     height: 75px;
                                 }
 
-                                button.submit-form, button.delete-event {
-                                    background-color: $buttongry;
-                                    color: $textwht;
-                                    border-radius: 5px;
-                                    padding: 10px;
-                                    border: 0;
-                                    font-size: 15px;
-                                    float: right;
-                                    margin: 20px 0;
+                                .submit-buttons {
+                                    position: fixed;
+                                    flex-direction: row-reverse;
+                                    display: flex;
+                                    justify-content: center;
+                                    bottom: 0;
+                                    background: $background;
+                                    width: 100%;
+                                    margin: 0;
 
-                                    &:disabled {
-                                        opacity: .3;
+                                    .submit-form, .delete-event {
+                                        background-color: $background;
+                                        color: $textwht;
+                                        padding: 20px 0;
+                                        border: 0;
+                                        font-size: 25px;
+                                        width: 50%;
+
+                                        &:disabled {
+                                            opacity: .3;
+                                        }
                                     }
-                                }
-
-                                button.delete-event {
-                                    float: left;
-                                    background-color: $alert;
                                 }
 
                                 &::-webkit-scrollbar {
@@ -1158,9 +1162,8 @@
         }
 
         &.show-form {
-            height: calc(100% - 139px);
+            height: calc(100% - 192px);
             width: 100%;
-            padding-bottom: 15px;
             background: $background;
             right: 0px;
             bottom: 0;
@@ -1168,6 +1171,7 @@
             border-radius: 0;
             color: $textdrk;
             overflow: auto;
+            margin-bottom: 69px;
 
             transition: all 0.3s ease-in-out;
             -moz-transition: all .3s ease-in-out;
@@ -1347,18 +1351,25 @@
             height: 75px;
         }
 
-        button.submit-form {
-            background-color: $buttongry;
-            color: $textwht;
-            border-radius: 5px;
-            padding: 10px;
-            border: 0;
-            font-size: 15px;
-            float: right;
-            margin: 20px 0;
+        .submit-buttons {
+            position: fixed;
+            justify-content: center;
+            bottom: 0;
+            background: $background;
+            width: 100%;
+            margin: 0;
 
-            &:disabled {
-                opacity: .3;
+            .submit-form {
+                background-color: $background;
+                color: $textwht;
+                padding: 20px 0;
+                border: 0;
+                font-size: 25px;
+                width: 100%;
+
+                &:disabled {
+                    opacity: .3;
+                }
             }
         }
     }

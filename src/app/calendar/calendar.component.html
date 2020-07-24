@@ -102,6 +102,19 @@
                             <input type="text" placeholder="Group ID" formControlName="group_id">
                         </div>
 
+                        <div class="input-wrapper frequency-update">
+                            <label>Select Frequency</label>
+                            <select formControlName="frequency" required (change)="frequencyChange($event)">
+                                <option value="0">Once</option>
+                                <option value="1">Daily</option>
+                                <option value="2">Weekly</option>
+                                <option value="3">Bi-weekly</option>
+                                <option value="4">Monthly</option>
+                                <option value="5">Semi-annual</option>
+                                <option value="6">Annual</option>
+                            </select>
+                        </div>
+
                         <div class="input-wrapper date-input-update">
                             <label>Start Date</label>
                             <input type="date" formControlName="start_date" (change)="onStartDateChange($event)" required />
@@ -126,19 +139,6 @@
                             <label class="time-label">End Time</label>
                             <input type="time" formControlName="end_time" required />
                         </div>
-
-                        <div class="input-wrapper frequency-update">
-                            <label>Select Frequency</label>
-                            <select formControlName="frequency" required (change)="frequencyChange($event)">
-                                <option value="0">Once</option>
-                                <option value="1">Daily</option>
-                                <option value="2">Weekly</option>
-                                <option value="3">Bi-weekly</option>
-                                <option value="4">Monthly</option>
-                                <option value="5">Semi-annual</option>
-                                <option value="6">Annual</option>
-                            </select>
-                        </div>
                         
                         <div class="input-wrapper event-description-update">
                             <label class="description-label">Description</label>
@@ -150,11 +150,9 @@
                             <input type="text" placeholder="Location" formControlName="location">
                         </div>
                         
-                        <div class="input-wrapper">
+                        <div class="input-wrapper submit-buttons">
                             <button class="submit-form" type="submit" [disabled]="!updateItemForm.valid" (click)="updateEvent()">Update</button>
-                        </div>
 
-                        <div class="input-wrapper">
                             <button class="delete-event" (click)="deleteEvent($event)">Delete</button>
                         </div>
                         
@@ -200,6 +198,19 @@
                 </select>
             </div>
 
+            <div class="input-wrapper frequency">
+                <label>Select Frequency</label>
+                <select formControlName="frequency" required (change)="frequencyChange($event)">
+                    <option value="0">Once</option>
+                    <option value="1">Daily</option>
+                    <option value="2">Weekly</option>
+                    <option value="3">Bi-weekly</option>
+                    <option value="4">Monthly</option>
+                    <option value="5">Semi-annual</option>
+                    <option value="6">Annual</option>
+                </select>
+            </div>
+
             <div class="input-wrapper date-input">
                 <label>Start Date</label>
                 <input type="date" formControlName="start_date" (change)="onStartDateChange($event)" required />
@@ -225,19 +236,6 @@
                 <input type="time" formControlName="end_time" required />
             </div>
 
-            <div class="input-wrapper frequency">
-                <label>Select Frequency</label>
-                <select formControlName="frequency" required (change)="frequencyChange($event)">
-                    <option value="0">Once</option>
-                    <option value="1">Daily</option>
-                    <option value="2">Weekly</option>
-                    <option value="3">Bi-weekly</option>
-                    <option value="4">Monthly</option>
-                    <option value="5">Semi-annual</option>
-                    <option value="6">Annual</option>
-                </select>
-            </div>
-
             <div class="input-wrapper event-description">
                 <label class="description-label">Description</label>
                 <textarea placeholder="Add description" formControlName="description"></textarea>
@@ -248,7 +246,7 @@
                 <input type="text" placeholder="Location" formControlName="location">
             </div>
 
-            <div class="input-wrapper">
+            <div class="input-wrapper submit-buttons">
                 <button class="submit-form" type="submit" [disabled]="!addItemForm.valid">Add</button>
             </div>
         </form>
