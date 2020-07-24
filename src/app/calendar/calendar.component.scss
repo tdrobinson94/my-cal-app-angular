@@ -898,7 +898,7 @@
                                 }
 
                                 .submit-buttons {
-                                    position: sticky;
+                                    position: fixed;
                                     flex-direction: row-reverse;
                                     display: flex;
                                     justify-content: center;
@@ -906,6 +906,10 @@
                                     background: $background;
                                     width: 100%;
                                     margin: 0;
+
+                                    @media screen and (min-width: $end-small) {
+                                        position: sticky;
+                                    }
 
                                     .submit-form, .delete-event {
                                         background-color: $background;
@@ -1359,12 +1363,16 @@
         }
 
         .submit-buttons {
-            position: sticky;
+            position: fixed;
             justify-content: center;
             bottom: 0;
             background: $background;
             width: 100%;
             margin: 0;
+
+            @media screen and (min-width: $end-small) {
+                position: sticky;
+            }
 
             .submit-form {
                 background-color: $background;
