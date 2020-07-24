@@ -50,12 +50,13 @@
         h2 {
             margin: 0;
             font-size: 25px;
-            ont-weight: 100;
+            font-weight: 100;
         }
     }
 
     form {
         padding: 20px;
+        padding-bottom: 110px;
         .input-wrapper {
           width: 100%;
         }
@@ -67,6 +68,7 @@
         width: 100%;
         font-weight: bold;
         font-size: 15px;
+        color: $textdrk;
       }
 
       input {
@@ -81,6 +83,7 @@
           font-size: 15px;
           transition: all .3s ease-in-out;
           background: transparent;
+          color: $textdrk;
 
           &:focus, &:active {
               border: 0;
@@ -94,19 +97,40 @@
           }
       }
 
-      .signup, .login {
-        background-color: $buttongry;
-        color: #fff;
-        border-radius: 5px;
-        padding: 10px;
-        border: 0;
-        font-size: 15px;
-        float: right;
-        margin: 20px 0;
+      .submit-buttons {
+          position: fixed;
+          flex-direction: row-reverse;
+          display: flex;
+          justify-content: center;
+          bottom: 0px;
+          left: 0;
+          background: $background;
+          width: 100%;
+          margin: 0;
 
-        &:disabled {
-          opacity: .3;
-        }
+          @media screen and (min-width: $end-small) {
+            bottom: 54px;
+          }
+
+          .login {
+              background-color: $background;
+              color: $textwht;
+              padding: 20px 0;
+              border: 0;
+              font-size: 20px;
+              width: 50%;
+              transition: all .3s ease-in-out;
+
+              &:disabled {
+                  opacity: .3;
+                  transition: all .3s ease-in-out;
+              }
+
+              &:hover, &:focus {
+                opacity: .5;
+                transition: all .3s ease-in-out;
+              }
+          }
       }
     }
 

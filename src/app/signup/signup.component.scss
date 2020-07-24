@@ -56,6 +56,7 @@
 
     form {
         padding: 20px;
+        padding-bottom: 110px;
         .input-wrapper {
           width: 100%;
         }
@@ -67,6 +68,7 @@
         width: 100%;
         font-weight: bold;
         font-size: 15px;
+        color: $textdrk;
       }
 
       input {
@@ -80,6 +82,8 @@
           box-sizing: border-box;
           font-size: 15px;
           transition: all .3s ease-in-out;
+          background: transparent;
+          color: $textdrk;
 
           &:focus, &:active {
               border: 0;
@@ -93,19 +97,37 @@
           }
       }
 
-      .signup, .login {
-        background-color: $buttongry;
-        color: #fff;
-        border-radius: 5px;
-        padding: 10px;
-        border: 0;
-        font-size: 15px;
-        float: right;
-        margin: 20px 0;
-        
-        &:disabled {
-          opacity: .3;
-        }
+      .submit-buttons {
+          position: fixed;
+          flex-direction: row-reverse;
+          display: flex;
+          justify-content: center;
+          bottom: 0px;
+          left: 0;
+          background: $background;
+          width: 100%;
+          margin: 0;
+
+          @media screen and (min-width: $end-small) {
+            bottom: 54px;
+          }
+
+          .signup {
+              background-color: $background;
+              color: $textwht;
+              padding: 20px 0;
+              border: 0;
+              font-size: 20px;
+              width: 50%;
+
+              &:disabled {
+                opacity: .3;
+              }
+
+              &:hover, &:focus {
+                opacity: .5;
+              }
+          }
       }
     }
 

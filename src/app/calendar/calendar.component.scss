@@ -898,7 +898,7 @@
                                 }
 
                                 .submit-buttons {
-                                    position: fixed;
+                                    position: sticky;
                                     flex-direction: row-reverse;
                                     display: flex;
                                     justify-content: center;
@@ -914,9 +914,16 @@
                                         border: 0;
                                         font-size: 20px;
                                         width: 50%;
+                                        transition: all .3s ease-in-out;
 
                                         &:disabled {
                                             opacity: .3;
+                                            transition: all .3s ease-in-out;
+                                        }
+
+                                        &:hover, &:focus {
+                                            opacity: .5;
+                                            transition: all .3s ease-in-out;
                                         }
                                     }
                                 }
@@ -1191,7 +1198,7 @@
             }
 
             @media screen and (min-height: 600px) and (min-width: $end-small) {
-                transform: translate(50%, 53%);
+                transform: translate(50%, 68%);
                 height: 60%;
             }
         }
@@ -1352,7 +1359,7 @@
         }
 
         .submit-buttons {
-            position: fixed;
+            position: sticky;
             justify-content: center;
             bottom: 0;
             background: $background;
@@ -1366,9 +1373,16 @@
                 border: 0;
                 font-size: 20px;
                 width: 100%;
+                transition: all .3s ease-in-out;
 
                 &:disabled {
                     opacity: .3;
+                    transition: all .3s ease-in-out;
+                }
+
+                &:hover, &:focus {
+                    opacity: .5;
+                    transition: all .3s ease-in-out;
                 }
             }
         }

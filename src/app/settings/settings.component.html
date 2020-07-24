@@ -28,10 +28,9 @@
                     <label>Password</label>
                     <input formControlName="password" name="password-field" autocomplete="new-password" placeholder="Password" type="password" required />
                 </div>
-                <div class="input-wrapper">
+                <div class="input-wrapper submit-buttons">
                     <button [disabled]="!updateForm.valid" class="update" type="submit">Update</button>
-                </div>
-                <div class="input-wrapper">
+
                     <button class="delete" (click)="deleteMyUser()">Delete</button>
                 </div>
             </form>
