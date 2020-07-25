@@ -38,7 +38,11 @@ body {
     height: calc(100% - 53px);
     font-family: $globalFont;
     position: relative;
-    top: 50px;
+    top: 0px;
+
+    @media screen and (min-width: $end-small) {
+      top: 50px;
+    }
     // overflow-x: hidden;
 
     // @media screen and (min-width: $mid-small) {

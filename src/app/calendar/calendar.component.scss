@@ -192,13 +192,13 @@
             padding: 1px 0;
             overflow: hidden;
 
-            &:nth-child(1) {
-                margin-top: 5px;
-            }
+            // &:nth-child(1) {
+            //     margin-top: 5px;
+            // }
 
-            &:nth-child(6) {
-                margin-bottom: 5px;
-            }
+            // &:nth-child(6) {
+            //     margin-bottom: 5px;
+            // }
 
             @media screen and (min-width: $end-small) {
                 height: 19.2%;
@@ -436,7 +436,7 @@
                 &.double-click {
                     background: $background;
                     position: fixed;
-                    top: 124px;
+                    top: 74px;
                     bottom: 53px;
                     height: calc(100% - 54px);
                     width: 100%;
@@ -727,9 +727,9 @@
                             &.show-update-form {
                                 display: block;
                                 position: fixed;
-                                top: 124px;
+                                top: 74px;
                                 width: 100%;
-                                bottom: 60px;
+                                bottom: 110px;
                                 overflow: auto;
                                 background: $background;
                                 padding: 0;
@@ -902,13 +902,14 @@
                                     flex-direction: row-reverse;
                                     display: flex;
                                     justify-content: center;
-                                    bottom: 0;
+                                    bottom:55px;
                                     background: $background;
                                     width: 100%;
                                     margin: 0;
 
                                     @media screen and (min-width: $end-small) {
                                         position: sticky;
+                                        bottom: 0;
                                     }
 
                                     .submit-form, .delete-event {
@@ -1104,7 +1105,7 @@
     .add-item-button {
         padding: 15px;
         position: fixed;
-        bottom: 10px;
+        bottom: 60.9px;
         font-size: 20px;
         border-radius: 100%;
         border: none;
@@ -1133,7 +1134,7 @@
 
     .add-item-container {
         position: fixed;
-        bottom: 12px;
+        bottom: 60.9px;
         right: 12px;
         height: 50px;
         width: 50px;
@@ -1177,7 +1178,7 @@
             width: 100%;
             background: $background;
             right: 0px;
-            bottom: 0;
+            bottom: 49px;
             z-index: 99999;
             border-radius: 0;
             color: $textdrk;
@@ -1365,13 +1366,14 @@
         .submit-buttons {
             position: fixed;
             justify-content: center;
-            bottom: 0;
+            bottom: 55px;
             background: $background;
             width: 100%;
             margin: 0;
 
             @media screen and (min-width: $end-small) {
                 position: sticky;
+                bottom: 0;
             }
 
             .submit-form {
