@@ -45,7 +45,7 @@ export class ProfileComponent implements OnInit {
         });
         setTimeout(() => {
           this.loading = false;
-        }, 1500);
+        }, 2000);
       });
   }
 

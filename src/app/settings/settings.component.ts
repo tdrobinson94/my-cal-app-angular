@@ -42,7 +42,7 @@ export class SettingsComponent implements OnInit {
                 });
                 setTimeout(() => {
                     this.loading = false;
-                }, 1500);
+                }, 2000);
             });
     }
 
