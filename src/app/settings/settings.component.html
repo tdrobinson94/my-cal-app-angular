@@ -5,39 +5,18 @@
 
     <div class="settings-info">
         <div class="input-wrapper update">
-            <label>Account Info</label>
-            <!-- <button (click)="showUpdateForm()">Update Account</button> -->
-            <form class="update-form" [formGroup]="updateForm" autocomplete="off" (ngSubmit)="updatedMyUser()">
-                <div class="input-wrapper email">
-                    <label>Email</label>
-                    <input name="email-field" type="text" placeholder="{{Email}}" autocomplete="off" readonly required />
-                </div>
-                <div class="input-wrapper username">
-                    <label>First Name</label>
-                    <input formControlName="firstname" name="firstname-field" autocomplete="off" type="text" placeholder="First Name" required />
-                </div>
-                <div class="input-wrapper username">
-                    <label>Last Name</label>
-                    <input formControlName="lastname" name="lastname-field" autocomplete="off" type="text" placeholder="Last Name" required />
-                </div>
-                <div class="input-wrapper username">
-                    <label>Username</label>
-                    <input formControlName="username" name="username-field" autocomplete="off" type="text" placeholder="Username" required />
-                </div>
-                <div class="input-wrapper password">
-                    <label>Password</label>
-                    <input formControlName="password" name="password-field" autocomplete="new-password" placeholder="Password" type="password" required />
-                </div>
-                <div class="input-wrapper submit-buttons">
-                    <button [disabled]="!updateForm.valid" class="update" type="submit">Update</button>
-
-                    <button class="delete" (click)="deleteMyUser()">Delete</button>
-                </div>
-            </form>
+            <label>General</label>
+            
         </div>
-        <!-- <div class="input-wrapper theme">
+        <div class="input-wrapper update">
             <label>Theme</label>
-        </div> -->
+            
+        </div>
+        <div class="input-wrapper update">
+            <label>Advanced</label>
+            
+        </div>
+
     </div>
     <div class="bottom">
 
@@ -45,14 +24,17 @@
 </div>
 
 <div *ngIf="this.loading" class="loading-container">
-    <div class="lds-roller">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
+    <div class="loading-text">
+        Loading Settings <span>.</span><span>.</span><span>.</span>
     </div>
+    <!-- <div class="lds-roller">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div> -->
 </div>

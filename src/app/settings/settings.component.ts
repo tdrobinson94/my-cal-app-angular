@@ -40,7 +40,9 @@ export class SettingsComponent implements OnInit {
                     username: new FormControl(res[3]),
                     password: new FormControl('')
                 });
-                this.loading = false;
+                setTimeout(() => {
+                    this.loading = false;
+                }, 1500);
             });
     }
 
