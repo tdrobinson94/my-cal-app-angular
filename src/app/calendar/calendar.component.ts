@@ -1070,8 +1070,8 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
     $('.form-nav-bar, .add-item-form').addClass('animate-events-one');
     setTimeout(() => {
       $('.form-nav-bar, .add-item-form').addClass('animate-events-two');
+      $('input[name=title]').focus();
     }, 450);
-    $('input[name=title]').focus();
 
     setTimeout(() => {
       $('.form-nav-bar h2').addClass('auto-hide');

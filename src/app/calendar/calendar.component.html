@@ -172,7 +172,7 @@
         <form class="add-item-form" [formGroup]="addItemForm" (ngSubmit)="submitEvent()">
             <div class="form-nav-bar" (swipedown)="onSwipeDownForm($event)">
                 <h2 class="form-title">
-                    <input type="text" placeholder="Title" formControlName="title" maxlength="32" name="title" autofocus required>
+                    <input type="text" placeholder="Title" formControlName="title" maxlength="32" name="title" required>
                 </h2>
                 <div class="close-form" (click)="closeForm()">
                     <span class="material-icons">clear</span>
